@@ -1,0 +1,14 @@
+.main-container{
+    display: flex;
+    flex-direction: row;
+    flex: 0.2;
+}
+
+.name-container{
+    color: rgb(55, 118, 212)
+}
+.image-container{
+    object-fit: contain;
+    padding-left: 10px;
+    padding-top: 10px;
+}
