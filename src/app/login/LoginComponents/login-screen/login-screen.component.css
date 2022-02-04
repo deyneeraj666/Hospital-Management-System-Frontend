@@ -1,0 +1,43 @@
+body 
+{
+    position: static;
+    width: 95%;
+    margin: 10px;
+    border: 2px solid rgb(201, 78, 78);
+    height: 95%;
+}
+mat-card
+{
+    width: 450px;
+    height: 310px;
+    background-color: rgb(231, 239, 240)
+    
+} 
+mat-card:hover 
+{
+    /* rgb(0, 255, 221); rgb(0, 255, 221); */
+    cursor: pointer;
+    box-shadow: 1px 5px 10px grey;
+   
+  }
+mat-card-title,mat-card-content 
+{
+    color: blue;
+    display: flex;
+    justify-content: center;
+    
+}
+.parts
+{   
+    margin: 50px;
+    height: 400px;
+    float: left;
+    position: static;
+}
+.error{
+    color: red;
+    
+}
+.text-danger{
+    color: red;
+}
