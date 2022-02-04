@@ -1,15 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AbstractControl, FormControl, ValidatorFn,  Validators } from "@angular/forms";
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent  {
 
-  constructor() { }
+  DisabledSubmit:boolean=false;
+  UserId:string='CurrentUser';
+  
+  oldPassword = new FormControl("", [
+    Validators.required,
+    Validators.pattern(
+      "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,255})\\S$"
+    )
+  ]);
 
-  ngOnInit(): void {
+  password = new FormControl("", [
+    Validators.required,
+    Validators.pattern(
+      "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,255})\\S$"
+    )
+  ]);
+  hide = true;
+  confirmPassword = new FormControl("", [
+    Validators.required,
+    this.confirmEquals() ,
+  ]); 
+
+  confirmEquals(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null =>  
+        control.value?.toLowerCase() === this.passwordValue.toLowerCase() 
+            ? null : {noMatch: true};
+  }
+  
+   
+  btnSubmitPassowrd_click()
+  {
+    let strData:string='Old Password :'+ this.oldPassword.value +'New Password :'+ this.confirmPassword.value;
+                       
+    alert('Successfully Updated' + strData)
+  }
+
+  get passwordValue() {
+    return this.password.value;
+  }
+  get confirmPasswordValue() {
+    return this.confirmPassword.value;
   }
 
 }

@@ -7,7 +7,13 @@ import { LoginScreenComponent } from './LoginComponents/login-screen/login-scree
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 
-
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatCard, MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,15 @@ import { LoginRoutingModule } from './login-routing.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule
   ],
   exports:[
    LoginScreenComponent,
