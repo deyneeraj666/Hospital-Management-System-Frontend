@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <div class="login">
+=======
+<!--
+<div class="login" style="text-align: center;">
+>>>>>>> f97f5243281f1cb2db48300e66ac7fc7f04644cb
     <div>
         <input type="text" placeholder="Email ID" [(ngModel)]="userName">
     </div>
@@ -18,3 +23,65 @@
         New to CT General Hospital? <button routerLink='/patient-register'>Register</button>
     </div>
 </div>
+
+-->
+
+
+<body>
+
+    <app-header></app-header>
+    <hr style="background-color: aqua;">
+    <div id="main_div">
+        <div class="parts">
+            <img src="assets\Login_image.jpg" alt="Logo">
+        </div>
+        <div class="parts" id="logintab" >
+            <mat-card>
+                <mat-card-title>Login to CT Hospital</mat-card-title>
+                <hr>
+             <mat-card-content>
+              <!-- (ngSubmit)="onSubmit() -->
+            <form [formGroup]="loginform" >
+              <span>
+                <mat-form-field>
+                  <input  matInput placeholder="Email Id" formControlName="email" />
+                  <br>
+                </mat-form-field>
+                <div *ngIf="(loginform.get('email').invalid && loginform.get('email').dirty) || loginform.get('email').touched">
+                  <small class="text-danger" *ngIf="loginform.get('email').errors?.required">* Email address is required</small>
+                  <small class="text-danger" *ngIf="loginform.get('email').errors?.email">* Email address is invalid</small>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                    <mat-icon matSuffix (click)="hide = !hide">
+                      <span class="material-icons teal-color"> visibility</span></mat-icon>
+                  </mat-form-field>
+                  <div *ngIf="loginform.get('password').invalid && loginform.get('password').touched">
+                    <small class="text-danger" *ngIf="loginform.get('password').errors?.required">* Password is required</small>
+                    <small class="text-danger" *ngIf="loginform.get('password').errors?.touched">* Password cannot be empty</small>
+                  </div>
+                </div>
+              </span>
+              <div class="button">
+                <br>
+                <button mat-raised-button color="primary" (click)="onSubmit()" >Login</button>
+                <button mat-raised-button color="accent" style="margin-left: 50px;" routerLink='patient-register' >Register</button>
+                <br>
+                <br>
+                <a mat-button href=""  style="margin-left:25px" href='login/forgot-password'>Forgot password?</a>
+              </div>
+            </form>
+          </mat-card-content>
+          <hr>
+        </mat-card>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+
