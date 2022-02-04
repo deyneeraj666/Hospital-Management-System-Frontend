@@ -1,6 +1,7 @@
 import { HeaderComponent } from "./../Shared/header/header.component";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { RegisterComponent } from './LoginComponents/register/register.component';
 import { ForgotPasswordComponent } from './LoginComponents/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './LoginComponents/change-password/change-password.component';

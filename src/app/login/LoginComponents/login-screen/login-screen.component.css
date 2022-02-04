@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 .login{
     text-align: center;
-=======
+}
 body 
 {
     position: static;
@@ -44,5 +43,4 @@ mat-card-title,mat-card-content
 }
 .text-danger{
     color: red;
->>>>>>> f97f5243281f1cb2db48300e66ac7fc7f04644cb
 }

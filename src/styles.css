@@ -2,7 +2,6 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-<<<<<<< HEAD
-=======
+
 @import "~@angular/material/prebuilt-themes/indigo/-pink.css";
->>>>>>> f97f5243281f1cb2db48300e66ac7fc7f04644cb
+
