@@ -28,7 +28,11 @@ export class LoginScreenComponent implements OnInit
     {
 
       this.router.navigateByUrl('login/login-passed');
-      alert('SUCCESS!! :-)')
+      alert('Login SUCCESS!! ')
+    }
+    else{
+      alert('Incorrect UserId or Password!!')
+      this.loginform.reset();
     }
   }
 
