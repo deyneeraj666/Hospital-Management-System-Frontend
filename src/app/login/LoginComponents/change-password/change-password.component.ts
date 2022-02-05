@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidatorFn,  Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router'
+
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent  {
+  constructor(private router: Router)
+  {
 
+  }
   DisabledSubmit:boolean=false;
   UserId:string='CurrentUser';
   
@@ -24,6 +29,7 @@ export class ChangePasswordComponent  {
     )
   ]);
   hide = true;
+  hide1 = true;
   confirmPassword = new FormControl("", [
     Validators.required,
     this.confirmEquals() ,
@@ -35,12 +41,15 @@ export class ChangePasswordComponent  {
             ? null : {noMatch: true};
   }
   
-   
+  btnback_click()
+  {
+    this.router.navigateByUrl('login');
+  }
   btnSubmitPassowrd_click()
   {
     let strData:string='Old Password :'+ this.oldPassword.value +'New Password :'+ this.confirmPassword.value;
-                       
-    alert('Successfully Updated' + strData)
+    this.router.navigateByUrl('login/login-passed');                  
+    alert('Successfully Updated')
   }
 
   get passwordValue() {
