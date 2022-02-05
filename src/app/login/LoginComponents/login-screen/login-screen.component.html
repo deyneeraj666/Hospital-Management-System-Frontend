@@ -1,22 +1,20 @@
-
-<body>
-
+<div>
     <app-header></app-header>
     <hr style="background-color: aqua;">
     <div id="main_div">
         <div class="parts">
-            <img src="assets\Login_image.jpg" alt="Logo">
+            <img  src="assets\Login_image.jpg" alt="Logo">
         </div>
         <div class="parts" id="logintab" >
             <mat-card>
-                <mat-card-title>Login to CT Hospital</mat-card-title>
-                <hr>
+                <!-- <mat-card-title>Login to CT Hospital</mat-card-title>
+                <hr> -->
              <mat-card-content>
-              <!-- (ngSubmit)="onSubmit() -->
+
             <form [formGroup]="loginform" >
               <span>
                 <mat-form-field>
-                  <input  matInput placeholder="Email Id" formControlName="email" />
+                  <input  matInput placeholder="E-mail " formControlName="email" autofocus />
                   <br>
                 </mat-form-field>
                 <div *ngIf="(loginform.get('email').invalid && loginform.get('email').dirty) || loginform.get('email').touched">
@@ -37,19 +35,20 @@
               </span>
               <div class="button">
                 <br>
-                <button mat-raised-button color="primary" (click)="onSubmit()" >Login</button>
-                <button mat-raised-button color="accent" style="margin-left: 50px;" routerLink='patient-register' >Register</button>
+                <button mat-raised-button color="primary"  (click)="onSubmit()" >  Login</button>
                 <br>
-                <br>
-                <a mat-button href=""  style="margin-left:25px" href='login/forgot-password'>Forgot password?</a>
+                <a mat-button href=""  style="margin-left:33px" href='login/forgot-password'><small>Forgot password?</small></a>
               </div>
             </form>
           </mat-card-content>
           <hr>
+          <b style="color: blue;; padding-left: 90px;">New to CT General Hospital?</b>
+          <button mat-raised-button  style=" margin-left: 10px; background-color: green; color: white; " routerLink='patient-register' >Register</button>
         </mat-card>
         </div>
     </div>
-</body>
+    
+  </div>
 
 
 

@@ -1,11 +1,12 @@
-body 
+/* body 
 {
     position: static;
     width: 95%;
     margin: 10px;
     border: 2px solid rgb(201, 78, 78);
-    height: 95%;
-}
+    
+} */
+
 mat-card
 {
     width: 450px;
@@ -13,15 +14,22 @@ mat-card
     background-color: rgb(231, 239, 240)
     
 } 
+button
+{
+    width: 80px;
+   margin-left: 55px;
+}
+
 mat-card:hover 
 {
-    /* rgb(0, 255, 221); rgb(0, 255, 221); */
+     /* rgb(0, 255, 221); rgb(0, 255, 221);  */
     cursor: pointer;
     box-shadow: 1px 5px 10px grey;
    
   }
 mat-card-title,mat-card-content 
 {
+    
     color: blue;
     display: flex;
     justify-content: center;
