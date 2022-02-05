@@ -30,15 +30,8 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-
-=======
-                
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
->>>>>>> 70e3c8201d2dc358a17697bc69c9f59cd51726ba
               "src/styles.css"
             ],
             "scripts": []
