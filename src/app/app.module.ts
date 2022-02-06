@@ -11,6 +11,8 @@ import { LoginModule } from './login/login.module';
 
 import { HeaderComponent } from './Shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PatientModule } from './patient/patient.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     LoginModule,
+    PatientModule,
+    AdminModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

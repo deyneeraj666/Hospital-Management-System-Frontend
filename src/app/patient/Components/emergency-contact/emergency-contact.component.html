@@ -1,1 +1,135 @@
-<p>emergency-contact works!</p>
+<div class="emergency-container">
+  <div class="em-header"><p>Emergency Contact Details</p></div>
+  <form [formGroup]="patientEmergencyForm" class="form-container">
+    <div class="em-details">
+      <div class="em-info">
+        <div class="field">
+          <div class="field-label">
+            <label for="">First Name</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="efname" />
+            <span
+              *ngIf="
+                patientEmergencyForm.controls['efname'].invalid &&
+                patientEmergencyForm.controls['efname'].dirty
+              "
+              >First Name cannot be empty</span
+            >
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Last Name</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="elname" />
+            <span
+              *ngIf="
+                patientEmergencyForm.controls['elname'].invalid &&
+                patientEmergencyForm.controls['elname'].dirty
+              "
+              >Last Name cannot be empty</span
+            >
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Relationship</label>
+          </div>
+          <div class="field-value">
+            <select formControlName="relationship" id="" class="select-gender">
+              <option value="Father">Father</option>
+              <option value="Mother">Mother</option>
+              <option value="Sibling">Sibling</option>
+              <option value="Spouse">Spouse</option>
+              <option value="Friend">Friend</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Email</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="eemail" />
+            <span
+              *ngIf="
+                patientEmergencyForm.controls['eemail'].invalid &&
+                patientEmergencyForm.controls['eemail'].dirty
+              "
+              >Please enter your email address
+              e.g.exampleusername@xyzdomain.com</span
+            >
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Contact Number</label>
+          </div>
+          <div class="field-value">
+            <input type="tel" formControlName="econtact" />
+            <span
+              *ngIf="
+                patientEmergencyForm.controls['econtact'].invalid &&
+                patientEmergencyForm.controls['econtact'].dirty
+              "
+              >Contact number is required in proper format Ex:+1(333)
+              555-5555</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="em-info">
+        
+        <div class="field">
+          <div class="field-label">
+            <label for="">Home Address</label>
+          </div>
+          <div class="field-value">
+            <textarea
+              formControlName="eaddress"
+              id=""
+              cols="20"
+              rows="05"
+            ></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Do you ned to access Patient Portal?</label>
+          </div>
+          <div class="field-value">
+            <div class="radio">
+              <div class="radio-item">
+                <input type="radio" formControlName="access" id="" value="Yes" />
+                <label for="">Yes</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" formControlName="access" id="" value="No" />
+                <label for="">No</label>
+              </div>
+            </div>
+            <span
+              class="error"
+              *ngIf="
+                patientEmergencyForm.controls['access'].invalid &&
+                patientEmergencyForm.controls['access'].dirty
+              "
+            >
+              Kindly select the access
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="submit" [disabled]="patientEmergencyForm.invalid">
+        Submit
+      </button>
+      <button class="edit">Edit</button>
+      <button>Cancel</button>
+    </div>
+  </form>
+</div>

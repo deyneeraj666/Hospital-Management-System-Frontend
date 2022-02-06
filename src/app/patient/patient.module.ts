@@ -9,6 +9,7 @@ import { VitalSignsComponent } from './Components/vital-signs/vital-signs.compon
 import { ProcedureComponent } from './Components/procedure/procedure.component';
 import { DiagnosisComponent } from './Components/diagnosis/diagnosis.component';
 import { MedicationsComponent } from './Components/medications/medications.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,13 @@ import { MedicationsComponent } from './Components/medications/medications.compo
     MedicationsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  exports:[
+    DemographicComponent,
+    EmergencyContactComponent,
+    AllergyInfoComponent,
   ]
 })
 export class PatientModule { }

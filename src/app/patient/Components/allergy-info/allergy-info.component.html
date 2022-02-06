@@ -1,2 +1,109 @@
-<p>allergy-info works!</p>
-
+<div class="allergy-container">
+  <div class="all-header"><p>Allergy Information</p></div>
+  <form [formGroup]="patientAllergyForm" class="form-container">
+    <div class="all-details">
+      <div class="all-info">
+        <div class="field">
+          <div class="field-label">
+            <label for="">Patient has any known allergies?</label>
+          </div>
+          <div class="field-value">
+            <div class="radio">
+              <div class="radio-item">
+                <input type="radio" formControlName="knownAllergy" id="" value="Yes" />
+                <label for="">Yes</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" formControlName="knownAllergy" id="" value="No" />
+                <label for="">No</label>
+              </div>
+            </div>
+            <span
+              class="error"
+              *ngIf="
+              patientAllergyForm.controls['knownAllergy'].invalid &&
+              patientAllergyForm.controls['knownAllergy'].dirty
+              "
+            >
+              Kindly select the known allergy
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy ID</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="allergyId" id="">
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Type</label>
+          </div>
+          <div class="field-value">
+            <select formControlName="allergyType" class="select" (change)="allergyNameChangeHandler(mySelect.value)" #mySelect>
+              <option *ngFor="let item of allergyTypes" [value]="item.allergyType">{{item.allergyType}}</option>
+          </select>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Name</label>
+          </div>
+          <div class="field-value">
+            <select formControlName="allergyName" class="select" >
+              <option *ngFor="let item of allergyNames" value="">{{item.allergyName}}</option>
+          </select>
+          </div>
+        </div>
+        
+      </div>
+      <div class="all-info">
+        
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Description</label>
+          </div>
+          <div class="field-value">
+            <textarea formControlName="allergyDesc" id="" cols="20" rows="03"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Clinical Information</label>
+          </div>
+          <div class="field-value">
+            <textarea formControlName="allergyClinicalInfo" id="" cols="20" rows="03"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Is Allergy Fatal?</label>
+          </div>
+          <div class="field-value">
+            <div class="radio">
+              <div class="radio-item">
+                <input type="radio" formControlName="allergyFatal" id="" value="Yes" />
+                <label for="">Yes</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" formControlName="allergyFatal" id="" value="No" />
+                <label for="">No</label>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="actions">
+      <button class="submit" [disabled]="patientAllergyForm.invalid">
+        Submit
+      </button>
+      <button class="edit">Edit</button>
+      <button>Cancel</button>
+    </div>
+  </form>
+</div>

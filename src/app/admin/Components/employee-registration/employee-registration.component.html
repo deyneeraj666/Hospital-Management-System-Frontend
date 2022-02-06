@@ -1,0 +1,137 @@
+<div class="employee-container">
+    <div class="em-header"><p>New Employee Registration Form</p></div>
+    <form [formGroup]="empRegistrationForm" class="form-container">
+      <div class="em-details">
+        <div class="em-info">
+          <div class="field">
+            <div class="field-label">
+              <label for="">Title</label>
+            </div>
+            <div class="field-value">
+              <div class="radio">
+                <div class="radio-item">
+                  <input type="radio" formControlName="title" id="" value="Mr" />
+                  <label for="">Mr</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" formControlName="title" id="" value="Ms" />
+                  <label for="">Ms</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" formControlName="title" id="" value="Mrs" />
+                  <label for="">Mrs</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" formControlName="title" id="" value="Dr" />
+                    <label for="">Dr</label>
+                  </div>
+              </div>
+              <span
+                class="error"
+                *ngIf="
+                empRegistrationForm.controls['title'].invalid &&
+                empRegistrationForm.controls['title'].dirty
+                "
+              >
+                Kindly select the title
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">First Name</label>
+            </div>
+            <div class="field-value">
+              <input type="text" formControlName="fname" />
+              <span
+                class="error"
+                *ngIf="
+                empRegistrationForm.controls['fname'].invalid &&
+                empRegistrationForm.controls['fname'].dirty
+                "
+              >
+                First Name cannot be empty
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Last Name</label>
+            </div>
+            <div class="field-value">
+              <input type="text" formControlName="lname" />
+              <span
+                *ngIf="
+                empRegistrationForm.controls['lname'].invalid &&
+                empRegistrationForm.controls['lname'].dirty
+                "
+              >
+                Last Name cannot be empty
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Email ID</label>
+            </div>
+            <div class="field-value">
+              <input type="email" formControlName="email" id="" />
+              <span
+                *ngIf="
+                empRegistrationForm.controls['email'].invalid &&
+                empRegistrationForm.controls['email'].dirty
+                "
+              >
+               Email is a required field
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Date of Birth</label>
+            </div>
+            <div class="field-value">
+              <input type="date" formControlName="dob"/>
+              <span
+                *ngIf="
+                empRegistrationForm.controls['dob'].invalid &&
+                empRegistrationForm.controls['dob'].dirty
+                "
+              >
+                Please provide your date of birth
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Role</label>
+            </div>
+            <div class="field-value">
+              <select formControlName="role" class="select" >
+                <option *ngFor="let item of roles" value="">{{item}}</option>
+            </select>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Specialty</label>
+            </div>
+            <div class="field-value">
+              <select formControlName="specialty" class="select" >
+                <option *ngFor="let item of roles" value="">{{item}}</option>
+            </select>
+            </div>
+          </div>
+         
+          
+          
+        </div>
+        
+      </div>
+      <div class="actions">
+          <button >Register</button>
+          
+      </div>
+    </form>
+  </div>
+  

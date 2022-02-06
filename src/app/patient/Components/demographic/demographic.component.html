@@ -1,1 +1,251 @@
-<p>demographic works!</p>
+<div class="demographic-container">
+  <div class="dm-header"><p>Demographic Details</p></div>
+  <form [formGroup]="patientDemographicForm" class="form-container" >
+    <div class="dm-details">
+      <div class="dm-info">
+        <div class="field">
+          <div class="field-label">
+            <label for="">Title</label>
+          </div>
+          <div class="field-value">
+            <div class="radio">
+              <div class="radio-item">
+                <input type="radio" formControlName="title" id="" value="Mr" />
+                <label for="">Mr</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" formControlName="title" id="" value="Ms" />
+                <label for="">Ms</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" formControlName="title" id="" value="Mrs" />
+                <label for="">Mrs</label>
+              </div>
+            </div>
+            <span
+              class="error"
+              *ngIf="
+                patientDemographicForm.controls['title'].invalid &&
+                patientDemographicForm.controls['title'].dirty
+              "
+            >
+              Kindly select the title
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">First Name</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="fname"  />
+            <span
+              class="error"
+              *ngIf="
+                patientDemographicForm.controls['fname'].invalid &&
+                patientDemographicForm.controls['fname'].dirty
+              "
+            >
+              First Name cannot be empty
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Last Name</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="lname" />
+            <span
+              *ngIf="
+                patientDemographicForm.controls['lname'].invalid &&
+                patientDemographicForm.controls['lname'].dirty
+              "
+            >
+              Last Name cannot be empty
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Date of Birth</label>
+          </div>
+          <div class="field-value">
+            <input type="date" formControlName="dob" (change)="onDobChange()"/>
+            <span
+              *ngIf="
+                patientDemographicForm.controls['dob'].invalid &&
+                patientDemographicForm.controls['dob'].dirty
+              "
+            >
+              Please provide your date of birth
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Age</label>
+          </div>
+          <div class="field-value" >
+            {{age===0?'':age}}
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Gender</label>
+          </div>
+          <div class="field-value">
+            <div class="radio">
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  formControlName="gender"
+                  id=""
+                  value="Male"
+                />
+                <label for="">M</label>
+              </div>
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  formControlName="gender"
+                  id=""
+                  value="Female"
+                />
+                <label for="">F</label>
+              </div>
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  formControlName="gender"
+                  id=""
+                  value="Others"
+                />
+                <label for="">Others</label>
+              </div>
+            </div>
+            <span
+              *ngIf="
+                patientDemographicForm.controls['gender'].invalid &&
+                patientDemographicForm.controls['gender'].dirty
+              "
+            >
+              Gender is a required field
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Race</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="race" id="" />
+            <span
+              *ngIf="
+                patientDemographicForm.controls['race'].invalid &&
+                patientDemographicForm.controls['race'].dirty
+              "
+            >
+              Race is a required field
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="dm-info">
+       
+        <div class="field">
+          <div class="field-label">
+            <label for="">Ethnicity</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="ethnicity" id="" />
+            <span
+              *ngIf="
+                patientDemographicForm.controls['ethnicity'].invalid &&
+                patientDemographicForm.controls['ethnicity'].dirty
+              "
+            >
+              Ethnicity is a required field
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Languages Known</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="language" id="" />
+            <span
+              *ngIf="
+                patientDemographicForm.controls['language'].invalid &&
+                patientDemographicForm.controls['language'].dirty
+              "
+            >
+              Languages known is a required field
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Email</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="email" />
+            <span
+              *ngIf="
+                patientDemographicForm.controls['email'].invalid &&
+                patientDemographicForm.controls['email'].dirty
+              "
+            >
+              Please enter your email address e.g.exampleusername@xyzdomain.com
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Home Address</label>
+          </div>
+          <div class="field-value">
+            <textarea
+              formControlName="address"
+              id=""
+              cols="20"
+              rows="05"
+            ></textarea>
+            <span
+              *ngIf="
+                patientDemographicForm.controls['address'].invalid &&
+                patientDemographicForm.controls['address'].dirty
+              "
+            >
+              Please provide the postal address
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Contact Number</label>
+          </div>
+          <div class="field-value">
+            <input type="tel" formControlName="contact" />
+            <span
+              *ngIf="
+                patientDemographicForm.controls['contact'].invalid &&
+                patientDemographicForm.controls['contact'].dirty
+              "
+            >
+              Contact number is required in proper format Ex:+1(333) 555-5555
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+        <!-- <button class="submit" [disabled]="patientDemographicForm.invalid">Submit</button> -->
+        <button class="submit" (click)="onSubmit()">Submit</button>
+
+        <button class="edit" (click)="onEdit()">Edit</button>
+        <button>Cancel</button>
+    </div>
+  </form>
+</div>
