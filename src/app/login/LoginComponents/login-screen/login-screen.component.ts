@@ -27,7 +27,6 @@ export class LoginScreenComponent implements OnInit
     console.log(this.loginform.controls.email);
     if(this.loginform.controls.email.value=="admin@gmail.com" && this.loginform.controls.password.value == "admin123")
     {
-
       this.router.navigateByUrl('login/patient-header');
       this.toastr.success('Welcome Admin!')
     }

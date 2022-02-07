@@ -13,3 +13,4 @@ export interface savePatientDemographicInfo
     address : string;
     contact : string;
 }
+
