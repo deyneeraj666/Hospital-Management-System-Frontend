@@ -1,12 +1,13 @@
 .employee-container {
     /* background-color: rgb(236, 232, 232); */
-    background-color: aliceblue;
+    background-color: white;
     width: 40%;
     display: grid;
     place-items: center;
     margin: auto;
     margin-top: 2rem;
-    border: 1px solid black;
+    border: 1px solid rgba(10, 102, 163, 0.897);
+    box-shadow: 1px 1px 1px 1px rgba(10, 102, 163, 0.897)
 }
 
 .em-header {
@@ -19,14 +20,15 @@
 p{
     font-size: large;
     font-weight: bold;
+    text-decoration: underline;
     padding-top: 2px;
     font-family: 'Times New Roman', Times, serif;
-    color: blue;
+    color: rgba(10, 102, 163, 0.897);
     text-align: center;
 }
 .em-details {
     /* border: 2px solid green; */
-    width: 50%;
+    width: 70%;
     /* display: flex; */
     /* justify-content:space-evenly; */
     padding: 1rem;
@@ -41,6 +43,7 @@ p{
 .field {
     /* border: 2px solid red; */
     display: flex;
+    padding: 5px;
 
 }
 
@@ -84,10 +87,10 @@ flex-basis: 100%;
 
 
 .form-container {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     width: 98%;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .actions {
@@ -109,5 +112,18 @@ span {
 }
 
 .actions{
+  text-align: center;
     margin-bottom: 10px;
+    
+}
+
+
+.register{
+    text-align: center;
+    background-color:green;
+    color: white;
+}
+.select{
+    width: 90%;
+    height: 90%;
 }

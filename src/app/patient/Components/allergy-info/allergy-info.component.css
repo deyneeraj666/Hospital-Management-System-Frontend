@@ -45,6 +45,7 @@ p {
 .field {
     /* border: 2px solid red; */
     display: flex;
+    padding: 5px;
 
 }
 
@@ -53,7 +54,7 @@ p {
 flex-basis: 100%;
 } */
 .field-label {
-    flex: 0.4;
+    flex: 0.3;
 
     padding: 5px 5px;
     font-size: 15px;
@@ -73,6 +74,12 @@ flex-basis: 100%;
     flex-direction: row;
     width: 90%;
 
+}
+
+.knownAllergy-radio{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
 }
 
 .field-value input, .field-value textarea, .field-value radio {

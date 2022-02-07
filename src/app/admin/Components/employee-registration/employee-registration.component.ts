@@ -12,6 +12,7 @@ export class EmployeeRegistrationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
   public empRegistrationForm = new FormGroup({
     title : new FormControl("",Validators.required),
