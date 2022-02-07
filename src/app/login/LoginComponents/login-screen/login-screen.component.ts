@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-screen',
@@ -13,7 +14,7 @@ export class LoginScreenComponent implements OnInit
   submitted:boolean=false;
   loginform:any = FormGroup ;
 
-  constructor(private router: Router)
+  constructor(private router: Router, private toastr:ToastrService)
   {
 
   }
@@ -27,11 +28,12 @@ export class LoginScreenComponent implements OnInit
     if(this.loginform.controls.email.value=="admin@gmail.com" && this.loginform.controls.password.value == "admin123")
     {
 
-      this.router.navigateByUrl('login/login-passed');
-      alert('Login SUCCESS!! ')
+      this.router.navigateByUrl('login/patient-header');
+      this.toastr.success('Welcome Admin!')
     }
-    else{
-      alert('Incorrect UserId or Password!!')
+    else
+    {
+      this.toastr.error('Invalid UserId or Password !')
       this.loginform.reset();
     }
   }
@@ -48,7 +50,7 @@ export class LoginScreenComponent implements OnInit
   {
     this.loginform = new FormGroup({
       email: new FormControl('',[Validators.email,Validators.required]),
-      password:new FormControl('',[Validators.required,Validators.minLength(6)])
+      password:new FormControl('',[Validators.required,Validators.minLength(8)])
     });
   }
 

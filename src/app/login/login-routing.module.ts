@@ -1,4 +1,4 @@
-import { DummysuccessfulloginComponent } from "./LoginComponents/dummysuccessfullogin/dummysuccessfullogin.component";
+import { PatientHeaderComponent } from "./../patient/Components/patient-header/patient-header.component";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from './LoginComponents/change-password/change-password.component';
@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'login/patient-register', component: RegisterComponent},
   { path: 'login/forgot-password', component: ForgotPasswordComponent},
   { path: 'login/change-password', component: ChangePasswordComponent},
-  { path: 'login/login-passed', component: DummysuccessfulloginComponent}
+  { path: 'login/patient-header', component: PatientHeaderComponent},
+  
 ];
 
 @NgModule({

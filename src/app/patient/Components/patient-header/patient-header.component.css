@@ -1,0 +1,27 @@
+.sticky-top{
+    background-color:rgba(36, 32, 32, 0.904);
+    position: sticky;
+   
+}
+.navctn{
+    padding-left: 70px;
+  
+}
+
+.navbtn{
+    color: white;
+    width: max-content;
+    padding-left: 15px;
+}
+.navctn button{
+    opacity: 0.6;
+    
+}
+.navctn button:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.dropdown-menu{
+    box-shadow: 3px 3px 3px 1px gray;
+}

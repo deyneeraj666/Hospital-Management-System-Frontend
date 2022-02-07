@@ -9,8 +9,8 @@
 
 mat-card
 {
-    width: 450px;
-    height: 310px;
+    width: 500px;
+    height: 340px;
     background-color: rgb(231, 239, 240)
     
 } 
@@ -38,7 +38,6 @@ mat-card-title,mat-card-content
 .parts
 {   
     margin: 50px;
-    height: 400px;
     float: left;
     position: static;
 }
@@ -49,4 +48,7 @@ mat-card-title,mat-card-content
 .text-danger{
     color: red;
 
+}
+.footer-div{
+    margin-top: 500px;
 }
