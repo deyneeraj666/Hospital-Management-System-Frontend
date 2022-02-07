@@ -1,3 +1,5 @@
+import { PhysicianModule } from "./physician/physician.module";
+import { NurseModule } from "./nurse/nurse.module";
 import { SharedModule } from "./shared/shared.module";
 import { PatientModule } from "./patient/patient.module";
 import { NgModule } from '@angular/core';
@@ -23,7 +25,9 @@ import { AdminModule } from './admin/admin.module';
     BrowserAnimationsModule,
     PatientModule,
     SharedModule,
-    AdminModule
+    AdminModule,
+    NurseModule,
+    PhysicianModule
   ],
   providers: [],
   bootstrap: [AppComponent],

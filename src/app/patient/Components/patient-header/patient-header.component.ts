@@ -16,7 +16,6 @@ export class PatientHeaderComponent implements OnInit {
 
   click_demo(){
       this.router.navigateByUrl('login/patient-header/demographic');
-      this.myColorVaraible=true;
   }
   click_vital(){
     this.router.navigateByUrl('login/patient-header/vital');

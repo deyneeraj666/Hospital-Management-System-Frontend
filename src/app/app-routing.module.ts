@@ -1,3 +1,4 @@
+import { NurseHeaderComponent } from "./nurse/nurse-header/nurse-header.component";
 import { PatientHeaderComponent } from "./patient/Components/patient-header/patient-header.component";
 import { AppComponent } from "./app.component";
 import { NgModule } from '@angular/core';
@@ -8,12 +9,16 @@ import { ForgotPasswordComponent } from './login/LoginComponents/forgot-password
 import { ChangePasswordComponent } from './login/LoginComponents/change-password/change-password.component';
 import { VitalSignsComponent } from "./patient/Components/vital-signs/vital-signs.component";
 import { AdminHeaderComponent } from "./admin/Components/admin-header/admin-header.component";
+import { PhysicianHeaderComponent } from "./physician/physician-header/physician-header.component";
 
 
 const routes: Routes = [
   {path:'login',component:LoginScreenComponent},
   {path:'patient-header',component:PatientHeaderComponent},
-  {path:'admin',component:AdminHeaderComponent}
+  {path:'admin',component:AdminHeaderComponent},
+  {path:'nurse',component:NurseHeaderComponent},
+  {path:'physicain',component:PhysicianHeaderComponent}
+  
   
 
 ];
