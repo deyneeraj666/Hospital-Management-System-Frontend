@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { savePatientEmergencyInfo } from '../Models/Emergency';
+
 import { savePatientDemographicInfo } from '../Models/PatientModuleModels';
 
 @Injectable({
@@ -61,8 +63,14 @@ export class PmsService {
 
   savePatientDemographicInfo(demoInfo:savePatientDemographicInfo)
   {
-    console.log("From service");
-    console.log(demoInfo);
+    // console.log("From service");
+    // console.log(demoInfo);
+    return true;
+  }
+  savePatientEmergencyInfo(demoInfo:savePatientEmergencyInfo)
+  {
+    // console.log("From service");
+    // console.log(demoInfo);
     return true;
   }
 }

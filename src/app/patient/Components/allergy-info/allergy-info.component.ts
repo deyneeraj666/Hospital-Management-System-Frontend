@@ -11,6 +11,7 @@ import { PmsService } from 'src/app/Service/pms.service';
 export class AllergyInfoComponent implements OnInit {
   allergyTypes:Allergy[]=[];
   allergyNames:Allergy[]=[];
+  allergyKnown:boolean=true;
 
   constructor(private service:PmsService) { }
 

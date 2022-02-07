@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PmsService } from 'src/app/Service/pms.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-demographic',
@@ -10,23 +12,28 @@ import { PmsService } from 'src/app/Service/pms.service';
 export class DemographicComponent implements OnInit {
   age: number = 0;
 
-  constructor(private pmsService: PmsService) {}
+  constructor(private pmsService: PmsService,private toastr:ToastrService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.onDobChange();
+  }
 
   onDobChange() {
     let now: any = new Date();
     let userDob: any = new Date(this.patientDemographicForm.get('dob')?.value);
     let ageInMilliseconds: any = Math.abs(now - userDob);
     this.age = Math.floor(ageInMilliseconds / 1000 / 60 / 60 / 24 / 365); // convert to years
+
+    console.log(this.patientDemographicForm);
+    
   }
 
+  //to disable the form on click of Submit button
   disableFormProperties() {
     this.patientDemographicForm.controls['title'].disable();
     this.patientDemographicForm.controls['fname'].disable();
     this.patientDemographicForm.controls['lname'].disable();
     this.patientDemographicForm.controls['dob'].disable();
-    this.patientDemographicForm.controls['age'].disable();
     this.patientDemographicForm.controls['email'].disable();
     this.patientDemographicForm.controls['gender'].disable();
     this.patientDemographicForm.controls['race'].disable();
@@ -36,12 +43,12 @@ export class DemographicComponent implements OnInit {
     this.patientDemographicForm.controls['contact'].disable();
   }
 
+  //to enable from on click of edit button
   enableFormProperties() {
     this.patientDemographicForm.controls['title'].enable();
     this.patientDemographicForm.controls['fname'].enable();
     this.patientDemographicForm.controls['lname'].enable();
     this.patientDemographicForm.controls['dob'].enable();
-    this.patientDemographicForm.controls['age'].enable();
     this.patientDemographicForm.controls['email'].enable();
     this.patientDemographicForm.controls['gender'].enable();
     this.patientDemographicForm.controls['race'].enable();
@@ -58,24 +65,26 @@ export class DemographicComponent implements OnInit {
   onSubmit() {
     // console.log("submit called")
     // console.log(this.patientDemographicForm.value)
+  
     let result = this.pmsService.savePatientDemographicInfo(
       this.patientDemographicForm.value
     );
     if (result) {
-      alert('Form is successfully submitted');
+      // alert('Form is successfully submitted');
+      this.toastr.success('Successfully Submitted');
       this.disableFormProperties();
     }
   }
 
   public patientDemographicForm = new FormGroup({
     title: new FormControl('', Validators.required),
-    fname: new FormControl('Abc', [
+    fname: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
     ]),
     lname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    dob: new FormControl('', Validators.required),
-    age: new FormControl('', Validators.required),
+    dob: new FormControl('2000-01-01', Validators.required),
+    // age: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
     race: new FormControl('', [
       Validators.minLength(2),

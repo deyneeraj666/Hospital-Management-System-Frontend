@@ -1,28 +1,33 @@
 .allergy-container {
     /* background-color: rgb(236, 232, 232); */
-    background-color: aliceblue;
+    background-color: white;
     width: 70%;
     display: grid;
     place-items: center;
     margin: auto;
     margin-top: 2rem;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 1px solid rgba(10, 102, 163, 0.897);
+    box-shadow: 1px 1px 1px 1px rgba(10, 102, 163, 0.897)
 }
 
 .all-header {
     width: 100%;
-    background-color: rgb(49, 112, 230);
+    background-color:rgba(10, 102, 163, 0.897);
     height: 2rem;
-   
+    padding: 1px;
+
 }
 
-p{
+p {
     font-size: large;
     font-weight: bold;
     padding-top: 2px;
     font-family: 'Times New Roman', Times, serif;
     color: white;
+    text-align: center;
 }
+
 .all-details {
     /* border: 2px solid green; */
     width: 90%;
@@ -60,7 +65,7 @@ flex-basis: 100%;
     padding: 2px 5px;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .radio {
@@ -109,17 +114,26 @@ span {
     flex-basis: 100%;
 }
 
-.actions{
+.actions {
     margin-bottom: 10px;
 }
 
-.submit{
+.submit {
     margin-right: 10px;
+    width: 70px;
+    background-color: green;
+    color: white;
 }
-.edit{
+
+.edit {
     margin-right: 10px;
+    width: 70px;
+    background-color:rgba(10, 102, 163, 0.897);
+    color: white;
+
 }
-.select{
+
+.select {
     height: 100%;
-    width: 93%;
+    width: 90%;
 }

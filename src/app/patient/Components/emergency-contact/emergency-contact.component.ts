@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { PmsService } from 'src/app/Service/pms.service';
+
 
 @Component({
   selector: 'app-emergency-contact',
@@ -8,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EmergencyContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pmsService: PmsService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +25,45 @@ export class EmergencyContactComponent implements OnInit {
     access: new FormControl(""),
 
 })
+
+disableFormProperties() {
+  this.patientEmergencyForm.controls['efname'].disable();
+  this.patientEmergencyForm.controls['elname'].disable();
+  this.patientEmergencyForm.controls['relationship'].disable();
+  this.patientEmergencyForm.controls['eemail'].disable();
+  this.patientEmergencyForm.controls['econtact'].disable();
+  this.patientEmergencyForm.controls['eaddress'].disable();
+  this.patientEmergencyForm.controls['access'].disable();
+  
+}
+
+enableFormProperties() {
+  this.patientEmergencyForm.controls['efname'].enable();
+  this.patientEmergencyForm.controls['elname'].enable();
+  this.patientEmergencyForm.controls['relationship'].enable();
+  this.patientEmergencyForm.controls['eemail'].enable();
+  this.patientEmergencyForm.controls['econtact'].enable();
+  this.patientEmergencyForm.controls['eaddress'].enable();
+  this.patientEmergencyForm.controls['access'].enable();
+  
+}
+
+onEdit() {
+  this.enableFormProperties();
+}
+
+onSubmit() {
+  // console.log("submit called")
+  // console.log(this.patientDemographicForm.value)
+
+  let result = this.pmsService.savePatientDemographicInfo(
+    this.patientEmergencyForm.value
+  );
+  if (result) {
+    // alert('Form is successfully submitted');
+    this.toastr.success('Successfully Submitted');
+    this.disableFormProperties();
+  }
+}
 
 }
