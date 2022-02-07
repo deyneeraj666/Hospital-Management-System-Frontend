@@ -20,9 +20,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PatientRoutingModule } from './patient-routing.module';
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -51,14 +52,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     SharedModule,
     LoginModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatNativeDateModule
   ],
   exports:[
     PatientHeaderComponent,
     VitalSignsComponent,
     DemographicComponent,
     EmergencyContactComponent,
-    AllergyInfoComponent
+    AllergyInfoComponent,
+    AppointmentComponent,
+    ProcedureComponent
   ],
 })
 export class PatientModule { }
