@@ -21,7 +21,6 @@ select{
   display: table;
   width: 100%;
   margin-bottom: 20px;
-  
   }
   .button{
     display: table-cell;
@@ -30,7 +29,8 @@ select{
   }
 th{
     color: rgba(10, 102, 163, 0.897);
-    padding-left: 25px;
+    /* padding-left: 25px; */
+    padding-right: 25px;
 }
  td{
     /* padding-left: 25px; */

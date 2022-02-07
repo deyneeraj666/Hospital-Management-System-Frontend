@@ -18,6 +18,10 @@
                                     <option value="App2">App2</option>
                                     <option value="App3">App3</option>
                                 </select>
+                                <span class="error"
+                                *ngIf="appointmentForm.controls['appointmentType'].invalid &&
+                                    appointmentForm.controls['appointmentType'].dirty">
+                                    Appointment Type field is required</span>
                             </td>
 
                             <td>
@@ -30,6 +34,10 @@
                                     <option value="Eye">Eye</option>
                                     <option value="Throat">Throat</option>
                                 </select>
+                                <span class="error"
+                                *ngIf="appointmentForm.controls['Speciality'].invalid &&
+                                    appointmentForm.controls['Speciality'].dirty">
+                                    Speciality field is required</span>
                             </td>
                         </tr>
                         <tr>
@@ -43,13 +51,23 @@
                                     <option value="Dr. Lee">Dr. Lee</option>
                                     <option value="Dr Clark">Dr Clark</option>
                                 </select>
+                                <span class="error"
+                                *ngIf="appointmentForm.controls['Physician'].invalid &&
+                                    appointmentForm.controls['Physician'].dirty">
+                                    Speciality field is required</span>
                             </td>
                             <td>
-                                <mat-label>Date</mat-label>
+                                <label>Date</label>
                             </td>
                             <td>
-                                <input matInput [matDatepicker]="picker" [min]="minDate" [formControl]="date"
-                                    formControlName="date" name="date"><mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> <mat-datepicker #picker></mat-datepicker>
+                                <input id="date" matInput [matDatepicker]="picker" [min]="minDate" [formControl]="date"
+                                    formControlName="date" name="date" style="margin-bottom: 10px;">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <span class="error"
+                                    *ngIf="appointmentForm.controls['date'].invalid &&
+                                        appointmentForm.controls['date'].dirty">
+                                        date field is required</span>
                             </td>
                         </tr>
                         <tr>
@@ -62,6 +80,10 @@
                                     <option value="9-10 am">9-10 am</option>
                                     <option value="12-1pm">12-1 am</option>
                                 </select>
+                                <span class="error"
+                                *ngIf="appointmentForm.controls['slot'].invalid &&
+                                    appointmentForm.controls['slot'].dirty">
+                                    Speciality field is required</span>
                             </td>
                         </tr>
                     </tbody>
@@ -74,7 +96,7 @@
             </form>
         </div>
         <div id="divRight"  class="button" >
-            <table>
+            <table style="border: 1px inset aliceblue;margin-left: 58px;width: 450px;">
                 <tr>
                 <th>Appointment Type</th>
                 <th>Spciality</th>
@@ -93,6 +115,6 @@
               </table>
         </div>
     </div>
+</div>
 <div style="clear: both;"></div>
 <app-footer style="clear: both;"></app-footer>
-</div>
