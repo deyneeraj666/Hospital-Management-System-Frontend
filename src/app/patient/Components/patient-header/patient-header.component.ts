@@ -8,7 +8,6 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./patient-header.component.css']
 })
 export class PatientHeaderComponent implements OnInit {
-  myColorVaraible:boolean=false;
   constructor(private router: Router,private elementref:ElementRef) { }
 
   ngOnInit(): void {
