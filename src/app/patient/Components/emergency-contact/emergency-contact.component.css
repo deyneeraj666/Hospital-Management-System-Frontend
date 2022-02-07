@@ -1,17 +1,24 @@
 .emergency-container {
-    background-color: aliceblue;
+    background-color: white;
     width: 70%;
     display: grid;
     place-items: center;
     margin: auto;
     margin-top: 2rem;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 1px solid rgba(10, 102, 163, 0.897);
+     box-shadow: 1px 1px 1px 1px rgba(10, 102, 163, 0.897)
+
+
 }
 
 .em-header {
     width: 100%;
-    background-color: rgb(49, 112, 230);
+    background-color:rgba(10, 102, 163, 0.897); 
     height: 2rem;
+    padding: 1px;
+   
+   
     
 }
 p{
@@ -19,7 +26,8 @@ p{
     font-weight: bold;
     padding-top: 2px;
     font-family: 'Times New Roman', Times, serif;
-    color: white;
+    color:white;
+    text-align: center;
 }
 
 .em-details {
@@ -29,6 +37,7 @@ p{
     /* justify-content:space-evenly; */
     padding: 1rem;
     margin: auto;
+    
 }
 
 .em-info {
@@ -112,11 +121,19 @@ span {
 
 .submit{
     margin-right: 10px;
+    width: 70px;
+     /* font-weight: bold; */
+     background-color: green;
+     color: white;
 }
 .edit{
     margin-right: 10px;
+    width: 70px;
+    background-color:rgba(10, 102, 163, 0.897);
+    /* font-weight: bold; */
+    color: white;
 }
 .select-gender{
 height: 90%;
-width: 93%;
+width: 90%;
 }

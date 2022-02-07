@@ -24,6 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.inputEmail = '';
     } else {
       this.message = 'Not a registered email';
+      this.inputEmail = '';
     }
 
     

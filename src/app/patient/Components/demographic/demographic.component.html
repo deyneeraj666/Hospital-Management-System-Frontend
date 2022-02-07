@@ -90,7 +90,8 @@
             <label for="">Age</label>
           </div>
           <div class="field-value" >
-            {{age===0?'':age}}
+            {{age}}
+            
           </div>
         </div>
         <div class="field">
@@ -213,7 +214,7 @@
               formControlName="address"
               id=""
               cols="20"
-              rows="05"
+              rows="04"
             ></textarea>
             <span
               *ngIf="
@@ -245,10 +246,10 @@
     </div>
     <div class="actions">
         <!-- <button class="submit" [disabled]="patientDemographicForm.invalid">Submit</button> -->
-        <button class="submit" (click)="onSubmit()">Submit</button>
+        <button mat-raised-button class="submit" [disabled]="patientDemographicForm.invalid" (click)="onSubmit()">Submit</button>
 
-        <button class="edit" (click)="onEdit()">Edit</button>
-        <button>Cancel</button>
+        <button mat-raised-button class="edit" (click)="onEdit()">Edit</button>
+        <!-- <button>Cancel</button> -->
     </div>
   </form>
 </div>

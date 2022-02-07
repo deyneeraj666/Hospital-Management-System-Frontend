@@ -2,34 +2,36 @@
 <div class="allergy-container">
   <div class="all-header"><p>Allergy Information</p></div>
   <form [formGroup]="patientAllergyForm" class="form-container">
-    <div class="all-details">
-      <div class="all-info">
-        <div class="field">
-          <div class="field-label">
-            <label for="">Patient has any known allergies?</label>
+    <div class="field" >
+      <div class="field-label">
+        <label for="">Patient has any known allergies?</label>
+      </div>
+      <div class="field-value">
+        <div class="radio">
+          <div class="radio-item" >
+            <input type="radio" formControlName="knownAllergy" id="" value="Yes" />
+            <label for="">Yes</label>
           </div>
-          <div class="field-value">
-            <div class="radio">
-              <div class="radio-item">
-                <input type="radio" formControlName="knownAllergy" id="" value="Yes" />
-                <label for="">Yes</label>
-              </div>
-              <div class="radio-item">
-                <input type="radio" formControlName="knownAllergy" id="" value="No" />
-                <label for="">No</label>
-              </div>
-            </div>
-            <span
-              class="error"
-              *ngIf="
-              patientAllergyForm.controls['knownAllergy'].invalid &&
-              patientAllergyForm.controls['knownAllergy'].dirty
-              "
-            >
-              Kindly select the known allergy
-            </span>
+          <div class="radio-item" >
+            <input type="radio" formControlName="knownAllergy" id="" value="No" />
+            <label for="">No</label>
           </div>
         </div>
+        <span
+          class="error"
+          *ngIf="
+          patientAllergyForm.controls['knownAllergy'].invalid &&
+          patientAllergyForm.controls['knownAllergy'].dirty
+          "
+        >
+          Kindly select the known allergy
+        </span>
+      </div>
+    </div>
+
+    <div class="all-details" *ngIf="patientAllergyForm.controls['knownAllergy'].value === 'Yes'" >
+      <div class="all-info">
+        
         <div class="field">
           <div class="field-label">
             <label for="">Allergy ID</label>
@@ -58,10 +60,6 @@
           </select>
           </div>
         </div>
-        
-      </div>
-      <div class="all-info">
-        
         <div class="field">
           <div class="field-label">
             <label for="">Allergy Description</label>
@@ -70,12 +68,17 @@
             <textarea formControlName="allergyDesc" id="" cols="20" rows="03"></textarea>
           </div>
         </div>
+        
+      </div>
+      <div class="all-info">
+        
+        
         <div class="field">
           <div class="field-label">
             <label for="">Allergy Clinical Information</label>
           </div>
           <div class="field-value">
-            <textarea formControlName="allergyClinicalInfo" id="" cols="20" rows="03"></textarea>
+            <textarea formControlName="allergyClinicalInfo" id="" cols="20" rows="05"></textarea>
           </div>
         </div>
         <div class="field">
@@ -100,14 +103,15 @@
       </div>
     </div>
     <div class="actions">
-      <button class="submit" [disabled]="patientAllergyForm.invalid">
+      <button mat-raised-button class="submit" [disabled]="patientAllergyForm.invalid">
         Submit
       </button>
-      <button class="edit">Edit</button>
-      <button>Cancel</button>
+      <button mat-raised-button class="edit">Edit</button>
+      <!-- <button>Cancel</button> -->
     </div>
   </form>
 </div>
+<br>
 <br>
 <br>
 

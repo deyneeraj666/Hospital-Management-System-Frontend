@@ -93,14 +93,14 @@
             <textarea
               formControlName="eaddress"
               id=""
-              cols="20"
-              rows="05"
+              cols="10"
+              rows="04"
             ></textarea>
           </div>
         </div>
         <div class="field">
           <div class="field-label">
-            <label for="">Do you ned to access Patient Portal?</label>
+            <label for="">Do you need to access Patient Portal?</label>
           </div>
           <div class="field-value">
             <div class="radio">
@@ -127,11 +127,11 @@
       </div>
     </div>
     <div class="actions">
-      <button class="submit" [disabled]="patientEmergencyForm.invalid">
+      <button mat-raised-button class="submit" [disabled]="patientEmergencyForm.invalid" (click)="onSubmit()">
         Submit
       </button>
-      <button class="edit">Edit</button>
-      <button>Cancel</button>
+      <button mat-raised-button class="edit" (click)="onEdit()">Edit</button>
+      <!-- <button>Cancel</button> -->
     </div>
   </form>
 </div>

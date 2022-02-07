@@ -1,0 +1,84 @@
+.example-radio-button{margin-left: 7px;}
+mat-grid-tile {
+  background:#fafafa;
+}
+
+body {
+  text-align: center;
+}
+
+#hzDivleft{
+  width: 50%; float: left;
+  border: none;
+  background: white;
+
+}
+
+#hzDivright{
+  margin-left: 50%; 
+  background: white;
+}
+
+.verDiv div
+{ 
+  width: 150px; 
+  height: 150px; 
+   float: left;
+    padding: 7px; 
+    /* border: 1px solid #000; */
+    display: flex;
+align-items: center;
+justify-content: center;
+}
+
+form {
+  padding-top: 30px  !important;
+  display: inline-block;  
+}
+.dropdown{
+  width: 400px !important;
+}
+
+ mat-card{
+  /* padding:0 !important; */
+  background-color: white !important;
+  
+  padding:5px !important;
+}
+
+mat-card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(189, 75, 22, 0.2);
+  transition: 0.6s;
+}
+
+/* On mouse-over, add a deeper shadow */
+mat-card:hover {
+  box-shadow: 2 8px 16px 0 rgba(47, 11, 211, 0.2);
+}
+
+
+
+/* Add some padding inside the card container */
+/* .container {
+  padding: 2px 16px;
+} */
+
+
+
+.InnerAppcard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  float: left;
+}
+
+.InnerAppcard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+  margin-bottom: 4px;
+
+}
