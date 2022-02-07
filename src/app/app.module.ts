@@ -22,7 +22,8 @@ import { AdminModule } from './admin/admin.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     PatientModule,
-    SharedModule
+    SharedModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent],

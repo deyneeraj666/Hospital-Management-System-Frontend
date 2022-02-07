@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-header',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-
+  click_demo(){
+    this.router.navigateByUrl('admin/employeelist');
+  }
+  click_emp_list(){
+    this.router.navigateByUrl('admin/employeelist');
+  }
+  click_register_emp(){
+    this.router.navigateByUrl('admin/employeeregister');
+  }
+  click_patient_list(){
+    this.router.navigateByUrl('admin/patientlist');
+  }
+  click_change_password(){
+    this.router.navigateByUrl('login/patient-header/ChangePassword');
+  }
+  click_signout(){
+    this.router.navigateByUrl('login');
+  }
+  
 }

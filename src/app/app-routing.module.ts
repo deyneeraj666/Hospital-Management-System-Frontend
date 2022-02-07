@@ -7,12 +7,13 @@ import { RegisterComponent } from './login/LoginComponents/register/register.com
 import { ForgotPasswordComponent } from './login/LoginComponents/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './login/LoginComponents/change-password/change-password.component';
 import { VitalSignsComponent } from "./patient/Components/vital-signs/vital-signs.component";
+import { AdminHeaderComponent } from "./admin/Components/admin-header/admin-header.component";
 
 
 const routes: Routes = [
   {path:'login',component:LoginScreenComponent},
   {path:'patient-header',component:PatientHeaderComponent},
-  {path:'vital-signs',component:VitalSignsComponent},
+  {path:'admin',component:AdminHeaderComponent}
   
 
 ];
