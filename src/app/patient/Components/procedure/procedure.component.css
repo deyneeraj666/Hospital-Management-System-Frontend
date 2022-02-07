@@ -32,14 +32,16 @@
  }
  #appointmentdetails{
      /* margin-left: 38px !important;*/
-     margin-top: 12px !important; 
+     /* margin-top: 12px !important;  */
  }
  table {
      width: 100%;
    }
  
    .mat-header-cell{
-       color:white;
-       background-color: #a9a9b3;
+       color:rgba(10, 102, 163, 0.897);;
+       background-color: white;;
        font-weight: bold;
+       font-weight: bold;
+       font-size: 14px;
    }
