@@ -13,6 +13,8 @@ export class ProcedureComponent  implements OnInit {
   constructor(private toastr:ToastrService) { }
   selectedproc:string='';
   selectedcode:string=''
+
+  id:number=4;
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   procedure = new FormControl("", [
@@ -33,13 +35,17 @@ export class ProcedureComponent  implements OnInit {
   btnadd_click()
   {
     // alert(this.selectedproc + this.selectedcode + (this.procedure.errors!=null && this.procedure.errors['required']? this.procedure.errors['required']:''))
+    let obj:any={code: this.id ++ , name: this.selectedproc, date:'23-01-2022'}
+    this.dataSource.data.push(obj);
+    console.log(this.dataSource.data);
+    this.dataSource.paginator = this.paginator;
     this.toastr.success('Porcedure Added Successfully !')
   }
   btncancel_click()
   {
     this.procedure.reset();
   }
-
+ 
   // get procedureValue() {
   //   return this.procedure.value;
   // }
