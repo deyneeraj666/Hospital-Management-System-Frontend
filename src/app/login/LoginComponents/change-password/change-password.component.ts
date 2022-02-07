@@ -13,7 +13,7 @@ export class ChangePasswordComponent  {
 
   }
   DisabledSubmit:boolean=false;
-  UserId:string='CurrentUser';
+  UserId:string='CurrentUserName';
   
   oldPassword = new FormControl("", [
     Validators.required,
@@ -43,12 +43,13 @@ export class ChangePasswordComponent  {
   
   btnback_click()
   {
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('login/patient-header');
   }
   btnSubmitPassowrd_click()
   {
     let strData:string='Old Password :'+ this.oldPassword.value +'New Password :'+ this.confirmPassword.value;
-    this.router.navigateByUrl('login/login-passed');                  
+    this.router.navigateByUrl('login')
+                   
     alert('Successfully Updated')
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Appointment } from 'src/app/Models/Appointment';
-
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -10,7 +10,7 @@ import { Appointment } from 'src/app/Models/Appointment';
 export class AppointmentComponent implements OnInit {
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private toastr:ToastrService) { }
   hide = true;
   Speciality = new FormControl("", [Validators.required])
   Physician = new FormControl("", [Validators.required])
@@ -20,7 +20,14 @@ export class AppointmentComponent implements OnInit {
   btnSubmitDisabled: boolean = false;
   minDate=new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate())
 
-  appointmenttForm = this.formBuilder.group({
+  // appointmentForm = this.formBuilder.group({
+  //   Speciality: this.Speciality,
+  //   Physician: this.Physician,
+  //   appointmentType:this.appointmentType,
+  //   date:this.date,
+  //   slot:this.slot
+  // });
+  appointmentForm = new FormGroup({
     Speciality: this.Speciality,
     Physician: this.Physician,
     appointmentType:this.appointmentType,
@@ -42,15 +49,16 @@ export class AppointmentComponent implements OnInit {
   onSubmit()
   {
    let appObj:Appointment={
-     'Speciality':this.appointmenttForm.value.Speciality,
-     'Physician':this.appointmenttForm.value.Physician,
-     'appointmentType':this.appointmenttForm.value.appointmentType,
-     'date':this.appointmenttForm.value.date,
-     'slot':this.appointmenttForm.value.slot
+     'Speciality':this.appointmentForm.value.Speciality,
+     'Physician':this.appointmentForm.value.Physician,
+     'appointmentType':this.appointmentForm.value.appointmentType,
+     'date':this.appointmentForm.value.date,
+     'slot':this.appointmentForm.value.slot
     }
 
     this.appointmentData.push(appObj);
-    this.appointmenttForm.reset();
+    this.appointmentForm.reset();
+    this.toastr.success('Submit Successfully !')
     // alert('Your order has been submitted');
   }
   ngOnInit(): void {

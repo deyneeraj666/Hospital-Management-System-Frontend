@@ -1,6 +1,6 @@
 <app-patient-header></app-patient-header>
 <body>
-    <p><strong style="color: blue; margin-left: 38% !important;">New Appointment </strong></p>
+    <p><strong style="color: blue; margin-left: 38% !important;">Procedure </strong></p>
     <form>
         <mat-card>
             <mat-card-content>
@@ -23,8 +23,8 @@
                 <br>
                 <div class="example-button-row">
                     <!-- [disabled]="((procedure.errors!=null && procedure.errors['required'] )|| ( code.errors!=null && (code.dirty || code.errors['required'])) ? true:false)" -->
-                    <button mat-raised-button color="primary" id="btnadd" (click)="btnadd_click()" [disabled]="( ( this.procedure.errors!=null && this.procedure.errors['required'] ) || ( this.code.errors!=null && this.code.errors['required'] ) ?true:false )">Add</button>
-                    <button mat-raised-button color="primary" id="btncancel" (click)="btncancel_click()">Cancel</button>
+                    <button style="width: 80px;" mat-raised-button color="primary" id="btnadd" (click)="btnadd_click()" [disabled]="( ( this.procedure.errors!=null && this.procedure.errors['required'] ) || ( this.code.errors!=null && this.code.errors['required'] ) ?true:false )">Add</button>
+                    <!-- <button style="width: 80px;"  mat-raised-button color="primary" id="btncancel" (click)="btncancel_click()">Cancel</button> -->
                 </div>
             </mat-card-content>
         </mat-card>
