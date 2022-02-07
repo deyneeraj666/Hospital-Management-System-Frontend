@@ -19,7 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PatientRoutingModule } from './patient-routing.module';
 import {MatTableModule} from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -50,12 +50,15 @@ import { FormsModule } from '@angular/forms';
     MatTableModule,
     FormsModule,
     SharedModule,
-    LoginModule
+    LoginModule,
+    ReactiveFormsModule
   ],
   exports:[
     PatientHeaderComponent,
-    VitalSignsComponent
-    
-  ]
+    VitalSignsComponent,
+    DemographicComponent,
+    EmergencyContactComponent,
+    AllergyInfoComponent
+  ],
 })
 export class PatientModule { }

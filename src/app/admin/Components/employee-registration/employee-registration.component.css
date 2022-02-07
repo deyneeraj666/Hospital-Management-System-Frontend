@@ -1,6 +1,7 @@
-.emergency-container {
+.employee-container {
+    /* background-color: rgb(236, 232, 232); */
     background-color: aliceblue;
-    width: 70%;
+    width: 40%;
     display: grid;
     place-items: center;
     margin: auto;
@@ -10,22 +11,23 @@
 
 .em-header {
     width: 100%;
-    background-color: rgb(49, 112, 230);
+    /* background-color: rgb(49, 112, 230); */
     height: 2rem;
-    
+   
 }
+
 p{
     font-size: large;
     font-weight: bold;
     padding-top: 2px;
     font-family: 'Times New Roman', Times, serif;
-    color: white;
+    color: blue;
+    text-align: center;
 }
-
 .em-details {
     /* border: 2px solid green; */
-    width: 90%;
-    display: flex;
+    width: 50%;
+    /* display: flex; */
     /* justify-content:space-evenly; */
     padding: 1rem;
     margin: auto;
@@ -69,7 +71,7 @@ flex-basis: 100%;
 
 }
 
-.field-value input, .field-value textarea, .field-value radio {
+.field-value input, .field-value radio {
     padding: 2px;
     /* background-color: red; */
     /* border: none; */
@@ -108,15 +110,4 @@ span {
 
 .actions{
     margin-bottom: 10px;
-}
-
-.submit{
-    margin-right: 10px;
-}
-.edit{
-    margin-right: 10px;
-}
-.select-gender{
-height: 90%;
-width: 93%;
 }
