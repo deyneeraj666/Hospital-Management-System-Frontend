@@ -1,3 +1,64 @@
 <app-patient-header></app-patient-header>
-<p>diagnosis works!</p>
+<div class="border-vitals">
+    <div style="margin-left: 20%;margin-top: 100px;">
+        
+            <table class="table-first" style="width: 80%;">
+                <tr>
+                    <th>Diagnosis Code</th>
+                    <th>Diagnosis Name</th>
+                    <th>Date</th>
+                </tr>
+                <!-- <tr>
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                </tr> -->
+                <tr>
+                    <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
+                </tr>
+            </table>
+    </div>
+    <br/><br/>
+    <div class="diag-table" >
+        <table class="table-class">
+            <tr>
+                <th colspan="4" style="padding-right:83%;">
+                    Add Diagnosis
+                </th>
+            </tr>
+            <tr>
+                <td class="td-second" style="padding-left: 12%;">
+                    Diagnosis Code
+                </td>
+                <td class="td-second">
+                    <select>
+                        <option></option>
+                        <option>250.0</option>
+                        <option>530.81</option>
+                    </select>
+                </td>
+                <td class="td-second" style="padding-left: 12%;">
+                    Diagnosis Name
+                </td>
+                <td class="td-second">
+                    <select>
+                        <option></option>
+                        <option>diabetes</option>
+                        <option>GERD</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-second" colspan="2" style="padding-left: 39%;padding-top: 5%;">
+                    <button style="background-color:green ;color:white;margin-bottom: 40%;" mat-raised-button>Add</button>
+                </td>
+                <td class="td-second" colspan="2"  style="padding-left: 5%;padding-top: 5%;">
+                    <button style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;" mat-raised-button>Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
 <app-footer></app-footer>

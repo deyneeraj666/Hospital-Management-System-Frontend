@@ -1,6 +1,6 @@
 <div class="main-container">
     <div class="welcome">
-        <h3><u><b>Welcome to CT General Hospital</b></u></h3>
+        <h1><u><b>Welcome to CT General Hospital</b></u></h1>
     </div>
     <div class="form-group" >
     <form [formGroup]="patientRegisterForm" >
@@ -47,7 +47,7 @@
             <br>
             <div>
                 <!-- <label for="">Date of Birth</label> -->
-                <input type="date" formControlName="dateOfBirth"> 
+                <input type="date" style="width: 75%;" formControlName="dateOfBirth"> 
                 <br>
                 <span *ngIf="patientRegisterForm.controls['dateOfBirth'].invalid && patientRegisterForm.controls['dateOfBirth'].dirty"style="color: red;font-size: small;">*Please provide your date of birth </span>
             </div>
@@ -75,7 +75,7 @@
               <br>  
             <div>
             
-            <button [disabled]="patientRegisterForm.invalid" style="margin-left: 5%;" routerLink='/login' >Register</button>
+            <button [disabled]="patientRegisterForm.invalid" style="margin-left: 16%;" routerLink='/login' >Register</button>
             </div>
         </div>
         </div>
