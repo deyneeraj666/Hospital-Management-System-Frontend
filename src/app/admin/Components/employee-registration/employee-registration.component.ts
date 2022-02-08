@@ -23,7 +23,7 @@ export class EmployeeRegistrationComponent implements OnInit {
   }
     click_submit()
     {
-    
+      console.log(this.empRegistrationForm);
       // console.log(this.empRegistrationForm.controls.title.status == "VALID");
       // console.log(this.empRegistrationForm.controls.fname.status == "VALID");
       // console.log(this.empRegistrationForm.controls.lname.status == "VALID");
