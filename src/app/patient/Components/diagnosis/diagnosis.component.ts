@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diagnosis.component.css']
 })
 export class DiagnosisComponent implements OnInit {
-
+  option:number=6;
   constructor() { }
 
   ngOnInit(): void {

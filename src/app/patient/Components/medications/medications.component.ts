@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedicationsComponent implements OnInit {
 
+  option:number=8;
   constructor() { }
 
   ngOnInit(): void {

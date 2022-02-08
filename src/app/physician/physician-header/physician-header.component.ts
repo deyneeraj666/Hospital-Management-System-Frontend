@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./physician-header.component.css']
 })
 export class PhysicianHeaderComponent implements OnInit {
-
+  @Input() option:number=0;
   constructor(private router:Router) { }
 
   ngOnInit(): void {

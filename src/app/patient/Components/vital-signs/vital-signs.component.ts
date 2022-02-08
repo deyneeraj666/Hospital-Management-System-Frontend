@@ -16,6 +16,8 @@ export class VitalSignsComponent implements OnInit
   actionenable=true;
   btndisable=false;
 
+  option:number=5;
+
   constructor(private toastr:ToastrService) { }
 
   ngOnInit(): void {

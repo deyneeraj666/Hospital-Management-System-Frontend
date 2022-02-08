@@ -12,7 +12,7 @@ export class AllergyInfoComponent implements OnInit {
   allergyTypes:Allergy[]=[];
   allergyNames:Allergy[]=[];
   allergyKnown:boolean=true;
-
+  option:number=3;
   constructor(private service:PmsService) { }
 
   ngOnInit(): void {

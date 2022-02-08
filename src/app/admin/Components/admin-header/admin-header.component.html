@@ -1,9 +1,9 @@
 <mat-toolbar class="sticky-top" >
     <a style="color: white; opacity: 0.6;cursor: pointer;" (click)="click_demo()">CTHospital</a>
     <div class="navctn">
-      <button mat-icon-button class="navbtn" (click)="click_emp_list()"  >Employee-List</button>
-      <button mat-icon-button class="navbtn" (click)="click_register_emp()" >Register-Employee</button>
-      <button mat-icon-button class="navbtn" (click)="click_patient_list()" >Patient-List</button>
+      <button mat-icon-button class="navbtn" (click)="click_emp_list()" [ngStyle]="option ==1?{'opacity':1}:{'opacity':0.6}" >Employee-List</button>
+      <button mat-icon-button class="navbtn" (click)="click_register_emp()"  [ngStyle]="option ==2?{'opacity':1}:{'opacity':0.6}">Register-Employee</button>
+      <button mat-icon-button class="navbtn" (click)="click_patient_list()" [ngStyle]="option ==3?{'opacity':1}:{'opacity':0.6}" >Patient-List</button>
     </div>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" style="background-color:rgba(10, 102, 163, 0.897); margin-left: 550px;" data-bs-toggle="dropdown" >

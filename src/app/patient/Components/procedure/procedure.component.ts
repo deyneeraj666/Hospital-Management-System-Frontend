@@ -9,7 +9,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ['./procedure.component.css']
 })
 export class ProcedureComponent  implements OnInit {
-
+  option:number=7;
   constructor(private toastr:ToastrService) { }
   selectedproc:string='';
   selectedcode:string=''

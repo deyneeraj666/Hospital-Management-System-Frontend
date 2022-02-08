@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-
+  option:number=2;
   constructor() { }
 
   ngOnInit(): void {

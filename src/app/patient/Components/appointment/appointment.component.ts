@@ -9,7 +9,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class AppointmentComponent implements OnInit {
 
-
+  option:number=4;
   constructor(private toastr:ToastrService) { }
   hide = true;
   Speciality = new FormControl("", [Validators.required])

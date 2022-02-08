@@ -7,7 +7,7 @@
     margin: auto;
     margin-top: 2rem;
     border: 1px solid rgba(10, 102, 163, 0.897);
-    box-shadow: 1px 1px 1px 1px rgba(10, 102, 163, 0.897)
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);;
 }
 
 .em-header {
@@ -122,6 +122,8 @@ span {
     text-align: center;
     background-color:green;
     color: white;
+    width: 100px;
+    margin: 30px;
 }
 .select{
     width: 90%;

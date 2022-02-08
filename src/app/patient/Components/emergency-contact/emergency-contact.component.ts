@@ -10,7 +10,7 @@ import { PmsService } from 'src/app/Service/pms.service';
   styleUrls: ['./emergency-contact.component.css']
 })
 export class EmergencyContactComponent implements OnInit {
-
+  option:number=2;
   constructor(private pmsService: PmsService,private toastr:ToastrService) { }
 
   ngOnInit(): void {

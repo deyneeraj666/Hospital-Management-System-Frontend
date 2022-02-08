@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DemographicComponent implements OnInit {
   age: number = 0;
-
+  option:number =1;
   constructor(private pmsService: PmsService,private toastr:ToastrService) {}
 
   ngOnInit(): void {

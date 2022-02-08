@@ -34,7 +34,7 @@ import { ToastrModule } from "ngx-toastr";
     MatIconModule,
     SharedModule,
     ToastrModule.forRoot(
-      {timeOut:1500}
+      {timeOut:2000}
     )
   ],
   exports:[

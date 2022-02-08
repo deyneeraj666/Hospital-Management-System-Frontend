@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appointment.component.css']
 })
 export class AppointmentComponent implements OnInit {
-
+  option:number=1;
   constructor() { }
 
   ngOnInit(): void {

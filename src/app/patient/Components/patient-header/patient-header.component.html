@@ -1,14 +1,14 @@
 <mat-toolbar class="sticky-top" >
     <a style="color: white; opacity: 0.6;cursor: pointer;" (click)="click_demo()">CTHospital</a>
     <div class="navctn">
-      <button mat-icon-button class="navbtn" (click)="click_demo()"  >Demographic</button>
-      <button mat-icon-button class="navbtn" (click)="click_emergencycontact()" >Emergency-Contact</button>
-      <button mat-icon-button class="navbtn" (click)="click_allery()" >Allergy</button>
-      <button mat-icon-button class="navbtn" (click)="click_appointment()" >Appointment</button>
-      <button mat-icon-button class="navbtn" (click)="click_vital()" >Vital</button>
-      <button mat-icon-button class="navbtn" (click)="click_diagnosis()"  >Diagnosis</button>
-      <button mat-icon-button class="navbtn" (click)="click_procedure()" >Procedure</button>
-      <button mat-icon-button class="navbtn" (click)="click_medication()" >Medications</button>
+      <button mat-icon-button class="navbtn" (click)="click_demo()" [ngStyle]="option ==1?{'opacity':1}:{'opacity':0.6}" >Demographic</button>
+      <button mat-icon-button class="navbtn" (click)="click_emergencycontact()" [ngStyle]="option ==2?{'opacity':1}:{'opacity':0.6}" >Emergency-Contact</button>
+      <button mat-icon-button class="navbtn" (click)="click_allery()" [ngStyle]="option ==3?{'opacity':1}:{'opacity':0.6}">Allergy</button>
+      <button mat-icon-button class="navbtn" (click)="click_appointment()" [ngStyle]="option ==4?{'opacity':1}:{'opacity':0.6}" >Appointment</button>
+      <button mat-icon-button class="navbtn" (click)="click_vital()"  [ngStyle]="option ==5?{'opacity':1}:{'opacity':0.6}">Vital</button>
+      <button mat-icon-button class="navbtn" (click)="click_diagnosis()"  [ngStyle]="option ==6?{'opacity':1}:{'opacity':0.6}">Diagnosis</button>
+      <button mat-icon-button class="navbtn" (click)="click_procedure()" [ngStyle]="option ==7?{'opacity':1}:{'opacity':0.6}">Procedure</button>
+      <button mat-icon-button class="navbtn" (click)="click_medication()" [ngStyle]="option ==8?{'opacity':1}:{'opacity':0.6}">Medications</button>
       
     </div>
     <div class="dropdown">

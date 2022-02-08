@@ -1,7 +1,7 @@
-<app-admin-header></app-admin-header>
+<app-admin-header [option]="option"></app-admin-header>
 <div class="employee-container">
     <div class="em-header"><p>New Employee Registration Form</p></div>
-    <form [formGroup]="empRegistrationForm" class="form-container">
+    <form [formGroup]="empRegistrationForm" class="form-container" >
       <div class="em-details">
         <div class="em-info">
           <div class="field">
@@ -22,10 +22,6 @@
                   <input type="radio" formControlName="title" id="" value="Mrs" />
                   <label for="">Mrs</label>
                 </div>
-                <div class="radio-item">
-                    <input type="radio" formControlName="title" id="" value="Dr" />
-                    <label for="">Dr</label>
-                  </div>
               </div>
               <span
                 class="error"
@@ -51,7 +47,7 @@
                 empRegistrationForm.controls['fname'].dirty
                 "
               >
-                First Name cannot be empty
+                *First Name cannot be less than 2 character
               </span>
             </div>
           </div>
@@ -67,7 +63,7 @@
                 empRegistrationForm.controls['lname'].dirty
                 "
               >
-                Last Name cannot be empty
+              *Last Name cannot be less than 2 character
               </span>
             </div>
           </div>
@@ -83,7 +79,7 @@
                 empRegistrationForm.controls['email'].dirty
                 "
               >
-               Email is a required field
+               *Email is a required field
               </span>
             </div>
           </div>
@@ -99,7 +95,7 @@
                 empRegistrationForm.controls['dob'].dirty
                 "
               >
-                Please provide your date of birth
+                *Date of birth required
               </span>
             </div>
           </div>
@@ -113,16 +109,7 @@
             </select>
             </div>
           </div>
-          <!-- <div class="field" >
-            <div class="field-label">
-              <label for="">Specialty</label>
-            </div>
-            <div class="field-value">
-              <select formControlName="specialty" class="select" >
-                <option *ngFor="let item of roles" value="">{{item}}</option>
-            </select>
-            </div>
-          </div> -->
+          
          
           
           
@@ -130,7 +117,8 @@
         
       </div>
       <div class="actions">
-          <button  class="register" mat-raised-button >Register</button>
+          <button  class="register" mat-raised-button (click)="click_submit()">Register</button>
+          <button  class="register" mat-raised-button style="background-color:rgba(10, 102, 163, 0.897) ;" (click)="click_reset()">Reset</button>
           
       </div>
     </form>

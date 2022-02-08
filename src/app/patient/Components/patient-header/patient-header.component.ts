@@ -1,5 +1,5 @@
 import { Router } from "@angular/router";
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,10 +8,10 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./patient-header.component.css']
 })
 export class PatientHeaderComponent implements OnInit {
+  @Input() option:number =1;
   constructor(private router: Router,private elementref:ElementRef) { }
 
-  ngOnInit(): void {
-  }
+  
 
   click_demo(){
       this.router.navigateByUrl('login/patient-header/demographic');
@@ -42,5 +42,9 @@ export class PatientHeaderComponent implements OnInit {
   }
   click_signout(){
     this.router.navigateByUrl('login');
+  }
+
+  ngOnInit(): void {
+    
   }
 }
