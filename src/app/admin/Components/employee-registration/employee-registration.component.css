@@ -1,0 +1,131 @@
+.employee-container {
+    /* background-color: rgb(236, 232, 232); */
+    background-color: white;
+    width: 40%;
+    display: grid;
+    place-items: center;
+    margin: auto;
+    margin-top: 2rem;
+    border: 1px solid rgba(10, 102, 163, 0.897);
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);;
+}
+
+.em-header {
+    width: 100%;
+    /* background-color: rgb(49, 112, 230); */
+    height: 2rem;
+   
+}
+
+p{
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-top: 2px;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgba(10, 102, 163, 0.897);
+    text-align: center;
+}
+.em-details {
+    /* border: 2px solid green; */
+    width: 70%;
+    /* display: flex; */
+    /* justify-content:space-evenly; */
+    padding: 1rem;
+    margin: auto;
+}
+
+.em-info {
+    /* border: 2px solid orange; */
+    flex: 0.5;
+}
+
+.field {
+    /* border: 2px solid red; */
+    display: flex;
+    padding: 5px;
+
+}
+
+/* 
+.field>*{
+flex-basis: 100%;
+} */
+.field-label {
+    flex: 0.4;
+
+    padding: 5px 5px;
+    font-size: 15px;
+
+}
+
+.field-value {
+    flex: 0.6;
+    padding: 2px 5px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.radio {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+
+}
+
+.field-value input, .field-value radio {
+    padding: 2px;
+    /* background-color: red; */
+    /* border: none; */
+    border: 1px solid black;
+    width: 90%;
+    height: 90%;
+    margin-bottom: 3px;
+}
+
+
+
+.form-container {
+    /* display: flex;
+    flex-direction: column; */
+    width: 98%;
+    /* justify-content: space-between; */
+}
+
+.actions {
+    margin: auto;
+}
+
+span {
+    color: red;
+    font-size: 10px;
+}
+
+.radio-item {
+    display: flex;
+    width: 100%;
+}
+
+.radio-item>* {
+    flex-basis: 100%;
+}
+
+.actions{
+  text-align: center;
+    margin-bottom: 10px;
+    
+}
+
+
+.register{
+    text-align: center;
+    background-color:green;
+    color: white;
+    width: 100px;
+    margin: 30px;
+}
+.select{
+    width: 90%;
+    height: 90%;
+}

@@ -1,0 +1,27 @@
+.welcome{
+    margin-left: 37%;
+    font-size: xx-large; 
+    font-family: fantasy;
+    color: rgb(50, 50, 146);
+}
+.form-sign{
+    margin-left: 14%;
+    font-size:138%;
+    color: rgb(50, 50, 146);
+    margin-top: 10%;
+}
+.form-sign-div{
+    
+    border: 2px solid white;
+    font-family: sans-serif;
+    width: 40%;
+    /* padding-bottom: 1%;
+    background-color: lightblue; */
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+    border-color:rgba(10, 102, 163, 0.897) ;
+    padding-right: 7%;
+    margin-left: 30%;
+}
+.form-sign-div2{
+    margin-left: 40%;
+}

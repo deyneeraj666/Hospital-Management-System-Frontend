@@ -1,0 +1,129 @@
+<app-admin-header [option]="option"></app-admin-header>
+<div class="employee-container">
+    <div class="em-header"><p>New Employee Registration Form</p></div>
+    <form [formGroup]="empRegistrationForm" class="form-container" >
+      <div class="em-details">
+        <div class="em-info">
+          <div class="field">
+            <div class="field-label">
+              <label for="">Title</label>
+            </div>
+            <div class="field-value">
+              <div class="radio">
+                <div class="radio-item">
+                  <input type="radio" formControlName="title" id="" value="Mr" />
+                  <label for="">Mr</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" formControlName="title" id="" value="Ms" />
+                  <label for="">Ms</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" formControlName="title" id="" value="Mrs" />
+                  <label for="">Mrs</label>
+                </div>
+              </div>
+              <span
+                class="error"
+                *ngIf="
+                empRegistrationForm.controls['title'].invalid &&
+                empRegistrationForm.controls['title'].dirty
+                "
+              >
+                Kindly select the title
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">First Name</label>
+            </div>
+            <div class="field-value">
+              <input type="text" formControlName="fname" />
+              <span
+                class="error"
+                *ngIf="
+                empRegistrationForm.controls['fname'].invalid &&
+                empRegistrationForm.controls['fname'].dirty
+                "
+              >
+                *First Name cannot be less than 2 character
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Last Name</label>
+            </div>
+            <div class="field-value">
+              <input type="text" formControlName="lname" />
+              <span
+                *ngIf="
+                empRegistrationForm.controls['lname'].invalid &&
+                empRegistrationForm.controls['lname'].dirty
+                "
+              >
+              *Last Name cannot be less than 2 character
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Email ID</label>
+            </div>
+            <div class="field-value">
+              <input type="email" formControlName="email" id="" />
+              <span
+                *ngIf="
+                empRegistrationForm.controls['email'].invalid &&
+                empRegistrationForm.controls['email'].dirty
+                "
+              >
+               *Email is a required field
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Date of Birth</label>
+            </div>
+            <div class="field-value">
+              <input type="date" formControlName="dob" />
+              <span
+                *ngIf="
+                empRegistrationForm.controls['dob'].invalid &&
+                empRegistrationForm.controls['dob'].dirty
+                "
+              >
+                *Date of birth required
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">
+              <label for="">Role</label>
+            </div>
+            <div class="field-value">
+              <select formControlName="role" class="select" >
+                <option *ngFor="let item of roles" value="">{{item}}</option>
+            </select>
+            </div>
+          </div>
+          
+         
+          
+          
+        </div>
+        
+      </div>
+      <div class="actions">
+          <button  class="register" mat-raised-button (click)="click_submit()">Register</button>
+          <button  class="register" mat-raised-button style="background-color:rgba(10, 102, 163, 0.897) ;" (click)="click_reset()">Reset</button>
+          
+      </div>
+    </form>
+  </div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

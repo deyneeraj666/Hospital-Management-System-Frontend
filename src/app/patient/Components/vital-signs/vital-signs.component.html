@@ -1,0 +1,65 @@
+<app-patient-header [option]="option"></app-patient-header>
+
+<div class="mat">
+      <span style="color: rgba(10, 102, 163, 0.897); padding-left: 162px;"><b><u>Vitals Details</u></b></span>
+      <br>
+      <br> 
+      <table class="table">
+            <thead>
+              <tr>
+                <th >Vital Signs</th>
+                <th >Captured</th>
+                <th >Measurement Unit</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Height</td>
+                <td>
+                    <input type="text"  [disabled]="actionenable" [(ngModel)]="height" >
+                </td>
+                <td>Centimetre (cm)</td>
+              </tr>
+              <tr>
+                <td>Weight </td>
+                <td>
+                    <input type="text"  [disabled]="actionenable" [(ngModel)]="weight">
+                </td>
+                <td>Kilogram (kg)</td>
+              </tr>
+              <tr>
+                <td>Blood Pressure </td>
+                <td>
+                    <input type="text"  [disabled]="actionenable" [(ngModel)]="blood_pressure">
+                </td>
+                <td>Millimeters of mercury (mmHg)</td>
+              </tr>
+              <tr>
+                <td>Body Temperature </td>
+                <td>
+                    <input type="text"  [disabled]="actionenable" [(ngModel)]="temperature">
+                </td>
+                <td>Fahrenheit (°F) </td>
+              </tr>
+              <tr>
+                <td>Respiration Rate </td>
+                <td>
+                    <input type="text"  [disabled]="actionenable" [(ngModel)]="respiration_rate">
+                </td>
+                <td>Breaths per minute (BPM)</td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="btn">
+            <button mat-raised-button  style="background-color:rgba(10, 102, 163, 0.897) ;color:white"  (click)="edit_click()" [disabled]="btndisable">Edit</button>
+            <button mat-raised-button color="primary"  (click)="save_click()"  style="background-color: green; color: white; margin-left: 40px;" [disabled]="btndisable">Save</button>
+          </div>
+          
+</div> 
+<br>
+
+<app-footer></app-footer>
+
+
+

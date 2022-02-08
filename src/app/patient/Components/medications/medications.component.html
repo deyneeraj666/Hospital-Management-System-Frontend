@@ -1,0 +1,111 @@
+<app-patient-header [option]="option"></app-patient-header>
+<div class="border-vitals">
+    <div style="margin-left: 20%;" >
+        
+            <table class="table-medi" style="width: 80%;">
+                <tr>
+                    <th>Drug Name</th>
+                    <th>Strength</th>
+                    <th>Quantity</th>
+                    <th>Frequency</th>
+                    <th>Form</th>
+                    <th>Notes</th>
+                    <th>Date</th>
+                </tr>
+                
+                <!-- <tr *ngFor="let data in">
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                    <td class="td-first"></td>
+                </tr> -->
+                <tr>
+                    <td colspan="7" style="padding-left: 40%;">**No known Medications</td>
+                </tr>
+                
+            </table>
+    </div>
+    <br/><br/>
+    <div class="medication-table"  style="margin-left: 20%;background-color: white;" >
+        <table class="table-class">
+            <tr>
+                <th colspan="4" style="padding-right:82%;">
+                    Add Medications
+                </th>
+            </tr>
+            <tr>
+                <td class="td-second" style="padding-left: 9%;">
+                    Drug Name
+                </td>
+                <td class="td-second">
+                    <select style="width:56%;margin-left: 5%;">
+                        <option></option>
+                        <option>paracetamal</option>
+                        <option>Dolo</option>
+                    </select>
+                </td>
+                <td class="td-second" style="padding-left: 5%;">
+                    Frequency
+                </td>
+                <td class="td-second" style="padding-left: 2%;">
+                    <input type="text" style="width: 54%;">
+                </td>
+                
+            </tr>
+            <tr>
+                
+                <td class="td-second" style="padding-left: 9%;">
+                    Strength
+                </td>
+                <td class="td-second">
+                    <select style="width: 56%;margin-left: 5%;height: 100%;">
+                        <option></option>
+                        <option>500</option>
+                        <option>650</option>
+                    </select>
+                </td>
+                <td class="td-second" style="padding-left: 5%;">
+                    Form
+                </td>
+                <td class="td-second" style="padding-left: 2%;">
+                    <select style="width: 54%;height: 100%;">
+                        <option></option>
+                        <option>Medicine</option>
+                        <option>X-Ray</option>
+                    </select>
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="td-second" style="padding-left: 9%;">
+                    Quantity
+                </td>
+                <td class="td-second">
+                    <input type="text" style="width: 56%;margin-left: 5%;">
+                </td>
+                <td class="td-second" style="padding-left: 5%;">
+                    Notes
+                </td>
+                <td class="td-second" style="padding-left: 2%;">
+                    <textarea style="width: 55%;height: 100%;"></textarea>
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="td-second" colspan="2" style="padding-left: 35%;padding-top: 5%;">
+                    <button mat-raised-button style="background-color: green;color: white;margin-bottom: 25%;">Add</button>
+                </td>
+                <td class="td-second" colspan="2" style="padding-right: 10%;padding-top: 5%;">
+                    <button mat-raised-button style="background-color:rgba(10, 102, 163, 0.897);color: white;margin-bottom: 10%;">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<app-footer></app-footer>
