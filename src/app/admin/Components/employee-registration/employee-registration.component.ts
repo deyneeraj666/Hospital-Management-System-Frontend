@@ -43,11 +43,12 @@ export class EmployeeRegistrationComponent implements OnInit {
       //    this.empRegistrationForm.reset();
       //   }
       if(this.empRegistrationForm.valid){
-        this.toastr.success("Employee Added!");
+        this.toastr.error("Field is not valid!");
         this.empRegistrationForm.reset();
       }
       else{
-        this.toastr.error("Field is not valid!");
+        
+        this.toastr.success("Employee Added!");
         this.empRegistrationForm.reset();
       }
     }
