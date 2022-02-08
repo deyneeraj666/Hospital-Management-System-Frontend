@@ -25,6 +25,8 @@ export class VitalSignsComponent implements OnInit
   }
   edit_click(){
     this.actionenable=false;
+    
+    
   }
   save_click()
   {
