@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Diagnosis } from 'src/app/Models/Diagnosis';
 
 @Component({
@@ -33,4 +34,12 @@ export class DiagnosisComponent implements OnInit {
     this.dname="";
     //this.ddate=new Date();
   }
+  public patientDiagnosisTable:FormGroup=new FormGroup({
+    diag_code: new FormControl('', [
+      Validators.required
+    ]),
+    diag_name: new FormControl('', [
+      Validators.required
+    ]),    
+  })
 }

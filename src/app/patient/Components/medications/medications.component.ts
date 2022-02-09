@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Medications } from 'src/app/Models/Medications';
 
 @Component({
@@ -29,6 +30,7 @@ export class MedicationsComponent implements OnInit {
     newData.form=this.form;
     newData.quantity=this.quantity;
     newData.ddate=this.ddate;
+    alert(this.form)
     
     this.data.push(newData);
     this.strength="";
@@ -49,5 +51,23 @@ export class MedicationsComponent implements OnInit {
     //this.ddate=new Date;
     
   }
+  public patientMedicationTable:FormGroup=new FormGroup({
+    drugname_data: new FormControl('', [
+      Validators.required
+    ]),
+    frequency_data: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    
+    strength_data: new FormControl('', [Validators.required,]),
+    form_data: new FormControl('', Validators.required),
+    quantity_data: new FormControl('', [
+      Validators.minLength(1),
+      Validators.required,
+    ]),
+    notes_data: new FormControl('',[
+      Validators.minLength(1),
+      Validators.required,
+    ]),
+    
+  })
   
 }

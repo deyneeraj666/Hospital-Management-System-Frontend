@@ -9,6 +9,7 @@ import { LoginModule } from './login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { NurseModule } from "./nurse/nurse.module";
+import { MatTableModule } from "@angular/material/table";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { NurseModule } from "./nurse/nurse.module";
     SharedModule,
     NurseModule,
     AdminModule,
-    PhysicianModule
+    PhysicianModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],
