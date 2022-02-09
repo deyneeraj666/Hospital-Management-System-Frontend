@@ -25,10 +25,25 @@ export class LoginScreenComponent implements OnInit
         return;
     }
     console.log(this.loginform.controls.email);
-    if(this.loginform.controls.email.value=="admin@gmail.com" && this.loginform.controls.password.value == "admin123")
+    if(this.loginform.controls.email.value=="user@gmail.com" && this.loginform.controls.password.value == "user@123")
     {
       this.router.navigateByUrl('login/patient-header');
+      this.toastr.success('Welcome user!')
+    }
+    else if(this.loginform.controls.email.value=="admin@gmail.com" && this.loginform.controls.password.value == "admin@123")
+    {
+      this.router.navigateByUrl('login/admin-header');
       this.toastr.success('Welcome Admin!')
+    }
+    else if(this.loginform.controls.email.value=="nurse@gmail.com" && this.loginform.controls.password.value == "nurse@123")
+    {
+      this.router.navigateByUrl('login/nurse-header');
+      this.toastr.success('Welcome Nurse!')
+    }
+    else if(this.loginform.controls.email.value=="physician@gmail.com" && this.loginform.controls.password.value == "physician@123")
+    {
+      this.router.navigateByUrl('login/physician-header');
+      this.toastr.success('Welcome Physician!')
     }
     else
     {
