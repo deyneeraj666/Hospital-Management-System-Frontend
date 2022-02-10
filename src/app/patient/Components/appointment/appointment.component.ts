@@ -7,7 +7,8 @@ import { ToastrService } from "ngx-toastr";
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.css']
 })
-export class AppointmentComponent implements OnInit {
+export class AppointmentComponent implements OnInit 
+{
 
   option:number=4;
   constructor(private toastr:ToastrService) { }
@@ -18,15 +19,11 @@ export class AppointmentComponent implements OnInit {
   date = new FormControl("", [Validators.required])
   slot = new FormControl("", [Validators.required])
   btnSubmitDisabled: boolean = false;
-  minDate=new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate())
+  minDate=new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
+  isdisablenewappointment=true;
 
-  // appointmentForm = this.formBuilder.group({
-  //   Speciality: this.Speciality,
-  //   Physician: this.Physician,
-  //   appointmentType:this.appointmentType,
-  //   date:this.date,
-  //   slot:this.slot
-  // });
+
+ 
   appointmentForm = new FormGroup({
     Speciality: this.Speciality,
     Physician: this.Physician,
@@ -55,14 +52,19 @@ export class AppointmentComponent implements OnInit {
      'date':this.appointmentForm.value.date,
      'slot':this.appointmentForm.value.slot
     }
-
     this.appointmentData.push(appObj);
     this.appointmentForm.reset();
-    this.toastr.success('Submit Successfully !')
-    // alert('Your order has been submitted');
+    this.toastr.success('Submit Successfully !');
+    this.click_ViewAppointment();
   }
   ngOnInit(): void {
 
+  }
+  click_NewAppointment(){
+    this.isdisablenewappointment=true;
+  }
+  click_ViewAppointment(){
+    this.isdisablenewappointment=false;
   }
 }
 

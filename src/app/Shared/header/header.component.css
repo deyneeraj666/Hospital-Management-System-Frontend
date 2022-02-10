@@ -1,4 +1,4 @@
-.main-container{
+/* .main-container{
     display: flex;
     flex-direction: row;
     flex: 0.2;
@@ -15,4 +15,10 @@
 h2{
     font-weight: bolder;
     font-size: 32px;
+} */
+
+.sticky-top{
+    background-color:rgba(36, 32, 32, 0.904);
+   
+   
 }

@@ -1,22 +1,21 @@
 .demographic-container {
-    /* background-color: rgb(236, 232, 232); */
-    background-color: white;
-    width: 70%;
+    width: 60%;
     display: grid;
     place-items: center;
     margin: auto;
-    margin-top: 2rem;
+    
     /* border: 1px solid black; */
-    border: 1px solid rgba(10, 102, 163, 0.897);
-    box-shadow: 1px 1px 1px 1px rgba(10, 102, 163, 0.897)
+    /* border: 1px solid rgba(10, 102, 163, 0.897); */
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+  
 
 }
 
 .dm-header {
     width: 100%;
-    background-color:rgba(10, 102, 163, 0.897);
     height: 2rem;
     padding: 1px;
+    
    
 }
 

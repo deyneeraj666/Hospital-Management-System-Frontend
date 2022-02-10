@@ -1,9 +1,10 @@
 <div>
   <app-header></app-header>
-  <hr style="background-color: aqua;">
+
+  <!-- <hr style="background-color: aqua;"> -->
   <div id="main_div">
       <div class="parts">
-          <img  src="assets\Login_image.jpg" alt="Logo">
+          <img  src="assets\Login_image.jpg" style="height: 370px;" alt="Logo">
       </div>
       <div class="parts" id="logintab" >
           <mat-card>
@@ -42,6 +43,7 @@
           </form>
         </mat-card-content>
         <hr>
+        <br>
         <b style="color: blue;; padding-left: 90px;">New to CT General Hospital?</b>
         <button mat-raised-button  style=" margin-left: 10px; background-color: green; color: white; " routerLink='patient-register' >Register</button>
       </mat-card>

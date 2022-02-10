@@ -12,7 +12,16 @@ export class EmployeeRegistrationComponent implements OnInit {
   roles:string[]=["Physician", "Nurse", "Admin"];
   empRegistrationForm:any = FormGroup;
 
-  constructor(private toastr:ToastrService) { }
+  constructor(private toastr:ToastrService) {
+    this.empRegistrationForm = new FormGroup({
+      title : new FormControl("",Validators.required),
+      fname : new FormControl("",[Validators.required,Validators.minLength(2)]),
+      lname : new FormControl("",[Validators.required,Validators.minLength(2)]),
+      email : new FormControl("",Validators.email),
+      dob : new FormControl("",Validators.required),
+      role : new FormControl("",Validators.required),
+      specialty : new FormControl("",Validators.required)})
+   }
 
   
  
@@ -43,24 +52,17 @@ export class EmployeeRegistrationComponent implements OnInit {
       //    this.empRegistrationForm.reset();
       //   }
       if(this.empRegistrationForm.valid){
-        this.toastr.error("Field is not valid!");
+        this.toastr.success("Employee Added!");
         this.empRegistrationForm.reset();
       }
       else{
-        
-        this.toastr.success("Employee Added!");
+        this.toastr.error("Field is not valid!");
+       
         this.empRegistrationForm.reset();
       }
     }
 
     ngOnInit(): void {
-      this.empRegistrationForm = new FormGroup({
-       title : new FormControl("",Validators.required),
-       fname : new FormControl("",[Validators.required,Validators.minLength(2)]),
-       lname : new FormControl("",[Validators.required,Validators.minLength(2)]),
-       email : new FormControl("",Validators.email),
-       dob : new FormControl("",Validators.required),
-       role : new FormControl("",Validators.required),
-       specialty : new FormControl("",Validators.required)})
+     
    }
 }

@@ -1,48 +1,56 @@
-select{
-    width: 150px;
-}
-
-.mat{
+.main-appointment{
+    
     margin: auto;
-    width: 100%; 
+    width: 40%;
     border: 1px solid rgba(10, 102, 163, 0.897);
-    padding: 20px;
-    padding-top: 40px;
-    margin-top: 10px;
-    /* box-shadow: 5px 5px gray; */
+    padding: 40px;
+    padding-top: 50px;
+    height: 500px auto;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
-    /* box-shadow: 10px 5px 5px gray; */
+}
+tr{
+  
+   margin-left:20px;
+}
+#header{
+    background-color:rgba(10, 102, 163, 0.897); 
+    width: 450px;
+    height: 2rem;
 }
 
-.container{
-    border: solid 1px green;
-    height: 50px;
-    box-sizing: border-box;
-  display: table;
-  width: 100%;
-  margin-bottom: 20px;
-  }
-  .button{
-    display: table-cell;
-    /* border: solid 1px black;  */
-    width: 50%;
-  }
-th{
-    color: rgba(10, 102, 163, 0.897);
-    /* padding-left: 25px; */
-    padding-right: 25px;
+.btn1{
+    margin-left: 14px;
+    margin-top: 15px;
+    background-color: white;
 }
- td{
-    /* padding-left: 25px; */
-    padding-bottom: 25px;
-} 
-#btn{
-    margin: 50px;
-    padding-left: 75px;
+.btn2{
+    margin-left: 90px;
+    margin-top: 15px;
+    background-color: white;
 }
-input
+
+.new_appointment>th{
+    
+    color: rgba(10, 102, 163);
+    opacity: 0.7;
+    padding-left: 25px;
+}
+
+.td_newap{
+    width:100px;
+    margin-left: 60px;
+    
+}
+.tbl2{
+    padding: 14px;
+    color: rgba(10, 102, 163);
+    opacity: 0.6;
+}
+table{
+    margin-top: 30px;
+    margin-left:20px;
+}
+.tbl2td
 {
-    height: 20px;
-    width: 120px;
+    padding: 14px;
 }
-

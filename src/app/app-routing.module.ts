@@ -13,16 +13,12 @@ import { NurseHeaderComponent } from "./nurse/nurse-header/nurse-header.componen
 
 
 const routes: Routes = [
+  {path:'',component:LoginScreenComponent},
   {path:'login',component:LoginScreenComponent},
   {path:'patient-header',component:PatientHeaderComponent},
   {path:'admin',component:AdminHeaderComponent},
   {path:'nurse',component:NurseHeaderComponent},
   {path:'physicain',component:PhysicianHeaderComponent},
-  
-  // {path:'vital-signs',component:VitalSignsComponent},
-
-  
-
 ];
 
 @NgModule({

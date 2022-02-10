@@ -1,9 +1,9 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="allergy-container">
-  <div class="all-header"><p>Allergy Information</p></div>
+  <div class="all-header"><b><u>Allergy Information</u></b></div>
   <form [formGroup]="patientAllergyForm" class="form-container">
     <div class="field" >
-      <div class="field-label">
+      <div class="field-label" style="margin-left: 50px;">
         <label for="">Patient has any known allergies?</label>
       </div>
       <div class="field-value">
@@ -92,7 +92,7 @@
                 <label for="">Yes</label>
               </div>
               <div class="radio-item">
-                <input type="radio" formControlName="allergyFatal" id="" value="No" />
+                <input  type="radio" formControlName="allergyFatal" id="" value="No" />
                 <label for="">No</label>
               </div>
             </div>
