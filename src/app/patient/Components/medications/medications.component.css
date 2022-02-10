@@ -54,9 +54,9 @@ th{
     /* background-color: navy; */
     color: rgba(10, 102, 163, 0.897);
 }
-.td-first{
-    background-color: rgb(35, 35, 75, 0.26);
-}
+/* .td-first{
+    /* background-color: rgb(35, 35, 75, 0.26); 
+} */
 .table-class{
     width: 80%;
     background-color: white;

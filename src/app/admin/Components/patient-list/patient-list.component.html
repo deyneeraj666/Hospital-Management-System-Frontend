@@ -1,3 +1,50 @@
 <app-admin-header [option]="option"></app-admin-header>
-<p>patient-list works!</p>
+<div class="emp_div1">
+    <select>
+        <option selected>Search by</option>
+        <option>Name</option>
+        <option>Id</option>
+    </select>
+    <input type="text" style="margin-left: 2%; width: 30%;" placeholder="Enter Patient Name or ID">
+    <button mat-raised-button style="margin-left: 3%;background-color: green;">Search</button>
+</div>
+<div class="emp_div2">
+    <table class="emp_table1">
+        <tr>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Date of Registration</th>
+            <th>Status</th>
+            <th>Edit Status</th>
+        </tr>
+        <tr *ngFor="let data of patientData">
+            <td>{{data.patient_id}}</td>
+            <td>{{data.patient_name}}</td>
+            <td>{{data.date_of_reg}}</td>
+            <td>{{data.status}}</td>
+            <td><span *ngIf="data.status=='Active'">
+                <a href="">
+                    DeActivate/Block
+                </a>
+            </span>
+            <span *ngIf="data.status=='InActive'">
+                <a href="">
+                    Activate/Block
+                </a>
+            </span>
+            <span *ngIf="data.status=='Blocked'">
+                <a href="">
+                    Activate/DeActivate
+                </a>
+            </span> </td>
+        </tr>
+        
+    </table>
+    
+</div>
+
 <app-footer></app-footer>
+
+
+<app-footer></app-footer>
+

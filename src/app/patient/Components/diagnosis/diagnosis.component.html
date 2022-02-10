@@ -8,18 +8,18 @@
                     <th>Diagnosis Name</th>
                     <th>Date</th>
                 </tr>
-                <!-- <tr>
-                    <td class="td-first"></td>
-                    <td class="td-first"></td>
-                    <td class="td-first"></td>
-                </tr> -->
-                <tr>
-                    <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
+                <tr *ngFor="let selectedData of data">
+                    <td class="td-first">{{selectedData.dcode}}</td>
+                    <td class="td-first">{{selectedData.dname}}</td>
+                    <td class="td-first">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
                 </tr>
+                <!-- <tr>
+                    <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
+                </tr> -->
             </table>
     </div>
     <br/><br/>
-    <div class="diag-table" >
+    <div [formGroup]="patientDiagnosisTable" class="diag-table" >
         <table class="table-class">
             <tr>
                 <th colspan="4" style="padding-right:83%;">
@@ -31,7 +31,7 @@
                     Diagnosis Code
                 </td>
                 <td class="td-second">
-                    <select>
+                    <select formControlName="diag_code" [(ngModel)]="dcode">
                         <option></option>
                         <option>250.0</option>
                         <option>530.81</option>
@@ -41,7 +41,7 @@
                     Diagnosis Name
                 </td>
                 <td class="td-second">
-                    <select>
+                    <select formControlName="diag_name" [(ngModel)]="dname">
                         <option></option>
                         <option>diabetes</option>
                         <option>GERD</option>
@@ -50,10 +50,10 @@
             </tr>
             <tr>
                 <td class="td-second" colspan="2" style="padding-left: 39%;padding-top: 5%;">
-                    <button style="background-color:green ;color:white;margin-bottom: 40%;" mat-raised-button>Add</button>
+                    <button [disabled]="patientDiagnosisTable.invalid" (click)="btn_Add()" style="background-color:green ;color:white;margin-bottom: 40%;" mat-raised-button>Add</button>
                 </td>
                 <td class="td-second" colspan="2"  style="padding-left: 5%;padding-top: 5%;">
-                    <button style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;" mat-raised-button>Cancel</button>
+                    <button (click)="btn_Cancel()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;" mat-raised-button>Cancel</button>
                 </td>
             </tr>
         </table>

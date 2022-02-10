@@ -70,4 +70,4 @@ import { MatNativeDateModule } from '@angular/material/core';
     ProcedureComponent
   ],
 })
-export class PatientModule { }
+export class PatientModule{ }
