@@ -7,10 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-header.component.css']
 })
 export class AdminHeaderComponent implements OnInit {
-  @Input() option:number=0;
-  constructor(private router: Router) { }
+  @Input() option:number=1;
+  constructor(private router: Router) {
+   
+   }
 
   ngOnInit(): void {
+    
+    
   }
   click_demo(){
     this.router.navigateByUrl('admin/employeelist');
@@ -25,7 +29,7 @@ export class AdminHeaderComponent implements OnInit {
     this.router.navigateByUrl('admin/patientlist');
   }
   click_change_password(){
-    this.router.navigateByUrl('login/patient-header/ChangePassword');
+    this.router.navigateByUrl('admin/ChangePassword');
   }
   click_signout(){
     this.router.navigateByUrl('login');

@@ -25,7 +25,7 @@ export class PhysicianHeaderComponent implements OnInit {
     this.router.navigateByUrl('physician/appointment');
   }
   click_change_password(){
-    this.router.navigateByUrl('login/patient-header/ChangePassword');
+    this.router.navigateByUrl('physician/ChangePassword');
   }
   click_signout(){
     this.router.navigateByUrl('login');

@@ -1,3 +1,7 @@
+import { PhysicianModule } from "./../physician/physician.module";
+import { PatientModule } from "./../patient/patient.module";
+import { NurseModule } from "./../nurse/nurse.module";
+import { AdminModule } from "./../admin/admin.module";
 import { SharedModule } from "./../shared/shared.module";
 import { HeaderComponent } from "../shared/header/header.component";
 import { NgModule } from '@angular/core';
@@ -25,6 +29,10 @@ import { ToastrModule } from "ngx-toastr";
     LoginScreenComponent,
   ],
   imports: [
+    AdminModule,
+    NurseModule,
+    PhysicianModule,
+    PatientModule,
     CommonModule,
     ReactiveFormsModule,
     LoginRoutingModule,
@@ -32,10 +40,12 @@ import { ToastrModule } from "ngx-toastr";
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    
     SharedModule,
     ToastrModule.forRoot(
       {timeOut:2000}
-    )
+    ),
+    
   ],
   exports:[
    LoginScreenComponent,

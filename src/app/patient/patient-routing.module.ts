@@ -13,15 +13,16 @@ import { EmergencyContactComponent } from "./Components/emergency-contact/emerge
 import { ChangePasswordComponent } from "../login/LoginComponents/change-password/change-password.component";
 
 const routes: Routes = [
-    {path:"login/patient-header/demographic", component:DemographicComponent},
-    {path:"login/patient-header/emergency-contact-Info", component:EmergencyContactComponent},
-    {path:"login/patient-header/vital", component:VitalSignsComponent},
-    {path:"login/patient-header/allergy", component:AllergyInfoComponent},
-    {path:"login/patient-header/diagnosis", component:DiagnosisComponent},
-    {path:"login/patient-header/medications", component:MedicationsComponent},
-    {path:"login/patient-header/procedure", component:ProcedureComponent},
-    {path:"login/patient-header/appointment", component:AppointmentComponent},
-    {path:"login/patient-header/ChangePassword", component:ChangePasswordComponent},
+    {path:"login/patient", component:PatientHeaderComponent},
+    {path:"login/patient/demographic", component:DemographicComponent},
+    {path:"login/patient/emergency-contact-Info", component:EmergencyContactComponent},
+    {path:"login/patient/vital", component:VitalSignsComponent},
+    {path:"login/patient/allergy", component:AllergyInfoComponent},
+    {path:"login/patient/diagnosis", component:DiagnosisComponent},
+    {path:"login/patient/medications", component:MedicationsComponent},
+    {path:"login/patient/procedure", component:ProcedureComponent},
+    {path:"login/patient/appointment", component:AppointmentComponent},
+    {path:"login/patient/ChangePassword", component:ChangePasswordComponent},
     {path:"login", component:LoginScreenComponent}
 ];
 
