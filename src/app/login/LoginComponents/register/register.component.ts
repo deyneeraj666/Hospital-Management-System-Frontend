@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,15 @@ export class RegisterComponent implements OnInit {
     dateOfBirth : new FormControl("",Validators.required),
     contact : new FormControl("",[Validators.required,Validators.pattern("^\\+1\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$")]),
     password : new FormControl("",Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")),
-    confirmPassword : new FormControl("",Validators.required)
+    confirmPassword : new FormControl("",[
+      Validators.required
+    ])
   });
+  // confirmEquals(): ValidatorFn {
+  //   return (control: AbstractControl): { [key: string]: any } | null =>  
+  //       control.value?.toLowerCase() === this. 
+  //           ? null : {noMatch: true};
+  // }
+  
 
 }

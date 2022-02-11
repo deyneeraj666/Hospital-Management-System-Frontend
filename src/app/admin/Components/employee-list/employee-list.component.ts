@@ -3,6 +3,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from 'src/app/Models/Employee';
 import { PeriodicElement } from 'src/app/patient/Components/procedure/procedure.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { EmployeeSearch } from 'src/app/Models/EmployeeSearch';
+
 
 @Component({
   selector: 'app-employee-list',
@@ -16,6 +20,7 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  searchedKeyword: string="";
 
   empData:Employee[]=[{emp_id:1,emp_name:"John",doj:"12/12/21",status:"Active"},
                       {emp_id:2,emp_name:"Joseph",doj:"10/2/11",status:"Blocked"},
@@ -30,7 +35,9 @@ export class EmployeeListComponent implements OnInit {
 
                    //empDetails    
                                
-    
+                   btn_search(){
+                     alert(this.searchedKeyword);
+                   }  
 }
 // export interface Employee_Details {
 //   emp_id:number;

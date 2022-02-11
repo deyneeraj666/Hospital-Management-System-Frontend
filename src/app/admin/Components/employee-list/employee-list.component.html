@@ -5,8 +5,9 @@
         <option>Name</option>
         <option>Id</option>
     </select>
-    <input type="text" style="margin-left: 2%; width: 30%;" placeholder="Enter Employee Name or ID">
-    <button mat-raised-button style="margin-left: 3%;background-color: green;">Search</button>
+    <input type="text" [(ngMode)]="aaaaa" style="margin-left: 2%; width: 30%;" placeholder="Enter Employee Name or ID">
+    <button (click)="btn_search()" mat-raised-button style="margin-left: 3%;background-color: green;">Search</button>
+    
 </div>
 <div class="emp_div2">
     <table class="emp_table1">

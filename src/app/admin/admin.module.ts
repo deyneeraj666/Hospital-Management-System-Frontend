@@ -5,14 +5,15 @@ import { AdminHeaderComponent } from './Components/admin-header/admin-header.com
 import { EmployeeRegistrationComponent } from './Components/employee-registration/employee-registration.component';
 import { EmployeeListComponent } from './Components/employee-list/employee-list.component';
 import { PatientListComponent } from './Components/patient-list/patient-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs'; 
+
 
 
 
@@ -33,7 +34,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatIconModule,
     MatInputModule,
     MatTabsModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   exports:[
     AdminHeaderComponent,

@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { NurseModule } from "./nurse/nurse.module";
 import { MatTableModule } from "@angular/material/table";
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { MatTableModule } from "@angular/material/table";
     NurseModule,
     AdminModule,
     PhysicianModule,
-    MatTableModule
+    MatTableModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

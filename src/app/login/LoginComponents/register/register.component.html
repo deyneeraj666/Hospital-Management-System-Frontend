@@ -8,7 +8,7 @@
             <div style="margin-left: 40%;">
             <p class="form-sign"><u><b>Sign Up</b></u></p>
             <!-- It's easy and Simple -->
-            <div>
+            <div style="margin-top: 10%;">
                 <label for="">Title:</label>
                 <input type="radio" formControlName="title" id="" value="Mr"> <label for="">Mr</label>
                 <input type="radio" formControlName="title" id="" value="Ms"> <label for="">Ms</label>
@@ -75,7 +75,8 @@
               <br>  
             <div>
             
-            <button [disabled]="patientRegisterForm.invalid" style="margin-left: 16%;" routerLink='/login' >Register</button>
+            <button [disabled]="patientRegisterForm.invalid" mat-button style="margin-left: 18%;margin-bottom: 10%;background-color: green;" routerLink='/login' >Register</button>
+            <!-- <button mat-button style="margin-left: 7%;margin-bottom: 10%;background-color:rgba(10, 102, 163, 0.897);" (click)="btn_reset()">Reset</button> -->
             </div>
         </div>
         </div>
