@@ -1,3 +1,4 @@
+import { AdminGuard } from "./../Shared/admin.guard";
 import { PatientListComponent } from "./Components/patient-list/patient-list.component";
 import { EmployeeRegistrationComponent } from "./Components/employee-registration/employee-registration.component";
 import { EmployeeListComponent } from "./Components/employee-list/employee-list.component";
@@ -9,11 +10,11 @@ import { ChangePasswordComponent } from "../login/LoginComponents/change-passwor
 
 
 const routes: Routes = [
-  {path:'login/admin',component:AdminHeaderComponent},
-  {path:'admin/employeelist',component:EmployeeListComponent},
-  {path:'admin/employeeregister',component:EmployeeRegistrationComponent},
-  {path:'admin/patientlist',component:PatientListComponent},
-  {path:'admin/ChangePassword',component:ChangePasswordComponent},
+  {path:'login/admin',component:AdminHeaderComponent,canActivate:[AdminGuard]},
+  {path:'admin/employeelist',component:EmployeeListComponent,canActivate:[AdminGuard]},
+  {path:'admin/employeeregister',component:EmployeeRegistrationComponent,canActivate:[AdminGuard]},
+  {path:'admin/patientlist',component:PatientListComponent,canActivate:[AdminGuard]},
+  {path:'admin/ChangePassword',component:ChangePasswordComponent,canActivate:[AdminGuard]},
   
 ];
 

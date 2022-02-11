@@ -26,21 +26,29 @@ export class LoginScreenComponent implements OnInit
     }
     if(this.loginform.controls.email.value=="patient@gmail.com" && this.loginform.controls.password.value == "patient@123")
     {
+      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
+      localStorage.setItem('role','patient');
       this.router.navigateByUrl('login/patient');
       this.toastr.success('Welcome Patient!')
     }
     else if(this.loginform.controls.email.value=="admin@gmail.com" && this.loginform.controls.password.value == "admin@123")
     {
+      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
+      localStorage.setItem('role','admin');
       this.router.navigateByUrl('login/admin');
       this.toastr.success('Welcome Admin!')
     }
     else if(this.loginform.controls.email.value=="nurse@gmail.com" && this.loginform.controls.password.value == "nurse@123")
     {
+      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
+      localStorage.setItem('role','nurse');
       this.router.navigateByUrl('login/nurse');
       this.toastr.success('Welcome Nurse!')
     }
     else if(this.loginform.controls.email.value=="physician@gmail.com" && this.loginform.controls.password.value == "physician@123")
     {
+      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
+      localStorage.setItem('role','physician');
       this.router.navigateByUrl('login/physician');
       this.toastr.success('Welcome Physician!')
     }
@@ -57,7 +65,9 @@ export class LoginScreenComponent implements OnInit
      return this.loginform.get('password');
   }
 
-  
+  register_click(){
+    this.router.navigateByUrl('patient-register');
+  }
 
   ngOnInit(): void
   {

@@ -11,18 +11,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { DemographicComponent } from "./Components/demographic/demographic.component";
 import { EmergencyContactComponent } from "./Components/emergency-contact/emergency-contact.component";
 import { ChangePasswordComponent } from "../login/LoginComponents/change-password/change-password.component";
+import { PatientGuard } from "../Shared/patient.guard";
 
 const routes: Routes = [
-    {path:"login/patient", component:PatientHeaderComponent},
-    {path:"login/patient/demographic", component:DemographicComponent},
-    {path:"login/patient/emergency-contact-Info", component:EmergencyContactComponent},
-    {path:"login/patient/vital", component:VitalSignsComponent},
-    {path:"login/patient/allergy", component:AllergyInfoComponent},
-    {path:"login/patient/diagnosis", component:DiagnosisComponent},
-    {path:"login/patient/medications", component:MedicationsComponent},
-    {path:"login/patient/procedure", component:ProcedureComponent},
-    {path:"login/patient/appointment", component:AppointmentComponent},
-    {path:"login/patient/ChangePassword", component:ChangePasswordComponent},
+    {path:"login/patient", component:PatientHeaderComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/demographic", component:DemographicComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/emergency-contact-Info", component:EmergencyContactComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/vital", component:VitalSignsComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/allergy", component:AllergyInfoComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/diagnosis", component:DiagnosisComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/medications", component:MedicationsComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/procedure", component:ProcedureComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/appointment", component:AppointmentComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/ChangePassword", component:ChangePasswordComponent,canActivate:[PatientGuard]},
     {path:"login", component:LoginScreenComponent}
 ];
 

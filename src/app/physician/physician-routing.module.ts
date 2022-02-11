@@ -1,3 +1,4 @@
+import { PhysicianGuard } from "./../Shared/physician.guard";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from '../login/LoginComponents/change-password/change-password.component';
@@ -7,11 +8,11 @@ import { PhysicianHeaderComponent } from './physician-header/physician-header.co
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  {path:'login/physician',component:PhysicianHeaderComponent},
-  {path:'physician/appointment',component:AppointmentComponent},
-  {path:'physician/notes',component:NotesComponent},
-  {path:'physician/profile',component:ProfileComponent},
-  {path:'physician/ChangePassword',component:ChangePasswordComponent},
+  {path:'login/physician',component:PhysicianHeaderComponent,canActivate:[PhysicianGuard]},
+  {path:'physician/appointment',component:AppointmentComponent,canActivate:[PhysicianGuard]},
+  {path:'physician/notes',component:NotesComponent,canActivate:[PhysicianGuard]},
+  {path:'physician/profile',component:ProfileComponent,canActivate:[PhysicianGuard]},
+  {path:'physician/ChangePassword',component:ChangePasswordComponent,canActivate:[PhysicianGuard]},
 
 ];
 
