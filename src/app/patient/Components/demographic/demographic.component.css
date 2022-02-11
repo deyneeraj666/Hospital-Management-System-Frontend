@@ -132,3 +132,9 @@ span {
     background-color:rgba(10, 102, 163, 0.897);
     color: white;
 }
+.cancel{
+    margin-right: 10px;
+    width: 70px;
+    background-color:lightgrey;
+    color: white;
+}
