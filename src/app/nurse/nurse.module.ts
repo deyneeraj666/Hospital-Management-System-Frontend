@@ -12,7 +12,9 @@ import { SharedModule } from '../shared/shared.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { ScheduleAllModule } from '@syncfusion/ej2-angular-schedule'
+import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatInputModule,
     MatTabsModule,
-    SharedModule
+    SharedModule,
+    ScheduleAllModule,
+    DropDownListAllModule,
+    DateTimePickerModule
+    
   ],
   exports:[
     AppointmentComponent,
