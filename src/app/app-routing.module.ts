@@ -1,4 +1,3 @@
-import { LoginScreenComponent } from "./login/LoginComponents/login-screen/login-screen.component";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

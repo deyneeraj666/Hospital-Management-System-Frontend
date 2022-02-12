@@ -32,6 +32,8 @@ export class AdminHeaderComponent implements OnInit {
     this.router.navigateByUrl('admin/ChangePassword');
   }
   click_signout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('login');
   }
   

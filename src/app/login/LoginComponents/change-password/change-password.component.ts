@@ -63,6 +63,8 @@ export class ChangePasswordComponent  {
   btnSubmitPassowrd_click()
   {
     let strData:string='Old Password :'+ this.oldPassword.value +'New Password :'+ this.confirmPassword.value;
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('login')
                    
     alert('Successfully Updated')
