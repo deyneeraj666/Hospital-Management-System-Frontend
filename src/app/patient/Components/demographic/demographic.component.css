@@ -5,7 +5,9 @@
     margin: auto;
     
     /* border: 1px solid black; */
-    /* border: 1px solid rgba(10, 102, 163, 0.897); */
+  
+    border: 1px solid rgba(10, 102, 163, 0.897);
+
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
   
 
@@ -30,7 +32,7 @@ p{
 }
 .dm-details {
     /* border: 2px solid green; */
-    width: 90%;
+    width: 100%;
     display: flex;
     /* justify-content:space-evenly; */
     padding: 1rem;

@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class ChangePasswordComponent  {
   constructor(private router: Router)
   {
-
+    // alert(this.router.url);
   }
   DisabledSubmit:boolean=false;
   UserId:string='CurrentUserName';
@@ -43,11 +43,28 @@ export class ChangePasswordComponent  {
   
   btnback_click()
   {
-    this.router.navigateByUrl('login/patient-header');
+    if(this.router.url == "/login/patient/ChangePassword")
+    {
+      this.router.navigateByUrl('login/patient');
+    }
+    else if(this.router.url == "/nurse/ChangePassword")
+    {
+      this.router.navigateByUrl('login/nurse');
+    }
+    else if(this.router.url == "/physician/ChangePassword")
+    {
+      this.router.navigateByUrl('login/physician');
+    }
+    else if(this.router.url == "/admin/ChangePassword")
+    {
+      this.router.navigateByUrl('login/admin');
+    }
   }
   btnSubmitPassowrd_click()
   {
     let strData:string='Old Password :'+ this.oldPassword.value +'New Password :'+ this.confirmPassword.value;
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('login')
                    
     alert('Successfully Updated')

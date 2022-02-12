@@ -1,24 +1,26 @@
-import { PatientHeaderComponent } from "./../patient/Components/patient-header/patient-header.component";
+import { PhysicianGuard } from "./../Shared/physician.guard";
+import { NurseGuard } from "./../Shared/nurse.guard";
+import { AdminGuard } from "./../Shared/admin.guard";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PatientGuard } from '../Shared/patient.guard';
 import { ChangePasswordComponent } from './LoginComponents/change-password/change-password.component';
 import { ForgotPasswordComponent } from './LoginComponents/forgot-password/forgot-password.component';
 import { LoginScreenComponent } from './LoginComponents/login-screen/login-screen.component';
 import { RegisterComponent } from './LoginComponents/register/register.component';
-import { AdminHeaderComponent } from "../admin/Components/admin-header/admin-header.component";
-import { NurseHeaderComponent } from "../nurse/nurse-header/nurse-header.component";
-import { PhysicianHeaderComponent } from "../physician/physician-header/physician-header.component";
+
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginScreenComponent},
-  { path: 'login/patient-register', component: RegisterComponent},
-  { path: 'login/admin-header', component:AdminHeaderComponent},
-  { path: 'login/nurse-header', component:NurseHeaderComponent},
-  { path: 'login/physician-header', component:PhysicianHeaderComponent},
-  { path: 'login/forgot-password', component: ForgotPasswordComponent},
+  { path: '', component: LoginScreenComponent},
+  { path: 'patient-register', component: RegisterComponent},
+  { path: 'login/admin', loadChildren:()=>import('./../admin/admin.module').then(m=>m.AdminModule),canActivate:[AdminGuard]},
+  { path: 'login/nurse', loadChildren:()=>import('./../nurse/nurse.module').then(m=>m.NurseModule),canActivate:[NurseGuard]},
+  { path: 'login/physician', loadChildren:()=>import('./../physician/physician.module').then(m=>m.PhysicianModule),canActivate:[PhysicianGuard]},
+  { path: 'login/patient', loadChildren:()=>import('./../patient/patient.module').then(m=>m.PatientModule),canActivate:[PatientGuard]},
+  { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'login/change-password', component: ChangePasswordComponent},
-  { path: 'login/patient-header', component: PatientHeaderComponent},
+  
   
 ];
 
