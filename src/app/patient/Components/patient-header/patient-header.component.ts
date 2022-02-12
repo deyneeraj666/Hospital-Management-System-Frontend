@@ -9,38 +9,40 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 })
 export class PatientHeaderComponent implements OnInit {
   @Input() option:number =1;
-  constructor(private router: Router,private elementref:ElementRef) { }
+  constructor(private router: Router) { }
 
   
 
   click_demo(){
-      this.router.navigateByUrl('login/patient-header/demographic');
+      this.router.navigateByUrl('login/patient/demographic');
   }
   click_vital(){
-    this.router.navigateByUrl('login/patient-header/vital');
+    this.router.navigateByUrl('login/patient/vital');
   }
   click_allery(){
-    this.router.navigateByUrl('login/patient-header/allergy');
+    this.router.navigateByUrl('login/patient/allergy');
   }
   click_appointment(){
-    this.router.navigateByUrl('login/patient-header/appointment');
+    this.router.navigateByUrl('login/patient/appointment');
   }
   click_procedure(){
-    this.router.navigateByUrl('login/patient-header/procedure');
+    this.router.navigateByUrl('login/patient/procedure');
   }
   click_medication(){
-    this.router.navigateByUrl('login/patient-header/medications');
+    this.router.navigateByUrl('login/patient/medications');
   }
   click_diagnosis(){
-    this.router.navigateByUrl('login/patient-header/diagnosis');
+    this.router.navigateByUrl('login/patient/diagnosis');
   }
   click_emergencycontact(){
-    this.router.navigateByUrl('login/patient-header/emergency-contact-Info');
+    this.router.navigateByUrl('login/patient/emergency-contact-Info');
   }
   click_change_password(){
-    this.router.navigateByUrl('login/patient-header/ChangePassword');
+    this.router.navigateByUrl('login/patient/ChangePassword');
   }
   click_signout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('login');
   }
 

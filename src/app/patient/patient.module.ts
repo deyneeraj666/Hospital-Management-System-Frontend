@@ -1,4 +1,3 @@
-import { LoginModule } from "./../login/login.module";
 import { SharedModule } from "./../shared/shared.module";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -53,7 +52,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTableModule,
     FormsModule,
     SharedModule,
-    LoginModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatCardModule,

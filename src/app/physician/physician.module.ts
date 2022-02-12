@@ -1,8 +1,6 @@
 import { SharedModule } from "./../shared/shared.module";
-import { NurseModule } from "./../nurse/nurse.module";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PhysicianRoutingModule } from './physician-routing.module';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { NotesComponent } from './notes/notes.component';
