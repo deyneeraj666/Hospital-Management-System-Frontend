@@ -1,5 +1,5 @@
 .emp_div1{
-    margin-top: 10%;
+    
     margin-left: 20%;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
     width:64%;
@@ -18,3 +18,8 @@ th{
     width:80%;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
 }
+h4{
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 150%;
+}
+
