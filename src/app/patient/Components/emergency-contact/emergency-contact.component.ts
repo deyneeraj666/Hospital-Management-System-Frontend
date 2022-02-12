@@ -66,4 +66,8 @@ onSubmit() {
   }
 }
 
+onCancel(){
+  this.patientEmergencyForm.reset();
+}
+
 }

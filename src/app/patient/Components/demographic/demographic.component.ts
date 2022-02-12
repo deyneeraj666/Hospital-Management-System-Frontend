@@ -76,6 +76,10 @@ export class DemographicComponent implements OnInit {
     }
   }
 
+  onCancel(){
+    this.patientDemographicForm.reset();
+  }
+
   public patientDemographicForm = new FormGroup({
     title: new FormControl('', Validators.required),
     fname: new FormControl('', [

@@ -32,7 +32,7 @@ p{
 
 .em-details {
     /* border: 2px solid green; */
-    width: 90%;
+    width: 100%;
     display: flex;
     /* justify-content:space-evenly; */
     padding: 1rem;
@@ -135,6 +135,14 @@ span {
     /* font-weight: bold; */
     color: white;
 }
+
+.cancel{
+    margin-right: 10px;
+    width: 70px;
+    background-color:lightgrey;
+    color: white;
+}
+
 .select-gender{
 height: 90%;
 width: 90%;
