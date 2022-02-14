@@ -1,88 +1,94 @@
 <div class="main-container">
-    <div class="welcome">
-        <h1><u><b>Welcome to CT General Hospital</b></u></h1>
-    </div>
-    <div class="form-group" >
-    <form [formGroup]="patientRegisterForm" >
-        <div class="form-sign-div">
-            <div style="margin-left: 28%;">
-                <table>
+    <div class="main-container">
+        <div class="welcome">
+            <h1><u><b>Welcome to CT General Hospital</b></u></h1>
+        </div>
+        <div class="form-group" >
+        <form #patientForm="ngForm" [formGroup]="patientRegisterForm" >
+            <div class="form-sign-div">
+                <div style="margin-left: 30%;">
                 <p class="form-sign"><u><b>Sign Up</b></u></p>
                 <!-- It's easy and Simple -->
                 <div style="margin-top: 10%;">
-                <label for="">Title:</label>
-                <input type="radio" formControlName="title" id="" value="Mr"> <label for="">Mr</label>
-                <input type="radio" formControlName="title" id="" value="Ms"> <label for="">Ms</label>
-                <input type="radio" formControlName="title" id="" value="Mrs"> <label for="">Mrs</label>
+                    <label for="">Title</label>
+                    <input style="margin-left:35.5%" type="radio" formControlName="title" id="" value="Mr"> <label for="">Mr</label>
+                    <input style="margin-left:5%" type="radio" formControlName="title" id="" value="Ms"> <label for="">Ms</label>
+                    <input style="margin-left:5%" type="radio" formControlName="title" id="" value="Mrs"> <label for="">Mrs</label>
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['title'].invalid && patientRegisterForm.controls['title'].dirty" style="color: red;font-size: small;">*Kindly select the title</span>
+                    
+                </div>
                 <br>
-                <span *ngIf="patientRegisterForm.controls['title'].invalid && patientRegisterForm.controls['title'].dirty" style="color: red;font-size: small;">*Kindly select the title</span>
+                <div>
+                    <label for="">First Name</label>
+                    <input style="margin-left:22.5%" type="text" placeholder="Enter Firstname" formControlName="fname"> 
+                     <!-- <span *ngIf="patientRegisterForm.controls['fname'].valid && patientRegisterForm.controls['fname'].dirty">
+                         <span *ngIf="patientRegisterForm.controls['fname'].errors['required']">First Name cannot be empty</span> 
+                        <span *ngIf="patientRegisterForm.controls['fname'].errors['minlength']">First Name should be more than 3 characters</span>
+        
+                    </span>  -->
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['fname'].invalid && patientRegisterForm.controls['fname'].touched" style="color: red;font-size: small;margin-left:22%;">*First Name cannot be empty</span>
+        
+                </div>
+                <br>
+                <div>
+                    <label for="">Last Name</label>
+                    <input style="margin-left:22.5%" type="text" placeholder="Enter Lastname" formControlName="lname"> 
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['lname'].invalid && patientRegisterForm.controls['lname'].touched" style="color: red;font-size: small;margin-left:22%;">*Last Name cannot be empty</span>
+                </div>
+                <br>
+                <div>
+                    <label for="">Email</label>
+                    <input style="margin-left:31%" type="text" placeholder="Enter Email" formControlName="email"> 
+                    <br>
+                    <!-- dirty -->
+                    <span *ngIf="patientRegisterForm.controls['email'].invalid && patientRegisterForm.controls['email'].touched" style="color: red;font-size: small;margin-left:22%;">*Please enter your email address e.g.exampleusername@xyzdomain.com</span>
+                </div>
+                <br>
+                <div>
+                    <label for="">Date of Birth</label>
+                    <input type="date" style="width: 48%;margin-left:75px" formControlName="dateOfBirth"> 
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['dateOfBirth'].invalid && patientRegisterForm.controls['dateOfBirth'].touched"style="color: red;font-size: small;margin-left:22%;">*Please provide your date of birth </span>
+                </div>
+                <br>
+                <div>
+                    <label for="">Contact</label>
+                    <input style="margin-left:27.5%" type="text" placeholder="Enter Mobilenumber" formControlName="contact"> 
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['contact'].invalid && patientRegisterForm.controls['contact'].touched" style="color: red;font-size: small;margin-left:22%;">*Please provide your contact number</span>
+                </div>
+                <br>
+                <div>
+                    <label for="">Password</label>
+                    <input style="margin-left:92px" type="password" name="password" placeholder="Enter Password" formControlName="password" >
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['password'].invalid && patientRegisterForm.controls['password'].touched" style="color: red;font-size: small;margin-left:22%;">*Password is weak. Please re-enter the password with a minimum of one Uppercase letter, one lowercase letter, one number and minimum length of 8 characters</span>
+                </div>
+                <br>
+                <div>
+                    <label for="">Confirm Password</label>
+                    <input confirmPasswdValidatior="password" style="margin-left:10%" type="password" maxlength="10" minlength="10" placeholder="ReEnter Password" formControlName="confirmPassword" >
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['confirmPassword'].invalid && patientRegisterForm.controls['confirmPassword'].touched" style="color: red;font-size: small;margin-left:22%;">*Password is required</span>
+                    <br>
+                    <span *ngIf="patientRegisterForm.controls['confirmPassword'].errors?.['notEqual'] && patientRegisterForm.controls['confirmPassword'].invalid" style="color: red;font-size: small;margin-left:22%;">*Password doesn't match</span>
+                </div>
+                  <br>  
+                <div>
                 
+                <button [disabled]="patientRegisterForm.invalid" (click)="btn_submit()" mat-button style="margin-left: 15%;margin-bottom: 5%;background-color: green;" routerLink='/login' >Register</button>
+                <button mat-button style="margin-left: 7%;margin-bottom: 10%;background-color:rgba(10, 102, 163, 0.897);" (click)="btn_reset()">Reset</button>
+                </div>
+                <div style="margin-bottom: 10%;">
+                    <a routerLink='/login' style="margin-left:25%" href="">Back to Login</a>
+                </div>
             </div>
-            <br>
-            <div>
-                <label for="">First Name</label>
-                <input style="margin-left: 5%;" type="text" placeholder="Enter Firstname" formControlName="fname"> 
-                 <!-- <span *ngIf="patientRegisterForm.controls['fname'].valid && patientRegisterForm.controls['fname'].dirty">
-                     <span *ngIf="patientRegisterForm.controls['fname'].errors['required']">First Name cannot be empty</span> 
-                    <span *ngIf="patientRegisterForm.controls['fname'].errors['minlength']">First Name should be more than 3 characters</span>
-    
-                </span>  -->
-                <br>
-                <span *ngIf="patientRegisterForm.controls['fname'].invalid && patientRegisterForm.controls['fname'].dirty" style="color: red;font-size: small;">*First Name cannot be empty</span>
-    
             </div>
-            <br>
-            <div>
-                <label for="">Last Name</label>
-                <input type="text" placeholder="Enter Lastname" formControlName="lname"> 
-                <br>
-                <span *ngIf="patientRegisterForm.controls['lname'].invalid && patientRegisterForm.controls['lname'].dirty" style="color: red;font-size: small;">*Last Name cannot be empty</span>
-            </div>
-            <br>
-            <div>
-                <label for="">Email</label>
-                <input type="text" placeholder="Enter Email" formControlName="email"> 
-                <br>
-                <span *ngIf="patientRegisterForm.controls['email'].invalid && patientRegisterForm.controls['email'].dirty" style="color: red;font-size: small;">*Please enter your email address e.g.exampleusername@xyzdomain.com</span>
-            </div>
-            <br>
-            <div>
-                <label for="">Date of Birth</label>
-                <input type="date" style="width: 75%;" formControlName="dateOfBirth"> 
-                <br>
-                <span *ngIf="patientRegisterForm.controls['dateOfBirth'].invalid && patientRegisterForm.controls['dateOfBirth'].dirty"style="color: red;font-size: small;">*Please provide your date of birth </span>
-            </div>
-            <br>
-            <div>
-                <label for="">Contact</label>
-                <input type="text" placeholder="Enter Mobilenumber" formControlName="contact"> 
-                <br>
-                <span *ngIf="patientRegisterForm.controls['contact'].invalid && patientRegisterForm.controls['contact'].dirty" style="color: red;font-size: small;">*Please provide your contact number</span>
-            </div>
-            <br>
-            <div>
-                <label for="">Password</label>
-                <input type="password" placeholder="Enter Password" formControlName="password" >
-                <br>
-                <span *ngIf="patientRegisterForm.controls['password'].invalid && patientRegisterForm.controls['password'].dirty" style="color: red;font-size: small;">*Password is weak. Please re-enter the password with a minimum of one Uppercase letter, one lowercase letter, one number and minimum length of 8 characters</span>
-            </div>
-            <br>
-            <div>
-                <label for="">Confirm Password</label>
-                <input type="password" maxlength="10" minlength="10" placeholder="ReEnter Password" formControlName="confirmPassword" >
-                <br>
-                <span *ngIf="patientRegisterForm.controls['confirmPassword'].invalid && patientRegisterForm.controls['confirmPassword'].dirty" style="color: red;font-size: small;">*Password doesn't match</span>
-            </div>
-              <br>  
-            <div>
-            
-            <button [disabled]="patientRegisterForm.invalid" mat-button style="margin-left: 18%;margin-bottom: 10%;background-color: green;" routerLink='/login' >Register</button>
-            <!-- <button mat-button style="margin-left: 7%;margin-bottom: 10%;background-color:rgba(10, 102, 163, 0.897);" (click)="btn_reset()">Reset</button> -->
-            </div>
-        </table>
+        </form>
+        
         </div>
         </div>
-    </form>
-    
-    </div>
     </div>

@@ -2,12 +2,12 @@
     margin-left: 37%;
     font-size: xx-large; 
     font-family: fantasy;
-    color: rgb(50, 50, 146);
+    color: rgba(10, 102, 163, 0.897);
 }
 .form-sign{
-    margin-left: 14%;
+    margin-left: 23%;
     font-size:138%;
-    color: rgb(50, 50, 146);
+    color:rgba(10, 102, 163, 0.897) ;
     margin-top: 10%;
 }
 .form-sign-div{
@@ -24,4 +24,25 @@
 }
 .form-sign-div2{
     margin-left: 40%;
+}
+.table-align{
+    margin-left: 34%;
+    margin-top: 3%;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+    width: 34%;
+    padding-right: 100%;
+    
+}
+th{
+    font-size: 180%; 
+    padding-left: 40%; 
+    color: rgba(10, 102, 163, 0.897);  
+    padding-bottom: 10%;
+    padding-top: 5%;
+}
+.td-align{
+    padding-left: 16%;
+}
+.td2-align{
+    padding-bottom: 5%;
 }
