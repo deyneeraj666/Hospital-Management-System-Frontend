@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Allergy } from 'src/app/Models/Allergy';
 import { PmsService } from 'src/app/Service/pms.service';
 
@@ -9,19 +10,21 @@ import { PmsService } from 'src/app/Service/pms.service';
   styleUrls: ['./allergy-info.component.css']
 })
 export class AllergyInfoComponent implements OnInit {
+
+  allergiesArray:Allergy[]=[];
   allergyTypes:Allergy[]=[];
   allergyNames:Allergy[]=[];
   allergyKnown:boolean=true;
   option:number=3;
-  constructor(private service:PmsService) { }
+  constructor(private pmsService: PmsService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
-    this.allergyTypes=this.service.getAllergy();
+    this.allergyTypes=this.pmsService.getAllergy();
   }
 
   allergyNameChangeHandler(value:string)
   {
-    this.allergyNames=this.service.getAllergyNamesByType(value)
+    this.allergyNames=this.pmsService.getAllergyNamesByType(value)
   }
 
   public patientAllergyForm = new FormGroup({
@@ -31,11 +34,53 @@ export class AllergyInfoComponent implements OnInit {
     allergyName : new FormControl(""),
     allergyDesc : new FormControl(""),
     allergyClinicalInfo : new FormControl(""),
-    allergyFatal:new FormControl("")
+    isAllergyFatal:new FormControl("")
   });
+
+  onSubmit(){
+    
+       this.allergiesArray.push(this.patientAllergyForm.value);
+       //console.log(this.allergiesArray);
+
+       let result = this.pmsService.saveAllergyInfo(
+        this.patientAllergyForm.value
+      );
+      if (result) {
+        // alert('Form is successfully submitted');
+        this.toastr.success('Successfully Submitted');
+        this.disableFormProperties();
+      }
+    
+  }
+
+  onEdit() {
+    this.enableFormProperties();
+  }
 
   onCancel(){
     this.patientAllergyForm.reset();
   }
 
+
+  disableFormProperties(){
+    this.patientAllergyForm.controls['knownAllergy'].disable();
+    this.patientAllergyForm.controls['allergyId'].disable();
+    this.patientAllergyForm.controls['allergyType'].disable();
+    this.patientAllergyForm.controls['allergyName'].disable();
+    this.patientAllergyForm.controls['allergyDesc'].disable();
+    this.patientAllergyForm.controls['allergyClinicalInfo'].disable();
+    this.patientAllergyForm.controls['isAllergyFatal'].disable();
+
+  }
+
+  enableFormProperties(){
+    this.patientAllergyForm.controls['knownAllergy'].enable();
+    this.patientAllergyForm.controls['allergyId'].enable();
+    this.patientAllergyForm.controls['allergyType'].enable();
+    this.patientAllergyForm.controls['allergyName'].enable();
+    this.patientAllergyForm.controls['allergyDesc'].enable();
+    this.patientAllergyForm.controls['allergyClinicalInfo'].enable();
+    this.patientAllergyForm.controls['isAllergyFatal'].enable();
+
+  }
 }

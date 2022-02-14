@@ -12,13 +12,13 @@
 }
 
 .all-header {
-     margin: 30px; padding-top: 5px; color:rgba(10, 102, 163, 0.897);
+     margin: 20px; padding-top: 2px; color:rgba(10, 102, 163, 0.897);
 }
 
 p {
     font-size: large;
     font-weight: bold;
-    padding-top: 2px;
+    padding-top: 1px;
     font-family: 'Times New Roman', Times, serif;
     color: white;
     text-align: center;

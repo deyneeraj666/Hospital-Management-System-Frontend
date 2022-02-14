@@ -24,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AllergyGridComponent } from './Components/allergy-grid/allergy-grid.component';
 
 
 
@@ -37,7 +38,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     VitalSignsComponent,
     ProcedureComponent,
     DiagnosisComponent,
-    MedicationsComponent
+    MedicationsComponent,
+    AllergyGridComponent
     
   ],
   imports: [
@@ -65,7 +67,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     EmergencyContactComponent,
     AllergyInfoComponent,
     AppointmentComponent,
-    ProcedureComponent
+    ProcedureComponent,
+    AllergyGridComponent
   ],
 })
 export class PatientModule{ }
