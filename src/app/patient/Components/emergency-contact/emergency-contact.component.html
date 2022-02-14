@@ -127,11 +127,11 @@
       </div>
     </div>
     <div class="actions">
-      <button mat-raised-button class="submit" [disabled]="patientEmergencyForm.invalid" (click)="onSubmit()">
+      <button mat-raised-button class="submit" [disabled]="patientEmergencyForm.invalid" [hidden]="!isSubmitClicked" (click)="onSubmit()">
         Submit
       </button>
-      <button mat-raised-button class="edit" (click)="onEdit()">Edit</button>
-      <button mat-raised-button class="cancel" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button class="edit" [hidden]="!isEditClicked" (click)="onEdit()">Edit</button>
+      <button mat-raised-button class="cancel" [hidden]="!isCancelClicked" (click)="onCancel()">Cancel</button>
 
       <!-- <button>Cancel</button> -->
     </div>

@@ -10,6 +10,8 @@ import { VitalSignsComponent } from './Components/vital-signs/vital-signs.compon
 import { ProcedureComponent } from './Components/procedure/procedure.component';
 import { DiagnosisComponent } from './Components/diagnosis/diagnosis.component';
 import { MedicationsComponent } from './Components/medications/medications.component';
+import { AllergyGridComponent } from './Components/allergy-grid/allergy-grid.component';
+
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -24,7 +26,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
-import { AllergyGridComponent } from './Components/allergy-grid/allergy-grid.component';
 
 
 

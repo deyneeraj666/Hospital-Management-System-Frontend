@@ -12,6 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 export class DemographicComponent implements OnInit {
   age: number = 0;
   option:number =1;
+
+  isSubmitClicked:boolean=true;
+  isEditClicked:boolean=false;
+  isCancelClicked:boolean=true;
+
   constructor(private pmsService: PmsService,private toastr:ToastrService) {}
 
   ngOnInit(): void {
@@ -60,6 +65,9 @@ export class DemographicComponent implements OnInit {
 
   onEdit() {
     this.enableFormProperties();
+    this.isSubmitClicked=!this.isSubmitClicked;
+    this.isEditClicked=!this.isEditClicked;
+    this.isCancelClicked=!this.isCancelClicked;
   }
 
   onSubmit() {
@@ -73,6 +81,9 @@ export class DemographicComponent implements OnInit {
       // alert('Form is successfully submitted');
       this.toastr.success('Successfully Submitted');
       this.disableFormProperties();
+      this.isSubmitClicked = !this.isSubmitClicked;
+      this.isEditClicked=!this.isEditClicked;
+      this.isCancelClicked =!this.isCancelClicked;
     }
   }
 
