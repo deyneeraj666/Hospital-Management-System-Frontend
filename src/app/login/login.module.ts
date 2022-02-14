@@ -17,6 +17,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { ToastrModule } from "ngx-toastr";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { InterceptorService } from "../Shared/interceptor.service";
 
 
 
@@ -47,6 +49,7 @@ import { ToastrModule } from "ngx-toastr";
     ),
     
   ],
+  
   exports:[
    LoginScreenComponent,
    RegisterComponent,

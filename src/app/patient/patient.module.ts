@@ -10,7 +10,6 @@ import { VitalSignsComponent } from './Components/vital-signs/vital-signs.compon
 import { ProcedureComponent } from './Components/procedure/procedure.component';
 import { DiagnosisComponent } from './Components/diagnosis/diagnosis.component';
 import { MedicationsComponent } from './Components/medications/medications.component';
-
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';

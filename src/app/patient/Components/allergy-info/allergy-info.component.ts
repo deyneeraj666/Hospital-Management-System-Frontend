@@ -34,4 +34,8 @@ export class AllergyInfoComponent implements OnInit {
     allergyFatal:new FormControl("")
   });
 
+  onCancel(){
+    this.patientAllergyForm.reset();
+  }
+
 }

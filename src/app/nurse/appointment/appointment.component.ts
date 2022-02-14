@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
-  selector: 'app-appointment',
+  selector: 'app-nurse-appointment',
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.css']
 })
@@ -11,5 +12,7 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  
 
 }

@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { InterceptorService } from "../Shared/interceptor.service";
 
 
 
@@ -35,6 +37,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTabsModule,
     SharedModule
   ],
+ 
   exports:[
     AdminHeaderComponent,
     EmployeeRegistrationComponent,
