@@ -75,7 +75,8 @@ export class EmergencyContactComponent implements OnInit {
     }
   }
 
-  onCancel() {
-    this.patientEmergencyForm.reset();
-  }
+onCancel(){
+  this.patientEmergencyForm.reset();
+}
+
 }

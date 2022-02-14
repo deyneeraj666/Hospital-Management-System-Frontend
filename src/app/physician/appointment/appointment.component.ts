@@ -30,7 +30,8 @@ export class AppointmentComponent implements OnInit {
   @ViewChild('scheduleObj')
   public scheduleObj: ScheduleComponent | undefined;
   public eventSettings: EventSettingsModel = { dataSource: extend([], eventData,undefined, true) as Record<string, any>[] };
-  public selectedDate: Date = new Date();
+  public selectedDate: Date = new Date(2022, 1, 10);
+  //public selectedDate: Date = new Date();
   public showQuickInfo = false;
   public  startDate !: Date | null;
   public endDate !: Date | null;

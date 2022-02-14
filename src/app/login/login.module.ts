@@ -17,6 +17,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { ToastrModule } from "ngx-toastr";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { InterceptorService } from "../Shared/interceptor.service";
 import { ConfirmEqualValidatorDirective } from "./LoginComponents/register/confirmed-validator.directive";
 
 
@@ -49,6 +51,7 @@ import { ConfirmEqualValidatorDirective } from "./LoginComponents/register/confi
     ),
     
   ],
+  
   exports:[
    LoginScreenComponent,
    RegisterComponent,
