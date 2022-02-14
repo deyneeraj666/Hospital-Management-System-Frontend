@@ -1,6 +1,7 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="border-vitals">
-    <div style="margin-left: 20%;margin-top: 100px;">
+    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 5%; padding-left: 42%;"><b><u>Diagnosis Details</u></b></label>
+    <div style="margin-left: 20%;margin-top: 40px;">
         
             <table class="table-first" style="width: 80%;">
                 <tr>
@@ -8,10 +9,10 @@
                     <th>Diagnosis Name</th>
                     <th>Date</th>
                 </tr>
-                <tr *ngFor="let selectedData of data;let i=index">
+                <tr class="table-row" *ngFor="let selectedData of data;let i=index">
                     <td class="td-first">{{selectedData.dcode}}</td>
                     <td class="td-first">{{selectedData.dname}}</td>
-                    <td class="td-first">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
+                    <td class="td-first-date">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
                     <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
                 </tr>
                 <!-- <tr>

@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+//import { filterPipe } from "./Components/employee-list/filter.pipe";
 
 
 
@@ -21,7 +22,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     AdminHeaderComponent,
     EmployeeRegistrationComponent,
     EmployeeListComponent,
-    PatientListComponent
+    PatientListComponent,
+   // filterPipe
   ],
   imports: [
     CommonModule,

@@ -1,20 +1,22 @@
 <app-admin-header [option]="option"></app-admin-header>
-<div style="padding-top: 7%;padding-left: 20%;">
-    <h4><b><u>Employee List</u></b></h4>
+<div style="padding-top: 4%;padding-left: 20%;">
+    <h4><u><b>Employee List</b></u></h4>
 </div>
 <div class="emp_div1">
-    
-    <select>
-        <option selected>Search by</option>
+    <select [(ngModel)]="selectDD">
+        <!-- <option selected>Search by</option> -->
         <option>Name</option>
         <option>Id</option>
     </select>
-    <input type="text" [(ngModel)]="searchedKeyword" style="margin-left: 2%; width: 30%;" placeholder="Enter Employee Name or ID">
     
+    <!-- <span *ngIf="selectDD=='Name'"> -->
+      <input type="text" [(ngModel)]="searchedKeyword" style="margin-left: 2%; width: 30%;" placeholder="Enter Name or Id">
+    <!-- </span> -->
+    <input type="button" mat-button style="background-color:green;margin-left: 1%;" value="Search" (click)="get_Value()">
     
 </div>
 <div class="emp_div2">
-    <table class="emp_table1">
+    <table class="emp_table1" border="1">
         <tr>
             <th>Employee ID</th>
             <th>Employee Name</th>
@@ -22,12 +24,22 @@
             <th>Status</th>
             <th>Edit Status</th>
         </tr>
-        <tr *ngFor="let data of empData">
-            <td>{{data.emp_id}}</td>
-            <td>{{data.emp_name}}</td>
+        <tr *ngFor="let data of tempdata">
+            <td>{{data.Id}}</td>
+            <td>{{data.Name}}</td>
             <td>{{data.doj}}</td>
             <td>{{data.status}}</td>
             <td>
+                <span *ngIf="data.status=='Active'">
+                    <a href="">
+                        DeActivate/Block
+                    </a>
+                </span>
+                <span *ngIf="data.status=='InActive'">
+                    <a href="">
+                        Activate/Block
+                    </a>
+                </span>
                 <span *ngIf="data.status=='Blocked'">
                     <a href="">
                         Activate/DeActivate

@@ -1,18 +1,18 @@
 <app-admin-header [option]="option"></app-admin-header>
-<div style="padding-top: 7%;padding-left: 20%;">
+<div style="padding-top: 4%;padding-left: 20%;">
     <h4><b><u>Patient List</u></b></h4>
 </div>
 <div class="emp_div1">
-    <select>
-        <option selected>Search by</option>
-        <option>Name</option>
-        <option>Id</option>
+    <select [(ngModel)]="selectDD">
+        <!-- <option selected>Search by</option> -->
+        <option>PatientName</option>
+        <option>PatientId</option>
     </select>
     <input [(ngModel)]="searchedKeyword" type="text" ngModel="" style="margin-left: 2%; width: 30%;" placeholder="Enter Patient Name or ID">
-    
+    <input type="button" mat-button style="background-color:green;margin-left: 1%;" value="Search" (click)="get_Value()">
 </div>
 <div class="emp_div2">
-    <table class="emp_table1">
+    <table class="emp_table1" border="1">
         <tr>
             <th>Patient ID</th>
             <th>Patient Name</th>
@@ -20,9 +20,9 @@
             <th>Status</th>
             <th>Edit Status</th>
         </tr>
-        <tr *ngFor="let data of patientData">
-            <td>{{data.patient_id}}</td>
-            <td>{{data.patient_name}}</td>
+        <tr *ngFor="let data of tempdata">
+            <td>{{data.PatientId}}</td>
+            <td>{{data.PatientName}}</td>
             <td>{{data.date_of_reg}}</td>
             <td>{{data.status}}</td>
             <td><span *ngIf="data.status=='Active'">

@@ -1,8 +1,9 @@
 .emp_div1{
     
     margin-left: 20%;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+    /* box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2); */
     width:64%;
+    margin-top: 3%;
 }
 .emp_div2{
     margin-top: 20px;
@@ -11,8 +12,8 @@
     margin-bottom: 2%;
 }
 th{
-    /* background-color: navy; */
-    color: rgba(10, 102, 163, 0.897);
+    background-color: rgba(10, 102, 163, 0.897);
+    color: white;
 }
 .emp_table1{
     width:80%;

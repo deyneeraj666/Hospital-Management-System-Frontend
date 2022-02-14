@@ -1,6 +1,6 @@
 export class Patient{
-    patient_id:number=0;
-    patient_name:string="";
+    PatientId:number=0;
+    PatientName:string="";
     date_of_reg:string="";
     status:string="";
     
