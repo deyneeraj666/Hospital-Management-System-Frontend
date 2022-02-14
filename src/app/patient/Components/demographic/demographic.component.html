@@ -2,7 +2,7 @@
 <app-patient-header [option]="option"></app-patient-header>
 
 <div class="demographic-container">
-  <div class="dm-header" style=" padding-left: 310px; margin: 30px; padding-top: 5px; color:rgba(10, 102, 163, 0.897); "><u><b>Demographic Details</b></u></div>
+  <div class="dm-header" style=" padding-left: 310px; margin: 20px; padding-top: 5px; color:rgba(10, 102, 163, 0.897); "><u><b>Demographic Details</b></u></div>
   <form [formGroup]="patientDemographicForm" class="form-container" >
     <div class="dm-details">
       <div class="dm-info">
@@ -246,10 +246,10 @@
     </div>
     <div class="actions">
         <!-- <button class="submit" [disabled]="patientDemographicForm.invalid">Submit</button> -->
-        <button mat-raised-button class="submit" [disabled]="patientDemographicForm.invalid" (click)="onSubmit()">Submit</button>
+        <button mat-raised-button class="submit" [disabled]="patientDemographicForm.invalid" [hidden]="!isSubmitClicked" (click)="onSubmit()">Submit</button>
 
-        <button mat-raised-button class="edit" (click)="onEdit()">Edit</button>
-        <button mat-raised-button class="cancel" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button class="edit" [hidden]="!isEditClicked" (click)="onEdit()">Edit</button>
+        <button mat-raised-button class="cancel" [hidden]="!isCancelClicked" (click)="onCancel()">Cancel</button>
         <!-- <button>Cancel</button> -->
     </div>
   </form>

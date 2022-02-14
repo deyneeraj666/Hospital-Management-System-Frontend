@@ -10,6 +10,9 @@ import { VitalSignsComponent } from './Components/vital-signs/vital-signs.compon
 import { ProcedureComponent } from './Components/procedure/procedure.component';
 import { DiagnosisComponent } from './Components/diagnosis/diagnosis.component';
 import { MedicationsComponent } from './Components/medications/medications.component';
+import { AllergyGridComponent } from './Components/allergy-grid/allergy-grid.component';
+
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -36,7 +39,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     VitalSignsComponent,
     ProcedureComponent,
     DiagnosisComponent,
-    MedicationsComponent
+    MedicationsComponent,
+    AllergyGridComponent
     
   ],
   imports: [
@@ -64,7 +68,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     EmergencyContactComponent,
     AllergyInfoComponent,
     AppointmentComponent,
-    ProcedureComponent
+    ProcedureComponent,
+    AllergyGridComponent
   ],
 })
 export class PatientModule{ }

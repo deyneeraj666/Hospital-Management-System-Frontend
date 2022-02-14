@@ -9,7 +9,7 @@ import { Patient } from 'src/app/Models/Patient';
 export class PatientListComponent implements OnInit {
   option:number=3;
   constructor() { }
-
+  searchedKeyword: string="";
   ngOnInit(): void {
   }
   patientData:Patient[]=[{patient_id:1,patient_name:"John",date_of_reg:"12/12/21",status:"Active"},

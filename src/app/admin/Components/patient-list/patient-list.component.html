@@ -1,12 +1,15 @@
 <app-admin-header [option]="option"></app-admin-header>
+<div style="padding-top: 7%;padding-left: 20%;">
+    <h4><b><u>Patient List</u></b></h4>
+</div>
 <div class="emp_div1">
     <select>
         <option selected>Search by</option>
         <option>Name</option>
         <option>Id</option>
     </select>
-    <input type="text" style="margin-left: 2%; width: 30%;" placeholder="Enter Patient Name or ID">
-    <button mat-raised-button style="margin-left: 3%;background-color: green;">Search</button>
+    <input [(ngModel)]="searchedKeyword" type="text" ngModel="" style="margin-left: 2%; width: 30%;" placeholder="Enter Patient Name or ID">
+    
 </div>
 <div class="emp_div2">
     <table class="emp_table1">

@@ -13,7 +13,7 @@
                     <th>Date</th>
                 </tr>
                 
-                <tr *ngFor="let selectedData of data">
+                <tr *ngFor="let selectedData of data;let i=index">
                     <td class="td-first">{{selectedData.drug_name}}</td>
                     <td class="td-first">{{selectedData.strength}}</td>
                     <td class="td-first">{{selectedData.quantity}}</td>
@@ -21,6 +21,7 @@
                     <td class="td-first">{{selectedData.form}}</td>
                     <td class="td-first">{{selectedData.notes}}</td>
                     <td class="td-first">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
+                    <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
                 </tr>
                 <!-- <tr>
                     <td colspan="7" style="padding-left: 40%;">**No known Medications</td>
@@ -41,7 +42,7 @@
                     Drug Name
                 </td>
                 <td class="td-second">
-                    <select formControlName="drugname_data" style="width:56%;margin-left: 5%;" [(ngModel)]="drug_name">
+                    <select formControlName="drugname_data" style="width:56%;margin-left: 5%;" [(ngModel)]="drug_name" id="name">
                         <option></option>
                         <option>paracetamal</option>
                         <option>Dolo</option>

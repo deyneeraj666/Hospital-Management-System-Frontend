@@ -42,4 +42,7 @@ export class DiagnosisComponent implements OnInit {
       Validators.required
     ]),    
   })
+  deleteproduct_click(index:number){
+    this.data.splice(index,1);
+  }
 }

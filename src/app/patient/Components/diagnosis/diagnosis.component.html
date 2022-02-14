@@ -8,10 +8,11 @@
                     <th>Diagnosis Name</th>
                     <th>Date</th>
                 </tr>
-                <tr *ngFor="let selectedData of data">
+                <tr *ngFor="let selectedData of data;let i=index">
                     <td class="td-first">{{selectedData.dcode}}</td>
                     <td class="td-first">{{selectedData.dname}}</td>
                     <td class="td-first">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
+                    <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
                 </tr>
                 <!-- <tr>
                     <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>

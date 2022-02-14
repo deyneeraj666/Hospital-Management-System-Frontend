@@ -51,6 +51,19 @@ export class MedicationsComponent implements OnInit {
     //this.ddate=new Date;
     
   }
+  deleteproduct_click(index:number){
+    this.data.splice(index,1);
+  }
+  editproduct_click(name:string){
+    let editData:any=this.data.find(x=>x.drug_name==name);
+    this.drug_name=editData.drug_name;
+    this.strength=editData.strength;
+    this.ddate=editData.ddate;
+    this.frequency=editData.frequency;
+    this.form=editData.form;
+    this.quantity=editData.quantity;
+    this.notes=editData.notes;
+  }
   public patientMedicationTable:FormGroup=new FormGroup({
     drugname_data: new FormControl('', [
       Validators.required

@@ -1,9 +1,9 @@
 <app-patient-header [option]="option"></app-patient-header>
-<div class="allergy-container">
-  <div class="all-header"><b><u>Allergy Information</u></b></div>
+<!-- <div class="allergy-container">
+  <div class="all-header"><b><u>Add Allergy Information</u></b></div>
   <form [formGroup]="patientAllergyForm" class="form-container">
     <div class="field" >
-      <div class="field-label" style="margin-left: 50px;">
+      <div class="field-label" style="margin-left: 20px;">
         <label for="">Patient has any known allergies?</label>
       </div>
       <div class="field-value">
@@ -103,16 +103,135 @@
       </div>
     </div>
     <div class="actions">
-      <button mat-raised-button class="submit" [disabled]="patientAllergyForm.invalid">
+      <button mat-raised-button class="submit" [disabled]="patientAllergyForm.invalid" (click)="onSubmit()">
         Submit
       </button>
-      <button mat-raised-button class="edit">Edit</button>
+      <button mat-raised-button class="edit" (click)="onEdit()">Edit</button>
       <button mat-raised-button class="cancel" (click)="onCancel()">Cancel</button>
 
     </div>
   </form>
+</div> -->
+
+<div class="allergy-container">
+  <div class="all-header"><b><u>Add Allergy Information</u></b></div>
+  <form [formGroup]="patientAllergyForm" class="form-container">
+    <div class="field" >
+      <div class="field-label" style="margin-left: 20px;">
+        <label for="">Patient has any known allergies?</label>
+      </div>
+      <div class="field-value">
+        <div class="knownAllergy-radio">
+          <div class="radio-item" >
+            <input type="radio" formControlName="knownAllergy" id="" value="Yes" />
+            <label for="">Yes</label>
+          </div>
+          <div class="radio-item" >
+            <input type="radio" formControlName="knownAllergy" id="" value="No" />
+            <label for="">No</label>
+          </div>
+        </div>
+        <span
+          class="error"
+          *ngIf="
+          patientAllergyForm.controls['knownAllergy'].invalid &&
+          patientAllergyForm.controls['knownAllergy'].dirty
+          "
+        >
+          Kindly select the known allergy
+        </span>
+      </div>
+    </div>
+
+    <div class="all-details" *ngIf="patientAllergyForm.controls['knownAllergy'].value === 'Yes'" >
+      <div class="all-info">
+        
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy ID</label>
+          </div>
+          <div class="field-value">
+            <input type="text" formControlName="allergyId" id="">
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Type</label>
+          </div>
+          <div class="field-value">
+            <select formControlName="allergyType" class="select" (change)="allergyNameChangeHandler(mySelect.value)" #mySelect>
+              <option *ngFor="let item of allergyTypes" [value]="item.allergyType">{{item.allergyType}}</option>
+          </select>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Name</label>
+          </div>
+          <div class="field-value">
+            <select formControlName="allergyName" class="select" >
+              <option *ngFor="let item of allergyNames" [value]="item.allergyName">{{item.allergyName}}</option>
+          </select>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Description</label>
+          </div>
+          <div class="field-value">
+            <textarea formControlName="allergyDesc" id="" cols="20" rows="03"></textarea>
+          </div>
+        </div>
+        
+      </div>
+      <div class="all-info">
+        
+        
+        <div class="field">
+          <div class="field-label">
+            <label for="">Allergy Clinical Information</label>
+          </div>
+          <div class="field-value">
+            <textarea formControlName="allergyClinicalInfo" id="" cols="20" rows="05"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">
+            <label for="">Is Allergy Fatal?</label>
+          </div>
+          <div class="field-value">
+            <div class="radio">
+              <div class="radio-item">
+                <input type="radio" formControlName="isAllergyFatal" id="" value="Yes" />
+                <label for="">Yes</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" formControlName="isAllergyFatal" id="" value="No" />
+                <label for="">No</label>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="actions" *ngIf="patientAllergyForm.controls['knownAllergy'].value === 'Yes'" > 
+      <button mat-raised-button class="submit" [disabled]="patientAllergyForm.invalid" [hidden]="!isSubmitClicked"  (click)="onSubmit()">
+        Submit
+      </button>
+      <button mat-raised-button class="edit" [hidden]="!isEditClicked" (click)="onEdit()">Edit</button>
+      <button mat-raised-button class="cancel" [hidden]="!isCancelClicked"  (click)="onCancel()">Cancel</button>
+
+    </div>
+  </form>
+
 </div>
+
 <br>
+<br>
+
+<app-allergy-grid [allergies]="allergiesArray"></app-allergy-grid>
 <br>
 <br>
 
