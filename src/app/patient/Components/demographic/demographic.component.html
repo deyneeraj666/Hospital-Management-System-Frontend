@@ -246,10 +246,10 @@
     </div>
     <div class="actions">
         <!-- <button class="submit" [disabled]="patientDemographicForm.invalid">Submit</button> -->
-        <button mat-raised-button class="submit" [disabled]="patientDemographicForm.invalid" (click)="onSubmit()">Submit</button>
+        <button mat-raised-button class="submit" [disabled]="patientDemographicForm.invalid" [hidden]="!isSubmitClicked" (click)="onSubmit()">Submit</button>
 
-        <button mat-raised-button class="edit" (click)="onEdit()">Edit</button>
-        <button mat-raised-button class="cancel" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button class="edit" [hidden]="!isEditClicked" (click)="onEdit()">Edit</button>
+        <button mat-raised-button class="cancel" [hidden]="!isCancelClicked" (click)="onCancel()">Cancel</button>
         <!-- <button>Cancel</button> -->
     </div>
   </form>
