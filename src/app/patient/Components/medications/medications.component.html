@@ -1,6 +1,6 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="border-vitals">
-    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 3%; padding-left: 42%;"><b><u>Medications Details</u></b></label>
+    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 3%; padding-left: 46%;"><b><u>Medications Details</u></b></label>
     <div style="margin-left: 20%;margin-top: 40px;" >
         
             <table class="table-medi" style="width: 80%;">
@@ -24,9 +24,10 @@
                     <td class="td-first">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
                     <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
                 </tr>
-                <!-- <tr>
+                <tr style="background-color:   #f3f3f3;" *ngIf="data.length<=0">
                     <td colspan="7" style="padding-left: 40%;">**No known Medications</td>
-                </tr> -->
+                </tr>
+                
                 
             </table>
     </div>
@@ -127,13 +128,14 @@
                 
             </tr>
             <tr>
-                <td class="td-second" colspan="2" style="padding-left: 35%;padding-top: 5%;">
-                    <button [disabled]="patientMedicationTable.invalid" mat-raised-button style="background-color: green;color: white;margin-bottom: 25%;" (click)="add_medications()">Add</button>
+                <td class="td-second" colspan="2" style="padding-left: 38%;padding-top: 4.2%;">
+                    <button [disabled]="patientMedicationTable.invalid" mat-raised-button style="background-color: green;color: white;margin-bottom: 25%;width: 80%;" (click)="add_medications()">Add</button>
                 </td>
                 <td class="td-second" colspan="2" style="padding-right: 10%;padding-top: 5%;">
                     <button mat-raised-button style="background-color:rgba(10, 102, 163, 0.897);color: white;margin-bottom: 10%;" (click)="remove_medications()">Cancel</button>
                 </td>
             </tr>
+
         </table>
     </div>
 </div>

@@ -21,6 +21,7 @@ export class MedicationsComponent implements OnInit {
   public form:string="";
   public quantity:string="";
   public notes:string="";
+  public isDataNotfound:boolean=false;
   add_medications(){
     let newData:Medications=new Medications();
     newData.strength=this.strength;
@@ -68,7 +69,7 @@ export class MedicationsComponent implements OnInit {
     drugname_data: new FormControl('', [
       Validators.required
     ]),
-    frequency_data: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    frequency_data: new FormControl('', [Validators.required, Validators.minLength(1)]),
     
     strength_data: new FormControl('', [Validators.required,]),
     form_data: new FormControl('', Validators.required),
