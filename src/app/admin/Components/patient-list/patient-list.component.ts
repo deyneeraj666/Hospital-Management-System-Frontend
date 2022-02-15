@@ -17,7 +17,8 @@ export class PatientListComponent implements OnInit {
   {PatientId:2,PatientName:"Joseph",date_of_reg:"10/2/11",status:"Blocked"},
   {PatientId:3,PatientName:"Ram",date_of_reg:"19/1/22",status:"InActive"},
   {PatientId:4,PatientName:"Ravi",date_of_reg:"12/12/21",status:"Active"},
-  {PatientId:5,PatientName:"Hari",date_of_reg:"10/2/11",status:"Blocked"}]
+  {PatientId:5,PatientName:"Hari",date_of_reg:"10/2/11",status:"Blocked"},
+  {PatientId:6,PatientName:"Hari",date_of_reg:"10/2/11",status:"Blocked"}]
   // {emp_id:3,emp_name:"Ram",doj:"19/1/22",status:"InActive"},
   // {emp_id:1,emp_name:"John",doj:"12/12/21",status:"Active"},
   // {emp_id:2,emp_name:"Joseph",doj:"10/2/11",status:"Blocked"},

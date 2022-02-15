@@ -70,7 +70,7 @@ flex-basis: 100%;
 .radio {
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 100%;
 
 }
 
@@ -108,7 +108,7 @@ span {
 }
 
 .radio-item>* {
-    flex-basis: 100%;
+    flex-basis: 35%;
 }
 
 .actions{
