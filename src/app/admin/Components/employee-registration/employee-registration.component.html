@@ -44,7 +44,7 @@
                 class="error"
                 *ngIf="
                 empRegistrationForm.controls['fname'].invalid &&
-                empRegistrationForm.controls['fname'].dirty
+                empRegistrationForm.controls['fname'].touched
                 "
               >
                 *First Name cannot be less than 2 character
@@ -60,7 +60,7 @@
               <span
                 *ngIf="
                 empRegistrationForm.controls['lname'].invalid &&
-                empRegistrationForm.controls['lname'].dirty
+                empRegistrationForm.controls['lname'].touched
                 "
               >
               *Last Name cannot be less than 2 character
@@ -76,10 +76,18 @@
               <span
                 *ngIf="
                 empRegistrationForm.controls['email'].invalid &&
-                empRegistrationForm.controls['email'].dirty
+                empRegistrationForm.controls['email'].touched
                 "
               >
                *Email is a required field
+              </span>
+              <span
+                *ngIf="
+                empRegistrationForm.controls['email'].invalid &&
+                empRegistrationForm.controls['email'].touched
+                "
+              >
+              e.g.exampleusername@xyzdomain.com
               </span>
             </div>
           </div>
@@ -92,7 +100,7 @@
               <span
                 *ngIf="
                 empRegistrationForm.controls['dob'].invalid &&
-                empRegistrationForm.controls['dob'].dirty
+                empRegistrationForm.controls['dob'].touched
                 "
               >
                 *Date of birth required
@@ -104,8 +112,11 @@
               <label for="">Role</label>
             </div>
             <div class="field-value">
-              <select formControlName="role" class="select" >
-                <option *ngFor="let item of roles" value="">{{item}}</option>
+              <select formControlName="role" [(ngModel)]="selectedLevel" class="select" >
+                <!-- <option *ngFor="let item of roles" value="">{{item}}</option> -->
+                <option>Physician</option>
+                <option>Nurse</option>
+                <option>Admin</option>
             </select>
             </div>
           </div>
@@ -117,7 +128,7 @@
         
       </div>
       <div class="actions">
-          <button  class="register" mat-raised-button (click)="click_submit()" >Register</button>
+          <button [disabled]="empRegistrationForm.invalid" class="register" style="background-color: green;color: white;" mat-raised-button (click)="click_submit()" >Register</button>
           <button  class="register" mat-raised-button style="background-color:rgba(10, 102, 163, 0.897) ;" (click)="click_reset()">Reset</button>
           
       </div>

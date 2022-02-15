@@ -10,6 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class EmployeeRegistrationComponent implements OnInit {
   option:number=2;
   roles:string[]=["Physician", "Nurse", "Admin"];
+  selectedLevel:string=""
   empRegistrationForm:any = FormGroup;
 
   constructor(private toastr:ToastrService) {
@@ -17,10 +18,11 @@ export class EmployeeRegistrationComponent implements OnInit {
       title : new FormControl("",Validators.required),
       fname : new FormControl("",[Validators.required,Validators.minLength(2)]),
       lname : new FormControl("",[Validators.required,Validators.minLength(2)]),
-      email : new FormControl("",Validators.email),
+      email : new FormControl("",[Validators.required, Validators.email]),
       dob : new FormControl("",Validators.required),
       role : new FormControl("",Validators.required),
-      specialty : new FormControl("",Validators.required)})
+      })
+      //specialty : new FormControl("",Validators.required)
    }
 
   
@@ -33,6 +35,7 @@ export class EmployeeRegistrationComponent implements OnInit {
     click_submit()
     {
       console.log(this.empRegistrationForm);
+      //alert(this.selectedLevel);
       // console.log(this.empRegistrationForm.controls.title.status == "VALID");
       // console.log(this.empRegistrationForm.controls.fname.status == "VALID");
       // console.log(this.empRegistrationForm.controls.lname.status == "VALID");
