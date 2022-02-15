@@ -43,5 +43,14 @@ export class EmployeeListComponent implements OnInit {
                     let value:string=this.searchedKeyword;
                     this.tempdata=this.empData.filter(x=>x[key]==value)
                    }
+                   changeDeActivate(index:number){
+                    this.empData[index].status="InActive"
+                  }
+                  changeBlock(index:number){
+                   this.empData[index].status="Blocked"
+                  }
+                  changeActive(index:number){
+                   this.empData[index].status="Active"
+                  }
 }
 

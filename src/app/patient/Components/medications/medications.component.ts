@@ -30,7 +30,7 @@ export class MedicationsComponent implements OnInit {
     newData.form=this.form;
     newData.quantity=this.quantity;
     newData.ddate=this.ddate;
-    alert(this.form)
+    // alert(this.form)
     
     this.data.push(newData);
     this.strength="";

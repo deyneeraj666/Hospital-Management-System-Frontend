@@ -33,5 +33,14 @@ export class PatientListComponent implements OnInit {
                     let value:string=this.searchedKeyword;
                     this.tempdata=this.patientData.filter(x=>x[key]==value)
                    }
+                   changeDeActivate(index:number){
+                     this.patientData[index].status="InActive"
+                   }
+                   changeBlock(index:number){
+                    this.patientData[index].status="Blocked"
+                   }
+                   changeActive(index:number){
+                    this.patientData[index].status="Active"
+                   }
 
 }

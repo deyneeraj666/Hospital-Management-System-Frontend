@@ -6,7 +6,7 @@
     background-color: rgb(187, 187, 235);
 }
 .border-vitals{
-    border: 1px solid rgba(10, 102, 163, 0.897);
+    /* border: 1px solid rgba(10, 102, 163, 0.897); */
     
     margin: 1%;
     padding-bottom: 20%;
@@ -78,4 +78,11 @@ th{
 .td-first{
     align-items: center;
     padding-left: 2%;
+}
+.table-head>*, .table-row>*{
+    flex-basis: 100%;
+}
+
+.table-row:nth-of-type(even){
+background-color:   #f3f3f3;;
 }

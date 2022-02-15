@@ -4,7 +4,7 @@
     <div style="margin-left: 20%;margin-top: 40px;" >
         
             <table class="table-medi" style="width: 80%;">
-                <tr>
+                <tr class="table-head">
                     <th>Drug Name</th>
                     <th>Strength</th>
                     <th>Quantity</th>
@@ -14,7 +14,7 @@
                     <th>Date</th>
                 </tr>
                 
-                <tr *ngFor="let selectedData of data;let i=index">
+                <tr *ngFor="let selectedData of data;let i=index" class="table-row">
                     <td class="td-first">{{selectedData.drug_name}}</td>
                     <td class="td-first">{{selectedData.strength}}</td>
                     <td class="td-first">{{selectedData.quantity}}</td>

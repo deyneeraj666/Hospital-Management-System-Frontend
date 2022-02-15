@@ -1,9 +1,9 @@
 <app-admin-header [option]="option"></app-admin-header>
 <div style="padding-top: 4%;padding-left: 20%;">
-    <h4><u><b>Employee List</b></u></h4>
+    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 2%; padding-left: 35%;"><b><u>Employee List</u></b></label>
 </div>
 <div class="emp_div1">
-    <select [(ngModel)]="selectDD">
+    <select [(ngModel)]="selectDD" style="width: 13%;">
         <!-- <option selected>Search by</option> -->
         <option>Name</option>
         <option>Id</option>
@@ -12,38 +12,53 @@
     <!-- <span *ngIf="selectDD=='Name'"> -->
       <input type="text" [(ngModel)]="searchedKeyword" style="margin-left: 2%; width: 30%;" placeholder="Enter Name or Id">
     <!-- </span> -->
-    <input type="button" mat-button style="background-color:green;margin-left: 1%;" value="Search" (click)="get_Value()">
+    <input type="button" mat-button style="background-color:green;margin-left: 1%;color: white;" value="Search" (click)="get_Value()">
     
 </div>
 <div class="emp_div2">
-    <table class="emp_table1" border="1">
-        <tr>
-            <th>Employee ID</th>
+    <table class="emp_table1">
+        <tr class="table-head">
+            <th style="padding-left: 10px;">Employee ID</th>
             <th>Employee Name</th>
-            <th>DOJ</th>
+            <th style="padding-left: 1%;">DOJ</th>
             <th>Status</th>
-            <th>Edit Status</th>
+            <th style="padding-left: 10px;">Edit Status</th>
         </tr>
-        <tr *ngFor="let data of tempdata">
-            <td>{{data.Id}}</td>
-            <td>{{data.Name}}</td>
-            <td>{{data.doj}}</td>
-            <td>{{data.status}}</td>
+        <tr *ngFor="let data of tempdata;let i=index" class="table-row">
+            <td style="padding-left: 5%;padding-bottom: 1%;">{{data.Id}}</td>
+            <td style="padding-left: 20px;padding-bottom: 1%;">{{data.Name}}</td>
+            <td style="padding-bottom: 1%;">{{data.doj}}</td>
+            <td style="padding-bottom: 1%;">{{data.status}}</td>
             <td>
                 <span *ngIf="data.status=='Active'">
-                    <a href="">
-                        DeActivate/Block
+                    <a href="javascript:void(0)" (click)="changeDeActivate(i)">
+                        DeActivate
+                    </a>/
+                    <a href="javascript:void(0)" (click)="changeBlock(i)">
+                        Block
                     </a>
                 </span>
                 <span *ngIf="data.status=='InActive'">
-                    <a href="">
-                        Activate/Block
+                    <a href="javascript:void(0)" (click)="changeActive(i)">
+                        Activate
+                    </a>/
+                    <a href="javascript:void(0)" (click)="changeBlock(i)">
+                        Block
                     </a>
+                    <!-- <a href="">
+                        Activate/Block
+                    </a> -->
                 </span>
                 <span *ngIf="data.status=='Blocked'">
-                    <a href="">
-                        Activate/DeActivate
+                    <a href="javascript:void(0)" (click)="changeActive(i)">
+                        Activate
+                    </a>/
+                    <a href="javascript:void(0)" (click)="changeDeActivate(i)">
+                        DeActivate
                     </a>
+                    <!-- <a href="">
+                        Activate/DeActivate
+                    </a> -->
                 </span>
             </td>
         </tr>

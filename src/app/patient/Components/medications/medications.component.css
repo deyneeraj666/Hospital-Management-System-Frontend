@@ -75,3 +75,10 @@ th{
     border: 1px solid rgba(10, 102, 163, 0.897);
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
 }
+.table-head>*, .table-row>*{
+    flex-basis: 100%;
+}
+
+.table-row:nth-of-type(even){
+background-color:   #f3f3f3;;
+}
