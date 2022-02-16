@@ -1,0 +1,17 @@
+.marginclass{
+    margin-left: 295px !important;
+}
+
+.filterDropdown{
+    width: 200px !important;
+    margin-left: 100px;
+    font-size: medium;
+    font-weight: bold;
+}
+.dropdownlabel {
+    display: inline-block;
+    width: 218px;
+    margin-right: 20px;
+    margin-left: 20px ;
+    text-align: right;
+  }

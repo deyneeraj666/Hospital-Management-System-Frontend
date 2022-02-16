@@ -85,9 +85,11 @@ export class AppointmentComponent implements OnInit {
     let tempId=maxId+1;
     if ((args.type === 'Editor'  || args.type ===  'DeleteAlert') && args.data!=undefined && !isNullOrUndefined(args.data)) {
       let element=((args.data) as { [key: string]: Object });
-      let obj={"Id":tempId.toString(),"Subject":element['Subject'] , "EventType":element['EventType'],"StartTime":element['StartTime']
+      let obj={"Id":(element['Id']!=undefined?element['Id'] :tempId.toString()),"Subject":element['Subject'] , "EventType":element['EventType'],"StartTime":element['StartTime']
       ,"EndTime":element['EndTime'],"Description":element['Description']}
-       if (args.type === 'Editor') {
+      if( args!=undefined &&  args.event!=undefined &&  args.event.target !=undefined && (args.event.target as HTMLElement).innerText !=='CANCEL')
+      {
+      if (args.type === 'Editor') {
          this.SaveAppointment(obj)
          
         if (this.scheduleObj !=null && !(this.scheduleObj.eventWindow as any).isCrudAction) {
@@ -98,7 +100,11 @@ export class AppointmentComponent implements OnInit {
         this.DeleteAppointment(Number(obj.Id));
         console.log(args)
         console.log(obj)
+      }else{
+        this.ddlPhysicianData = this.AppointmentData.map(x=>x.Subject)
+          this.tempAppointmentdata = this.AppointmentData;
       }
+    }
        
     }
   }
@@ -106,7 +112,6 @@ export class AppointmentComponent implements OnInit {
     
     this.filterDropdownObj?.refresh();
     let value=this.filterDropdownObj?.value;
-    debugger;
     this.tempAppointmentdata = this.AppointmentData.filter(x => x.Subject == value);
     if (this.scheduleObj != undefined) {
       this.scheduleObj.eventSettings.dataSource = this.tempAppointmentdata;
@@ -127,7 +132,6 @@ export class AppointmentComponent implements OnInit {
           }
         )
       }
-      debugger;
       this.ddlPhysicianData = this.AppointmentData.map(x=>x.Subject)
       this.tempAppointmentdata = this.AppointmentData;
       if (this.scheduleObj != undefined) {

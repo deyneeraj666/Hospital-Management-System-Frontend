@@ -1,9 +1,9 @@
 <app-physician-header [option]="option"></app-physician-header>
-<div style="display: flex;">
+<!-- <div style="display: flex;">
   <label class="dropdownlabel">Filter Appointment By Name :</label> 
   <ejs-dropdownlist class="filterDropdown" #filterDropdown    [dataSource]='ddlPhysicianData'  (change) ="filterByName()"
  placeholder='select'  ></ejs-dropdownlist>
-</div>
+</div> -->
 <div class="control-section">
     <ejs-schedule
       #scheduleObj
@@ -30,6 +30,9 @@
           cellpadding="5"
         >
           <tbody>
+            <tr>
+              <td colspan="1" style="visibility:hidden;">{{ data.Id }}</td>
+            </tr>
             <tr>
               <td class="e-textlabel">Meeting Title</td>
               <td colspan="4">
