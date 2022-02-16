@@ -15,6 +15,7 @@ import { RecurrenceEditorModule, ScheduleModule, ScheduleAllModule, DayService, 
 import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SharedModule } from '../shared/shared.module';
     RecurrenceEditorModule, 
     ScheduleModule,
     ScheduleAllModule,
+    HttpClientModule
     
   ],
   exports:[
