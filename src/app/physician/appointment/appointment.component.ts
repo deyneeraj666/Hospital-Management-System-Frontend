@@ -97,8 +97,6 @@ export class AppointmentComponent implements OnInit {
         }
       }
       else if (args.type === 'DeleteAlert') {
-        debugger;
-        //const ids=this.AppointmentData.filter(x => x.Subject==obj.Id)
         this.DeleteAppointment(Number(obj.Id));
         console.log(args)
         console.log(obj)
@@ -114,7 +112,6 @@ export class AppointmentComponent implements OnInit {
     
     this.filterDropdownObj?.refresh();
     let value=this.filterDropdownObj?.value;
-    debugger;
     this.tempAppointmentdata = this.AppointmentData.filter(x => x.Subject == value);
     if (this.scheduleObj != undefined) {
       this.scheduleObj.eventSettings.dataSource = this.tempAppointmentdata;

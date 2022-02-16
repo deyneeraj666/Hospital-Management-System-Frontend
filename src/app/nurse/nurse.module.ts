@@ -12,6 +12,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedModule } from '../shared/shared.module';
+import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { DayService, DragAndDropService, MonthService, RecurrenceEditorModule, ResizeService, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,7 +35,13 @@ import { SharedModule } from '../shared/shared.module';
     MatIconModule,
     MatInputModule,
     MatTabsModule,
-    SharedModule
+    SharedModule,
+    DropDownListAllModule,
+    DateTimePickerModule,
+    RecurrenceEditorModule, 
+    ScheduleModule,
+    ScheduleAllModule,
+    HttpClientModule
     
   ],
   exports:[
@@ -39,6 +49,7 @@ import { SharedModule } from '../shared/shared.module';
     NotesComponent,
     ProfileComponent,
     NurseHeaderComponent
-  ]
+  ],
+  providers: [MonthService, DayService, WeekService, WorkWeekService, ResizeService, DragAndDropService],
 })
 export class NurseModule { }
