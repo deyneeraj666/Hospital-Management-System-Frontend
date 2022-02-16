@@ -1,3 +1,4 @@
+import { UsermanagementService } from "src/app/Shared/usermanagement.service";
 import { ToastrService } from "ngx-toastr";
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -10,16 +11,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class EmployeeRegistrationComponent implements OnInit {
   option:number=2;
   roles:string[]=["Physician", "Nurse", "Admin"];
-  selectedLevel:string=""
+  selectedLevel:number=0;
   empRegistrationForm:any = FormGroup;
 
-  constructor(private toastr:ToastrService) {
+  constructor(private toastr:ToastrService,private user:UsermanagementService) {
     this.empRegistrationForm = new FormGroup({
       title : new FormControl("",Validators.required),
       fname : new FormControl("",[Validators.required,Validators.minLength(2)]),
       lname : new FormControl("",[Validators.required,Validators.minLength(2)]),
       email : new FormControl("",[Validators.required, Validators.email]),
       dob : new FormControl("",Validators.required),
+      contact : new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
       role : new FormControl("",Validators.required),
       })
       //specialty : new FormControl("",Validators.required)
@@ -34,29 +36,26 @@ export class EmployeeRegistrationComponent implements OnInit {
   }
     click_submit()
     {
-      console.log(this.empRegistrationForm);
-      //alert(this.selectedLevel);
-      // console.log(this.empRegistrationForm.controls.title.status == "VALID");
-      // console.log(this.empRegistrationForm.controls.fname.status == "VALID");
-      // console.log(this.empRegistrationForm.controls.lname.status == "VALID");
-      // console.log(this.empRegistrationForm.controls.email.status == "VALID");
-      // console.log(this.empRegistrationForm.controls.specilaty);
-      // console.log(this.empRegistrationForm.controls.role);
-      // console.log(this.empRegistrationForm.controls.dob.status == "VALID");
+      
+      if(this.empRegistrationForm.valid)
+      {
+        var obj:any = {
+          "firstName": this.empRegistrationForm.controls.fname.value,
+          "lastName": this.empRegistrationForm.controls.lname.value,
+          "email": this.empRegistrationForm.controls.email.value,
+          "dob": this.empRegistrationForm.controls.dob.value,
+          "contact": this.empRegistrationForm.controls.contact.value,
+          "password": "Password@123",
+          "r_id": this.selectedLevel,
+          "tblRoles": null
+           }
+        this.user.employee_register_service(obj).subscribe((res:any)=>{
 
-      // if(this.empRegistrationForm.controls.dob.status == "VALID"
-      //   && this.empRegistrationForm.controls.title.status == "VALID"
-      //   && this.empRegistrationForm.controls.fname.status == "VALID"
-      //   && this.empRegistrationForm.controls.lname.status == "VALID"
-      //   && this.empRegistrationForm.controls.email.status == "VALID" 
-      //   && this.empRegistrationForm.controls.specialty.status == "VALID"
-      //   && this.empRegistrationForm.controls.role.status == "VALID"){
-      //     this.toastr.success("Employee Added!");
-      //    this.empRegistrationForm.reset();
-      //   }
-      if(this.empRegistrationForm.valid){
-        this.toastr.success("Employee Added!");
-        this.empRegistrationForm.reset();
+          this.toastr.success("Employee Added!");
+          this.empRegistrationForm.reset();
+        },(err:any)=>{
+          this.toastr.success("Error occured on adding employee!");
+        })
       }
       else{
         this.toastr.error("Field is not valid!");

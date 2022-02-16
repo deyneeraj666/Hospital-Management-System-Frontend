@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class PhysicianGuard implements CanActivate {
   constructor(private auth:AuthService,private router:Router){}
   canActivate(){
-    let role = localStorage.getItem('role');
+    let role = localStorage.getItem('Role');
     if(this.auth.isLoggedIn() && role=='physician'){
       return true;
     }

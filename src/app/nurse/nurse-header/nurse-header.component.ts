@@ -29,8 +29,8 @@ export class NurseHeaderComponent implements OnInit {
     this.router.navigateByUrl('nurse/ChangePassword');
   }
   click_signout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.removeItem('Token');
+    localStorage.removeItem('Role');
     this.router.navigateByUrl('login');
   }
 }

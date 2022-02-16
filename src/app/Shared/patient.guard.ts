@@ -12,7 +12,7 @@ export class PatientGuard implements CanActivate {
   
   canActivate( )
   {
-    let role = localStorage.getItem('role');
+    let role = localStorage.getItem('Role');
     if(this.auth.isLoggedIn() && role=='patient')
     {
       return true;

@@ -97,6 +97,31 @@
           </div>
           <div class="field">
             <div class="field-label">
+              <label for="">Contact </label>
+            </div>
+            <div class="field-value">
+              <input type="text" formControlName="contact" id="" />
+              <span
+                *ngIf="
+                empRegistrationForm.controls['contact'].invalid &&
+                empRegistrationForm.controls['contact'].touched
+                "
+              >
+               *Contact is a required field
+              </span>
+              <span
+                *ngIf="
+                empRegistrationForm.controls['contact'].invalid &&
+                empRegistrationForm.controls['contact'].touched
+                "
+              >
+              *Please provide employee's contact number
+              </span>
+            </div>
+          </div>
+          
+          <div class="field">
+            <div class="field-label">
               <label for="">Date of Birth</label>
             </div>
             <div class="field-value">
@@ -111,6 +136,7 @@
               </span>
             </div>
           </div>
+          
           <div class="field">
             <div class="field-label">
               <label for="">Role</label>
@@ -118,18 +144,13 @@
             <div class="field-value">
               <select formControlName="role" [(ngModel)]="selectedLevel" class="select" >
                 <!-- <option *ngFor="let item of roles" value="">{{item}}</option> -->
-                <option>Physician</option>
-                <option>Nurse</option>
-                <option>Admin</option>
+                <option value=3>Physician</option>
+                <option value=2>Nurse</option>
+                <option value=4>Admin</option>
             </select>
             </div>
-          </div>
-          
-         
-          
-          
+          </div>          
         </div>
-        
       </div>
       <div class="actions">
           <button [disabled]="empRegistrationForm.invalid" class="register" style="background-color: green;color: white;" mat-raised-button (click)="click_submit()" >Register</button>

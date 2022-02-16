@@ -1,3 +1,4 @@
+import { UsermanagementService } from "./../../../Shared/usermanagement.service";
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'
@@ -14,49 +15,29 @@ export class LoginScreenComponent implements OnInit
   submitted:boolean=false;
   loginform:any = FormGroup ;
 
-  constructor(private router: Router, private toastr:ToastrService)
+  constructor(private router: Router, private toastr:ToastrService,private user:UsermanagementService)
   {
 
   }
   onSubmit() 
   {
     this.submitted = true;
-    if (this.loginform.invalid) {
-        return;
-    }
-    if(this.loginform.controls.email.value=="patient@gmail.com" && this.loginform.controls.password.value == "patient@123")
-    {
-      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
-      localStorage.setItem('role','patient');
-      this.router.navigateByUrl('login/patient');
-      this.toastr.success('Welcome Patient!')
-    }
-    else if(this.loginform.controls.email.value=="admin@gmail.com" && this.loginform.controls.password.value == "admin@123")
-    {
-      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
-      localStorage.setItem('role','admin');
-      this.router.navigateByUrl('login/admin');
-      this.toastr.success('Welcome Admin!')
-    }
-    else if(this.loginform.controls.email.value=="nurse@gmail.com" && this.loginform.controls.password.value == "nurse@123")
-    {
-      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
-      localStorage.setItem('role','nurse');
-      this.router.navigateByUrl('login/nurse');
-      this.toastr.success('Welcome Nurse!')
-    }
-    else if(this.loginform.controls.email.value=="physician@gmail.com" && this.loginform.controls.password.value == "physician@123")
-    {
-      localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
-      localStorage.setItem('role','physician');
-      this.router.navigateByUrl('login/physician');
-      this.toastr.success('Welcome Physician!')
-    }
-    else
-    {
-      this.toastr.error('Invalid UserId or Password !')
-      this.loginform.reset();
-    }
+
+
+    this.user.login_service(this.loginform.controls.email.value,this.loginform.controls.password.value)
+    .subscribe((res:any)=>{
+      // console.log(res);
+      localStorage.setItem('Token',res.items.token)
+      localStorage.setItem('Role',res.items.role)
+      console.log('login/'+res.items.role)
+      this.router.navigateByUrl('login/'+res.items.role);
+
+    },(err:any)=>{
+      this.toastr.error("Email Id or Password is Incorrect!!");
+    });
+    
+
+    
   }
 
 
