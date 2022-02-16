@@ -40,6 +40,6 @@ export class AppointmentDataService {
  
   public DeleteAppointment(id:number):Observable<any>{
        
-    return  this.httpobj.delete(this.url+"/3");
+    return  this.httpobj.delete(this.url+"/"+id);
   }
 }
