@@ -1,9 +1,11 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { View, EventSettingsModel,EventRenderedArgs, ScheduleComponent, ActionEventArgs } from '@syncfusion/ej2-angular-schedule';
+import { View, EventSettingsModel,EventRenderedArgs, ScheduleComponent, ActionEventArgs, PopupCloseEventArgs } from '@syncfusion/ej2-angular-schedule';
 import { extend, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { ChangeEventArgs } from '@syncfusion/ej2-calendars';
 import { L10n } from  '@syncfusion/ej2-base';
 import { eventData } from '../data';
+import { AppointmentDataService } from 'src/app/Service/appointment-data.service';
+import { DropDownList } from '@syncfusion/ej2-angular-dropdowns';
 
 L10n.load({
   'en-US':{
@@ -22,14 +24,22 @@ L10n.load({
 })
 export class AppointmentComponent implements OnInit {
   option:number=1;
-  constructor() { }
+  constructor(private objAppointmentDataService:AppointmentDataService) { }
 
   ngOnInit(): void {
+    this.GetAppointment();
   }
 
+  ddlPhysicianData: string[] = [];
+  AppointmentData:any[]=[]
+  tempAppointmentdata: any[] = [];
   @ViewChild('scheduleObj')
   public scheduleObj: ScheduleComponent | undefined;
-  public eventSettings: EventSettingsModel = { dataSource: extend([], eventData,undefined, true) as Record<string, any>[] };
+
+  @ViewChild('filterDropdown')
+  public filterDropdownObj: DropDownList | undefined;
+  
+  public eventSettings: EventSettingsModel = { dataSource: extend([], this.AppointmentData,undefined, true) as Record<string, any>[] };
   public selectedDate: Date = new Date(2022, 1, 10);
   //public selectedDate: Date = new Date();
   public showQuickInfo = false;
@@ -67,9 +77,104 @@ export class AppointmentComponent implements OnInit {
       }
     }
   }
-  public onPopupClose() {
+  public onPopupClose(args:PopupCloseEventArgs) {
     this.startDate = null;
     this.endDate =null;
+    const ids=this.AppointmentData.map(x=>x.Id);
+    const maxId = Math.max(...ids)
+    let tempId=maxId+1;
+    if ((args.type === 'Editor'  || args.type ===  'DeleteAlert') && args.data!=undefined && !isNullOrUndefined(args.data)) {
+      let element=((args.data) as { [key: string]: Object });
+      let obj={"Id":(element['Id']!=undefined?element['Id'] :tempId.toString()),"Subject":element['Subject'] , "EventType":element['EventType'],"StartTime":element['StartTime']
+      ,"EndTime":element['EndTime'],"Description":element['Description']}
+      if( args!=undefined &&  args.event!=undefined &&  args.event.target !=undefined && (args.event.target as HTMLElement).innerText !=='CANCEL')
+      {
+      if (args.type === 'Editor') {
+        if (!isNullOrUndefined(obj.Id)) {
+          if(this.existingAppointment(Number(obj.Id)))
+          {
+            this.UpdateAppointment(obj);
+          }
+          else{
+          this.SaveAppointment(obj)
+          }
+        }
+         
+        if (this.scheduleObj !=null && !(this.scheduleObj.eventWindow as any).isCrudAction) {
+          alert("You just click on Cancel/close button");
+        }
+      }
+      else if (args.type === 'DeleteAlert') {
+        this.DeleteAppointment(Number(obj.Id));
+      }else{
+        this.ddlPhysicianData = this.AppointmentData.map(x=>x.Subject)
+          this.tempAppointmentdata = this.AppointmentData;
+      }
+    }
+       
+    }
+  }
+  existingAppointment(Id:Number):boolean{
+    let exist:boolean=false;
+    let index=this.AppointmentData.findIndex(x=>x.Id==Id);
+    if(index>=0){
+      exist=true;
+    }
+    return exist;
+  }
+  filterByName() {
+    
+    this.filterDropdownObj?.refresh();
+    let value=this.filterDropdownObj?.value;
+    this.tempAppointmentdata = this.AppointmentData.filter(x => x.Subject == value);
+    if (this.scheduleObj != undefined) {
+      this.scheduleObj.eventSettings.dataSource = this.tempAppointmentdata;
+    }
+    else {
+      alert('schedule Component undefined')
+    }
+  }
+  GetAppointment() {
+    this.objAppointmentDataService.GetAppointment().subscribe((result) => {
+      this.AppointmentData = [];
+      for (let index = 0; index < result.length; index++) {
+        const element = result[index];
+        this.AppointmentData.push(
+          {
+            "Id": element.Id, "Subject": element.Subject, "EventType": element.EventType, "StartTime": element.StartTime
+            , "EndTime": element.EndTime, "Description": element.Description
+          }
+        )
+      }
+      this.ddlPhysicianData = this.AppointmentData.map(x=>x.Subject)
+      this.tempAppointmentdata = this.AppointmentData;
+      if (this.scheduleObj != undefined) {
+        this.scheduleObj.eventSettings.dataSource = this.AppointmentData;
+        this.scheduleObj.refresh();
+      } else {
+        alert('schedule Component undefined')
+      }
+    });
+  }
+  UpdateAppointment(objAppointment:any)
+  {
+    this.objAppointmentDataService.UpdateAppointment(objAppointment).subscribe((result)=>{
+      this.GetAppointment();
+    });
+  }
+  SaveAppointment(objAppointment:any)
+  {
+    this.objAppointmentDataService.AddAppointment(objAppointment).subscribe((result)=>{
+      alert('Appointment  Saved Successfully')
+      this.GetAppointment();
+    });
+  }
+
+  DeleteAppointment(id:number)
+  {
+    this.objAppointmentDataService.DeleteAppointment(id).subscribe((result)=>{
+      this.GetAppointment();
+    });
   }
 
   public onEventRendered(args: EventRenderedArgs): void {
