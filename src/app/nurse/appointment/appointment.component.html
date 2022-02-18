@@ -30,8 +30,17 @@
           cellpadding="5"
         >
           <tbody>
-            <tr>
-              <td colspan="1" style="visibility:hidden;">{{ data.Id }}</td>
+            <tr style="visibility: hidden">
+              <td class="e-textlabel">Id</td>
+              <td colspan="1">
+                <input
+                id="Id"
+                class="e-field e-input"
+                type="text"
+                value="{{ data.Id }}"
+                name="Id"
+                style="width: 100%"
+              /></td>
             </tr>
             <tr>
               <td class="e-textlabel">Meeting Title</td>

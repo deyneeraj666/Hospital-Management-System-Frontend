@@ -90,7 +90,15 @@ export class AppointmentComponent implements OnInit {
       if( args!=undefined &&  args.event!=undefined &&  args.event.target !=undefined && (args.event.target as HTMLElement).innerText !=='CANCEL')
       {
       if (args.type === 'Editor') {
-         this.SaveAppointment(obj)
+        if (!isNullOrUndefined(obj.Id)) {
+          if(this.existingAppointment(Number(obj.Id)))
+          {
+            this.UpdateAppointment(obj);
+          }
+          else{
+          this.SaveAppointment(obj)
+          }
+        }
          
         if (this.scheduleObj !=null && !(this.scheduleObj.eventWindow as any).isCrudAction) {
           alert("You just click on Cancel/close button");
@@ -98,8 +106,6 @@ export class AppointmentComponent implements OnInit {
       }
       else if (args.type === 'DeleteAlert') {
         this.DeleteAppointment(Number(obj.Id));
-        console.log(args)
-        console.log(obj)
       }else{
         this.ddlPhysicianData = this.AppointmentData.map(x=>x.Subject)
           this.tempAppointmentdata = this.AppointmentData;
@@ -107,6 +113,14 @@ export class AppointmentComponent implements OnInit {
     }
        
     }
+  }
+  existingAppointment(Id:Number):boolean{
+    let exist:boolean=false;
+    let index=this.AppointmentData.findIndex(x=>x.Id==Id);
+    if(index>=0){
+      exist=true;
+    }
+    return exist;
   }
   filterByName() {
     
@@ -142,13 +156,18 @@ export class AppointmentComponent implements OnInit {
       }
     });
   }
+  UpdateAppointment(objAppointment:any)
+  {
+    this.objAppointmentDataService.UpdateAppointment(objAppointment).subscribe((result)=>{
+      this.GetAppointment();
+    });
+  }
   SaveAppointment(objAppointment:any)
   {
     this.objAppointmentDataService.AddAppointment(objAppointment).subscribe((result)=>{
       alert('Appointment  Saved Successfully')
       this.GetAppointment();
     });
-    console.log(this.AppointmentData);
   }
 
   DeleteAppointment(id:number)
