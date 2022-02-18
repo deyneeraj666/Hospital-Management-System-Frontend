@@ -164,7 +164,7 @@ export class AppointmentComponent implements OnInit {
   UpdateAppointment(objAppointment:any)
   {
     this.objAppointmentDataService.UpdateAppointment(objAppointment).subscribe((result)=>{
-      this.GetAppointment();
+    this.GetAppointment();
     });
   }
 
@@ -191,7 +191,7 @@ export class AppointmentComponent implements OnInit {
 
   public onActionBegin(args: ActionEventArgs): void {
     if ( args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
-      const data : Record<string, any> = (args.data instanceof Array ? args.data[0] : []);
+      const data : Record<string, any> = (args.data instanceof Array ? args.data : []);
       if (data['StartTime']!=undefined && data['EndTime']!=undefined && !this.scheduleObj?.isSlotAvailable(data['StartTime'] as Date, data['EndTime'] as Date)) {
         args.cancel = true;
       }
