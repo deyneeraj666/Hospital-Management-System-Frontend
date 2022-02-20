@@ -1,247 +1,186 @@
 
 <app-patient-header [option]="option"></app-patient-header>
 
-<div class="demographic-container">
-  <div class="dm-header" style=" padding-left: 310px; margin: 20px; padding-top: 5px; color:rgba(10, 102, 163, 0.897); "><u><b>Demographic Details</b></u></div>
+<mat-card class="demographic-container">
+  <mat-card class="dm-header">
+    <p style="text-align: center;">Demographic Details</p>
+  </mat-card>
   <form [formGroup]="patientDemographicForm" class="form-container" >
     <div class="dm-details">
+
       <div class="dm-info">
-        <div class="field">
-          <div class="field-label">
-            <label for="">Title</label>
+        <div class="field-radio">
+          <mat-label class="label" style="margin-right:14px;font-size: 14px;">Title</mat-label>
+          <mat-radio-group formControlName="title" required>
+            <mat-radio-button class="padding-right radio-yes" value="Mr">Mr</mat-radio-button>
+            <mat-radio-button class="padding-right"  value="Ms">Ms</mat-radio-button>
+            <mat-radio-button class="padding-right"  value="Mrs">Mrs</mat-radio-button>
+          </mat-radio-group>
           </div>
-          <div class="field-value">
-            <div class="radio">
-              <div class="radio-item">
-                <input type="radio" formControlName="title" id="" value="Mr" />
-                <label for="">Mr</label>
-              </div>
-              <div class="radio-item">
-                <input type="radio" formControlName="title" id="" value="Ms" />
-                <label for="">Ms</label>
-              </div>
-              <div class="radio-item">
-                <input type="radio" formControlName="title" id="" value="Mrs" />
-                <label for="">Mrs</label>
-              </div>
-            </div>
-            <span
-              class="error"
-              *ngIf="
-                patientDemographicForm.controls['title'].invalid &&
-                patientDemographicForm.controls['title'].dirty
-              "
-            >
-              Kindly select the title
-            </span>
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-label">
-            <label for="">First Name</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="fname"  />
-            <span
-              class="error"
-              *ngIf="
-                patientDemographicForm.controls['fname'].invalid &&
-                patientDemographicForm.controls['fname'].dirty
-              "
-            >
-              First Name cannot be empty
-            </span>
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-label">
-            <label for="">Last Name</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="lname" />
+
+          <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-label class="label">First Name</mat-label>
+              <input matInput formControlName="fname"  class="input-field" />
+            </mat-form-field>
+  
             <span
               *ngIf="
-                patientDemographicForm.controls['lname'].invalid &&
-                patientDemographicForm.controls['lname'].dirty
+              patientDemographicForm.controls['fname'].invalid &&
+              patientDemographicForm.controls['fname'].dirty
               "
+              >First Name cannot be empty</span
             >
-              Last Name cannot be empty
-            </span>
           </div>
-        </div>
-        <div class="field">
-          <div class="field-label">
-            <label for="">Date of Birth</label>
-          </div>
-          <div class="field-value">
-            <input type="date" formControlName="dob" (change)="onDobChange()"/>
+
+          <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-label class="label">Last Name</mat-label>
+              <input matInput formControlName="lname"  class="input-field" />
+            </mat-form-field>
+  
             <span
               *ngIf="
-                patientDemographicForm.controls['dob'].invalid &&
-                patientDemographicForm.controls['dob'].dirty
+              patientDemographicForm.controls['lname'].invalid &&
+              patientDemographicForm.controls['lname'].dirty
               "
+              >Last Name cannot be empty</span
             >
-              Please provide your date of birth
-            </span>
           </div>
-        </div>
-        <div class="field">
+       
+
+          <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-label class="label">Date of Birth</mat-label>
+              <input  matInput [matDatepicker]="picker" formControlName="dob" (change)="onDobChange()" class="input-field" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+  
+            <span
+              *ngIf="
+              patientDemographicForm.controls['dob'].invalid &&
+              patientDemographicForm.controls['dob'].dirty
+              "
+              >Please provide your date of birth</span
+            >
+          </div>
+
+        
+
+          
+        <div class="field" style="padding-bottom: 15px;  flex-direction: row;">
           <div class="field-label">
-            <label for="">Age</label>
+            <label style="font-size: 14px;">Age</label>
           </div>
           <div class="field-value" >
             {{age}}
             
           </div>
         </div>
+
+        <div class="field-radio" style="padding-bottom: 15px;">
+          <mat-label class="label" style="margin-right:14px;font-size: 14px;">Gender</mat-label>
+          <mat-radio-group formControlName="gender" required>
+            <mat-radio-button class="padding-right radio-yes" value="Male">M</mat-radio-button>
+            <mat-radio-button class="padding-right"  value="Female">F</mat-radio-button>
+            <mat-radio-button class="padding-right"  value="Other">Other</mat-radio-button>
+          </mat-radio-group>
+          </div>
+
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Gender</label>
-          </div>
-          <div class="field-value">
-            <div class="radio">
-              <div class="radio-item">
-                <input
-                  type="radio"
-                  formControlName="gender"
-                  id=""
-                  value="Male"
-                />
-                <label for="">M</label>
-              </div>
-              <div class="radio-item">
-                <input
-                  type="radio"
-                  formControlName="gender"
-                  id=""
-                  value="Female"
-                />
-                <label for="">F</label>
-              </div>
-              <div class="radio-item">
-                <input
-                  type="radio"
-                  formControlName="gender"
-                  id=""
-                  value="Others"
-                />
-                <label for="">Others</label>
-              </div>
-            </div>
-            <span
-              *ngIf="
-                patientDemographicForm.controls['gender'].invalid &&
-                patientDemographicForm.controls['gender'].dirty
-              "
-            >
-              Gender is a required field
-            </span>
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-label">
-            <label for="">Race</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="race" id="" />
-            <span
-              *ngIf="
-                patientDemographicForm.controls['race'].invalid &&
-                patientDemographicForm.controls['race'].dirty
-              "
-            >
-              Race is a required field
-            </span>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label class="label">Race</mat-label>
+            <input matInput type="text" formControlName="race"  class="input-field" />
+          </mat-form-field>
+
+          <span
+            *ngIf="
+            patientDemographicForm.controls['race'].invalid &&
+            patientDemographicForm.controls['race'].dirty
+            "
+            >Race is required</span
+          >
         </div>
       </div>
+
+
       <div class="dm-info">
        
         <div class="field">
-          <div class="field-label">
-            <label for="">Ethnicity</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="ethnicity" id="" />
-            <span
-              *ngIf="
-                patientDemographicForm.controls['ethnicity'].invalid &&
-                patientDemographicForm.controls['ethnicity'].dirty
-              "
-            >
-              Ethnicity is a required field
-            </span>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label class="label">Ethnicity</mat-label>
+            <input matInput type="text" formControlName="ethnicity"  class="input-field" />
+          </mat-form-field>
+
+          <span
+            *ngIf="
+            patientDemographicForm.controls['ethnicity'].invalid &&
+            patientDemographicForm.controls['ethnicity'].dirty
+            "
+            >Ethnicity is required</span
+          >
         </div>
+
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Languages Known</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="language" id="" />
-            <span
-              *ngIf="
-                patientDemographicForm.controls['language'].invalid &&
-                patientDemographicForm.controls['language'].dirty
-              "
-            >
-              Languages known is a required field
-            </span>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label class="label">Languages Known</mat-label>
+            <input matInput type="text" formControlName="language"  class="input-field" />
+          </mat-form-field>
+
+          <span
+            *ngIf="
+            patientDemographicForm.controls['language'].invalid &&
+            patientDemographicForm.controls['language'].dirty
+            "
+            >Languages known is a required field</span
+          >
         </div>
+
+        
         <div class="field">
-          <div class="field-label">
-            <label for="">Email</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="email" />
-            <span
-              *ngIf="
-                patientDemographicForm.controls['email'].invalid &&
-                patientDemographicForm.controls['email'].dirty
-              "
-            >
-              Please enter your email address e.g.exampleusername@xyzdomain.com
-            </span>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Email</mat-label>
+            <input matInput type="email" required formControlName="email" class="input-field" />
+          </mat-form-field>
+          <span
+            *ngIf="
+            patientDemographicForm.controls['email'].invalid &&
+            patientDemographicForm.controls['email'].dirty
+            "
+            >Please enter your email address
+            </span
+          >
         </div>
+
+       
         <div class="field">
-          <div class="field-label">
-            <label for="">Home Address</label>
-          </div>
-          <div class="field-value">
-            <textarea
-              formControlName="address"
-              id=""
-              cols="20"
-              rows="05"
-            ></textarea>
-            <span
-              *ngIf="
-                patientDemographicForm.controls['address'].invalid &&
-                patientDemographicForm.controls['address'].dirty
-              "
-            >
-              Please provide the postal address
-            </span>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
+            <mat-label class="label">Home Address</mat-label>
+            <textarea matInput rows="5" formControlName="address" class="input-field"></textarea>
+          </mat-form-field>
         </div>
+
+       
         <div class="field">
-          <div class="field-label">
-            <label for="">Contact Number</label>
-          </div>
-          <div class="field-value">
-            <input type="tel" formControlName="contact" />
+
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Contact Number</mat-label>
+            <input matInput type="tel" formControlName="contact" class="input-field" />
+          </mat-form-field>
             <span
               *ngIf="
-                patientDemographicForm.controls['contact'].invalid &&
-                patientDemographicForm.controls['contact'].dirty
+              patientDemographicForm.controls['contact'].invalid &&
+              patientDemographicForm.controls['contact'].dirty
               "
+              >Contact number is required in proper format Ex:+1(333)
+              555-5555</span
             >
-              Contact number is required in proper format Ex:+1(333) 555-5555
-            </span>
-          </div>
         </div>
+
+        
       </div>
     </div>
     <div class="actions">
@@ -253,7 +192,7 @@
         <!-- <button>Cancel</button> -->
     </div>
   </form>
-</div>
+</mat-card>
 
 <br>
 

@@ -4,7 +4,7 @@ import { Employee } from 'src/app/Models/Employee';
 import { PeriodicElement } from 'src/app/patient/Components/procedure/procedure.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+//import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EmployeeSearch } from 'src/app/Models/EmployeeSearch';
 
 
