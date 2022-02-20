@@ -21,6 +21,8 @@ export class EmployeeRegistrationComponent implements OnInit {
       email : new FormControl("",[Validators.required, Validators.email]),
       dob : new FormControl("",Validators.required),
       role : new FormControl("",Validators.required),
+      contact : new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
+
       })
       //specialty : new FormControl("",Validators.required)
    }
