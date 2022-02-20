@@ -78,7 +78,15 @@ th{
 }
 .td-first{
     align-items: center;
-    padding-left: 2%;
+    padding-left: 7%;
+}
+/* .td-first1{
+    align-items: center;
+    padding-left: 7%;
+} */
+.td-first-date{
+    align-items: center;
+    padding-left: 3%;
 }
 .table-head>*, .table-row>*{
     flex-basis: 100%;
@@ -92,4 +100,21 @@ background-color:   #f3f3f3;;
 }
 .dropdown1-style{
     padding-left: 7%;
+}
+.em-header {
+    width: 90%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 6%;
+    margin-top: 2%;
+ 
+}
+.em-header2{
+    width: 92.5%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 3%;
+    
 }

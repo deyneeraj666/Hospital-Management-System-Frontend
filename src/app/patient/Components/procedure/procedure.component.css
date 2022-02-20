@@ -1,6 +1,6 @@
 .mw-50{
-    width: 40% !important; 
-    margin-left: 2.5%  !important;
+    width: 30% !important; 
+    margin-left: 73px  !important;
     margin-right: 2.5%  !important;
  }
  #btnadd{
@@ -13,7 +13,7 @@
  mat-card{
      width: 70% !important;
      display: inline-block; 
-     margin-left: 10% !important; 
+     margin-left: 15% !important; 
      margin-top: 12px !important; 
  }
  
@@ -30,10 +30,7 @@
      justify-content: center;
      
  }
- #appointmentdetails{
-     /* margin-left: 38px !important;*/
-     /* margin-top: 12px !important;  */
- }
+
  table {
      width: 100%;
    }
@@ -45,3 +42,48 @@
        font-weight: bold;
        font-size: 14px;
    }
+   .first-div{
+    border: 1.5px solid rgba(10, 102, 163, 0.897);
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+    width: 70%;
+    margin-left: 15%
+   }
+   .mat_style{
+    width: 160%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 4%;
+   }
+   .div2-style{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 2%;
+    border: 1.5px solid rgba(10, 102, 163, 0.897);
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+    
+   }
+   .em-header1{
+    width: 100%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 100%;
+    padding-left: 3%;
+    }
+    .table-style{
+        margin-top: 2%;
+        width: 90%;
+        margin-left: 5%;
+        
+    }
+    .example-button-row{
+        padding-bottom: 2%;
+        padding-left: 30px;
+    }
+    .dropdown-style{
+        width: 1%;
+    }
+    .mat-form-field{
+        width:20%
+    }

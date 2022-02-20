@@ -1,16 +1,17 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="main-appointment">
-    <span style="  padding-left: 130px; color: rgba(10, 102, 163, 0.897);font-size: large;"><b>Schedule Appointment</b></span>
-            <div>
-                <button mat-raised-button class="btn1"  (click)="click_NewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'white'}:{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}">New Appointment</button>
-                <button mat-raised-button class="btn2" (click)="click_ViewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}:{'background-color':'white'}">View Appointment</button>
-            </div>
+    <mat-card>
+        <span style="padding-left: 104px; color: rgba(10, 102, 163, 0.897);font-size: large;"><b>Schedule Appointment</b></span>
+    </mat-card>
+    <div>
+        <button mat-raised-button class="btn1"  (click)="click_NewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'white'}:{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}">New Appointment</button>
+        <button mat-raised-button class="btn2" (click)="click_ViewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}:{'background-color':'white'}">View Appointment</button>
+    </div>
             
     <div class="new_appointment" *ngIf="isdisablenewappointment== true;  else viewappointment">
         <form [formGroup]="appointmentForm">
-            <mat-card style="margin-top: 2%;margin-bottom: 2%;">
-                <mat-card-content>
-                    <div>
+            <div style="margin-top: 2%;margin-bottom: 2%;">
+                <div>
                     <mat-form-field style="width:90%;padding-left: 9%;">
                         <!-- <mat-select class="td_newap" formControlName="appointmentType" placeholder="meeting Title" name="appointmentType">
                                 <mat-option value="App1">App1</mat-option>
@@ -18,11 +19,11 @@
                                 <mat-option value="App3">App3</mat-option>
                         </mat-select> -->
                         <mat-label>Meeting Title</mat-label>
-                        <mat-select formControlName="appointmentType" name="appointmentType">
-                            <mat-option value="App1">App1</mat-option>
-                            <mat-option value="App2">App2</mat-option>
-                            <mat-option value="App3">App3</mat-option>
-                        </mat-select>                        
+                        <select matNativeControl formControlName="appointmentType" name="appointmentType">
+                            <option value="App1">App1</option>
+                            <option value="App2">App2</option>
+                            <option value="App3">App3</option>
+                        </select>                        
                     </mat-form-field>
                     <div>
                         <span class="error"
@@ -62,11 +63,11 @@
                 <div>
                     <mat-form-field style="width:90%;padding-left: 9%;">
                         <mat-label>Physician</mat-label>
-                        <mat-select formControlName="Physician" name="Physician">
-                            <mat-option value="Dr. Joe">Dr. Joe</mat-option>
-                            <mat-option value="Dr. Lee">Dr. Lee</mat-option>
-                            <mat-option value="Dr. Clark">Dr. Clark</mat-option>
-                        </mat-select>
+                        <select matNativeControl formControlName="Physician" name="Physician">
+                            <option value="Dr. Joe">Dr. Joe</option>
+                            <option value="Dr. Lee">Dr. Lee</option>
+                            <option value="Dr. Clark">Dr. Clark</option>
+                        </select>
                     </mat-form-field>
                     <div>
                         <span class="error"
@@ -78,11 +79,11 @@
                 <div>                    
                     <mat-form-field style="width:90%;padding-left: 9%;">
                         <mat-label>Slot</mat-label>
-                        <mat-select formControlName="slot" name="slot">
-                            <mat-option value="9-10AM">9-10AM</mat-option>
-                            <mat-option value="10-11AM">10-11AM</mat-option>
-                            <mat-option value="2-3PM">2-3PM</mat-option>
-                        </mat-select>
+                        <select matNativeControl formControlName="slot" name="slot">
+                            <option value="9-10AM">9-10AM</option>
+                            <option value="10-11AM">10-11AM</option>
+                            <option value="2-3PM">2-3PM</option>
+                        </select>
                     </mat-form-field>
                     <div>
                         <span class="error"
@@ -107,13 +108,12 @@
                                     *Date field is required</span>
                     </div>
                 </div>
-                </mat-card-content>
-            </mat-card>
-            <div id="btn">
-                <button mat-raised-button color="primary" class="td_newap" [disabled]="appointmentForm.invalid"
-                    style="background-color:green ;color:white; margin-left: 122px; width: auto; "
-                    (click)="onSubmit()">Schedule Appointment</button>
-            </div>
+                <div id="btn">
+                    <button mat-raised-button color="primary" class="td_newap" [disabled]="appointmentForm.invalid"
+                        style="background-color:green ;color:white; margin-left: 122px; width: auto; "
+                        (click)="onSubmit()">Schedule Appointment</button>
+                </div>
+        </div> 
         </form>
     </div>
     <ng-template class="view_appointment" #viewappointment>

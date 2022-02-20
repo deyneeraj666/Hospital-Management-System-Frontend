@@ -43,7 +43,7 @@ export class ProcedureComponent  implements OnInit {
   }
   btncancel_click()
   {
-    this.procedure.reset();
+    this.ProcedureGroup.reset();
   }
  
   // get procedureValue() {

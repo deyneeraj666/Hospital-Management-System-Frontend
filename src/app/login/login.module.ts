@@ -20,6 +20,8 @@ import { ToastrModule } from "ngx-toastr";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { InterceptorService } from "../Shared/interceptor.service";
 import { ConfirmEqualValidatorDirective } from "./LoginComponents/register/confirmed-validator.directive";
+import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker";
+import { MatRadioModule } from "@angular/material/radio";
 
 
 
@@ -49,6 +51,8 @@ import { ConfirmEqualValidatorDirective } from "./LoginComponents/register/confi
     ToastrModule.forRoot(
       {timeOut:2000}
     ),
+    MatDatepickerModule,
+    MatRadioModule
     
   ],
   

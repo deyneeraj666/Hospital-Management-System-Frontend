@@ -1,8 +1,9 @@
 .welcome{
-    margin-left: 37%;
-    font-size: xx-large; 
+    margin-left: 30%;
+    /* font-size: xx-large;  */
     font-family: fantasy;
     color: rgba(10, 102, 163, 0.897);
+    width: 40%;
 }
 .form-sign{
     margin-left: 28%;
@@ -14,14 +15,14 @@
     
     /* border: 2px solid white; */
     font-family: sans-serif;
-    width: 50%;
+    width: 40%;
     
     /* padding-bottom: 1%;
     background-color: lightblue; */
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
     border-color:rgba(10, 102, 163, 0.897) ;
     padding-right: 7%;
-    margin-left: 25%;
+    margin-left: 30%;
 }
 .form-sign-div2{
     margin-left: 40%;
@@ -46,4 +47,10 @@ th{
 }
 .td2-align{
     padding-bottom: 5%;
+}
+mat-form-field{
+    width: 90%;
+}
+.form-group{
+    margin-top: 2%;
 }
