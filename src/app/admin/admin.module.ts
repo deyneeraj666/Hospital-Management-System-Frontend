@@ -15,6 +15,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { InterceptorService } from "../Shared/interceptor.service";
+import { MatCardModule } from "@angular/material/card";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -37,7 +41,11 @@ import { InterceptorService } from "../Shared/interceptor.service";
     MatInputModule,
     MatTabsModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatDatepickerModule
   ],
  
   exports:[

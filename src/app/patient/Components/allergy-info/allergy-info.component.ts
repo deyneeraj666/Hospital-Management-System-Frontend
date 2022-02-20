@@ -42,9 +42,10 @@ export class AllergyInfoComponent implements OnInit {
   });
 
   onSubmit() {
-    this.allergiesArray.push(this.patientAllergyForm.value);
-    //console.log(this.allergiesArray);
-
+    if(this.patientAllergyForm.get('knownAllergy')?.value=='Yes')
+    {
+      this.allergiesArray.push(this.patientAllergyForm.value);
+    }
     let result = this.pmsService.saveAllergyInfo(this.patientAllergyForm.value);
     if (result) {
       // alert('Form is successfully submitted');

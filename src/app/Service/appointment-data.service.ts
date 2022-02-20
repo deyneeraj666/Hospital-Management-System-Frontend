@@ -28,6 +28,10 @@ export class AppointmentDataService {
         })
        );
   }
+  public UpdateAppointment(objAppointment:any)
+  {
+    return  this.httpobj.put(this.url+"/"+Number(objAppointment.Id),objAppointment);
+  }
   public GetAppointmentByName(name :string)
   {
     return this.httpobj.get<any[]>(this.url).pipe(

@@ -30,8 +30,30 @@
           cellpadding="5"
         >
           <tbody>
+            <tr style="display:none">
+              <td class="e-textlabel">Id</td>
+              <td colspan="1">
+                <input
+                id="Id"
+                class="e-field e-input"
+                type="text"
+                value="{{ data.Id }}"
+                name="Id"
+                style="width: 100%"
+              /></td>
+            </tr>
             <tr>
-              <td colspan="1" style="visibility:hidden;">{{ data.Id }}</td>
+              <td class="e-textlabel">Patient Name</td>
+              <td colspan="4">
+                <input
+                  id="PatientName"
+                  class="e-field e-input"
+                  type="text"
+                  value="{{ data.PatientName }}"
+                  name="PatientName"
+                  style="width: 100%"
+                />
+              </td>
             </tr>
             <tr>
               <td class="e-textlabel">Meeting Title</td>
@@ -50,12 +72,12 @@
               <td class="e-textlabel">Status</td>
               <td colspan="4">
                 <ejs-dropdownlist
-                  id="EventType"
+                  id="Status"
                   class="e-field"
-                  data-name="EventType"
+                  data-name="Status"
                   placeholder="Choose Status"
                   [dataSource]="statusData"
-                  value="{{ data.EventType }}"
+                  value="{{ data.Status }}"
                 >
                 </ejs-dropdownlist>
               </td>

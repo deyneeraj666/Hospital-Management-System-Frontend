@@ -65,7 +65,7 @@ export class ChangePasswordComponent
     }
   }
 
-  btnSubmitPassowrd_click()
+    btnSubmitPassowrd_click()
   {
       let strData:string='Old Password :'+ this.oldPassword.value +'New Password :'+ this.confirmPassword.value;
       var obj:any=
@@ -74,20 +74,29 @@ export class ChangePasswordComponent
         "Password": this.oldPassword.value,
         "NewPassword":this.confirmPassword.value
       }
-      alert(1)
-      this.user.change_password_service(obj).subscribe((res:any)=>
-      {
-        alert(2)
-        this.toastr.success(res) 
-        console.log(res)
+    
+     
+        this.user.change_password_service(obj).suscribe({
+          next: (v) => {
+                        alert(1)
+                        console.log(v); 
+                        this.toastr.success(v);
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('role');
+                        this.router.navigateByUrl('login') 
+                        alert(4) 
+                      },
+          error: (e) =>
+          {
+            alert(2)
+             this.toastr.error(e)
+          } ,
+          complete: () => {console.info('complete');alert(3)} 
+      });    
+
+      
+      
        
-         
-          localStorage.removeItem('token');
-          localStorage.removeItem('role') 
-          this.router.navigateByUrl('login')
-      },(err:any)=>{
-        console.log("error");
-      }, () => { console.log("this is the finally block")});     
   }
 
   get passwordValue()

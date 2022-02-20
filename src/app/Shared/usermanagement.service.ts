@@ -31,9 +31,9 @@ export class UsermanagementService
     return this.http.post(this.Url_register,obj);
   }
 
-  change_password_service(obj:any):Observable<any> 
+   change_password_service(obj:any):Observable<any> 
   {
     
-    return this.http.post(this.Url_pwd_rest,obj);
+     return  this.http.post(this.Url_pwd_rest,obj);
   }
 }
