@@ -57,14 +57,14 @@ export class ProcedureComponent  implements OnInit {
 }
 // const ELEMENT_DATA: PeriodicElement[] =[];
 const ELEMENT_DATA: PeriodicElement[]= [
-  {code: 1, name: 'Hydrogen', date:'23-01-2022'},
-  {code: 2, name: 'Helium', date: '13-02-2022' },
-  {code: 3, name: 'Lithium', date:'16-04-2022'}
+  {code: 1, name: 'Hydrogen', date:new Date()},
+  {code: 2, name: 'Helium', date: new Date() },
+  {code: 3, name: 'Lithium', date:new Date()}
  
  ];
 export interface PeriodicElement {
   name: string;
   code: number;
-  date: string;
+  date: Date;
 }
 

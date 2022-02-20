@@ -1,9 +1,66 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="border-vitals">
-    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 3%; padding-left: 46%;"><b><u>Medications Details</u></b></label>
+    <div [formGroup]="patientMedicationTable" class="medication-table"  style="margin-left: 20%;background-color: white;" >
+        <mat-card class="border-style">
+            <label style="color: rgba(10, 102, 163, 0.897); padding-left: 37%;margin-bottom: 5%;font-size: large;"><b>Add Medications Details</b></label>
+            <hr style="line-height:10%;">
+            <mat-card-content>
+                <div>
+                <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                    <mat-label>Drug Name</mat-label>
+                    <mat-select formControlName="drugname_data" [(ngModel)]="drug_name" id="name">
+                        <!-- <mat-option ></mat-option> -->
+                        <mat-option value="100.1">100.1</mat-option>
+                        <mat-option value="10.6">10.6</mat-option>
+                    </mat-select>
+                    
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="input1-class">
+                    <mat-label>Frequency</mat-label>
+                    <input matInput type="text" formControlName="frequency_data" [(ngModel)]="frequency">
+                </mat-form-field>   
+                </div>
+                <div>
+                    <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                        <mat-label>Strength</mat-label>
+                        <mat-select formControlName="strength_data" [(ngModel)]="strength">
+                            <!-- <mat-option ></mat-option> -->
+                            <mat-option value="100.1">100.1</mat-option>
+                            <mat-option value="10.6">10.6</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
+                        <mat-label>Form</mat-label>
+                        <mat-select formControlName="form_data" [(ngModel)]="form">
+                            <!-- <mat-option ></mat-option> -->
+                            <mat-option value="Diabetes">Diabetes</mat-option>
+                            <mat-option value="Allergy">Allergy</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput type="text" formControlName="quantity_data" [(ngModel)]="quantity">
+                    </mat-form-field>
+                    <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
+                        <mat-label>Notes</mat-label>
+                        <textarea matInput formControlName="notes_data" [(ngModel)]="notes"></textarea>
+                    </mat-form-field>
+                </div>
+                <div style="padding-top: 5%;">
+                    <button [disabled]="patientMedicationTable.invalid" (click)="add_medications()" style="background-color:green ;width:10%;color:white;margin-bottom: 7%;margin-left: 35%;" mat-raised-button>Add</button>
+                    <button (click)="remove_medications()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;margin-left: 7%;" mat-raised-button>Reset</button>
+                   
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <br>   
     <div style="margin-left: 20%;margin-top: 40px;" >
         
             <table class="table-medi" style="width: 80%;">
+                <tr><td colspan="8" style="padding-bottom: 4%;padding-top: 3%;"><label style="color: rgba(10, 102, 163, 0.897);padding-left: 38%;font-size: large;"><b><u>Medications Details</u></b></label></td></tr>
                 <tr class="table-head">
                     <th>Drug Name</th>
                     <th>Strength</th>
@@ -32,112 +89,6 @@
             </table>
     </div>
     <br/><br/>
-    <div [formGroup]="patientMedicationTable" class="medication-table"  style="margin-left: 20%;background-color: white;" >
-        <table class="table-class">
-            <tr>
-                <th colspan="4" style="padding-right:82%;">
-                    Add Medications
-                </th>
-            </tr>
-            <tr>
-                <td class="td-second" style="padding-left: 9%;">
-                    Drug Name
-                </td>
-                <td class="td-second">
-                    <select formControlName="drugname_data" style="width:56%;margin-left: 5%;" [(ngModel)]="drug_name" id="name">
-                        <option></option>
-                        <option>paracetamal</option>
-                        <option>Dolo</option>
-                    </select>
-                    
-                </td>
-                <td class="td-second" style="padding-left: 5%;">
-                    Frequency
-                </td>
-                <td class="td-second" style="padding-left: 2%;">
-                    <input formControlName="frequency_data" type="text" style="width: 54%;" [(ngModel)]="frequency">
-                    
-                </td>
-                
-            </tr>
-            <tr>
-                
-                <td class="td-second" style="padding-left: 9%;">
-                    Strength
-                </td>
-                <td class="td-second">
-                    <select formControlName="strength_data" style="width: 56%;margin-left: 5%;height: 100%;" [(ngModel)]="strength">
-                        <option></option>
-                        <option>500</option>
-                        <option>650</option>
-                    </select>
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['strength'].invalid &&
-                        patientMedicationTable.controls['strength'].dirty">
-                    Kindly Enter the strength
-                    </span> -->
-                </td>
-                <td class="td-second" style="padding-left: 5%;">
-                    Form
-                </td>
-                <td class="td-second" style="padding-left: 2%;">
-                    <select style="width: 54%;height: 100%;" formControlName="form_data" [(ngModel)]="form">
-                        <option></option>
-                        <option>Medicine</option>
-                        <option>X-Ray</option>
-                    </select>
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['form_data'].invalid &&
-                        patientMedicationTable.controls['form_data'].dirty">
-                    Kindly Select the form
-                    </span> -->
-                </td>
-                
-            </tr>
-            <tr>
-                <td class="td-second" style="padding-left: 9%;">
-                    Quantity
-                </td>
-                <td class="td-second">
-                    <input formControlName="quantity_data" type="text" style="width: 56%;margin-left: 5%;" [(ngModel)]="quantity">
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['quantity'].invalid &&
-                        patientMedicationTable.controls['quantity'].dirty">
-                    Kindly Enter the quantity
-                    </span> -->
-                </td>
-                <td class="td-second" style="padding-left: 5%;">
-                    Notes
-                </td>
-                <td class="td-second" style="padding-left: 2%;">
-                    <textarea formControlName="notes_data" style="width: 55%;height: 100%;" [(ngModel)]="notes"></textarea>
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['notes'].invalid &&
-                        patientMedicationTable.controls['notes'].dirty">
-                    Kindly Enter the notes
-                    </span> -->
-                </td>
-                
-            </tr>
-            <tr>
-                <td class="td-second" colspan="2" style="padding-left: 38%;padding-top: 4.2%;">
-                    <button [disabled]="patientMedicationTable.invalid" mat-raised-button style="background-color: green;color: white;margin-bottom: 25%;width: 80%;" (click)="add_medications()">Add</button>
-                </td>
-                <td class="td-second" colspan="2" style="padding-right: 10%;padding-top: 5%;">
-                    <button mat-raised-button style="background-color:rgba(10, 102, 163, 0.897);color: white;margin-bottom: 10%;" (click)="remove_medications()">Cancel</button>
-                </td>
-            </tr>
-
-        </table>
-    </div>
 </div>
 
 

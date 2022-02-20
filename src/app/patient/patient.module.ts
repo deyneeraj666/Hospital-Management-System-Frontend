@@ -26,7 +26,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 
 @NgModule({
@@ -59,7 +60,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatCardModule,
     MatPaginatorModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatFormFieldModule ,
+    MatSelectModule
   ],
   exports:[
     PatientHeaderComponent,

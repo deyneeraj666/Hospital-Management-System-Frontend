@@ -1,65 +1,59 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="border-vitals">
-    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 5%; padding-left: 46%;"><b><u>Diagnosis Details</u></b></label>
-    <div style="margin-left: 20%;margin-top: 40px;">
-        
-            <table class="table-first" style="width: 80%;">
-                <tr class="table-head">
-                    <th>Diagnosis Code</th>
-                    <th>Diagnosis Name</th>
-                    <th>Date</th>
-                </tr>
-                <tr class="table-row" *ngFor="let selectedData of data;let i=index">
-                    <td class="td-first">{{selectedData.dcode}}</td>
-                    <td class="td-first">{{selectedData.dname}}</td>
-                    <td class="td-first-date">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
-                    <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
-                </tr>
-                <tr style="background-color:   #f3f3f3;" *ngIf="data.length<=0">
-                    <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
-                </tr>
-            </table>
-    </div>
-    <br/><br/>
+    <!-- <label style="color: rgba(10, 102, 163, 0.897);margin-top: 5%; padding-left: 46%;"><b><u>Diagnosis Details</u></b></label> -->
     <div [formGroup]="patientDiagnosisTable" class="diag-table" >
-        <table class="table-class">
-            <tr>
-                <th colspan="4" style="padding-right:83%;">
-                    Add Diagnosis
-                </th>
+        <label style="color: rgba(10, 102, 163, 0.897);margin-top: 3%; padding-left: 40%;font-size: large;"><b>Add Diagnosis Details</b></label>
+        <mat-card>
+            <mat-card-content>
+               
+                <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                    <mat-label>Diagnosis Code</mat-label>
+                    <mat-select formControlName="diag_code" [(ngModel)]="dcode">
+                        <!-- <mat-option ></mat-option> -->
+                        <mat-option value="100.1">100.1</mat-option>
+                        <mat-option value="10.6">10.6</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
+                    <mat-label>Diagnosis Name</mat-label>
+                    <mat-select formControlName="diag_name" [(ngModel)]="dname">
+                        <!-- <mat-option ></mat-option> -->
+                        <mat-option value="Diabetes">Diabetes</mat-option>
+                        <mat-option value="Allergy">Allergy</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div style="padding-top: 5%;">
+                    <button [disabled]="patientDiagnosisTable.invalid" (click)="btn_Add()" style="background-color:green ;width:10%;color:white;margin-bottom: 7%;margin-left: 35%;" mat-raised-button>Add</button>
+                    <button (click)="btn_Cancel()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;margin-left: 7%;" mat-raised-button>Cancel</button>
+                   
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <br>
+    <br>
+    <div style="margin-left: 20%;margin-top: 5px;">
+        <!-- <label style="color: rgba(10, 102, 163, 0.897);padding-left: 33.5%;margin-bottom: 2%;font-size: large;"><b>Diagnosis Details</b></label> -->
+        <table class="table-first" style="width: 80%;">
+            <tr ><td colspan="4" style="color: rgba(10, 102, 163, 0.897);margin-bottom: 2%;font-size: large;padding-bottom: 4%;padding-top: 3%;"><b style="margin-left: 40%;"><u>Diagnosis Details</u></b></td></tr>
+            <tr class="table-head">
+                <th>Diagnosis Code</th>
+                <th>Diagnosis Name</th>
+                <th>Date</th>
             </tr>
-            <tr>
-                <td class="td-second" style="padding-left: 12%;">
-                    Diagnosis Code
-                </td>
-                <td class="td-second">
-                    <select formControlName="diag_code" [(ngModel)]="dcode">
-                        <option></option>
-                        <option>250.0</option>
-                        <option>530.81</option>
-                    </select>
-                </td>
-                <td class="td-second" style="padding-left: 12%;">
-                    Diagnosis Name
-                </td>
-                <td class="td-second">
-                    <select formControlName="diag_name" [(ngModel)]="dname">
-                        <option></option>
-                        <option>diabetes</option>
-                        <option>GERD</option>
-                    </select>
-                </td>
+            <tr class="table-row" *ngFor="let selectedData of data;let i=index">
+                <td class="td-first">{{selectedData.dcode}}</td>
+                <td class="td-first">{{selectedData.dname}}</td>
+                <td class="td-first-date">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
+                <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
             </tr>
-            <tr>
-                <td class="td-second" colspan="2" style="padding-left: 38%;padding-top: 7%;">
-                    <button [disabled]="patientDiagnosisTable.invalid" (click)="btn_Add()" style="background-color:green ;width:105%;color:white;margin-bottom: 40%;" mat-raised-button>Add</button>
-                </td>
-                <td class="td-second" colspan="2"  style="padding-left: 2%;padding-top: 6.5%;">
-                    <button (click)="btn_Cancel()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;" mat-raised-button>Cancel</button>
-                </td>
+            <tr style="background-color:   #f3f3f3;" *ngIf="data.length<=0">
+                <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
             </tr>
         </table>
-    </div>
+    
+</div>
+
 </div>
 
 
