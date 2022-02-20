@@ -161,6 +161,13 @@
             <mat-label class="label">Home Address</mat-label>
             <textarea matInput rows="5" formControlName="address" class="input-field"></textarea>
           </mat-form-field>
+          <span
+              *ngIf="
+              patientDemographicForm.controls['address'].invalid &&
+              patientDemographicForm.controls['address'].dirty
+              "
+              >Address should be minimum 8 characters</span
+            >
         </div>
 
        
@@ -175,8 +182,7 @@
               patientDemographicForm.controls['contact'].invalid &&
               patientDemographicForm.controls['contact'].dirty
               "
-              >Contact number is required in proper format Ex:+1(333)
-              555-5555</span
+              >Contact number is required</span
             >
         </div>
 
