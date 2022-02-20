@@ -24,7 +24,7 @@ export class EmployeeRegistrationComponent implements OnInit {
       contact : new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
       role : new FormControl("",Validators.required),
       })
-      //specialty : new FormControl("",Validators.required)
+     
    }
 
   
@@ -40,21 +40,21 @@ export class EmployeeRegistrationComponent implements OnInit {
       if(this.empRegistrationForm.valid)
       {
         var obj:any = {
-          "firstName": this.empRegistrationForm.controls.fname.value,
-          "lastName": this.empRegistrationForm.controls.lname.value,
-          "email": this.empRegistrationForm.controls.email.value,
-          "dob": this.empRegistrationForm.controls.dob.value,
-          "contact": this.empRegistrationForm.controls.contact.value,
-          "password": "Password@123",
-          "r_id": this.selectedLevel,
-          "tblRoles": null
+          "FirstName": this.empRegistrationForm.controls.fname.value,
+          "LastName": this.empRegistrationForm.controls.lname.value,
+          "Email": this.empRegistrationForm.controls.email.value,
+          "Dob": this.empRegistrationForm.controls.dob.value,
+          "PhoneNumber": this.empRegistrationForm.controls.contact.value,
+          "Password": "Password@123",
+          "Role": this.empRegistrationForm.controls.role.value
            }
+
         this.user.employee_register_service(obj).subscribe((res:any)=>{
 
           this.toastr.success("Employee Added!");
           this.empRegistrationForm.reset();
         },(err:any)=>{
-          this.toastr.success("Error occured on adding employee!");
+          this.toastr.error("Email-Id Already Exists!");
         })
       }
       else{

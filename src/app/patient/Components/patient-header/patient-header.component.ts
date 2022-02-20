@@ -1,3 +1,4 @@
+import { AuthService } from "./../../../Shared/auth.service";
 import { Router } from "@angular/router";
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 
@@ -7,9 +8,12 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
   templateUrl: './patient-header.component.html',
   styleUrls: ['./patient-header.component.css']
 })
-export class PatientHeaderComponent implements OnInit {
+export class PatientHeaderComponent implements OnInit 
+{
   @Input() option:number =1;
-  constructor(private router: Router) { }
+  role:any = localStorage.getItem('role');
+  constructor(private router: Router,public authService:AuthService) { 
+  }
 
   
 
@@ -41,8 +45,8 @@ export class PatientHeaderComponent implements OnInit {
     this.router.navigateByUrl('login/patient/ChangePassword');
   }
   click_signout(){
-    localStorage.removeItem('Token');
-    localStorage.removeItem('Role');
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('login');
   }
 

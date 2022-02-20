@@ -24,7 +24,8 @@ const routes: Routes = [
     {path:"login/patient/procedure", component:ProcedureComponent,canActivate:[PatientGuard]},
     {path:"login/patient/appointment", component:AppointmentComponent,canActivate:[PatientGuard]},
     {path:"login/patient/ChangePassword", component:ChangePasswordComponent,canActivate:[PatientGuard]},
-    {path:"login", component:LoginScreenComponent}
+    {path:"login", component:LoginScreenComponent},
+    {path:'**',redirectTo:'LoginScreenComponent'}
 ];
 
 @NgModule({

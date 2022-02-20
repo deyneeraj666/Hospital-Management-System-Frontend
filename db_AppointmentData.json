@@ -1,0 +1,28 @@
+{
+  "AppointmentData": [
+    {
+      "Id": "6",
+      "Subject": "Robert",
+      "EventType": "Requested",
+      "StartTime": "2022-02-08T05:00:00.000Z",
+      "EndTime": "2022-02-08T05:30:00.000Z",
+      "Description": "Testing-Demo1"
+    },
+    {
+      "Id": "7",
+      "Subject": "John",
+      "EventType": "New",
+      "StartTime": "2022-02-08T06:30:00.000Z",
+      "EndTime": "2022-02-08T07:00:00.000Z",
+      "Description": "Not Well"
+    },
+    {
+      "Id": "8",
+      "Subject": "Ram",
+      "EventType": "Requested",
+      "StartTime": "2022-02-09T06:30:00.000Z",
+      "EndTime": "2022-02-09T07:00:00.000Z",
+      "Description": "Testing"
+    }
+  ]
+}

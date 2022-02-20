@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class UsermanagementService 
 {
-
-  readonly Url_login = 'https://localhost:44358/api/Token';
-  readonly Url_register = 'https://localhost:44358/api/UserRegistration';
+  readonly Url_register = 'http://localhost:5517/api/Account/signup';
+  readonly Url_login = 'http://localhost:5517/api/Account/login';
+  readonly Url_pwd_rest ='http://localhost:5517/api/Account/ChangePassword';
 
 
   constructor(private http:HttpClient)
@@ -17,9 +17,9 @@ export class UsermanagementService
 
   }
 
-  login_service(email:string ,password:string)
+   login_service(email:string ,password:string):Observable<any> 
   {
-    return this.http.post(this.Url_login,{"Email":email , "Password":password});
+    return  this.http.post(this.Url_login,{"Email":email , "Password":password});
   }
 
   register_service(obj:any):Observable<any> 
@@ -29,5 +29,11 @@ export class UsermanagementService
   employee_register_service(obj:any)
   {
     return this.http.post(this.Url_register,obj);
+  }
+
+  change_password_service(obj:any):Observable<any> 
+  {
+    
+    return this.http.post(this.Url_pwd_rest,obj);
   }
 }

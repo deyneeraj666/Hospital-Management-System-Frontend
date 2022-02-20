@@ -48,7 +48,7 @@ import { UsermanagementService } from "../Shared/usermanagement.service";
     
     SharedModule,
     ToastrModule.forRoot(
-      {timeOut:2000}
+      {timeOut:3000}
     ),
     
   ],

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Shared/auth.service';
 
 @Component({
   selector: 'app-admin-header',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AdminHeaderComponent implements OnInit {
   @Input() option:number=1;
-  constructor(private router: Router) {
+  role:any = localStorage.getItem('role');
+  constructor(private router: Router,public authService:AuthService) {
    
    }
 
@@ -32,8 +34,8 @@ export class AdminHeaderComponent implements OnInit {
     this.router.navigateByUrl('admin/ChangePassword');
   }
   click_signout(){
-    localStorage.removeItem('Token');
-    localStorage.removeItem('Role');
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('login');
   }
   

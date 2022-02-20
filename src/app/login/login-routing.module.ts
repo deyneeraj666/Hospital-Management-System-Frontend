@@ -14,13 +14,13 @@ import { RegisterComponent } from './LoginComponents/register/register.component
 const routes: Routes = [
   { path: '', component: LoginScreenComponent},
   { path: 'patient-register', component: RegisterComponent},
-  { path: 'login/admin', loadChildren:()=>import('./../admin/admin.module').then(m=>m.AdminModule),canActivate:[AdminGuard]},
-  { path: 'login/nurse', loadChildren:()=>import('./../nurse/nurse.module').then(m=>m.NurseModule),canActivate:[NurseGuard]},
-  { path: 'login/physician', loadChildren:()=>import('./../physician/physician.module').then(m=>m.PhysicianModule),canActivate:[PhysicianGuard]},
-  { path: 'login/patient', loadChildren:()=>import('./../patient/patient.module').then(m=>m.PatientModule),canActivate:[PatientGuard]},
+  { path: 'admin/employeeregister', loadChildren:()=>import('./../admin/admin.module').then(m=>m.AdminModule),canActivate:[AdminGuard]},
+  { path: 'nurse/appointment', loadChildren:()=>import('./../nurse/nurse.module').then(m=>m.NurseModule),canActivate:[NurseGuard]},
+  { path: 'login/physician/appointment', loadChildren:()=>import('./../physician/physician.module').then(m=>m.PhysicianModule),canActivate:[PhysicianGuard]},
+  { path: 'login/patient/demographic', loadChildren:()=>import('./../patient/patient.module').then(m=>m.PatientModule),canActivate:[PatientGuard]},
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'login/change-password', component: ChangePasswordComponent},
-  
+  {path:'**',redirectTo:'LoginScreenComponent'}
   
 ];
 

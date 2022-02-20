@@ -15,6 +15,7 @@ const routes: Routes = [
   {path:'admin/employeeregister',component:EmployeeRegistrationComponent,canActivate:[AdminGuard]},
   {path:'admin/patientlist',component:PatientListComponent,canActivate:[AdminGuard]},
   {path:'admin/ChangePassword',component:ChangePasswordComponent,canActivate:[AdminGuard]},
+  {path:'**',redirectTo:'LoginScreenComponent'}
   
 ];
 

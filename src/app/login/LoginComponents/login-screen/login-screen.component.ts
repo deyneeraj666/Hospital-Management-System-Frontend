@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
+import { async } from "rxjs";
+
 
 @Component({
   selector: 'app-login-screen',
@@ -19,22 +21,41 @@ export class LoginScreenComponent implements OnInit
   {
 
   }
-  onSubmit() 
+    onSubmit() 
   {
     this.submitted = true;
 
 
-    this.user.login_service(this.loginform.controls.email.value,this.loginform.controls.password.value)
-    .subscribe((res:any)=>{
-      // console.log(res);
-      localStorage.setItem('Token',res.items.token)
-      localStorage.setItem('Role',res.items.role)
-      console.log('login/'+res.items.role)
-      this.router.navigateByUrl('login/'+res.items.role);
-
-    },(err:any)=>{
-      this.toastr.error("Email Id or Password is Incorrect!!");
+    this.user.login_service(this.loginform.controls.email.value, this.loginform.controls.password.value)
+    .subscribe( async (res:any)=>
+    {
+      localStorage.setItem('token', res.items.token)
+      localStorage.setItem('role',res.items.role  )
+      setTimeout(()=>
+      {
+              if(res.items.role == "patient")
+              {
+                 this.router.navigateByUrl('login/'+res.items.role+"/demographic");
+              }
+              else if(res.items.role == "nurse" ||res.items.role == "physician")
+              {
+                this.router.navigateByUrl(res.items.role+"/appointment");
+              }
+              else
+              {
+                this.router.navigateByUrl(res.items.role+"/employeeregister");
+              }
+             this.toastr.success("Welcome " +res.items.role);
+      },1000);
+     
+     
+   
+    },(err:any)=>
+      {
+      this.toastr.error(err.error);
+      this.loginform.reset();
     });
+    
     
 
     
@@ -56,6 +77,7 @@ export class LoginScreenComponent implements OnInit
       email: new FormControl('',[Validators.email,Validators.required]),
       password:new FormControl('',[Validators.required,Validators.minLength(8)])
     });
+    
   }
 
 }

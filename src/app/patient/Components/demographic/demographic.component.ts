@@ -27,9 +27,8 @@ export class DemographicComponent implements OnInit {
     let now: any = new Date();
     let userDob: any = new Date(this.patientDemographicForm.get('dob')?.value);
     let ageInMilliseconds: any = Math.abs(now - userDob);
-    this.age = Math.floor(ageInMilliseconds / 1000 / 60 / 60 / 24 / 365); // convert to years
+    this.age = Math.floor(ageInMilliseconds / 1000 / 60 / 60 / 24 / 365); 
 
-    console.log(this.patientDemographicForm);
     
   }
 

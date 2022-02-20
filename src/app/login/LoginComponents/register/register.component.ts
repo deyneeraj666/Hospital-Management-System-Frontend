@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsermanagementService } from 'src/app/Shared/usermanagement.service';
 //import { ConfirmedValidator } from './confirmed.validator';
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit
  
  patientRegisterForm:any = FormGroup;
 
-  constructor(private toastr:ToastrService,private user:UsermanagementService ) { 
+  constructor(private toastr:ToastrService,private user:UsermanagementService,private router:Router) { 
     this.patientRegisterForm = new FormGroup({
       title : new FormControl("",Validators.required),
       fname : new FormControl("",[Validators.required,Validators.minLength(2)]),
@@ -39,32 +40,30 @@ export class RegisterComponent implements OnInit
     if(this.patientRegisterForm.valid)
     {
       var obj:any = {
-        "firstName": this.patientRegisterForm.controls.fname.value,
-        "lastName": this.patientRegisterForm.controls.lname.value,
-        "email": this.patientRegisterForm.controls.email.value,
-        "dob": this.patientRegisterForm.controls.dateOfBirth.value,
-        "contact": this.patientRegisterForm.controls.contact.value,
-        "password": this.patientRegisterForm.controls.password.value,
-        "r_id": 1,
-        "tblRoles": null
+        "FirstName": this.patientRegisterForm.controls.fname.value,
+        "LastName": this.patientRegisterForm.controls.lname.value,
+        "Email": this.patientRegisterForm.controls.email.value,
+        "Dob": this.patientRegisterForm.controls.dateOfBirth.value,
+        "PhoneNumber": this.patientRegisterForm.controls.contact.value,
+        "Password": this.patientRegisterForm.controls.password.value,
+        "Role":"Patient"
          }
       this.user.register_service(obj).subscribe((res:any)=>{
         console.log(res)
+        console.log("Success")
         this.toastr.success("Registration Successfully!!");
+      },(err:any)=>{
+        this.router.navigateByUrl('patient-register');
+        this.toastr.error("Email-Id already Exists!");
+
       })
-      this.patientRegisterForm.reset();
-    }
-    else
-    {
-      this.toastr.error("Form input is not valid!!!");
-     
       this.patientRegisterForm.reset();
     }
   }
 
   btn_reset(){
     this.patientRegisterForm.reset();
-    this.toastr.warning("Page Reset!!!");
+    this.toastr.warning("Form Reset!!!");
 
   }
 

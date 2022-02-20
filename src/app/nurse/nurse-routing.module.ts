@@ -13,6 +13,7 @@ const routes: Routes = [
   {path:'nurse/notes',component:NotesComponent,canActivate:[NurseGuard]},
   {path:'nurse/profile',component:ProfileComponent,canActivate:[NurseGuard]},
   {path:'nurse/ChangePassword',component:ChangePasswordComponent,canActivate:[NurseGuard]},
+  {path:'**',redirectTo:'LoginScreenComponent'}
 ];
 
 @NgModule({

@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'physician/notes',component:NotesComponent,canActivate:[PhysicianGuard]},
   {path:'physician/profile',component:ProfileComponent,canActivate:[PhysicianGuard]},
   {path:'physician/ChangePassword',component:ChangePasswordComponent,canActivate:[PhysicianGuard]},
-
+  {path:'**',redirectTo:'LoginScreenComponent'}
 ];
 
 @NgModule({

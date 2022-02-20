@@ -10,8 +10,8 @@
 
           <form [formGroup]="loginform" (ngSubmit)="onSubmit()" >
             <span>
-              <mat-form-field>
-                <input  matInput placeholder="E-mail " formControlName="email" autofocus />
+              <mat-form-field style="width: 200px;">
+                <input  matInput placeholder="E-mail" formControlName="email" autofocus />
                 <br>
               </mat-form-field>
               <div *ngIf="(loginform.get('email').invalid && loginform.get('email').dirty) || loginform.get('email').touched">
@@ -32,7 +32,7 @@
             </span>
             <div class="button">
               <br>
-              <button mat-raised-button color="primary"   >  Login</button>
+              <button mat-raised-button color="primary" [ngStyle]="loginform.valid?{'background-color':'blue'}:{'background-color':'white','color':'blue'}" [disabled]="loginform.invalid" >  Login</button>
               <br>
               <a mat-button href=""  style="margin-left:33px" href='forgot-password'><small>Forgot password?</small></a>
             </div>
