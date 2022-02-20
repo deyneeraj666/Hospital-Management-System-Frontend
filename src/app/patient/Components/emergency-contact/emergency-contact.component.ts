@@ -23,10 +23,12 @@ export class EmergencyContactComponent implements OnInit {
     elname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     relationship: new FormControl(''),
     eemail: new FormControl('', Validators.email),
-    econtact: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^\\+1\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$'),
-    ]),
+    // econtact: new FormControl('', [
+    //   Validators.required,
+    //   Validators.pattern('^\\+1\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$'),
+    // ]),
+    econtact : new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
+
     eaddress: new FormControl(''),
     access: new FormControl(''),
   });

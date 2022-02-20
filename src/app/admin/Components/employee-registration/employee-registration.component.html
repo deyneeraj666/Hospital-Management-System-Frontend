@@ -90,6 +90,21 @@
                 >Please provide your date of birth</span
               >
             </div>
+
+            <div class="field">
+
+              <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+                <mat-label class="label">Contact</mat-label>
+                <input matInput type="tel" formControlName="contact" class="input-field" />
+              </mat-form-field>
+                <span
+                  *ngIf="
+                  empRegistrationForm.controls['contact'].invalid &&
+                  empRegistrationForm.controls['contact'].dirty
+                  "
+                  >Contact number is required</span
+                >
+            </div>
          
         
 

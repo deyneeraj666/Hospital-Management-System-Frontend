@@ -116,9 +116,11 @@ export class DemographicComponent implements OnInit {
       Validators.required,
       Validators.minLength(10),
     ]),
-    contact: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^\\+1\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$'),
-    ]),
+    // contact: new FormControl('', [
+    //   Validators.required,
+    //   Validators.pattern('^\\+1\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$'),
+    // ]),
+    contact : new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
+
   });
 }
