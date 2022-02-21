@@ -21,11 +21,9 @@ export class ForgotPasswordComponent implements OnInit {
   otpHandler() {
     if (this.service.verifyEmail(this.inputEmail)) {
       this.message = 'OTP sent to your Email';
-     // this.inputEmail = '';
      this.forgotPasswordForm.reset();
     } else {
       this.message = 'Not a registered email';
-      //this.inputEmail = '';
       this.forgotPasswordForm.reset();
     }
 
