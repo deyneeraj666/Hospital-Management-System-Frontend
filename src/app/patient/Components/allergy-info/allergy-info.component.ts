@@ -18,7 +18,7 @@ export class AllergyInfoComponent implements OnInit {
 
   //to hide the buttons
   isSubmitClicked: boolean = true;
-  isEditClicked: boolean = false;
+  // isEditClicked: boolean = false;
   isCancelClicked: boolean = true;
 
   constructor(private pmsService: PmsService, private toastr: ToastrService) {}
@@ -48,12 +48,12 @@ export class AllergyInfoComponent implements OnInit {
     }
     let result = this.pmsService.saveAllergyInfo(this.patientAllergyForm.value);
     if (result) {
-      // alert('Form is successfully submitted');
       this.toastr.success('Successfully Submitted');
-      this.disableFormProperties();
+      // this.disableFormProperties();
+      this.patientAllergyForm.reset();
 
       this.isSubmitClicked = !this.isSubmitClicked;
-      this.isEditClicked = !this.isEditClicked;
+      // this.isEditClicked = !this.isEditClicked;
       this.isCancelClicked = !this.isCancelClicked;
     }
   }
@@ -61,7 +61,7 @@ export class AllergyInfoComponent implements OnInit {
   onEdit() {
     this.enableFormProperties();
     this.isSubmitClicked = !this.isSubmitClicked;
-    this.isEditClicked = !this.isEditClicked;
+    // this.isEditClicked = !this.isEditClicked;
     this.isCancelClicked = !this.isCancelClicked;
   }
 
