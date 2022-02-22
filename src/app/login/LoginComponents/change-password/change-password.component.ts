@@ -67,6 +67,7 @@ export class ChangePasswordComponent
 
     btnSubmitPassowrd_click()
   {
+    debugger;
       let strData:string='Old Password :'+ this.oldPassword.value +'New Password :'+ this.confirmPassword.value;
       var obj:any=
       {
@@ -76,11 +77,11 @@ export class ChangePasswordComponent
       }
     
      
-        this.user.change_password_service(obj).suscribe({
+        this.user.change_password_service(obj).subscribe({
           next: (v) => {
                         alert(1)
                         console.log(v); 
-                        this.toastr.success(v);
+                        this.toastr.success("Updated");
                         localStorage.removeItem('token');
                         localStorage.removeItem('role');
                         this.router.navigateByUrl('login') 
@@ -89,13 +90,21 @@ export class ChangePasswordComponent
           error: (e) =>
           {
             alert(2)
-             this.toastr.error(e)
+            console.log(e)
+            this.toastr.error(e)
           } ,
           complete: () => {console.info('complete');alert(3)} 
-      });    
-
-      
-      
+        });  
+      // try {
+      //   let data: any = this.user.change_password_service(obj);
+      //   debugger;
+      //   data.subscribe((res: any) => {
+      //     debugger;
+      //     console.log(res)
+      //   });
+      // } catch (error) {
+      //   console.log(error);
+      // }
        
   }
 
