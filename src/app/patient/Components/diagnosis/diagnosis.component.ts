@@ -1,7 +1,11 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Diagnosis } from 'src/app/Models/Diagnosis';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { ToastrService } from "ngx-toastr";
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-diagnosis',
@@ -12,13 +16,16 @@ export class DiagnosisComponent implements OnInit {
   option:number=6;
   constructor() { }
   public data:Diagnosis[]=[];
-  ngOnInit(): void {
-  }
+  
   public dcode:string="";
   public dname:string="";
   public ddate:Date=new Date();
   public isDataNotfound:boolean=false;
-  
+  dataSource = new MatTableDataSource<Diagnosis>(ELEMENT_DATA);
+  @ViewChild(MatPaginator) paginator !: MatPaginator;
+  ngOnInit(): void {
+    //this.dataSource.paginator = this.paginator;
+  }
   public btn_Add(){
     let newData:Diagnosis=new Diagnosis();
     newData.dcode=this.dcode;
@@ -28,6 +35,10 @@ export class DiagnosisComponent implements OnInit {
     this.data.push(newData);
     this.dcode="";
     this.dname="";
+    // this.dataSource.data.push(newData);
+    // console.log(this.dataSource.data);
+    // this.dataSource.paginator = this.paginator;
+    // /this.toastr.success('Porcedure Added Successfully !')
   }
   public btn_Cancel(){
     this.dcode="";
@@ -46,3 +57,9 @@ export class DiagnosisComponent implements OnInit {
     this.data.splice(index,1);
   }
 }
+const ELEMENT_DATA: Diagnosis[]= [
+  {dcode: "22.1", dname: 'Fever', ddate:new Date()},
+  {dcode:"111.2", dname: 'Cough', ddate: new Date() },
+ 
+ 
+ ];

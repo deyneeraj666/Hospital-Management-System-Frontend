@@ -17,11 +17,11 @@
             </div>
                 <!-- It's easy and Simple -->
                 <div style="margin-top: 10%;">
-                
+                    <!-- style="color:rgba(10, 102, 163, 0.897)" -->
                     <mat-label style="font-size:14px;" for="">Title</mat-label>
-                    <mat-radio-group formControlName="title" required>
+                    <mat-radio-group formControlName="title" required >
                     <mat-radio-button style="margin-left:10%"value="Mr"> <label for="">Mr</label></mat-radio-button>
-                    <mat-radio-button style="margin-left:5%" value="Ms"> <label for="">Ms</label></mat-radio-button>
+                    <mat-radio-button style="margin-left:5%;" value="Ms"> <label for="">Ms</label></mat-radio-button>
                     <mat-radio-button style="margin-left:5%" value="Mrs"> <label for="">Mrs</label></mat-radio-button>
                 </mat-radio-group>
                     <br>
@@ -32,7 +32,7 @@
                 <br>
                 <div>
                     <mat-form-field>
-                    <mat-label for="">First Name</mat-label>
+                    <mat-label class="label" for="">First Name</mat-label>
                     
                     <input matInput style="margin-left:22.5%" type="text"formControlName="fname"> 
                      <!-- <span *ngIf="patientRegisterForm.controls['fname'].valid && patientRegisterForm.controls['fname'].dirty">
@@ -49,7 +49,7 @@
                 <div>
                     <mat-form-field>
                         
-                    <mat-label for="">Last Name</mat-label>
+                    <mat-label class="label" for="">Last Name</mat-label>
                     <input matInput style="margin-left:22.5%" type="text" formControlName="lname"> 
                 </mat-form-field>
                     <br>
@@ -60,7 +60,7 @@
                 <br>
                 <div>
                     <mat-form-field>
-                    <mat-label for="">Email</mat-label>
+                    <mat-label class="label" for="">Email</mat-label>
                     <input  matInput style="margin-left:31%" type="text" formControlName="email"> 
                 </mat-form-field>
                     <br>
@@ -71,9 +71,9 @@
                 <br>
                 <div>
                     <mat-form-field>
-                    <mat-label for="">Date of Birth</mat-label>
+                    <mat-label class="label" for="">Date of Birth</mat-label>
                     <!-- <input matInput [matDatepicker]="picker" type="date" style="width: 48%;margin-left:75px" formControlName="dateOfBirth">  -->
-                    <input  matInput [matDatepicker]="picker" [min]="minDate"
+                    <input  matInput [matDatepicker]="picker"
                     formControlName="dateOfBirth" name="date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker  style="height: 30px;"></mat-datepicker>
@@ -84,7 +84,7 @@
                 <br>
                 <div>
                     <mat-form-field>
-                    <mat-label for="">Contact</mat-label>
+                    <mat-label class="label" for="">Contact</mat-label>
                     <input matInput style="margin-left:27.5%" type="text" formControlName="contact"> 
                 </mat-form-field>
                     <br>
@@ -93,7 +93,7 @@
                 <br>
                 <div>
                     <mat-form-field>
-                    <mat-label for="">Password</mat-label>
+                    <mat-label class="label" for="">Password</mat-label>
                     <input matInput style="margin-left:92px" type="password" name="password" formControlName="password" >
                 </mat-form-field>
                     <br>
@@ -103,7 +103,7 @@
                 <br>
                 <div>
                     <mat-form-field>
-                    <mat-label for="">Confirm Password</mat-label>
+                    <mat-label class="label" for="">Confirm Password</mat-label>
                     <input matInput confirmPasswdValidatior="password" style="margin-left:10%" type="password" maxlength="10" minlength="10" formControlName="confirmPassword" >
                     <br>
                 </mat-form-field>
@@ -115,8 +115,8 @@
                   <br>  
                 <div>
                 
-                <button [disabled]="patientRegisterForm.invalid" (click)="btn_submit()" mat-button style="margin-left: 14%;background-color: green;color: white;" routerLink='/login' >Register</button>
-                <button mat-button style="margin-left: 7%;margin-bottom: 5%;width: 23%; background-color:rgba(10, 102, 163, 0.897);color: white;" (click)="btn_reset()">Reset</button>
+                <button [disabled]="patientRegisterForm.invalid" (click)="btn_submit()" mat-button style="margin-left: 12%;background-color: green;color: white;" routerLink='/login' >Register</button>
+                <button mat-button style="margin-left: 7%;margin-bottom: 5%;width: 30%; background-color:rgba(10, 102, 163, 0.897);color: white;" (click)="btn_reset()">Reset</button>
                 </div>
                 <div style="margin-bottom: 7%;">
                     <a routerLink='/login' style="margin-left:29%" href="">Back to Login</a>

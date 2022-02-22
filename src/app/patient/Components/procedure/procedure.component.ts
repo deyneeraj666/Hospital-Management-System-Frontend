@@ -39,7 +39,7 @@ export class ProcedureComponent  implements OnInit {
     this.dataSource.data.push(obj);
     console.log(this.dataSource.data);
     this.dataSource.paginator = this.paginator;
-    this.toastr.success('Porcedure Added Successfully !')
+    this.toastr.success('Procedure Added Successfully !')
   }
   btncancel_click()
   {
