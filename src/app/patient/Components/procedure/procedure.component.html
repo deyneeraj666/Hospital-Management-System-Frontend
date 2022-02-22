@@ -8,7 +8,7 @@
             </mat-card>
             <div style="padding-top: 3%;padding-left: 10%;">
                 <mat-form-field appearance="fill" class="dropdown mw-50">
-                    <mat-label>Procedure Code</mat-label>
+                    <mat-label class="label">Procedure Code</mat-label>
                     <select class="dropdown-style" matNativeControl required [(ngModel)]="selectedcode" [formControl]="code"  name="select">
                         <option value="Code1">Code 1</option>
                         <option value="Code2">Code 2</option>
@@ -16,7 +16,7 @@
                     </select>
                 </mat-form-field>
                 <mat-form-field appearance="fill"  class="dropdown mw-50">
-                    <mat-label>Procedure Name</mat-label>
+                    <mat-label class="label">Procedure Name</mat-label>
                     <select class="dropdown-style" matNativeControl required [(ngModel)]="selectedproc" [formControl]="procedure" name="select">
                         <option value="Procedure1">Procedure 1</option>
                         <option value="Procedure2">Procedure 2</option>
