@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit
   
  
  patientRegisterForm:any = FormGroup;
+ minDate=new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
 
   constructor(private toastr:ToastrService,private user:UsermanagementService,private router:Router) { 
     this.patientRegisterForm = new FormGroup({

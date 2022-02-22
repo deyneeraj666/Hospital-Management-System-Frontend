@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatRadioModule } from "@angular/material/radio";
 
 
@@ -61,7 +61,8 @@ import { MatRadioModule } from "@angular/material/radio";
     MatCardModule,
     MatPaginatorModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    MatOptionModule
   ],
   exports:[
     PatientHeaderComponent,

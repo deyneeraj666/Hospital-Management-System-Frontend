@@ -13,7 +13,7 @@ export class AppointmentComponent implements OnInit
   option:number=4;
   constructor(private toastr:ToastrService) { }
   hide = true;
-  Speciality = new FormControl("", [Validators.required])
+  Description = new FormControl("", [Validators.required])
   Physician = new FormControl("", [Validators.required])
   appointmentType = new FormControl("", [Validators.required])
   date = new FormControl("", [Validators.required])
@@ -25,7 +25,7 @@ export class AppointmentComponent implements OnInit
 
  
   appointmentForm = new FormGroup({
-    Speciality: this.Speciality,
+    Description: this.Description,
     Physician: this.Physician,
     appointmentType:this.appointmentType,
     date:this.date,
@@ -35,7 +35,7 @@ export class AppointmentComponent implements OnInit
   appointmentData:Appointment[]=[];
 
   requiredValidation() {
-    if (this.Speciality.errors != null && (this.Speciality.dirty || this.Speciality.errors['required'])) {
+    if (this.Description.errors != null && (this.Description.dirty || this.Description.errors['required'])) {
       this.btnSubmitDisabled = true;
     }
     if (this.Physician.errors != null && (this.Physician.dirty || this.Physician.errors['required'])) {
@@ -46,7 +46,7 @@ export class AppointmentComponent implements OnInit
   onSubmit()
   {
    let appObj:Appointment={
-     'Speciality':this.appointmentForm.value.Speciality,
+     'Description':this.appointmentForm.value.Description,
      'Physician':this.appointmentForm.value.Physician,
      'appointmentType':this.appointmentForm.value.appointmentType,
      'date':this.appointmentForm.value.date,

@@ -10,6 +10,9 @@ export class UsermanagementService
   readonly Url_register = 'http://localhost:5517/api/Account/signup';
   readonly Url_login = 'http://localhost:5517/api/Account/login';
   readonly Url_pwd_rest ='http://localhost:5517/api/Account/ChangePassword';
+  readonly Url_getotp ='http://localhost:5517/api/Account/SendPasswordResetCode';
+  readonly Url_validiateOtp ='http://localhost:5517/api/Account/ResetPassword';
+  
 
 
   constructor(private http:HttpClient)
@@ -32,8 +35,19 @@ export class UsermanagementService
   }
 
  
-   change_password_service(obj:any):Observable<any>
+  change_password_service(obj:any):Observable<any>
   {
      return  this.http.post(this.Url_pwd_rest,obj);
   }
+
+  
+  getOtp_service(obj:any)
+  {
+    return this.http.post(this.Url_getotp,obj);
+  }
+  validiateOtp_service(obj:any)
+  {
+    return this.http.post(this.Url_validiateOtp,obj);
+  }
+
 }

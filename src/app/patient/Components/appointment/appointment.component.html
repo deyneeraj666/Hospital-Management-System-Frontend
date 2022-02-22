@@ -1,109 +1,119 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="main-appointment">
-    <span style="  padding-left: 130px; color: rgba(10, 102, 163, 0.897);"><b><u>Schedule Appointment</u></b></span>
-            <div>
-                <button mat-raised-button class="btn1"  (click)="click_NewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'white'}:{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}">New Appointment</button>
-                <button mat-raised-button class="btn2" (click)="click_ViewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}:{'background-color':'white'}">View Appointment</button>
-            </div>
+    <mat-card>
+        <span style="padding-left: 104px; color: rgba(10, 102, 163, 0.897);font-size: large;"><b>Schedule Appointment</b></span>
+    </mat-card>
+    <div>
+        <button mat-raised-button class="btn1"  (click)="click_NewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'white'}:{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}">New Appointment</button>
+        <button mat-raised-button class="btn2" (click)="click_ViewAppointment()" [ngStyle]="isdisablenewappointment ==true?{'background-color':'rgba(10, 102, 163, 0.897)','color':'white'}:{'background-color':'white'}">View Appointment</button>
+    </div>
             
     <div class="new_appointment" *ngIf="isdisablenewappointment== true;  else viewappointment">
         <form [formGroup]="appointmentForm">
-            <table class="table">
-               
-                <tbody>
-                    <tr>
-                        <td>
-                            <mat-label>Appointment Type</mat-label>
-                        </td>
-                        <td>
-                            <select class="td_newap" matNativeControl required [formControl]="appointmentType"
-                                formControlName="appointmentType" name="appointmentType">
-                                <option value="App1">App1</option>
-                                <option value="App2">App2</option>
-                                <option value="App3">App3</option>
-                            </select>
-                            <span class="error"
-                            *ngIf="appointmentForm.controls['appointmentType'].invalid &&
-                                appointmentForm.controls['appointmentType'].dirty">
-                                Appointment Type field is required</span>
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td>
-                            <mat-label>Speciality</mat-label>
-                        </td>
-                        <td>
-                            <select class="td_newap" matNativeControl required [formControl]="Speciality"
-                                formControlName="Speciality" name="Speciality">
-                                <option value="Nose">Nose</option>
-                                <option value="Eye">Eye</option>
-                                <option value="Throat">Throat</option>
-                            </select>
-                            <span class="error"
-                            *ngIf="appointmentForm.controls['Speciality'].invalid &&
-                                appointmentForm.controls['Speciality'].dirty">
-                                Speciality field is required</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <mat-label>Physician</mat-label>
-                        </td>
-                        <td>
-                            <select class="td_newap" matNativeControl required [formControl]="Physician" formControlName="Physician"
-                                name="Physician">
-                                <option value="Dr. Joe">Dr. Joe</option>
-                                <option value="Dr. Lee">Dr. Lee</option>
-                                <option value="Dr Clark">Dr Clark</option>
-                            </select>
-                            <span class="error"
-                            *ngIf="appointmentForm.controls['Physician'].invalid &&
-                                appointmentForm.controls['Physician'].dirty">
-                                Speciality field is required</span>
-                        </td>
-                        
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <mat-label>Slot</mat-label>
-                        </td>
-                        <td>
-                            <select matNativeControl class="td_newap" required [formControl]="slot" formControlName="slot"
-                                name="slot">
-                                <option value="9-10 am">9-10 am</option>
-                                <option value="12-1pm">12-1 am</option>
-                            </select>
-                            <span class="error"
-                            *ngIf="appointmentForm.controls['slot'].invalid &&
-                                appointmentForm.controls['slot'].dirty">
-                                Speciality field is required</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Date</label>
-                        </td>
-                        <td>
-                            <input class="td_newap"  matInput [matDatepicker]="picker" [min]="minDate" [formControl]="date"
-                                formControlName="date" name="date"  placeholder="MM/DD/YYYY">
+            <div style="margin-top: 2%;margin-bottom: 2%;">
+                <div>
+                    <mat-form-field style="width:90%;padding-left: 9%;">
+                        <!-- <mat-select class="td_newap" formControlName="appointmentType" placeholder="meeting Title" name="appointmentType">
+                                <mat-option value="App1">App1</mat-option>
+                                <mat-option value="App2">App2</mat-option>
+                                <mat-option value="App3">App3</mat-option>
+                        </mat-select> -->
+                        <mat-label>Meeting Title</mat-label>
+                        <select matNativeControl formControlName="appointmentType" name="appointmentType">
+                            <option value="App1">App1</option>
+                            <option value="App2">App2</option>
+                            <option value="App3">App3</option>
+                        </select>                        
+                    </mat-form-field>
+                    <div>
+                        <span class="error"
+                        *ngIf="appointmentForm.controls['appointmentType'].invalid &&
+                            appointmentForm.controls['appointmentType'].touched" style="color: red;padding-left: 10%;">
+                            *Meeting Type is required</span>
+                    </div>
+                </div>
+                <!-- <div>
+                    <!-- <mat-form-field appearance="fill" style="width:90%;padding-left: 9%;">
+                        <mat-label>Description</mat-label>
+                        <input  type="text"formControlName="Description" name="Description">
+                        <!-- <input matInput type="text" formControlName="Description"> -->
+                    <!-- </mat-form-field> -->
+                    <!-- <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                        <input matInput type="text" placeholder="Quantity" formControlName="quantity_data">
+                    </mat-form-field>
+                    <div>
+                        <span class="error"
+                        *ngIf="appointmentForm.controls['Speciality'].invalid &&
+                            appointmentForm.controls['Speciality'].touched" style="color: red;padding-left: 10%;">
+                            *Speciality field is required</span>
+                    </div>                   
+                </div> -->
+                <div>
+                    <mat-form-field style="width:90%;padding-left: 9%;">
+                        <mat-label>Description</mat-label>
+                        <input type="text" matInput formControlName="Description" name="Description">
+                    </mat-form-field>
+                    <div>
+                        <span class="error"
+                        *ngIf="appointmentForm.controls['Description'].invalid &&
+                            appointmentForm.controls['Description'].touched" style="color: red;padding-left: 10%;">
+                            *Description field is required</span>
+                    </div>
+                </div>
+                <div>
+                    <mat-form-field style="width:90%;padding-left: 9%;">
+                        <mat-label>Physician</mat-label>
+                        <select matNativeControl formControlName="Physician" name="Physician">
+                            <option value="Dr. Joe">Dr. Joe</option>
+                            <option value="Dr. Lee">Dr. Lee</option>
+                            <option value="Dr. Clark">Dr. Clark</option>
+                        </select>
+                    </mat-form-field>
+                    <div>
+                        <span class="error"
+                        *ngIf="appointmentForm.controls['Physician'].invalid &&
+                            appointmentForm.controls['Physician'].touched" style="color: red;padding-left: 10%;">
+                            *Physician field is required</span>
+                    </div>                   
+                </div>
+                <div>                    
+                    <mat-form-field style="width:90%;padding-left: 9%;">
+                        <mat-label>Slot</mat-label>
+                        <select matNativeControl formControlName="slot" name="slot">
+                            <option value="9-10AM">9-10AM</option>
+                            <option value="10-11AM">10-11AM</option>
+                            <option value="2-3PM">2-3PM</option>
+                        </select>
+                    </mat-form-field>
+                    <div>
+                        <span class="error"
+                        *ngIf="appointmentForm.controls['slot'].invalid &&
+                            appointmentForm.controls['slot'].touched" style="color: red;padding-left: 10%;">
+                            *Slot field is required</span>
+                    </div>                   
+                </div>
+                <div>            
+                    <mat-form-field style="width:90%;padding-left: 9%;">
+                        <mat-label>MM/DD/YYYY</mat-label>
+                        <input  matInput [matDatepicker]="picker" [min]="minDate" [formControl]="date"
+                                formControlName="date" name="date">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker  style="height: 30px;"></mat-datepicker>
-                                <br>
-                                <span style="color: red; padding-left: 70px;"
+
+                    </mat-form-field>
+                    <div>
+                        <span style="color: red; padding-left: 10%;"
                                 *ngIf="appointmentForm.controls['date'].invalid &&
-                                    appointmentForm.controls['date'].dirty">
+                                    appointmentForm.controls['date'].touched">
                                     *Date field is required</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div id="btn">
-                <button mat-raised-button color="primary" class="td_newap" [disabled]="appointmentForm.invalid"
-                    style="background-color:green ;color:white; margin-left: 122px; width: auto; "
-                    (click)="onSubmit()">Schedule Appointment</button>
-            </div>
+                    </div>
+                </div>
+                <div id="btn">
+                    <button mat-raised-button color="primary" class="td_newap" [disabled]="appointmentForm.invalid"
+                        style="background-color:green ;color:white; margin-left: 122px; width: auto; "
+                        (click)="onSubmit()">Schedule Appointment</button>
+                </div>
+        </div> 
         </form>
     </div>
     <ng-template class="view_appointment" #viewappointment>
@@ -117,7 +127,7 @@
                 </thead>
                 <tr *ngFor="let p of appointmentData; let i = index;">
                     <td class="tbl2td">{{p.appointmentType}}</td>
-                    <td class="tbl2td">{{p.Speciality}}</td>
+                    <td class="tbl2td">{{p.Description}}</td>
                     <td class="tbl2td"> {{p.Physician}}</td>
                     <td class="tbl2td">{{p.slot}}</td>
                 </tr>

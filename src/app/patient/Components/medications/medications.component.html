@@ -1,27 +1,83 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="border-vitals">
-    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 3%; padding-left: 46%;"><b><u>Medications Details</u></b></label>
-    <div style="margin-left: 20%;margin-top: 40px;" >
-        
-            <table class="table-medi" style="width: 80%;">
+    <div [formGroup]="patientMedicationTable" class="medication-table">
+        <mat-card class="em-header">
+            <!-- <p style="text-align: center;">Emergency Contact Details</p> -->
+            <label style="color: rgba(10, 102, 163, 0.897); padding-left: 27%;padding-bottom: 1%;padding-top: 1%;"><b>Add Medications Details</b></label>
+          </mat-card >
+          <div style="padding-left:22%;padding-top: 5%;">
+             <div >
+                <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                    <mat-label>Drug Name</mat-label>
+                    <select matNativeControl formControlName="drugname_data" [(ngModel)]="drug_name" id="name">
+                        <!-- <mat-option ></mat-option> -->
+                        <option value="100.1">100.1</option>
+                        <option value="10.6">10.6</option>
+                    </select>
+                    
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="input1-class">
+                    <mat-label>Frequency</mat-label>
+                    <input matInput type="text" formControlName="frequency_data" [(ngModel)]="frequency">
+                </mat-form-field>   
+                </div>
+                <div>
+                    <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                        <mat-label>Strength</mat-label>
+                        <select matNativeControl formControlName="strength_data" [(ngModel)]="strength">
+                            <!-- <mat-option ></mat-option> -->
+                            <option value="100.1">100.1</option>
+                            <option value="10.6">10.6</option>
+                        </select>
+                    </mat-form-field>
+                    <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
+                        <mat-label>Form</mat-label>
+                        <select matNativeControl formControlName="form_data" [(ngModel)]="form">
+                            <!-- <mat-option ></mat-option> -->
+                            <option value="Diabetes">Diabetes</option>
+                            <option value="Allergy">Allergy</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput type="text" formControlName="quantity_data" [(ngModel)]="quantity">
+                    </mat-form-field>
+                    <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
+                        <mat-label>Notes</mat-label>
+                        <textarea matInput formControlName="notes_data" [(ngModel)]="notes"></textarea>
+                    </mat-form-field>
+                </div>
+                <div style="padding-top: 2%;">
+                    <button [disabled]="patientMedicationTable.invalid" (click)="add_medications()" style="background-color:green ;width:8%;color:white;margin-bottom: 5%;margin-left: 26.5%;" mat-raised-button>Add</button>
+                    <button (click)="remove_medications()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;margin-left: 7%;" mat-raised-button>Reset</button>
+                   
+                </div>
+            </div>
+    </div>
+    <br>   
+    <div style="margin-left: 14%;margin-top: 40px;" >
+        <table class="table-medi">
+                <tr><td colspan="8" style="padding-bottom: 4%;padding-top: 3%;"><mat-card class="em-header1"><label style="color: rgba(10, 102, 163, 0.897);padding-left: 38%;"><b>Medications Details</b></label></mat-card></td></tr>
                 <tr class="table-head">
-                    <th>Drug Name</th>
-                    <th>Strength</th>
-                    <th>Quantity</th>
-                    <th>Frequency</th>
-                    <th>Form</th>
-                    <th>Notes</th>
-                    <th>Date</th>
+                    <th style="padding-left: 3%;">Drug Name</th>
+                    <th style="padding-left: 3%;">Strength</th>
+                    <th style="padding-left: 3%;">Quantity</th>
+                    <th style="padding-left: 3%;">Frequency</th>
+                    <th style="padding-left: 3%;">Form</th>
+                    <th style="padding-left: 3%;">Notes</th>
+                    <th style="padding-left: 5%;">Date</th>
                 </tr>
                 
                 <tr *ngFor="let selectedData of data;let i=index" class="table-row">
                     <td class="td-first">{{selectedData.drug_name}}</td>
-                    <td class="td-first">{{selectedData.strength}}</td>
+                    <td class="td-first2">{{selectedData.strength}}</td>
                     <td class="td-first">{{selectedData.quantity}}</td>
                     <td class="td-first">{{selectedData.frequency}}</td>
-                    <td class="td-first">{{selectedData.form}}</td>
-                    <td class="td-first">{{selectedData.notes}}</td>
-                    <td class="td-first">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
+                    <td class="td-first1">{{selectedData.form}}</td>
+                    <td class="td-first2">{{selectedData.notes}}</td>
+                    <td class="td-first2">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
                     <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
                 </tr>
                 <tr style="background-color:   #f3f3f3;" *ngIf="data.length<=0">
@@ -32,112 +88,6 @@
             </table>
     </div>
     <br/><br/>
-    <div [formGroup]="patientMedicationTable" class="medication-table"  style="margin-left: 20%;background-color: white;" >
-        <table class="table-class">
-            <tr>
-                <th colspan="4" style="padding-right:82%;">
-                    Add Medications
-                </th>
-            </tr>
-            <tr>
-                <td class="td-second" style="padding-left: 9%;">
-                    Drug Name
-                </td>
-                <td class="td-second">
-                    <select formControlName="drugname_data" style="width:56%;margin-left: 5%;" [(ngModel)]="drug_name" id="name">
-                        <option></option>
-                        <option>paracetamal</option>
-                        <option>Dolo</option>
-                    </select>
-                    
-                </td>
-                <td class="td-second" style="padding-left: 5%;">
-                    Frequency
-                </td>
-                <td class="td-second" style="padding-left: 2%;">
-                    <input formControlName="frequency_data" type="text" style="width: 54%;" [(ngModel)]="frequency">
-                    
-                </td>
-                
-            </tr>
-            <tr>
-                
-                <td class="td-second" style="padding-left: 9%;">
-                    Strength
-                </td>
-                <td class="td-second">
-                    <select formControlName="strength_data" style="width: 56%;margin-left: 5%;height: 100%;" [(ngModel)]="strength">
-                        <option></option>
-                        <option>500</option>
-                        <option>650</option>
-                    </select>
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['strength'].invalid &&
-                        patientMedicationTable.controls['strength'].dirty">
-                    Kindly Enter the strength
-                    </span> -->
-                </td>
-                <td class="td-second" style="padding-left: 5%;">
-                    Form
-                </td>
-                <td class="td-second" style="padding-left: 2%;">
-                    <select style="width: 54%;height: 100%;" formControlName="form_data" [(ngModel)]="form">
-                        <option></option>
-                        <option>Medicine</option>
-                        <option>X-Ray</option>
-                    </select>
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['form_data'].invalid &&
-                        patientMedicationTable.controls['form_data'].dirty">
-                    Kindly Select the form
-                    </span> -->
-                </td>
-                
-            </tr>
-            <tr>
-                <td class="td-second" style="padding-left: 9%;">
-                    Quantity
-                </td>
-                <td class="td-second">
-                    <input formControlName="quantity_data" type="text" style="width: 56%;margin-left: 5%;" [(ngModel)]="quantity">
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['quantity'].invalid &&
-                        patientMedicationTable.controls['quantity'].dirty">
-                    Kindly Enter the quantity
-                    </span> -->
-                </td>
-                <td class="td-second" style="padding-left: 5%;">
-                    Notes
-                </td>
-                <td class="td-second" style="padding-left: 2%;">
-                    <textarea formControlName="notes_data" style="width: 55%;height: 100%;" [(ngModel)]="notes"></textarea>
-                    <!-- <span
-                        class="error"
-                        *ngIf="
-                        patientMedicationTable.controls['notes'].invalid &&
-                        patientMedicationTable.controls['notes'].dirty">
-                    Kindly Enter the notes
-                    </span> -->
-                </td>
-                
-            </tr>
-            <tr>
-                <td class="td-second" colspan="2" style="padding-left: 38%;padding-top: 4.2%;">
-                    <button [disabled]="patientMedicationTable.invalid" mat-raised-button style="background-color: green;color: white;margin-bottom: 25%;width: 80%;" (click)="add_medications()">Add</button>
-                </td>
-                <td class="td-second" colspan="2" style="padding-right: 10%;padding-top: 5%;">
-                    <button mat-raised-button style="background-color:rgba(10, 102, 163, 0.897);color: white;margin-bottom: 10%;" (click)="remove_medications()">Cancel</button>
-                </td>
-            </tr>
-
-        </table>
-    </div>
 </div>
 
 
