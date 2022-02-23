@@ -1,7 +1,7 @@
 <app-patient-header [option]="option"></app-patient-header>
 <body  style="margin-bottom: 20%;margin-top: 5%;">
     <div>
-    <form>
+    <form [formGroup]="ProcedureGroup">
         <div class="first-div">
             <mat-card class="mat_style">
             <p><strong style="margin-left: 35%;">Add Procedure Details</strong></p>
@@ -9,15 +9,15 @@
             <div style="padding-top: 3%;padding-left: 10%;">
                 <mat-form-field appearance="fill" class="dropdown mw-50">
                     <mat-label class="label">Procedure Code</mat-label>
-                    <select class="dropdown-style" matNativeControl required [(ngModel)]="selectedcode" [formControl]="code"  name="select">
+                    <select matNativeControl required [(ngModel)]="selectedcode" [formControl]="code"  name="select">
                         <option value="Code1">Code 1</option>
                         <option value="Code2">Code 2</option>
                         <option value="Code3">Cpde 3</option>
                     </select>
                 </mat-form-field>
                 <mat-form-field appearance="fill"  class="dropdown mw-50">
-                    <mat-label class="label">Procedure Name</mat-label>
-                    <select class="dropdown-style" matNativeControl required [(ngModel)]="selectedproc" [formControl]="procedure" name="select">
+                    <mat-label>Procedure Name</mat-label>
+                    <select matNativeControl required [(ngModel)]="selectedproc" [formControl]="procedure" name="select">
                         <option value="Procedure1">Procedure 1</option>
                         <option value="Procedure2">Procedure 2</option>
                         <option value="Procedure3">Procedure3</option>
@@ -46,6 +46,10 @@
                             <th mat-header-cell *matHeaderCellDef> Date </th>
                             <td mat-cell *matCellDef="let element"> {{element.date|date:'yyyy-MM-dd'}} </td>
                         </ng-container>
+                        <ng-container matColumnDef="delete">
+                            <th mat-header-cell *matHeaderCellDef>action</th>
+                            <td mat-cell *matCellDef="let row"><a href="javascript:void(0)" (click)=deleteproduct_click(row)>Delete</a></td>
+                        </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         <!-- <tr *ngIf="!dataSource?.length">
@@ -53,6 +57,7 @@
                                 No Records Found!
                             </td>
                         </tr> -->
+                        
                     </table>
                     <mat-paginator  #paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
             

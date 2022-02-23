@@ -1,11 +1,11 @@
 <app-header></app-header>
 <div class="main-container">
     <div class="main-container">
-        <div class="welcome">
+        <!-- <div class="welcome">
             <mat-card>
             <h1 style="padding-left:10%;color: rgba(10, 102, 163, 0.897);"><b>Welcome to CT General Hospital</b></h1>
         </mat-card>
-        </div>
+        </div> -->
         <div class="form-group" >
         <form #patientForm="ngForm" [formGroup]="patientRegisterForm" >
             <div class="form-sign-div">
@@ -34,7 +34,7 @@
                     <mat-form-field>
                     <mat-label class="label" for="">First Name</mat-label>
                     
-                    <input matInput style="margin-left:22.5%" type="text"formControlName="fname"> 
+                    <input matInput  type="text"formControlName="fname"> 
                      <!-- <span *ngIf="patientRegisterForm.controls['fname'].valid && patientRegisterForm.controls['fname'].dirty">
                          <span *ngIf="patientRegisterForm.controls['fname'].errors['required']">First Name cannot be empty</span> 
                         <span *ngIf="patientRegisterForm.controls['fname'].errors['minlength']">First Name should be more than 3 characters</span>
@@ -42,7 +42,7 @@
                     </span>  -->
                     </mat-form-field>
                     <br>
-                    <span *ngIf="patientRegisterForm.controls['fname'].invalid && patientRegisterForm.controls['fname'].touched" style="color: red;font-size: small;margin-left:10%;">*First Name cannot be empty</span>
+                    <span *ngIf="patientRegisterForm.controls['fname'].invalid && patientRegisterForm.controls['fname'].touched" style="color: red;font-size: small;">*First Name cannot be empty</span>
         
                 </div>
                 <br>
@@ -50,23 +50,23 @@
                     <mat-form-field>
                         
                     <mat-label class="label" for="">Last Name</mat-label>
-                    <input matInput style="margin-left:22.5%" type="text" formControlName="lname"> 
+                    <input matInput type="text" formControlName="lname"> 
                 </mat-form-field>
                     <br>
                     <div>
-                    <span *ngIf="patientRegisterForm.controls['lname'].invalid && patientRegisterForm.controls['lname'].touched" style="color: red;font-size: small;margin-left:10%;">*Last Name cannot be empty</span>
+                    <span *ngIf="patientRegisterForm.controls['lname'].invalid && patientRegisterForm.controls['lname'].touched" style="color: red;font-size: small;">*Last Name cannot be empty</span>
                     </div>
                 </div>
                 <br>
                 <div>
                     <mat-form-field>
                     <mat-label class="label" for="">Email</mat-label>
-                    <input  matInput style="margin-left:31%" type="text" formControlName="email"> 
+                    <input  matInput type="text" formControlName="email"> 
                 </mat-form-field>
                     <br>
                     <!-- dirty -->
-                    <span *ngIf="patientRegisterForm.controls['email'].invalid && patientRegisterForm.controls['email'].touched" style="color: red;font-size: small;margin-left:10%;">*Please enter your email address</span>
-                    <span *ngIf="patientRegisterForm.controls['email'].invalid && patientRegisterForm.controls['email'].touched" style="color: red;font-size: small;margin-left:11%;"> e.g.exampleusername@xyzdomain.com</span>
+                    <span *ngIf="patientRegisterForm.controls['email'].invalid && patientRegisterForm.controls['email'].touched" style="color: red;font-size: small;">*Please enter your email address</span>
+                    <span *ngIf="patientRegisterForm.controls['email'].invalid && patientRegisterForm.controls['email'].touched" style="color: red;font-size: small;"> e.g.exampleusername@xyzdomain.com</span>
                 </div>
                 <br>
                 <div>
@@ -79,38 +79,38 @@
                     <mat-datepicker #picker  style="height: 30px;"></mat-datepicker>
                 </mat-form-field>
                     <br>
-                    <span *ngIf="patientRegisterForm.controls['dateOfBirth'].invalid && patientRegisterForm.controls['dateOfBirth'].touched"style="color: red;font-size: small;margin-left:10%;">*Please provide your date of birth </span>
+                    <span *ngIf="patientRegisterForm.controls['dateOfBirth'].invalid && patientRegisterForm.controls['dateOfBirth'].touched"style="color: red;font-size: small;">*Please provide your date of birth </span>
                 </div>
                 <br>
                 <div>
                     <mat-form-field>
                     <mat-label class="label" for="">Contact</mat-label>
-                    <input matInput style="margin-left:27.5%" type="text" formControlName="contact"> 
+                    <input matInput type="text" formControlName="contact"> 
                 </mat-form-field>
                     <br>
-                    <span *ngIf="patientRegisterForm.controls['contact'].invalid && patientRegisterForm.controls['contact'].touched" style="color: red;font-size: small;margin-left:10%;">*Please provide your contact number</span>
+                    <span *ngIf="patientRegisterForm.controls['contact'].invalid && patientRegisterForm.controls['contact'].touched" style="color: red;font-size: small;">*Please provide your contact number</span>
                 </div>
                 <br>
                 <div>
                     <mat-form-field>
                     <mat-label class="label" for="">Password</mat-label>
-                    <input matInput style="margin-left:92px" type="password" name="password" formControlName="password" >
+                    <input matInput type="password" name="password" formControlName="password" >
                 </mat-form-field>
                     <br>
-                    <span *ngIf="patientRegisterForm.controls['password'].invalid && patientRegisterForm.controls['password'].touched" style="color: red;font-size: small;margin-left:10%;">*Password is weak. Please re-enter the password with a minimum of one Uppercase letter, one lowercase letter, one number and minimum length of 8 characters</span>
+                    <span *ngIf="patientRegisterForm.controls['password'].invalid && patientRegisterForm.controls['password'].touched" style="color: red;font-size: small;">*Please enter the password with a minimum of one Uppercase letter, one lowercase letter, one number and minimum length of 8 characters</span>
                     <!-- <span></span>Please re-enter the password with a minimum of one Uppercase letter, one lowercase letter, one number and minimum length of 8 characters -->
                 </div>
                 <br>
                 <div>
                     <mat-form-field>
                     <mat-label class="label" for="">Confirm Password</mat-label>
-                    <input matInput confirmPasswdValidatior="password" style="margin-left:10%" type="password" maxlength="10" minlength="10" formControlName="confirmPassword" >
+                    <input matInput confirmPasswdValidatior="password" type="password" formControlName="confirmPassword" >
                     <br>
                 </mat-form-field>
-                    <span *ngIf="patientRegisterForm.controls['confirmPassword'].invalid && patientRegisterForm.controls['confirmPassword'].touched" style="color: red;font-size: small;margin-left:10%;">*Password is required</span>
+                    <span *ngIf="patientRegisterForm.controls['confirmPassword'].invalid && patientRegisterForm.controls['confirmPassword'].touched" style="color: red;font-size: small;">*Password is required</span>
                 
                     <br>
-                    <span *ngIf="patientRegisterForm.controls['confirmPassword'].errors?.['notEqual'] && patientRegisterForm.controls['confirmPassword'].invalid" style="color: red;font-size: small;margin-left:40%;">*Password doesn't match</span>
+                    <span *ngIf="patientRegisterForm.controls['confirmPassword'].errors?.['notEqual'] && patientRegisterForm.controls['confirmPassword'].invalid" style="color: red;font-size: small;">*Password doesn't match</span>
                 </div>
                   <br>  
                 <div>
