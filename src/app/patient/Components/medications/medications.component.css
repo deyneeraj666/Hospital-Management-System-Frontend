@@ -85,11 +85,11 @@ background-color:   #f3f3f3;;
 }
 .input1-class{
     padding-left: 10%;
-    width: 33%;
+    
 }
 .dropdown1-style{
     padding-left: 10%;
-    width: 33%;
+    
 }
 .border-style{
     width:80%;
@@ -99,14 +99,14 @@ background-color:   #f3f3f3;;
 .dropdown-style{
     
     padding-left: 10%;
-    width: 33%;
+    
 }
 .em-header {
     width: 70%;
     color: rgba(10, 102, 163, 0.897);
     font-size: 20px;
     font-weight: bold;
-    margin-left: 18%;
+    margin-left: 15%;
     margin-top: 2%;
  
 }
