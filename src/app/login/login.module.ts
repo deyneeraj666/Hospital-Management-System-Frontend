@@ -23,7 +23,7 @@ import { ConfirmEqualValidatorDirective } from "./LoginComponents/register/confi
 import { UsermanagementService } from "../Shared/usermanagement.service";
 import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker";
 import { MatRadioModule } from "@angular/material/radio";
-
+import { CountdownModule } from "ngx-countdown";
 
 
 
@@ -47,13 +47,13 @@ import { MatRadioModule } from "@angular/material/radio";
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    
     SharedModule,
     ToastrModule.forRoot(
       {timeOut:3000}
     ),
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    CountdownModule 
     
   ],
   

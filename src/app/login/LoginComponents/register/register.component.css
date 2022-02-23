@@ -51,9 +51,9 @@ th{
 mat-form-field{
     width: 90%;
 }
-.form-group{
+/* .form-group{
     margin-top: 2%;
-}
+} */
 .label{
     color: black;
 }

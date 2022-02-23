@@ -6,6 +6,7 @@ import { L10n } from '@syncfusion/ej2-base';
 import { AppointmentDataService } from 'src/app/Service/appointment-data.service';
 import { DropDownList } from '@syncfusion/ej2-angular-dropdowns';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/Shared/auth.service';
 
 L10n.load({
   'en-US': {
@@ -23,12 +24,12 @@ L10n.load({
 })
 export class AppointmentComponent implements OnInit {
   option: number = 1;
-  constructor(private objAppointmentDataService: AppointmentDataService,private toastr:ToastrService) { }
+  constructor(private auth:AuthService,private objAppointmentDataService: AppointmentDataService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.GetAppointment();
   }
-  CurrentUser: string = "User";
+  CurrentUser: string = this.auth.UserName;
   ddlPhysicianData: string[] = [];
   AppointmentData: any[] = []
   tempAppointmentdata: any[] = [];

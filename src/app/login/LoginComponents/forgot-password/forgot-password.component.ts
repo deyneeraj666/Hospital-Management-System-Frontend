@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PmsService } from 'src/app/Service/pms.service';
 import { Router } from "@angular/router";
-
+import { timer } from 'rxjs';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -21,6 +21,8 @@ export class ForgotPasswordComponent implements OnInit
   otpPasswordForm:any= FormGroup;
   disableOption1=true;
   disableOption2=false;
+  time:number=60;
+  
   constructor(private user: UsermanagementService, private router:Router,private service: PmsService,private toastr:ToastrService)
   {
 
@@ -40,8 +42,7 @@ export class ForgotPasswordComponent implements OnInit
  
       getOtp()
       {
-        this.disableOption1=false;
-        this.disableOption2=true;
+       
         var obj={
           "email":this.forgotPasswordForm.controls.email.value
         }
@@ -50,6 +51,11 @@ export class ForgotPasswordComponent implements OnInit
           if(err.status == 200)
           {
             this.toastr.success(err.error.text);
+            setTimeout(()=>{
+              this.disableOption1=false;
+              this.disableOption2=true;
+            },1000)
+            
           }
           else
           {
@@ -68,6 +74,7 @@ export class ForgotPasswordComponent implements OnInit
           "OTP":this.otpPasswordForm.controls.otp.value,
           "NewPassword":this.otpPasswordForm.controls.newPassword.value
         }
+       
         this.user.validiateOtp_service(obj).subscribe((res:any)=>{
         },(err:any)=>{
           if(err.status == 200)
@@ -78,6 +85,11 @@ export class ForgotPasswordComponent implements OnInit
             },3000)
             
           }
+          else if(err.status == 401){
+            this.toastr.error(err.error);
+            this.disableOption1=true;
+            this.disableOption2=false;
+          }
           else
           {
             this.toastr.warning(err.error);
@@ -85,4 +97,7 @@ export class ForgotPasswordComponent implements OnInit
           }
         })
       }
+
+      
+     
 }
