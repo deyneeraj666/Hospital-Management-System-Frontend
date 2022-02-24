@@ -109,7 +109,8 @@ export class AppointmentComponent implements OnInit {
         else if (args.type === 'DeleteAlert') {
           this.DeleteAppointment(Number(obj.Id));
         } else {
-          this.ddlPhysicianData = this.AppointmentData.map(x => x.UserName)
+          debugger;
+          this.ddlPhysicianData = this.filterPhysician(this.AppointmentData)
           this.tempAppointmentdata = this.AppointmentData;
         }
       }
@@ -136,6 +137,22 @@ export class AppointmentComponent implements OnInit {
       this.toastr.error('schedule Component undefined !')
     }
   }
+
+
+  filterPhysician(array: any[]): any[] {
+
+    const result = [];
+    const map = new Map();
+    for (const item of array) {
+      if (!map.has(item.UserName)) {
+        map.set(item.UserName, true);
+        result.push(item.UserName
+        );
+      }
+    }
+    return result;
+  }
+  
   GetAppointment() {
     this.objAppointmentDataService.GetAppointment().subscribe((result) => {
       this.AppointmentData = [];
@@ -144,13 +161,14 @@ export class AppointmentComponent implements OnInit {
         this.AppointmentData.push(
           {
             "Id": element.Id, "PatientName": isNullOrUndefined(element['PatientName']) ? "Blank" : element['PatientName'],
-            "UserName": this.CurrentUser,
+            "UserName":element.UserName ,
             "Subject": element.Subject, "Status": element.Status, "StartTime": element.StartTime
             , "EndTime": element.EndTime, "Description": element.Description
           }
         )
       }
-      this.ddlPhysicianData = this.AppointmentData.map(x => x.UserName)
+      debugger;
+      this.ddlPhysicianData = this.filterPhysician(this.AppointmentData)
       this.tempAppointmentdata = this.AppointmentData;
       if (this.scheduleObj != undefined) {
         this.scheduleObj.eventSettings.dataSource = this.AppointmentData;
