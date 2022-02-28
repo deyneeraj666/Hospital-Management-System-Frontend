@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PmsService } from 'src/app/Service/pms.service';
+import { AuthService } from 'src/app/Shared/auth.service';
 
 @Component({
   selector: 'app-emergency-contact',
@@ -10,14 +11,29 @@ import { PmsService } from 'src/app/Service/pms.service';
 })
 export class EmergencyContactComponent implements OnInit {
   option: number = 2;
+  pid:string='';
 
   isSubmitClicked: boolean = true;
   isEditClicked: boolean = false;
   isCancelClicked: boolean = true;
 
-  constructor(private pmsService: PmsService, private toastr: ToastrService) {}
+  constructor(private pmsService: PmsService, private toastr: ToastrService,private auth:AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pid=this.auth.Id;
+
+    this.pmsService.getEmergencyContactDetailByPatientId(this.pid).subscribe(
+      (res)=>{
+        this.fillEmergencyForm(res);
+      },
+      (err:any)=>{
+        console.log(err);
+        console.log('Error occurred');
+      }
+    );
+  }
+
+
   public patientEmergencyForm = new FormGroup({
     efname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     elname: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -32,6 +48,21 @@ export class EmergencyContactComponent implements OnInit {
     eaddress: new FormControl(''),
     access: new FormControl(''),
   });
+
+  fillEmergencyForm(data: any) {
+    this.patientEmergencyForm.controls['efname'].setValue(data?.firstName);
+    this.patientEmergencyForm.controls['elname'].setValue(data?.lastName);
+    this.patientEmergencyForm.controls['relationship'].setValue(data?.relationship);
+    this.patientEmergencyForm.controls['eemail'].setValue(data?.emailId);
+    this.patientEmergencyForm.controls['econtact'].setValue(data?.contactNumber);
+    this.patientEmergencyForm.controls['eaddress'].setValue(data?.address);
+    this.patientEmergencyForm.controls['access'].setValue(data?.patientPortalAccess);
+  
+    this.disableFormProperties();
+    this.isSubmitClicked=false;
+    this.isEditClicked=true;
+    this.isCancelClicked=false;
+  }
 
   disableFormProperties() {
     this.patientEmergencyForm.controls['efname'].disable();
@@ -61,24 +92,22 @@ export class EmergencyContactComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log("submit called")
-    // console.log(this.patientDemographicForm.value)
-
-    let result = this.pmsService.savePatientDemographicInfo(
-      this.patientEmergencyForm.value
-    );
-    if (result) {
-      // alert('Form is successfully submitted');
+    this.pmsService.savePatientEmergencyInfo(this.patientEmergencyForm.value,this.pid)
+    .subscribe((res)=>{
       this.toastr.success('Successfully Submitted');
       this.disableFormProperties();
       this.isSubmitClicked = !this.isSubmitClicked;
       this.isEditClicked = !this.isEditClicked;
       this.isCancelClicked = !this.isCancelClicked;
-    }
+    },
+    (err:any)=>{
+      console.log('Error occurred ', err);
+    });
   }
+  
 
-onCancel(){
-  this.patientEmergencyForm.reset();
-}
+  onCancel(){
+    this.patientEmergencyForm.reset();
+  }
 
 }

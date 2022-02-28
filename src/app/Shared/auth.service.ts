@@ -1,29 +1,50 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
+
   helper = new JwtHelperService();
-  public decodedToken:any 
+  public decodedToken:any
   UserName:string ="";
   Email:string="";
-  constructor()
-  {
-    
+  Id:string="";
+  role:string="";
+  constructor()  {
+
   }
-  isLoggedIn()
-  {
+  // isLoggedIn()
+  // {
+  //   var token:any = localStorage.getItem('token');
+  //   this.decodedToken = this.helper.decodeToken(token);
+  //   const isExpired =this. helper.isTokenExpired(token);
+  //   this.UserName=this.decodedToken.FirstName;
+  //   this.Email = this.decodedToken.Email;
+  //   if(isExpired)
+  //   {
+  //     return false;
+  //   }
+  //   return !!localStorage.getItem('token');
+  // }
+
+  isLoggedIn()  {
     var token:any = localStorage.getItem('token');
     this.decodedToken = this.helper.decodeToken(token);
     const isExpired =this. helper.isTokenExpired(token);
     this.UserName=this.decodedToken.FirstName;
     this.Email = this.decodedToken.Email;
-    if(isExpired)
-    {
+    this.Id=this.decodedToken.Id;
+    this.role=this.decodedToken.Role;
+    console.log(this.Id)
+    console.log(this.role)
+
+    if(isExpired){
       return false;
     }
     return !!localStorage.getItem('token');
   }
+
 }
+

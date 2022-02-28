@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PmsService } from 'src/app/Service/pms.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { AuthService } from 'src/app/Shared/auth.service';
 
 @Component({
   selector: 'app-demographic',
@@ -11,25 +11,44 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DemographicComponent implements OnInit {
   age: number = 0;
-  option:number =1;
+  disableAge:boolean=true;
+  option: number = 1;
+  pid: string = '';
 
-  isSubmitClicked:boolean=true;
-  isEditClicked:boolean=false;
-  isCancelClicked:boolean=true;
+  isSubmitClicked: boolean = true;
+  isEditClicked: boolean = false;
+  isCancelClicked: boolean = true;
 
-  constructor(private pmsService: PmsService,private toastr:ToastrService) {}
+  constructor(
+    private pmsService: PmsService,
+    private toastr: ToastrService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.onDobChange();
+    this.pid = this.auth.Id;
+
+    this.pmsService.getDemographicInfoByPatientId(this.pid).subscribe(
+      (res) => {
+        console.log('Receiving data in demo');
+        this.fillDemoForm(res);
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+        console.log('Error occurred');
+      }
+    );
+
+       
+       this.onDobChange();
   }
 
   onDobChange() {
     let now: any = new Date();
     let userDob: any = new Date(this.patientDemographicForm.get('dob')?.value);
     let ageInMilliseconds: any = Math.abs(now - userDob);
-    this.age = Math.floor(ageInMilliseconds / 1000 / 60 / 60 / 24 / 365); 
-
-    
+    this.age = Math.floor(ageInMilliseconds / 1000 / 60 / 60 / 24 / 365);
   }
 
   //to disable the form on click of Submit button
@@ -64,38 +83,61 @@ export class DemographicComponent implements OnInit {
 
   onEdit() {
     this.enableFormProperties();
-    this.isSubmitClicked=!this.isSubmitClicked;
-    this.isEditClicked=!this.isEditClicked;
-    this.isCancelClicked=!this.isCancelClicked;
+    this.isSubmitClicked = !this.isSubmitClicked;
+    this.isEditClicked = !this.isEditClicked;
+    this.isCancelClicked = !this.isCancelClicked;
   }
 
   onSubmit() {
-    // console.log("submit called")
-    // console.log(this.patientDemographicForm.value)
-  
-    let result = this.pmsService.savePatientDemographicInfo(
-      this.patientDemographicForm.value
-    );
-    if (result) {
-      // alert('Form is successfully submitted');
-      this.toastr.success('Successfully Submitted');
-      this.disableFormProperties();
-      this.isSubmitClicked = !this.isSubmitClicked;
-      this.isEditClicked=!this.isEditClicked;
-      this.isCancelClicked =!this.isCancelClicked;
-    }
+
+    this.pmsService
+      .savePatientDemographicInfo(this.patientDemographicForm.value,this.pid)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.toastr.success('Successfully Submitted');
+          this.disableFormProperties();
+          this.isSubmitClicked = !this.isSubmitClicked;
+          this.isEditClicked = !this.isEditClicked;
+          this.isCancelClicked = !this.isCancelClicked;
+        },
+        (err) => {
+          console.log('Error occurred ', err);
+        }
+      );
   }
 
-  onCancel(){
+  fillDemoForm(data: any) {
+    this.patientDemographicForm.controls['title'].setValue(data?.title);
+    this.patientDemographicForm.controls['fname'].setValue(data?.firstName);
+    this.patientDemographicForm.controls['lname'].setValue(data?.lastName);
+    this.patientDemographicForm.controls['dob'].setValue(data?.dob);
+    this.onDobChange();
+    this.patientDemographicForm.controls['email'].setValue(data?.emailId);
+    this.patientDemographicForm.controls['gender'].setValue(data?.gender);
+    this.patientDemographicForm.controls['race'].setValue(data?.race);
+    this.patientDemographicForm.controls['ethnicity'].setValue(data?.ethnicity);
+    this.patientDemographicForm.controls['language'].setValue(
+      data?.languagesKnown
+    );
+    this.patientDemographicForm.controls['address'].setValue(data?.homeAddress);
+    this.patientDemographicForm.controls['contact'].setValue(
+      data?.contactNumber
+    );
+    this.disableFormProperties();
+    this.isSubmitClicked=false;
+    this.isEditClicked=true;
+    this.isCancelClicked=false;
+  
+  }
+
+  onCancel() {
     this.patientDemographicForm.reset();
   }
 
   public patientDemographicForm = new FormGroup({
     title: new FormControl('', Validators.required),
-    fname: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-    ]),
+    fname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     lname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     dob: new FormControl('2000-01-01', Validators.required),
     // age: new FormControl('', Validators.required),
@@ -120,7 +162,9 @@ export class DemographicComponent implements OnInit {
     //   Validators.required,
     //   Validators.pattern('^\\+1\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$'),
     // ]),
-    contact : new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
-
+    contact: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^([0-9]{1,5})?([7-9][0-9]{9})$'),
+    ]),
   });
 }

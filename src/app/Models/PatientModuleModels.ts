@@ -1,5 +1,6 @@
 export interface savePatientDemographicInfo
 {
+    pid:string;
     title : string;
     fname : string;
     lname : string;

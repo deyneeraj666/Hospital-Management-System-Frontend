@@ -14,7 +14,6 @@ export class UsermanagementService
   readonly Url_validiateOtp ='http://localhost:5517/api/Account/ResetPassword';
   
 
-
   constructor(private http:HttpClient)
   {
 
