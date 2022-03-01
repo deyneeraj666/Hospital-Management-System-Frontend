@@ -11,6 +11,10 @@ export class AppointmentDataService {
   constructor(private httpobj:HttpClient) { }
 
   url:string ='http://localhost:3000/AppointmentData';
+  urlPhysician:string='http://localhost:3001/physician';
+  public GetAllPhysician():Observable<any>{
+    return  this.httpobj.get(this.urlPhysician);
+  }
   public GetAppointment():Observable<any>{
        
     return  this.httpobj.get(this.url);

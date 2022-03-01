@@ -28,8 +28,9 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetAppointment();
+    //this.GetAllPhysician();
   }
-  CurrentUser: string = this.auth.UserName;
+  CurrentUser: string = this.auth.Id;
   ddlPhysicianData: string[] = [];
   AppointmentData: any[] = []
   tempAppointmentdata: any[] = [];
@@ -46,8 +47,7 @@ export class AppointmentComponent implements OnInit {
   public startDate !: Date | null;
   public endDate !: Date | null;
   public statusData: string[] = ['New', 'Requested', 'Confirmed'];
-
-
+  public physicianData: string[] = []
   public startDateParser(data: string) {
     if (this.startDate != null && isNullOrUndefined(this.startDate) && !isNullOrUndefined(data)) {
       return new Date(data);
@@ -77,6 +77,9 @@ export class AppointmentComponent implements OnInit {
       }
     }
   }
+  public onPopupOpen(args: PopupOpenEventArgs) {
+    this.GetAllPhysician();
+  }
   public onPopupClose(args: PopupCloseEventArgs) {
     this.startDate = null;
     this.endDate = null;
@@ -86,12 +89,12 @@ export class AppointmentComponent implements OnInit {
     if ((args.type === 'Editor' || args.type === 'DeleteAlert') && args.data != undefined && !isNullOrUndefined(args.data)) {
       let element = ((args.data) as { [key: string]: Object });
       let obj = {
-        "Id": (element['Id'] != undefined ? element['Id'] : tempId.toString()), "PatientName": element['PatientName'],
+        "Id": (element['Id'] != undefined ? element['Id'] : tempId.toString()), "PatientName": element['Subject'],
         "UserName": this.CurrentUser,
-        "Subject": element['Subject'], "Status": element['Status'], "StartTime": element['StartTime']
+        "Physician": element['Physician'],
+        "MeetingTitle": element['MeetingTitle'], "Status": element['Status'], "StartTime": element['StartTime']
         , "EndTime": element['EndTime'], "Description": element['Description']
       }
-      debugger;
       if (args != undefined && args.event != undefined && args.event.target != undefined && (args.event.target as HTMLElement).innerText !== 'CANCEL') {
         if (args.type === 'Editor') {
           if (!isNullOrUndefined(obj.Id)) {
@@ -109,7 +112,6 @@ export class AppointmentComponent implements OnInit {
         else if (args.type === 'DeleteAlert') {
           this.DeleteAppointment(Number(obj.Id));
         } else {
-          debugger;
           this.ddlPhysicianData = this.filterPhysician(this.AppointmentData)
           this.tempAppointmentdata = this.AppointmentData;
         }
@@ -129,7 +131,7 @@ export class AppointmentComponent implements OnInit {
 
     this.filterDropdownObj?.refresh();
     let value = this.filterDropdownObj?.value;
-    this.tempAppointmentdata = this.AppointmentData.filter(x => x.UserName == value);
+    this.tempAppointmentdata = this.AppointmentData.filter(x => x.Physician == value);
     if (this.scheduleObj != undefined) {
       this.scheduleObj.eventSettings.dataSource = this.tempAppointmentdata;
     }
@@ -144,15 +146,23 @@ export class AppointmentComponent implements OnInit {
     const result = [];
     const map = new Map();
     for (const item of array) {
-      if (!map.has(item.UserName)) {
-        map.set(item.UserName, true);
-        result.push(item.UserName
-        );
+      if (!map.has(item.Physician)) {
+        map.set(item.Physician, true);
+        result.push(item.Physician);
       }
     }
     return result;
   }
-  
+  GetAllPhysician() {
+    this.objAppointmentDataService.GetAllPhysician().subscribe((result) => {
+      
+      this.physicianData = [];
+      for (let index = 0; index < result.length; index++) {
+        const element = result[index];
+        this.physicianData.push(element)
+      }
+    });
+  }
   GetAppointment() {
     this.objAppointmentDataService.GetAppointment().subscribe((result) => {
       this.AppointmentData = [];
@@ -160,14 +170,14 @@ export class AppointmentComponent implements OnInit {
         const element = result[index];
         this.AppointmentData.push(
           {
-            "Id": element.Id, "PatientName": isNullOrUndefined(element['PatientName']) ? "Blank" : element['PatientName'],
+            "Id": element.Id, "Subject": isNullOrUndefined(element['PatientName']) ? "Blank" : element['PatientName'],
             "UserName":element.UserName ,
-            "Subject": element.Subject, "Status": element.Status, "StartTime": element.StartTime
+            "Physician": element['Physician'],
+            "MeetingTitle": element.MeetingTitle, "Status": element.Status, "StartTime": element.StartTime
             , "EndTime": element.EndTime, "Description": element.Description
           }
         )
       }
-      debugger;
       this.ddlPhysicianData = this.filterPhysician(this.AppointmentData)
       this.tempAppointmentdata = this.AppointmentData;
       if (this.scheduleObj != undefined) {
