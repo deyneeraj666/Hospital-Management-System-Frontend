@@ -10,18 +10,19 @@ export class AppointmentDataService {
 
   constructor(private httpobj:HttpClient) { }
 
-  url:string ='http://localhost:3000/AppointmentData';
+  url:string ='http://localhost:56264/api/Appointment/';
   urlPhysician:string='http://localhost:3001/physician';
   public GetAllPhysician():Observable<any>{
     return  this.httpobj.get(this.urlPhysician);
   }
   public GetAppointment():Observable<any>{
        
-    return  this.httpobj.get(this.url);
+    return  this.httpobj.get(this.url+'GetAll');
   }
   public AddAppointment(objAppointment:any):Observable<any>{
-       
-    return  this.httpobj.post(this.url,objAppointment);
+       console.log('Service Object'+ objAppointment)
+       console.log( objAppointment)
+    return  this.httpobj.post('http://localhost:56264/api/Appointment/Create',objAppointment);
   }
   public GetAppointmentById(Id :number)
   {
@@ -34,7 +35,7 @@ export class AppointmentDataService {
   }
   public UpdateAppointment(objAppointment:any)
   {
-    return  this.httpobj.put(this.url+"/"+Number(objAppointment.Id),objAppointment);
+    return  this.httpobj.put(this.url+'AppointmentUpdateById?id='+Number(objAppointment.id),objAppointment);
   }
   public GetAppointmentByName(name :string)
   {
@@ -48,6 +49,6 @@ export class AppointmentDataService {
  
   public DeleteAppointment(id:number):Observable<any>{
        
-    return  this.httpobj.delete(this.url+"/"+id);
+    return  this.httpobj.get<any[]>(this.url+'AppointmentDeleteById?id='+id)
   }
 }
