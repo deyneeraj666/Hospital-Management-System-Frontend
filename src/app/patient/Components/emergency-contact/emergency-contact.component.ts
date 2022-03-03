@@ -108,6 +108,20 @@ export class EmergencyContactComponent implements OnInit {
 
   onCancel(){
     this.patientEmergencyForm.reset();
+   // this.initializeFormGroup();
   }
 
+  // initializeFormGroup(){
+  //   this.patientEmergencyForm.setValue({
+  //     efname:'',
+  //     elname:'',
+  //     relationship:'',
+  //     eemail:'',
+  //     econtact:'',
+  //     eaddress:'',
+  //     access:''
+  //   });
+  //   console.log(this.patientEmergencyForm.value);
+    
+  // }
 }

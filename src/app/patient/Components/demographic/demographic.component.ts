@@ -140,7 +140,7 @@ export class DemographicComponent implements OnInit {
     fname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     lname: new FormControl('', [Validators.required, Validators.minLength(2)]),
     dob: new FormControl('2000-01-01', Validators.required),
-    // age: new FormControl('', Validators.required),
+     // age: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
     race: new FormControl('', [
       Validators.minLength(2),

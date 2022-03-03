@@ -1,10 +1,12 @@
 
 <table class="table-container">
-    <tr colspan=5 style="color: rgba(10, 102, 163, 0.897);"><b><u>Allergy Information</u></b></tr>
-   
+ 
+  <mat-card class="all-header">
+    <p style="text-align: center;">Allergy Information</p>
+  </mat-card>
     <!-- <tr colspan=5 style="font-size: medium; font-weight: bold;">Allergy Information</tr> -->
     <tr class="table-head">
-      <th>Id</th>
+      <th>Sl No.</th>
       <th>Type</th>
       <th>Name</th>
       <th>Description</th>
@@ -12,8 +14,8 @@
       <th>Allergy Fatal</th>
       <th>Action</th>
     </tr>
-    <tr *ngFor="let allergy of allergies" class="table-row">
-      <td>{{allergy.allergyId}}</td>
+    <tr *ngFor="let allergy of allergies; let i = index" class="table-row">
+      <td>{{i+1}}</td>
       <td>{{allergy.allergyType}}</td>
       <td>{{allergy.allergyName}}</td>
       <td>{{allergy.allergyDesc}}</td>

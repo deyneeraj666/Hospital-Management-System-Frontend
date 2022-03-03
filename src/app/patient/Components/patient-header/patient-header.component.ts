@@ -13,7 +13,9 @@ export class PatientHeaderComponent implements OnInit
   @Input() option:number =1;
   role:any = localStorage.getItem('role');
   constructor(private router: Router,public authService:AuthService) { 
+    console.log(this.authService.role);
   }
+
 
   
 
@@ -48,6 +50,10 @@ export class PatientHeaderComponent implements OnInit
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.router.navigateByUrl('login');
+  }
+  click_patientVisit(){
+    this.router.navigateByUrl('login/patient/PatientVisit');
+
   }
 
   ngOnInit(): void {

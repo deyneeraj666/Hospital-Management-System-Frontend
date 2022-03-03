@@ -12,6 +12,7 @@ import { DemographicComponent } from "./Components/demographic/demographic.compo
 import { EmergencyContactComponent } from "./Components/emergency-contact/emergency-contact.component";
 import { ChangePasswordComponent } from "../login/LoginComponents/change-password/change-password.component";
 import { PatientGuard } from "../Shared/patient.guard";
+import { PatientVisitComponent } from "./Components/patient-visit/patient-visit.component";
 
 const routes: Routes = [
     {path:"login/patient", component:PatientHeaderComponent,canActivate:[PatientGuard]},
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path:"login/patient/procedure", component:ProcedureComponent,canActivate:[PatientGuard]},
     {path:"login/patient/appointment", component:AppointmentComponent,canActivate:[PatientGuard]},
     {path:"login/patient/ChangePassword", component:ChangePasswordComponent,canActivate:[PatientGuard]},
+    {path:"login/patient/PatientVisit",component:PatientVisitComponent,canActivate:[PatientGuard]},
     {path:"login", component:LoginScreenComponent},
     {path:'**',redirectTo:'LoginScreenComponent'}
 ];
