@@ -1,4 +1,5 @@
-import { SharedModule } from "./../shared/shared.module";
+import { PatientRoleUserPipe } from "./../Shared/patient-role-user.pipe";
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminHeaderComponent } from './Components/admin-header/admin-header.component';
@@ -13,13 +14,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { InterceptorService } from "../Shared/interceptor.service";
 import { MatCardModule } from "@angular/material/card";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { MatTableModule } from "@angular/material/table";
+import {MatSortModule} from '@angular/material/sort';
+import { EmpRegistrationComponent } from './emp-registration/emp-registration.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { SharedModule } from '../shared/shared.module';
+import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { EmpRoleUserPipe } from "../shared/emp-role-user.pipe";
 
 
 @NgModule({
@@ -28,7 +37,8 @@ import {MatRadioModule} from '@angular/material/radio';
     EmployeeRegistrationComponent,
     EmployeeListComponent,
     PatientListComponent,
-   // filterPipe
+    EmpRegistrationComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -45,14 +55,26 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCardModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatTooltipModule
+    
+    
   ],
  
   exports:[
     AdminHeaderComponent,
     EmployeeRegistrationComponent,
     EmployeeListComponent,
-    PatientListComponent
-  ]
+    PatientListComponent,
+    EmpRegistrationComponent
+  ],
+  providers: [PatientRoleUserPipe,EmpRoleUserPipe],
+  entryComponents:[EmpRegistrationComponent,ConfirmDialogComponent]
 })
 export class AdminModule { }

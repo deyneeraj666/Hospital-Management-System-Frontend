@@ -43,9 +43,10 @@ export class LoginScreenComponent implements OnInit
               }
               else
               {
-                this.router.navigateByUrl(res.items.role+"/employeeregister");
+                this.router.navigateByUrl(res.items.role+"/employeelist");
               }
              this.toastr.success("Welcome " +res.items.role);
+           
       },1000);
      
      

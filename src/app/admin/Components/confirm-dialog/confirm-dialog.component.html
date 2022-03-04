@@ -1,0 +1,16 @@
+<div>
+    <div class="content-container">
+      <button id="close-icon" style="margin-left: 240px; background-color: white; color:red"   (click)="closeDialog()"><mat-icon>close</mat-icon></button>
+      <br>
+      <span *ngIf="user.opt==1"  class="content-span full-width" style="color: brown;">Are you sure to delete this Record ?</span>
+      <span *ngIf="user.opt==2"  class="content-span full-width" style="color: brown;">Are you sure to Block ?</span>
+      <span *ngIf="user.opt==3"  class="content-span full-width" style="color: brown;">Are you sure to Unlock ?</span>
+    </div>
+    <br>
+    <br>
+    <button mat-flat-button *ngIf="user.opt==1" style="background-color:green; color:white" [mat-dialog-close]="true" (click)="delete_emp()">YES</button>
+    <button mat-flat-button *ngIf="user.opt==2" style="background-color:green; color:white" [mat-dialog-close]="true" (click)="block_emp()">YES</button>
+    <button mat-flat-button *ngIf="user.opt==3" style="background-color:green; color:white" [mat-dialog-close]="true" (click)="unlock_emp()">YES</button>
+    <button mat-flat-button  style="background-color:red; color:white; margin-left: 20px;" [mat-dialog-close]="false" >NO</button>
+   
+  </div>

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
 import { UsermanagementService } from 'src/app/Shared/usermanagement.service';
-//import { ConfirmedValidator } from './confirmed.validator';
+
 
 
 @Component({
@@ -41,6 +42,7 @@ export class RegisterComponent implements OnInit
     if(this.patientRegisterForm.valid)
     {
       var obj:any = {
+        "Title":this.patientRegisterForm.controls.title.value,
         "FirstName": this.patientRegisterForm.controls.fname.value,
         "LastName": this.patientRegisterForm.controls.lname.value,
         "Email": this.patientRegisterForm.controls.email.value,

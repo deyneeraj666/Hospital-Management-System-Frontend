@@ -9,6 +9,8 @@ export class AuthService {
   public decodedToken:any 
   UserName:string ="";
   Email:string="";
+  Id:string="";
+  role:string="";
   constructor()
   {
     
@@ -20,6 +22,8 @@ export class AuthService {
     const isExpired =this. helper.isTokenExpired(token);
     this.UserName=this.decodedToken.FirstName;
     this.Email = this.decodedToken.Email;
+    this.Id=this.decodedToken.Id;
+    this.role=this.decodedToken.Role;
     if(isExpired)
     {
       return false;
