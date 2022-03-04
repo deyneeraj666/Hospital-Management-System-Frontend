@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { View, EventSettingsModel, EventRenderedArgs, ScheduleComponent, ActionEventArgs, PopupCloseEventArgs, PopupOpenEventArgs, EventClickArgs, CellClickEventArgs } from '@syncfusion/ej2-angular-schedule';
+import { View, EventSettingsModel, EventRenderedArgs, ScheduleComponent, ActionEventArgs, PopupCloseEventArgs, PopupOpenEventArgs, EventClickArgs, CellClickEventArgs, EJ2Instance } from '@syncfusion/ej2-angular-schedule';
 import { extend, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { ChangeEventArgs } from '@syncfusion/ej2-calendars';
 import { L10n } from '@syncfusion/ej2-base';
@@ -7,6 +7,11 @@ import { AppointmentDataService } from 'src/app/Service/appointment-data.service
 import { DropDownList } from '@syncfusion/ej2-angular-dropdowns';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Shared/auth.service';
+import {
+  FormValidators,
+  FormValidator,
+  TextBox
+} from "@syncfusion/ej2-angular-inputs";
 
 L10n.load({
   'en-US': {
@@ -28,8 +33,9 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetAppointment();
+    //this.GetAllPhysician();
   }
-  CurrentUser: string = this.auth.UserName;
+  CurrentUser: string = this.auth.Email;
   ddlPhysicianData: string[] = [];
   AppointmentData: any[] = []
   tempAppointmentdata: any[] = [];
@@ -38,16 +44,24 @@ export class AppointmentComponent implements OnInit {
 
   @ViewChild('filterDropdown')
   public filterDropdownObj: DropDownList | undefined;
-
-  public eventSettings: EventSettingsModel = { dataSource: extend([], this.AppointmentData, undefined, true) as Record<string, any>[] };
+  public validator!: FormValidator;
+  public eventSettings: EventSettingsModel = { dataSource: extend([], this.AppointmentData, undefined, true) as Record<string, any>[]
+  ,
+  fields: {
+    subject: { name: "Subject", validation: { required: true } },
+    description: {
+      name: "Description",
+      validation: { required: true }
+    }
+  }
+  };
   public selectedDate: Date = new Date(2022, 1, 10);
   //public selectedDate: Date = new Date();
   public showQuickInfo = false;
   public startDate !: Date | null;
   public endDate !: Date | null;
   public statusData: string[] = ['New', 'Requested', 'Confirmed'];
-
-
+  public physicianData: string[] = []
   public startDateParser(data: string) {
     if (this.startDate != null && isNullOrUndefined(this.startDate) && !isNullOrUndefined(data)) {
       return new Date(data);
@@ -77,25 +91,49 @@ export class AppointmentComponent implements OnInit {
       }
     }
   }
+  public onPopupOpen(args: PopupOpenEventArgs) {
+    if (args.type === "Editor") {
+      const formElement: HTMLElement = args.element.querySelector(
+        ".e-schedule-form"
+      ) as HTMLElement;
+      this.validator = (formElement as EJ2Instance)
+        .ej2_instances[0] as FormValidator;
+      let controlsArr:String[]=["P_Id","MeetingTitle","Physician","Status","Description"];
+      let msg:string="This field  is required !";
+      
+      controlsArr.forEach(element => {
+        this.validator.addRules(element.toString() , {
+          required: [true, msg]
+        });
+      });
+      
+    }
+    this.GetAllPhysician();
+  }
   public onPopupClose(args: PopupCloseEventArgs) {
     this.startDate = null;
     this.endDate = null;
     const ids = this.AppointmentData.map(x => x.Id);
-    const maxId = Math.max(...ids)
+    const maxId = ids.length ==0 ? 0 : Math.max(...ids)
+   
     let tempId = maxId + 1;
     if ((args.type === 'Editor' || args.type === 'DeleteAlert') && args.data != undefined && !isNullOrUndefined(args.data)) {
       let element = ((args.data) as { [key: string]: Object });
-      let obj = {
-        "Id": (element['Id'] != undefined ? element['Id'] : tempId.toString()), "PatientName": element['PatientName'],
-        "UserName": this.CurrentUser,
-        "Subject": element['Subject'], "Status": element['Status'], "StartTime": element['StartTime']
-        , "EndTime": element['EndTime'], "Description": element['Description']
+      let obj = 
+      {
+        "id": (element['Id'] != undefined && element['Id']!='' ? element['Id'] : tempId.toString()),
+        "patientName": element['Subject'],
+        "p_id":element['P_Id'],
+        "physician": element['Physician'],
+        "meetingTitle": element['MeetingTitle'], "status": element['Status'], "startDateTime": element['StartTime']
+        , "endDateTime":element['EndTime']
+        , "description": element['Description'],
+          "username": this.CurrentUser
       }
-      debugger;
       if (args != undefined && args.event != undefined && args.event.target != undefined && (args.event.target as HTMLElement).innerText !== 'CANCEL') {
         if (args.type === 'Editor') {
-          if (!isNullOrUndefined(obj.Id)) {
-            if (this.existingAppointment(Number(obj.Id))) {
+          if (!isNullOrUndefined(obj.id)) {
+            if (this.existingAppointment(Number(obj.id)) && obj.id !=0) {
               this.UpdateAppointment(obj);
             }
             else {
@@ -107,9 +145,8 @@ export class AppointmentComponent implements OnInit {
           }
         }
         else if (args.type === 'DeleteAlert') {
-          this.DeleteAppointment(Number(obj.Id));
+          this.DeleteAppointment(Number(obj.id));
         } else {
-          debugger;
           this.ddlPhysicianData = this.filterPhysician(this.AppointmentData)
           this.tempAppointmentdata = this.AppointmentData;
         }
@@ -129,7 +166,7 @@ export class AppointmentComponent implements OnInit {
 
     this.filterDropdownObj?.refresh();
     let value = this.filterDropdownObj?.value;
-    this.tempAppointmentdata = this.AppointmentData.filter(x => x.UserName == value);
+    this.tempAppointmentdata = this.AppointmentData.filter(x => x.Physician == value);
     if (this.scheduleObj != undefined) {
       this.scheduleObj.eventSettings.dataSource = this.tempAppointmentdata;
     }
@@ -144,15 +181,23 @@ export class AppointmentComponent implements OnInit {
     const result = [];
     const map = new Map();
     for (const item of array) {
-      if (!map.has(item.UserName)) {
-        map.set(item.UserName, true);
-        result.push(item.UserName
-        );
+      if (!map.has(item.Physician)) {
+        map.set(item.Physician, true);
+        result.push(item.Physician);
       }
     }
     return result;
   }
-  
+  GetAllPhysician() {
+    this.objAppointmentDataService.GetAllPhysician().subscribe((result) => {
+      
+      this.physicianData = [];
+      for (let index = 0; index < result.length; index++) {
+        const element = result[index];
+        this.physicianData.push(element)
+      }
+    });
+  }
   GetAppointment() {
     this.objAppointmentDataService.GetAppointment().subscribe((result) => {
       this.AppointmentData = [];
@@ -160,14 +205,15 @@ export class AppointmentComponent implements OnInit {
         const element = result[index];
         this.AppointmentData.push(
           {
-            "Id": element.Id, "PatientName": isNullOrUndefined(element['PatientName']) ? "Blank" : element['PatientName'],
-            "UserName":element.UserName ,
-            "Subject": element.Subject, "Status": element.Status, "StartTime": element.StartTime
-            , "EndTime": element.EndTime, "Description": element.Description
+            "Id": element.id, "Subject": isNullOrUndefined(element['patientName']) ? "Blank" : element['patientName'],
+            "P_Id":element.p_id,
+            "Physician": element['physician'],
+            "MeetingTitle": element.meetingTitle, "Status": element.status, "StartTime": element.startDateTime.toString(),
+            "EndTime": element.endDateTime.toString(), "Description": element.description,
+            "UserName":element.username
           }
         )
       }
-      debugger;
       this.ddlPhysicianData = this.filterPhysician(this.AppointmentData)
       this.tempAppointmentdata = this.AppointmentData;
       if (this.scheduleObj != undefined) {
@@ -193,6 +239,7 @@ export class AppointmentComponent implements OnInit {
 
   DeleteAppointment(id: number) {
     this.objAppointmentDataService.DeleteAppointment(id).subscribe((result) => {
+      this.toastr.success('Deleted Successfully!')
       this.GetAppointment();
     });
   }

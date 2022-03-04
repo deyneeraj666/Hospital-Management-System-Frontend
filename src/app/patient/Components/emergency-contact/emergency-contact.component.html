@@ -98,19 +98,25 @@
         <div class="field">
           <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
             <mat-label class="label">Home Address</mat-label>
-            <textarea matInput rows="5" formControlName="eaddress" class="input-field"></textarea>
+            <textarea matInput rows="5" formControlName="eaddress" class="input-field" style="height: 81px;"></textarea>
           </mat-form-field>
         </div>
 
-        
         <div class="field">
-          <mat-label class="label">Do you need to access Patient Portal?</mat-label>
-          <mat-radio-group formControlName="access" required>
-            <mat-radio-button class="padding-right radio-yes" value="Yes">Yes</mat-radio-button>
-            <mat-radio-button class="padding-right"  value="No">No</mat-radio-button>
-          </mat-radio-group>
-  
-            <span
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Do you need to access Patient Portal?</mat-label>
+            <select
+              matNativeControl
+              formControlName="access"
+              id=""
+              class="input-field"
+              
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </mat-form-field>
+          <span
               class="error"
               *ngIf="
                 patientEmergencyForm.controls['access'].invalid &&
@@ -119,8 +125,9 @@
             >
               Kindly select the access
             </span>
-         
         </div>
+
+
       </div>
     </div>
     <div class="actions">

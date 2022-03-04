@@ -17,7 +17,6 @@ import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { DayService, DragAndDropService, MonthService, RecurrenceEditorModule, ResizeService, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppointmentComponent,

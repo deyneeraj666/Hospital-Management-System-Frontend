@@ -1,4 +1,5 @@
 export class Allergy{
+    pid:string='';
     knownAllergy?:boolean;
     allergyId?: string="";
     allergyType?:string="";

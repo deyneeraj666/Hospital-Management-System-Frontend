@@ -23,7 +23,7 @@ export class ForgotPasswordComponent implements OnInit
   disableOption2=false;
   time:number=60;
   
-  constructor(private user: UsermanagementService, private router:Router,private service: PmsService,private toastr:ToastrService)
+  constructor(private user: UsermanagementService, private router:Router,private toastr:ToastrService)
   {
 
   }

@@ -14,6 +14,7 @@ export class AllergyGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   //to delete particular allergy added

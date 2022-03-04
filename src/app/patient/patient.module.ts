@@ -27,6 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatRadioModule } from "@angular/material/radio";
+import { PatientVisitComponent } from './Components/patient-visit/patient-visit.component';
 
 
 
@@ -41,7 +42,8 @@ import { MatRadioModule } from "@angular/material/radio";
     ProcedureComponent,
     DiagnosisComponent,
     MedicationsComponent,
-    AllergyGridComponent
+    AllergyGridComponent,
+    PatientVisitComponent
     
   ],
   imports: [
@@ -72,7 +74,8 @@ import { MatRadioModule } from "@angular/material/radio";
     AllergyInfoComponent,
     AppointmentComponent,
     ProcedureComponent,
-    AllergyGridComponent
+    AllergyGridComponent,
+    PatientVisitComponent
   ],
 })
 export class PatientModule{ }

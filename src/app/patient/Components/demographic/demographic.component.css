@@ -31,25 +31,21 @@
 }
 
 .dm-info {
-    /* border: 2px solid orange; */
     flex: 0.5;
 }
 
 .field {
-    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     padding: 8px;
-
+    font-size: 12px;
 }
 
 
 .field-label {
     flex: 0.4;
-    
     padding: 5px 5px;
     font-size: 15px;
-
 }
 
 .field-value {
@@ -65,22 +61,13 @@
     margin-bottom: 10px;
 }
 
-.radio {
+/* .radio {
     display: flex;
     flex-direction: row;
     width: 90%;
 
-}
-
-/* .field-value input, .field-value textarea, .field-value radio {
-    padding: 2px;
-    background-color: red;
-    border: none;
-    border: 1px solid black;
-    width: 90%;
-    height: 90%;
-    margin-bottom: 3px;
 } */
+
 
 button {
     margin: auto;
@@ -102,14 +89,6 @@ span {
     font-size: 10px;
 }
 
-/* .radio-item {
-    display: flex;
-    width: 100%;
-} */
-
-/* .radio-item>* {
-    flex-basis: 100%;
-} */
 
 .actions{
     margin-bottom: 10px;
@@ -131,13 +110,13 @@ span {
 .cancel{
     margin-right: 10px;
     width: 70px;
-    background-color:lightgrey;
+    background-color: grey;
     color: white;
 }
 
 .input-field{
     color:rgba(10, 102, 163, 0.897) ;
-    
+    font-size: 16px;
 }
 
 .label{

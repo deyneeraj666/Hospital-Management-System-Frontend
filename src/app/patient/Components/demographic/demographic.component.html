@@ -9,13 +9,23 @@
     <div class="dm-details">
 
       <div class="dm-info">
-        <div class="field-radio">
-          <mat-label class="label" style="margin-right:14px;font-size: 14px;">Title</mat-label>
-          <mat-radio-group formControlName="title" required>
-            <mat-radio-button class="padding-right radio-yes" value="Mr">Mr</mat-radio-button>
-            <mat-radio-button class="padding-right"  value="Ms">Ms</mat-radio-button>
-            <mat-radio-button class="padding-right"  value="Mrs">Mrs</mat-radio-button>
-          </mat-radio-group>
+       
+
+          <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+              <mat-label class="label">Title</mat-label>
+              <select
+                matNativeControl
+                formControlName="title"
+                id=""
+                class="select-gender input-field"
+                
+              >
+                <option value="Mr">Mr</option>
+                <option value="Ms">Ms</option>
+                <option value="Mrs">Mrs</option>
+              </select>
+            </mat-form-field>
           </div>
 
           <div class="field">
@@ -48,6 +58,23 @@
             >
           </div>
        
+          
+          <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+              <mat-label class="label">Gender</mat-label>
+              <select
+                matNativeControl
+                formControlName="gender"
+                id=""
+                class="select-gender input-field"
+                
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </mat-form-field>
+          </div>
 
           <div class="field">
             <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
@@ -66,29 +93,24 @@
             >
           </div>
 
-        
-
-          
-        <div class="field" style="padding-bottom: 15px;  flex-direction: row;">
-          <div class="field-label">
-            <label style="font-size: 14px;">Age</label>
-          </div>
-          <div class="field-value" >
-            {{age}}
+          <div class="field" >
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-label class="label">Age</mat-label>
+              <input matInput  class="input-field" [disabled]="disableAge"/>
+              
+              <div style="padding: 0px; color:rgba(10, 102, 163, 0.897);font-size: 16px;">{{age}}</div>
             
-          </div>
-        </div>
-
-        <div class="field-radio" style="padding-bottom: 15px;">
-          <mat-label class="label" style="margin-right:14px;font-size: 14px;">Gender</mat-label>
-          <mat-radio-group formControlName="gender" required>
-            <mat-radio-button class="padding-right radio-yes" value="Male">M</mat-radio-button>
-            <mat-radio-button class="padding-right"  value="Female">F</mat-radio-button>
-            <mat-radio-button class="padding-right"  value="Other">Other</mat-radio-button>
-          </mat-radio-group>
+            </mat-form-field>
           </div>
 
 
+
+        
+      </div>
+
+
+      <div class="dm-info">
+       
         <div class="field">
           <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
             <mat-label class="label">Race</mat-label>
@@ -103,11 +125,7 @@
             >Race is required</span
           >
         </div>
-      </div>
-
-
-      <div class="dm-info">
-       
+        
         <div class="field">
           <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
             <mat-label class="label">Ethnicity</mat-label>
@@ -159,7 +177,7 @@
         <div class="field">
           <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
             <mat-label class="label">Home Address</mat-label>
-            <textarea matInput rows="5" formControlName="address" class="input-field"></textarea>
+            <textarea matInput rows="5" formControlName="address" class="input-field" style="height: 36px;"></textarea>
           </mat-form-field>
           <span
               *ngIf="

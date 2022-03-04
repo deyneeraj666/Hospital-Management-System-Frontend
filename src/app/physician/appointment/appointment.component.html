@@ -10,6 +10,7 @@
     (actionBegin)="onActionBegin($event)"
     (eventRendered)="onEventRendered($event)"
     (popupClose)="onPopupClose($event)"
+    (popupOpen)="onPopupOpen($event)"
     [showQuickInfo]="showQuickInfo"
   >
     <e-views>
@@ -39,29 +40,55 @@
             /></td>
           </tr>
           <tr>
-            <td class="e-textlabel">Patient Name</td>
-            <td colspan="4">
+            <td class="e-textlabel">Patient Id</td>
+            <td colspan="1">
               <input
-                id="PatientName"
-                class="e-field e-input"
-                type="text"
-                value="{{ data.PatientName }}"
-                name="PatientName"
-                style="width: 100%"
-              />
-            </td>
+              id="P_Id"
+              class="e-field e-input"
+              type="text"
+              value="{{ data.P_Id }}"
+              name="P_Id"
+              style="width: 100%"
+            /></td>
           </tr>
           <tr>
             <td class="e-textlabel">Meeting Title</td>
             <td colspan="4">
               <input
-                id="Subject"
+                id="MeetingTitle"
                 class="e-field e-input"
                 type="text"
+                value="{{ data.MeetingTitle }}"
+                name="MeetingTitle"
+                style="width: 100%"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td class="e-textlabel">Patient Name</td>
+            <td colspan="4">
+              <input
+                id="Subject"
+                class="e-field e-input"
+                type="Subject"
                 value="{{ data.Subject }}"
                 name="Subject"
                 style="width: 100%"
               />
+            </td>
+          </tr>
+          <tr>
+            <td class="e-textlabel">Physician</td>
+            <td colspan="4">
+              <ejs-dropdownlist
+                id="Physician"
+                class="e-field"
+                data-name="Physician"
+                placeholder="select Physician"
+                [dataSource]="physicianData"
+                value="{{ data.Physician }}"
+              >
+              </ejs-dropdownlist>
             </td>
           </tr>
           <tr>
