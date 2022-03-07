@@ -13,8 +13,8 @@ export class PmsService {
 
   readonly Url = 'http://localhost:64193/api/Demographics';
   readonly EmergencyUrl ='http://localhost:64193/api/EmergencyDetails';
-  readonly AllergyUrl ='https://localhost:44340/api/Allergies';
-  readonly PatientAllergy='https://localhost:44340/api/PatientAllergies';
+  readonly AllergyUrl ='https://localhost:44338/api/Allergies';
+  readonly PatientAllergy='https://localhost:44338/api/PatientAllergies';
  
 
  
