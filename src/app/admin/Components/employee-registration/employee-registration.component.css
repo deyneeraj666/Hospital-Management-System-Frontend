@@ -1,100 +1,63 @@
 .employee-container {
-    /* background-color: rgb(236, 232, 232); */
     background-color: white;
-    width: 40%;
+    width: 35%;
     display: grid;
     place-items: center;
     margin: auto;
-    margin-top: 2rem;
+    height: 550px;
     border: 1px solid rgba(10, 102, 163, 0.897);
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
 }
-
+.no-bottom{
+    margin-bottom: -1.25rem !important;
+}
 .em-header {
-    width: 100%;
-    /* background-color: rgb(49, 112, 230); */
-    height: 2rem;
-   
+    width: 90%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
-p{
-    font-size: large;
-    font-weight: bold;
-    text-decoration: underline;
-    padding-top: 2px;
-    font-family: 'Times New Roman', Times, serif;
-    color: rgba(10, 102, 163, 0.897);
-    text-align: center;
-}
+
 .em-details {
-    /* border: 2px solid green; */
     width: 70%;
-    /* display: flex; */
-    /* justify-content:space-evenly; */
     padding: 1rem;
     margin: auto;
 }
 
-.em-info {
-    /* border: 2px solid orange; */
-    flex: 0.5;
-}
 
 .field {
-    /* border: 2px solid red; */
     display: flex;
+    flex-direction: column;
     padding: 5px;
 
 }
 
-/* 
-.field>*{
-flex-basis: 100%;
-} */
-.field-label {
-    flex: 0.4;
-
-    padding: 5px 5px;
-    font-size: 15px;
-
+.padding-right {
+    padding-left: 0px;
+    padding-right: 2px;
 }
 
-.field-value {
-    flex: 0.6;
-    padding: 2px 5px;
-    display: flex;
-    flex-direction: column;
-    
+.radio-yes{
+    margin-right: 5px;
 }
 
-.radio {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
 
-}
 
-.field-value input, .field-value radio {
-    padding: 2px;
-    /* background-color: red; */
-    /* border: none; */
-    border: 1px solid black;
-    width: 90%;
-    height: 90%;
-    margin-bottom: 3px;
-}
 
 
 
 .form-container {
-    /* display: flex;
-    flex-direction: column; */
     width: 98%;
-    /* justify-content: space-between; */
 }
 
 .actions {
     margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+
+
 }
 
 span {
@@ -102,30 +65,90 @@ span {
     font-size: 10px;
 }
 
-.radio-item {
-    display: flex;
-    width: 100%;
+.cancel{
+    margin-right: 10px;
+    width: 70px;
+    background-color:lightgrey;
+    color: black;
 }
 
-.radio-item>* {
-    flex-basis: 100%;
-}
-
-.actions{
-  text-align: center;
-    margin-bottom: 10px;
-    
-}
 
 
 .register{
-    text-align: center;
-    background-color:green;
-    color: white;
-    width: 100px;
-    margin: 30px;
+    margin-right: 10px;
+    width: 70px;
+    
+     background-color: green;
+     color: white;
+     /* text-align: center; */
 }
 .select{
     width: 90%;
     height: 90%;
+}
+
+.input-field{
+    color:rgba(10, 102, 163, 0.897) ;
+    
+}
+.label{
+    color:black;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgba(10, 102, 163, 0.897) ;
+  }
+  
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: rgba(10, 102, 163, 0.897) ;
+  }
+  
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:rgba(10, 102, 163, 0.897) ;
+  }
+
+  .mat-raised-button{
+      padding:0px;
+  }
+
+  ::ng-deep .mat-radio-label-content {
+      padding-left: 0px;
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .employee-container{
+        width: 100%;
+        height: auto;
+    }
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .employee-container{
+        width: 90%;
+    }
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .employee-container{
+         width: 70%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .employee-container{
+         width: 35%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px){
+    .employee-container{
+         width: 35%;
+    }
 }

@@ -1,0 +1,34 @@
+
+<table class="table-container">
+ 
+  <mat-card class="all-header">
+    <p style="text-align: center;">Allergy Information</p>
+  </mat-card>
+    <!-- <tr colspan=5 style="font-size: medium; font-weight: bold;">Allergy Information</tr> -->
+    <tr class="table-head">
+      <th>Sl No.</th>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Clinical Information</th>
+      <th>Allergy Fatal</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let allergy of allergies; let i = index" class="table-row">
+      <td>{{i+1}}</td>
+      <td>{{allergy.allergyType}}</td>
+      <td>{{allergy.allergyName}}</td>
+      <td>{{allergy.allergyDesc}}</td>
+      <td>{{allergy.allergyClinicalInfo}}</td>
+      <td>{{allergy.isAllergyFatal}}</td>
+      <td>
+        <a href="javascript:void(0)" (click)="onDelete(allergy.allergyId)">Delete</a>
+      </td>
+  
+    </tr>
+    <tr style="text-align: center; color: black;" *ngIf="allergies.length<=0">
+      <td colspan="5">**No known Allergies</td>
+  </tr>
+  </table>
+  
+  

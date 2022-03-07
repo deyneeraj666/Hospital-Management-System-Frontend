@@ -1,91 +1,73 @@
 .demographic-container {
-    /* background-color: rgb(236, 232, 232); */
     background-color: white;
-    width: 70%;
+    width: 50%;
     display: grid;
     place-items: center;
     margin: auto;
-    margin-top: 2rem;
-    /* border: 1px solid black; */
+    height: 600px;
     border: 1px solid rgba(10, 102, 163, 0.897);
-    box-shadow: 1px 1px 1px 1px rgba(10, 102, 163, 0.897)
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
 
+}
+
+.no-bottom{
+    margin-bottom: -1.25rem !important;
 }
 
 .dm-header {
-    width: 100%;
-    background-color:rgba(10, 102, 163, 0.897);
-    height: 2rem;
-    padding: 1px;
+    width: 90%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 10px;
+    
    
 }
 
-p{
-    font-size: large;
-    font-weight: bold;
-    padding-top: 2px;
-    font-family: 'Times New Roman', Times, serif;
-    /* color: rgba(10, 102, 163, 0.897); */
-    color: white;
-    text-align: center;
-}
 .dm-details {
-    /* border: 2px solid green; */
-    width: 90%;
     display: flex;
-    /* justify-content:space-evenly; */
     padding: 1rem;
     margin: auto;
 }
 
 .dm-info {
-    /* border: 2px solid orange; */
     flex: 0.5;
 }
 
 .field {
-    /* border: 2px solid red; */
     display: flex;
-    padding: 5px;
-
+    flex-direction: column;
+    padding: 8px;
+    font-size: 12px;
 }
 
-/* 
-.field>*{
-flex-basis: 100%;
-} */
+
 .field-label {
     flex: 0.4;
-
     padding: 5px 5px;
     font-size: 15px;
-
 }
 
 .field-value {
     flex: 0.6;
     padding: 2px 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     
 }
 
-.radio {
+.field-radio{
+    margin-left: 8px;
+    margin-bottom: 10px;
+}
+
+/* .radio {
     display: flex;
     flex-direction: row;
     width: 90%;
 
-}
+} */
 
-.field-value input, .field-value textarea, .field-value radio {
-    padding: 2px;
-    /* background-color: red; */
-    /* border: none; */
-    border: 1px solid black;
-    width: 90%;
-    height: 90%;
-    margin-bottom: 3px;
-}
 
 button {
     margin: auto;
@@ -107,14 +89,6 @@ span {
     font-size: 10px;
 }
 
-.radio-item {
-    display: flex;
-    width: 100%;
-}
-
-.radio-item>* {
-    flex-basis: 100%;
-}
 
 .actions{
     margin-bottom: 10px;
@@ -132,4 +106,83 @@ span {
     width: 70px;
     background-color:rgba(10, 102, 163, 0.897);
     color: white;
+}
+.cancel{
+    margin-right: 10px;
+    width: 70px;
+    background-color: grey;
+    color: white;
+}
+
+.input-field{
+    color:rgba(10, 102, 163, 0.897) ;
+    font-size: 16px;
+}
+
+.label{
+    color:black;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgba(10, 102, 163, 0.897) ;
+  }
+  
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: rgba(10, 102, 163, 0.897) ;
+  }
+  
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:rgba(10, 102, 163, 0.897) ;
+  }
+
+.padding-right {
+    padding-left: 0px;
+    padding-right: 2px;
+    margin-right: 5px;
+}
+
+.radio-yes{
+    margin-right: 5px;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .demographic-container{
+        width: 100%;
+        height: auto;
+    }
+    .dm-details{
+        flex-direction: column;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .demographic-container{
+        width: 95%;
+    }
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .demographic-container{
+         width: 80%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .demographic-container{
+         width: 60%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px){
+    .demographic-container{
+         width: 50%;
+    }
 }

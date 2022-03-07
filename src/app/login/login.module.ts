@@ -1,3 +1,7 @@
+import { PhysicianModule } from "./../physician/physician.module";
+import { PatientModule } from "./../patient/patient.module";
+import { NurseModule } from "./../nurse/nurse.module";
+import { AdminModule } from "./../admin/admin.module";
 import { SharedModule } from "./../shared/shared.module";
 import { HeaderComponent } from "../shared/header/header.component";
 import { NgModule } from '@angular/core';
@@ -13,7 +17,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { ToastrModule } from "ngx-toastr";
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { InterceptorService } from "../Shared/interceptor.service";
+import { ConfirmEqualValidatorDirective } from "./LoginComponents/register/confirmed-validator.directive";
+import { UsermanagementService } from "../Shared/usermanagement.service";
+import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker";
+import { MatRadioModule } from "@angular/material/radio";
+import { CountdownModule } from "ngx-countdown";
 
 
 
@@ -23,8 +33,13 @@ import { ToastrModule } from "ngx-toastr";
     ForgotPasswordComponent,
     ChangePasswordComponent,
     LoginScreenComponent,
+    ConfirmEqualValidatorDirective
   ],
   imports: [
+    AdminModule,
+    NurseModule,
+    PhysicianModule,
+    PatientModule,
     CommonModule,
     ReactiveFormsModule,
     LoginRoutingModule,
@@ -34,16 +49,23 @@ import { ToastrModule } from "ngx-toastr";
     MatIconModule,
     SharedModule,
     ToastrModule.forRoot(
-      {timeOut:2000}
-    )
+      {timeOut:3000}
+    ),
+    MatDatepickerModule,
+    MatRadioModule,
+    CountdownModule 
+    
   ],
+  
   exports:[
    LoginScreenComponent,
    RegisterComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    HeaderComponent
+    HeaderComponent,
+    HttpClientModule
 
-  ]
+  ],
+  providers:[UsermanagementService]
 })
 export class LoginModule { }

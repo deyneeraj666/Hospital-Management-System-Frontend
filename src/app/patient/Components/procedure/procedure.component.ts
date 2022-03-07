@@ -26,24 +26,47 @@ export class ProcedureComponent  implements OnInit {
   ]);
 
   ProcedureGroup=new FormGroup({
-    procedure :this.procedure,
-    code:this.code
+    //procedure :this.procedure,
+    procedure : new FormControl("", [
+      Validators.required
+    ]),
+    code : new FormControl("", [
+      Validators.required
+   ]),
   })
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
   }
+
+//   ProcedureGroup:FormGroup=new FormGroup({
+//     diag_code: new FormControl('', [
+//       Validators.required
+//     ]),
+//     diag_name: new FormControl('', [
+//       Validators.required
+//     ]),    
+//   })
+//   deleteproduct_click(index:number){
+//     this.data.splice(index,1);
+//   }
+// }
   btnadd_click()
   {
     // alert(this.selectedproc + this.selectedcode + (this.procedure.errors!=null && this.procedure.errors['required']? this.procedure.errors['required']:''))
-    let obj:any={code: this.id ++ , name: this.selectedproc, date:'23-01-2022'}
+    let obj:any={code: this.id ++ , name: this.selectedproc, date:new Date()}
     this.dataSource.data.push(obj);
     console.log(this.dataSource.data);
     this.dataSource.paginator = this.paginator;
-    this.toastr.success('Porcedure Added Successfully !')
+    this.toastr.success('Procedure Added Successfully !')
   }
   btncancel_click()
   {
     this.procedure.reset();
+    this.code.reset();
+  }
+  deleteproduct_click(index:number){
+  // this.ProcedureGroup.
+  this.dataSource.data.splice(index,1);
   }
  
   // get procedureValue() {
@@ -57,14 +80,14 @@ export class ProcedureComponent  implements OnInit {
 }
 // const ELEMENT_DATA: PeriodicElement[] =[];
 const ELEMENT_DATA: PeriodicElement[]= [
-  {code: 1, name: 'Hydrogen', date:'23-01-2022'},
-  {code: 2, name: 'Helium', date: '13-02-2022' },
-  {code: 3, name: 'Lithium', date:'16-04-2022'}
+  {code: 1, name: 'Hydrogen', date:new Date()},
+  {code: 2, name: 'Helium', date: new Date() },
+  {code: 3, name: 'Lithium', date:new Date()}
  
  ];
 export interface PeriodicElement {
   name: string;
   code: number;
-  date: string;
+  date: Date;
 }
 

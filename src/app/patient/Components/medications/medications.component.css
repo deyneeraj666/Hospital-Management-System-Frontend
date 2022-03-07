@@ -6,11 +6,11 @@
     background-color: rgb(187, 187, 235);
 }
 .border-vitals{
-    border: 2px solid black;
+    /* border: 2px solid black; */
     /* font-family: sans-serif; */
     margin: 1%;
     padding-bottom: 20%;
-    padding-top: 10%;
+    padding-top: 1%;
 
 }
 .comp{
@@ -54,14 +54,15 @@ th{
     /* background-color: navy; */
     color: rgba(10, 102, 163, 0.897);
 }
-.td-first{
-    background-color: rgb(35, 35, 75, 0.26);
-}
+/* .td-first{
+    /* background-color: rgb(35, 35, 75, 0.26); 
+} */
 .table-class{
     width: 80%;
     background-color: white;
-    /* border: 1px solid rgba(10, 102, 163, 0.897); */
+    border: 1px solid rgba(10, 102, 163, 0.897);
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2); 
+    align-items: center;
 }
 .td-second{
     border: none;
@@ -71,6 +72,74 @@ th{
     display: none;
 }
 .table-medi{
-    /* border: 1px solid rgba(10, 102, 163, 0.897); */
+    border: 1px solid rgba(10, 102, 163, 0.897);
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+    width: 87.5%;
+}
+.table-head>*, .table-row>*{
+    flex-basis: 100%;
+}
+
+.table-row:nth-of-type(even){
+background-color:   #f3f3f3;;
+}
+.input1-class{
+    padding-left: 10%;
+    
+}
+.dropdown1-style{
+    padding-left: 10%;
+    
+}
+.border-style{
+    width:80%;
+    border: 1px solid rgba(10, 102, 163, 0.897);
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
 }
+.dropdown-style{
+    
+    padding-left: 10%;
+    
+}
+.em-header {
+    width: 70%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 15%;
+    margin-top: 2%;
+ 
+}
+.em-header1{
+    width: 92.5%;
+    color: rgba(10, 102, 163, 0.897);
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 4%;
+    
+}
+.dropdown2-style{
+    padding-left: 7%;
+    width: 40%;
+}
+.medication-table{
+    margin-left: 16%;
+    background-color: white;
+    width:70%;
+    border: 1.5px solid rgba(10, 102, 163, 0.897);
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+    
+}
+.td-first{
+    padding-left: 5%;
+}
+.td-first1{
+    padding-left: 2%;
+}
+.td-first2{
+    padding-left: 4%;
+}
+.label{
+    color: black;
+}
+

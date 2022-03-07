@@ -1,0 +1,48 @@
+{
+  "AppointmentData": [
+    {
+      "Id": "6",
+      "Subject": "Robert",
+      "EventType": "Requested",
+      "StartTime": "2022-02-08T05:00:00.000Z",
+      "EndTime": "2022-02-08T05:30:00.000Z",
+      "Description": "Testing-Demo1"
+    },
+    {
+      "Id": "7",
+      "Subject": "John",
+      "EventType": "New",
+      "StartTime": "2022-02-08T06:30:00.000Z",
+      "EndTime": "2022-02-08T07:00:00.000Z",
+      "Description": "Not Well"
+    },
+    {
+      "Id": "8",
+      "Subject": "Ram",
+      "EventType": "Requested",
+      "StartTime": "2022-02-09T06:30:00.000Z",
+      "EndTime": "2022-02-09T07:00:00.000Z",
+      "Description": "Testing"
+    },
+    {
+      "Id": "hrGuBdR",
+      "PatientName": "Demo",
+      "UserName": "User",
+      "Subject": "Demo1",
+      "Status": "Requested",
+      "StartTime": "2022-02-09T05:00:00.000Z",
+      "EndTime": "2022-02-09T05:30:00.000Z",
+      "Description": "xyz helllooooo"
+    },
+    {
+      "Id": "HiYlQoD",
+      "PatientName": "dmeo1",
+      "UserName": "Rajeshwari",
+      "Subject": "test",
+      "Status": "New",
+      "StartTime": "2022-02-07T04:00:00.000Z",
+      "EndTime": "2022-02-07T04:30:00.000Z",
+      "Description": "testing"
+    }
+  ]
+}

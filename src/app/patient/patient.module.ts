@@ -1,4 +1,3 @@
-import { LoginModule } from "./../login/login.module";
 import { SharedModule } from "./../shared/shared.module";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +10,8 @@ import { VitalSignsComponent } from './Components/vital-signs/vital-signs.compon
 import { ProcedureComponent } from './Components/procedure/procedure.component';
 import { DiagnosisComponent } from './Components/diagnosis/diagnosis.component';
 import { MedicationsComponent } from './Components/medications/medications.component';
+import { AllergyGridComponent } from './Components/allergy-grid/allergy-grid.component';
+
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -24,7 +25,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatRadioModule } from "@angular/material/radio";
+import { PatientVisitComponent } from './Components/patient-visit/patient-visit.component';
 
 
 
@@ -38,7 +41,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     VitalSignsComponent,
     ProcedureComponent,
     DiagnosisComponent,
-    MedicationsComponent
+    MedicationsComponent,
+    AllergyGridComponent,
+    PatientVisitComponent
     
   ],
   imports: [
@@ -53,12 +58,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTableModule,
     FormsModule,
     SharedModule,
-    LoginModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatCardModule,
     MatPaginatorModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatRadioModule,
+    MatOptionModule
   ],
   exports:[
     PatientHeaderComponent,
@@ -67,7 +73,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     EmergencyContactComponent,
     AllergyInfoComponent,
     AppointmentComponent,
-    ProcedureComponent
+    ProcedureComponent,
+    AllergyGridComponent,
+    PatientVisitComponent
   ],
 })
-export class PatientModule { }
+export class PatientModule{ }

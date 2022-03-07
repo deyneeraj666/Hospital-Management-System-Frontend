@@ -1,4 +1,105 @@
+
 <app-admin-header [option]="option"></app-admin-header>
-<p>employee-list works!</p>
-<app-footer></app-footer>
+<div class="main-container">
+<div class="search-div">
+    <button mat-raised-button style="background-color: green; color: aliceblue;"  (click)="onCreate()">
+      <mat-icon>add</mat-icon>Add Employee
+    </button>
+    <mat-form-field class="search-form-field" >
+      <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()" >
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()"  >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    
+  </div>
+  <div class="mat-elevation-z8">
+
+    <mat-table   [dataSource]="listData"  matSort>
+      
+     
+      <ng-container matColumnDef="empId">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header>EmployeeID</mat-header-cell>
+        <mat-cell *matCellDef="let element"  [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}"  >{{element.empId}}</mat-cell>
+      </ng-container>
+    
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header>Title</mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.title}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName" style="margin-left: -100px;">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header style="margin-left: -50px;">First Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: -50px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.firstName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header style="margin-left: -50px;">Last Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: -50px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.lastName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header style="margin-left: -35px;">Email</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: -35px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.email}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-left: 40px;">Contact</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: 40px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.phoneNumber}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Dob</mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.dob | date: 'MM/dd/yyyy'}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+          <mat-cell *matCellDef="let element"  [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.role}}</mat-cell>
+       
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.status}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Action" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header ></mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+          <button mat-icon-button   (click)="onEdit(row)"style="margin-left: -5px;" matTooltip="Edit" [matTooltipPosition]='toolTipPosition' ><mat-icon >launch</mat-icon></button>
+          <button mat-icon-button   *ngIf='row.status === "Active"' (click)="onBlock(row)" style="margin-left: -5px;"  matTooltip="Block"><mat-icon >lock</mat-icon></button>
+          <button mat-icon-button *ngIf='row.status === "Blocked"' (click)="onUnBlock(row)"style="margin-left: -5px;"  matTooltip="Unblock" [matTooltipPosition]='toolTipPosition'><mat-icon >lock_open</mat-icon></button> 
+          <button mat-icon-button    (click)="click_delete(row)" color="warn" style="margin-left: -5px;"  matTooltip="Delete" ><mat-icon>delete_outline</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+  </div>
+</div>
+
+
+<br>
+
+  <app-footer></app-footer>
+
+
+
 

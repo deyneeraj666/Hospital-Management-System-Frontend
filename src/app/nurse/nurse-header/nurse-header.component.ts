@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Shared/auth.service';
 
 @Component({
   selector: 'app-nurse-header',
@@ -7,9 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./nurse-header.component.css']
 })
 export class NurseHeaderComponent implements OnInit {
-
+  role:any = localStorage.getItem('role');
   @Input() option:number =0;
-  constructor(private router:Router) { }
+  constructor(private router:Router,public authService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -26,9 +27,11 @@ export class NurseHeaderComponent implements OnInit {
     this.router.navigateByUrl('nurse/appointment');
   }
   click_change_password(){
-    this.router.navigateByUrl('login/patient-header/ChangePassword');
+    this.router.navigateByUrl('nurse/ChangePassword');
   }
   click_signout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('login');
   }
 }

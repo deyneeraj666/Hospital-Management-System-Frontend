@@ -1,46 +1,40 @@
-
 <app-patient-header [option]="option"></app-patient-header>
-<div class="emergency-container">
-  <div class="em-header"><p>Emergency Contact Details</p></div>
+
+  <mat-card class="emergency-container">
+  <mat-card class="em-header">
+    <p style="text-align: center;">Emergency Contact Details</p>
+  </mat-card>
   <form [formGroup]="patientEmergencyForm" class="form-container">
     <div class="em-details">
+     
       <div class="em-info">
         <div class="field">
-          <div class="field-label">
-            <label for="">First Name</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="efname" />
-            <span
-              *ngIf="
-                patientEmergencyForm.controls['efname'].invalid &&
-                patientEmergencyForm.controls['efname'].dirty
-              "
-              >First Name cannot be empty</span
-            >
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label  class="label">First Name</mat-label>
+            <input matInput type="text" formControlName="efname"  class="input-field" />
+          </mat-form-field>
+
+          <span
+            *ngIf="
+              patientEmergencyForm.controls['efname'].invalid &&
+              patientEmergencyForm.controls['efname'].dirty
+            "
+            >First Name cannot be empty</span
+          >
         </div>
+
+        
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Last Name</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="elname" />
-            <span
-              *ngIf="
-                patientEmergencyForm.controls['elname'].invalid &&
-                patientEmergencyForm.controls['elname'].dirty
-              "
-              >Last Name cannot be empty</span
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Relationship</mat-label>
+            <select
+              matNativeControl
+              formControlName="relationship"
+              id=""
+              class="select-gender input-field"
+              
             >
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-label">
-            <label for="">Relationship</label>
-          </div>
-          <div class="field-value">
-            <select formControlName="relationship" id="" class="select-gender">
               <option value="Father">Father</option>
               <option value="Mother">Mother</option>
               <option value="Sibling">Sibling</option>
@@ -48,95 +42,126 @@
               <option value="Friend">Friend</option>
               <option value="Other">Other</option>
             </select>
-          </div>
+          </mat-form-field>
         </div>
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Email</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="eemail" />
-            <span
-              *ngIf="
-                patientEmergencyForm.controls['eemail'].invalid &&
-                patientEmergencyForm.controls['eemail'].dirty
-              "
-              >Please enter your email address
-              e.g.exampleusername@xyzdomain.com</span
-            >
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Email</mat-label>
+            <input matInput type="email" required formControlName="eemail" class="input-field" />
+          </mat-form-field>
+          <span
+            *ngIf="
+              patientEmergencyForm.controls['eemail'].invalid &&
+              patientEmergencyForm.controls['eemail'].dirty
+            "
+            >Please enter your email address
+            </span
+          >
         </div>
+
+        
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Contact Number</label>
-          </div>
-          <div class="field-value">
-            <input type="tel" formControlName="econtact" />
+
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Contact Number</mat-label>
+            <input matInput type="tel" formControlName="econtact" class="input-field" />
+          </mat-form-field>
             <span
               *ngIf="
                 patientEmergencyForm.controls['econtact'].invalid &&
                 patientEmergencyForm.controls['econtact'].dirty
               "
-              >Contact number is required in proper format Ex:+1(333)
-              555-5555</span
+              >Contact number is required</span
             >
-          </div>
         </div>
       </div>
+
+
       <div class="em-info">
-        
         <div class="field">
-          <div class="field-label">
-            <label for="">Home Address</label>
-          </div>
-          <div class="field-value">
-            <textarea
-              formControlName="eaddress"
-              id=""
-              cols="10"
-              rows="04"
-            ></textarea>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Last Name</mat-label>
+            <input matInput type="text" formControlName="elname" class="input-field" />
+          </mat-form-field>
+          <span
+            *ngIf="
+              patientEmergencyForm.controls['elname'].invalid &&
+              patientEmergencyForm.controls['elname'].dirty
+            "
+            >Last Name cannot be empty</span
+          >
         </div>
+
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Do you need to access Patient Portal?</label>
-          </div>
-          <div class="field-value">
-            <div class="radio">
-              <div class="radio-item">
-                <input type="radio" formControlName="access" id="" value="Yes" />
-                <label for="">Yes</label>
-              </div>
-              <div class="radio-item">
-                <input type="radio" formControlName="access" id="" value="No" />
-                <label for="">No</label>
-              </div>
-            </div>
-            <span
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
+            <mat-label class="label">Home Address</mat-label>
+            <textarea matInput rows="5" formControlName="eaddress" class="input-field" style="height: 81px;"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Do you need to access Patient Portal?</mat-label>
+            <select
+              matNativeControl
+              formControlName="access"
+              id=""
+              class="input-field"
+              
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </mat-form-field>
+          <span
               class="error"
               *ngIf="
                 patientEmergencyForm.controls['access'].invalid &&
-                patientEmergencyForm.controls['access'].dirty
+                patientEmergencyForm.controls['access'].dirty 
               "
             >
               Kindly select the access
             </span>
-          </div>
         </div>
+
+
       </div>
     </div>
     <div class="actions">
-      <button mat-raised-button class="submit" [disabled]="patientEmergencyForm.invalid" (click)="onSubmit()">
+      <button
+        mat-raised-button
+        class="submit"
+        [disabled]="patientEmergencyForm.invalid"
+        [hidden]="!isSubmitClicked"
+        (click)="onSubmit()"
+      >
         Submit
       </button>
-      <button mat-raised-button class="edit" (click)="onEdit()">Edit</button>
-      <!-- <button>Cancel</button> -->
+      <button
+        mat-raised-button
+        class="edit"
+        [hidden]="!isEditClicked"
+        (click)="onEdit()"
+      >
+        Edit
+      </button>
+      <button
+        mat-raised-button
+        class="cancel"
+        [hidden]="!isCancelClicked"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
     </div>
   </form>
-</div>
-<br>
-<br>
+</mat-card>
+<!-- </div> -->
+<br />
+<br />
+<br />
 
 <app-footer></app-footer>
-

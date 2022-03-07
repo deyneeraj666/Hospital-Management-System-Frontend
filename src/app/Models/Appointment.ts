@@ -1,6 +1,6 @@
 export class Appointment{
   
-    Speciality:string='';
+    Description:string='';
     Physician:string='';
     appointmentType:string='';
     date?:Date;

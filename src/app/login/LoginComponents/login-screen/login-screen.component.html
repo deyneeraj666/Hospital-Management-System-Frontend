@@ -1,20 +1,17 @@
 <div>
   <app-header></app-header>
-  <hr style="background-color: aqua;">
   <div id="main_div">
       <div class="parts">
-          <img  src="assets\Login_image.jpg" alt="Logo">
+          <img  src="assets\Login_image.jpg" style="height: 370px;" alt="Logo">
       </div>
       <div class="parts" id="logintab" >
           <mat-card>
-              <!-- <mat-card-title>Login to CT Hospital</mat-card-title>
-              <hr> -->
            <mat-card-content>
 
-          <form [formGroup]="loginform" >
+          <form [formGroup]="loginform"  >
             <span>
-              <mat-form-field>
-                <input  matInput placeholder="E-mail " formControlName="email" autofocus />
+              <mat-form-field style="width: 200px;">
+                <input  matInput placeholder="E-mail" formControlName="email" autofocus />
                 <br>
               </mat-form-field>
               <div *ngIf="(loginform.get('email').invalid && loginform.get('email').dirty) || loginform.get('email').touched">
@@ -35,15 +32,16 @@
             </span>
             <div class="button">
               <br>
-              <button mat-raised-button color="primary"  (click)="onSubmit()" >  Login</button>
+              <button mat-raised-button color="primary" [ngStyle]="loginform.valid?{'background-color':'blue'}:{'background-color':'white','color':'blue'}" [disabled]="loginform.invalid" (click)="onSubmit()">  Login</button>
               <br>
-              <a mat-button href=""  style="margin-left:33px" href='login/forgot-password'><small>Forgot password?</small></a>
+              <a mat-button href=""  style="margin-left:33px" href='forgot-password'><small>Forgot password?</small></a>
             </div>
           </form>
         </mat-card-content>
         <hr>
+        <br>
         <b style="color: blue;; padding-left: 90px;">New to CT General Hospital?</b>
-        <button mat-raised-button  style=" margin-left: 10px; background-color: green; color: white; " routerLink='patient-register' >Register</button>
+        <button mat-raised-button  style=" margin-left: 10px; background-color: green; color: white; " (click)="register_click()" >Register</button>
       </mat-card>
       </div>
   </div>

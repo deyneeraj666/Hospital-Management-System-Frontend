@@ -6,16 +6,17 @@
       <button mat-icon-button class="navbtn" (click)="click_profile()" [ngStyle]="option ==3?{'opacity':1}:{'opacity':0.6}">Profile</button>
       
     </div>
+    <span style="color: aliceblue; opacity: 0.4; padding-left: 8px;margin-left: 620px ;font-size: 12px;">Welcome,{{authService.UserName}} !</span>
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" style="background-color:rgba(10, 102, 163, 0.897); margin-left: 690px;" data-bs-toggle="dropdown" >
-        Settings
+      <button class="btn btn-secondary dropdown-toggle" style="background-color:rgba(10, 102, 163, 0.897); margin-left: 10px;" data-bs-toggle="dropdown" >
+        {{role| titlecase}}
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><button class="dropdown-item" (click)="click_change_password()"> <img src="https://img.icons8.com/nolan/64/re-enter-pincode.png" style="width:30px"> Change Password</button></li>
         <li><button class="dropdown-item" (click)="click_signout()"><img src="https://img.icons8.com/external-tal-revivo-tritone-tal-revivo/32/000000/external-logout-screen-from-the-working-portfolio-of-a-user-classic-tritone-tal-revivo.png" style="width:30px;height:30px">  Sign Out</button>
       </ul>
     </div>
-    <span style="color: aliceblue; opacity: 0.4; padding-left: 6px; font-size: 12px;">Version 1.3.17</span>
+    
 </mat-toolbar>
 <mat-progress-bar mode="buffer"></mat-progress-bar>
 

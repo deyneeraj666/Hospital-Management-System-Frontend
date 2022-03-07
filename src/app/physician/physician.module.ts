@@ -1,8 +1,5 @@
-import { SharedModule } from "./../shared/shared.module";
-import { NurseModule } from "./../nurse/nurse.module";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PhysicianRoutingModule } from './physician-routing.module';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { NotesComponent } from './notes/notes.component';
@@ -14,7 +11,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
-
+import { RecurrenceEditorModule, ScheduleModule, ScheduleAllModule, DayService, WeekService, WorkWeekService,MonthService,MonthAgendaService, DragAndDropService,ResizeService } from '@syncfusion/ej2-angular-schedule';
+import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,12 +35,21 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatIconModule,
     MatInputModule,
     MatTabsModule,
+    DropDownListAllModule,
+    DateTimePickerModule,
+    RecurrenceEditorModule, 
+    ScheduleModule,
+    ScheduleAllModule,
+    HttpClientModule
+    
   ],
   exports:[
     AppointmentComponent,
     NotesComponent,
     ProfileComponent,
     PhysicianHeaderComponent
-  ]
+  ],
+  providers: [MonthService, DayService, WeekService, WorkWeekService, ResizeService, DragAndDropService],
+
 })
 export class PhysicianModule { }

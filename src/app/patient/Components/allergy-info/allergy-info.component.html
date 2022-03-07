@@ -1,117 +1,122 @@
 <app-patient-header [option]="option"></app-patient-header>
-<div class="allergy-container">
-  <div class="all-header"><p>Allergy Information</p></div>
+
+<mat-card class="allergy-container">
+  <mat-card class="all-header">
+    <p style="text-align: center;">Add Allergy Details</p>
+  </mat-card>
   <form [formGroup]="patientAllergyForm" class="form-container">
-    <div class="field" >
-      <div class="field-label">
-        <label for="">Patient has any known allergies?</label>
-      </div>
-      <div class="field-value">
-        <div class="knownAllergy-radio">
-          <div class="radio-item" >
-            <input type="radio" formControlName="knownAllergy" id="" value="Yes" />
-            <label for="">Yes</label>
-          </div>
-          <div class="radio-item" >
-            <input type="radio" formControlName="knownAllergy" id="" value="No" />
-            <label for="">No</label>
-          </div>
-        </div>
+   
+
+    <div class="field allergy-field" style="flex-direction: row; font-size: 15px;">
+      <mat-label class="label">Patient has any known allergies?</mat-label>
+      <mat-radio-group formControlName="knownAllergy" required style="margin-left: 10px;">
+        <mat-radio-button class="padding-right radio-yes" value="Yes">Yes</mat-radio-button>
+        <mat-radio-button class="padding-right"  checked value="No">No</mat-radio-button>
+      </mat-radio-group>
+
         <span
           class="error"
           *ngIf="
           patientAllergyForm.controls['knownAllergy'].invalid &&
-          patientAllergyForm.controls['knownAllergy'].dirty
+          patientAllergyForm.controls['knownAllergy'].dirty 
           "
         >
-          Kindly select the known allergy
+        Kindly select the known allergy
         </span>
-      </div>
+     
     </div>
 
     <div class="all-details" *ngIf="patientAllergyForm.controls['knownAllergy'].value === 'Yes'" >
       <div class="all-info">
-        
+       
+        <!-- <div class="field">
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label  class="label">Allergy ID</mat-label>
+            <input matInput type="text" formControlName="allergyId"  class="input-field" />
+          </mat-form-field>
+        </div> -->
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Allergy ID</label>
-          </div>
-          <div class="field-value">
-            <input type="text" formControlName="allergyId" id="">
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
+            <mat-label class="label">Allergy Type</mat-label>
+            <select
+              matNativeControl
+              formControlName="allergyType"
+              id=""
+              class="input-field"
+               (change)="allergyNameChangeHandler(mySelect.value)" #mySelect
+              style="width: 450px;"
+            >
+            <option *ngFor="let item of allergyTypes" [value]="item">{{item}}</option>
+            </select>
+          </mat-form-field>
         </div>
+
+      
         <div class="field">
-          <div class="field-label">
-            <label for="">Allergy Type</label>
-          </div>
-          <div class="field-value">
-            <select formControlName="allergyType" class="select" (change)="allergyNameChangeHandler(mySelect.value)" #mySelect>
-              <option *ngFor="let item of allergyTypes" [value]="item.allergyType">{{item.allergyType}}</option>
-          </select>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
+            <mat-label class="label">Allergy Name</mat-label>
+            <select
+              matNativeControl
+              formControlName="allergyName"
+              id=""
+              class="input-field"
+              style="width: 450px; "
+            >
+            <option  *ngFor="let item of allergyNames" [value]="item">{{item}}</option>
+            </select>
+          </mat-form-field>
         </div>
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Allergy Name</label>
-          </div>
-          <div class="field-value">
-            <select formControlName="allergyName" class="select" >
-              <option *ngFor="let item of allergyNames" value="">{{item.allergyName}}</option>
-          </select>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
+            <mat-label class="label">Allergy Description</mat-label>
+            <textarea matInput rows="2" formControlName="allergyDesc" class="input-field" style="height: 20px;"></textarea>
+          </mat-form-field>
         </div>
-        <div class="field">
-          <div class="field-label">
-            <label for="">Allergy Description</label>
-          </div>
-          <div class="field-value">
-            <textarea formControlName="allergyDesc" id="" cols="20" rows="03"></textarea>
-          </div>
-        </div>
-        
+   
       </div>
       <div class="all-info">
-        
-        
+      
         <div class="field">
-          <div class="field-label">
-            <label for="">Allergy Clinical Information</label>
-          </div>
-          <div class="field-value">
-            <textarea formControlName="allergyClinicalInfo" id="" cols="20" rows="05"></textarea>
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px" required>
+            <mat-label class="label">Allergy Clinical Information</mat-label>
+            <textarea matInput rows="2" formControlName="allergyClinicalInfo" class="input-field" style="height: 20px;"></textarea>
+          </mat-form-field>
         </div>
+
         <div class="field">
-          <div class="field-label">
-            <label for="">Is Allergy Fatal?</label>
-          </div>
-          <div class="field-value">
-            <div class="radio">
-              <div class="radio-item">
-                <input type="radio" formControlName="allergyFatal" id="" value="Yes" />
-                <label for="">Yes</label>
-              </div>
-              <div class="radio-item">
-                <input type="radio" formControlName="allergyFatal" id="" value="No" />
-                <label for="">No</label>
-              </div>
-            </div>
-            
-          </div>
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+            <mat-label class="label">Is Allergy Fatal?</mat-label>
+            <select
+              matNativeControl
+              formControlName="isAllergyFatal"
+              class="input-field"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </mat-form-field>
         </div>
-        
+
+       
       </div>
     </div>
-    <div class="actions">
-      <button mat-raised-button class="submit" [disabled]="patientAllergyForm.invalid">
+    <div class="actions" *ngIf="patientAllergyForm.controls['knownAllergy'].value === 'Yes'" > 
+      <button mat-raised-button class="submit" [disabled]="patientAllergyForm.invalid"   (click)="onSubmit()">
         Submit
       </button>
-      <button mat-raised-button class="edit">Edit</button>
-      <!-- <button>Cancel</button> -->
+      <button mat-raised-button class="cancel"   (click)="onCancel()">Cancel</button>
+
     </div>
   </form>
-</div>
+
+</mat-card>
+
 <br>
+<br>
+
+<app-allergy-grid [allergies]="allergiesArray"></app-allergy-grid>
 <br>
 <br>
 

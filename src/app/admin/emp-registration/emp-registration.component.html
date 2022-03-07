@@ -1,0 +1,85 @@
+<mat-toolbar style="height: 40px; margin-bottom: 10px;">
+    <span *ngIf="user.set == 1" style="color: rgb(135, 175, 175); margin-left: 40px;">Registration Form</span>
+    <span *ngIf="user.set == 2" style="color: rgb(135, 175, 175); margin-left: 40px;">Update Details </span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+<form [formGroup]="empRegistrationForm" >
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container" style="line-height: 13px;">
+                <br>
+                
+                <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+                    <mat-label  class="label">First Name</mat-label>
+                    <input matInput type="text" formControlName="firstName"   class="input-field" />
+                </mat-form-field>
+                <br>
+                  <span *ngIf="empRegistrationForm.controls['firstName'].invalid && empRegistrationForm.controls['firstName'].dirty">**Required</span>
+                <br>
+                <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+                    <mat-label class="label">Last Name</mat-label>
+                    <input matInput type="text" formControlName="lastName" class="input-field" />
+                </mat-form-field>
+                <br>
+                  <span *ngIf="empRegistrationForm.controls['lastName'].invalid &&empRegistrationForm.controls['lastName'].dirty">**Required</span>
+                <br>
+                <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+                    <mat-label class="label" >Email</mat-label>
+                    <input matInput type="email" required formControlName="email"  class="input-field" />
+                    
+                </mat-form-field>
+                <br>
+                  <span *ngIf="empRegistrationForm.controls['email'].invalid &&empRegistrationForm.controls['email'].dirty">**Required ex:example@domain.com</span>
+                <br>
+                <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+                    <mat-label class="label">Date of Birth</mat-label>
+                    <input  matInput [matDatepicker]="picker" formControlName="dob" #demo class="input-field" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <br>
+                <span *ngIf="empRegistrationForm.controls['dob'].invalid &&empRegistrationForm.controls['dob'].dirty">**Required</span>
+            
+                </div>
+               
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <div class="add-bottom-padding">
+                    <mat-radio-group formControlName="title">
+                      <mat-radio-button  value="Mr">Mr</mat-radio-button>
+                      <mat-radio-button value="Ms">Ms</mat-radio-button>
+                      <mat-radio-button value="Mrs">Mrs</mat-radio-button>
+                      <mat-radio-button value="Dr">Dr</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <br>
+                  <span class="error" *ngIf="empRegistrationForm.controls['title'].invalid && empRegistrationForm.controls['title'].dirty ">**Select the title</span>
+                <br>
+                <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+                    <mat-label class="label">Contact</mat-label>
+                    <input matInput type="tel"  formControlName="phoneNumber"  class="input-field" />
+                </mat-form-field>
+                <br>
+                <span *ngIf="empRegistrationForm.controls['phoneNumber'].invalid &&empRegistrationForm.controls['phoneNumber'].dirty">**Required</span>
+                <br>
+                <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+                    <mat-label class="label">Role</mat-label>
+                    <select matNativeControl  [ngStyle]="user.set==2?{'display':'none','opacity':0.3}:{'opacity':0.6}"  formControlName="role" class="input-field">
+                      <option *ngIf="user.emp_pat_list==1" value=""></option>
+                      <option *ngIf="user.emp_pat_list==1" value="Physician">Physician</option>
+                      <option *ngIf="user.emp_pat_list==1" value="Nurse">Nurse</option>
+                      <option *ngIf="user.emp_pat_list==1" value="Admin">Admin</option>
+                      <option *ngIf="user.emp_pat_list==2" value="Patient">Patient</option>
+
+                    </select>
+                </mat-form-field>
+                <div style="margin-top: 40px;">
+                    <button mat-stroked-button style="background-color:green;color:white; width: 80px; margin-left: 15px;" (click)="click_submit()"  [ngStyle]="empRegistrationForm.invalid?{'background-color':'white','color':'green'}:{'background-color':'green','color':'white'}">Submit</button>
+                    <button  mat-stroked-button  style="width: 80px;color: white; background-color:red; margin-left: 40px;" (click)="click_reset()">Reset</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

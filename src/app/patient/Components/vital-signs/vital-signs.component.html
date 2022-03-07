@@ -1,9 +1,11 @@
 <app-patient-header [option]="option"></app-patient-header>
 
 <div class="mat">
-      <span style="color: rgba(10, 102, 163, 0.897); padding-left: 162px;"><b><u>Vitals Details</u></b></span>
+  <mat-card class="mat_style">
+      <span style="color: rgba(10, 102, 163, 0.897); padding-left: 162px;"><b>Vitals Details</b></span>
+    </mat-card>    
       <br>
-      <br> 
+      <!-- <br>  -->
       <table class="table">
             <thead>
               <tr>
@@ -17,35 +19,35 @@
               <tr>
                 <td>Height</td>
                 <td>
-                    <input type="text"  [disabled]="actionenable" [(ngModel)]="height" >
+                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="height" >
                 </td>
                 <td>Centimetre (cm)</td>
               </tr>
               <tr>
                 <td>Weight </td>
                 <td>
-                    <input type="text"  [disabled]="actionenable" [(ngModel)]="weight">
+                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="weight">
                 </td>
                 <td>Kilogram (kg)</td>
               </tr>
               <tr>
                 <td>Blood Pressure </td>
                 <td>
-                    <input type="text"  [disabled]="actionenable" [(ngModel)]="blood_pressure">
+                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="blood_pressure">
                 </td>
                 <td>Millimeters of mercury (mmHg)</td>
               </tr>
               <tr>
                 <td>Body Temperature </td>
                 <td>
-                    <input type="text"  [disabled]="actionenable" [(ngModel)]="temperature">
+                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="temperature">
                 </td>
                 <td>Fahrenheit (°F) </td>
               </tr>
               <tr>
                 <td>Respiration Rate </td>
                 <td>
-                    <input type="text"  [disabled]="actionenable" [(ngModel)]="respiration_rate">
+                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="respiration_rate">
                 </td>
                 <td>Breaths per minute (BPM)</td>
               </tr>

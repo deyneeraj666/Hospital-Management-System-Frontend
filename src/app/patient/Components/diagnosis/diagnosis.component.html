@@ -1,63 +1,63 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="border-vitals">
-    <div style="margin-left: 20%;margin-top: 100px;">
-        
-            <table class="table-first" style="width: 80%;">
-                <tr>
-                    <th>Diagnosis Code</th>
-                    <th>Diagnosis Name</th>
-                    <th>Date</th>
-                </tr>
-                <!-- <tr>
-                    <td class="td-first"></td>
-                    <td class="td-first"></td>
-                    <td class="td-first"></td>
-                </tr> -->
-                <tr>
-                    <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
-                </tr>
-            </table>
+    <!-- <label style="color: rgba(10, 102, 163, 0.897);margin-top: 5%; padding-left: 46%;"><b><u>Diagnosis Details</u></b></label> -->
+    
+    <div [formGroup]="patientDiagnosisTable" class="diag-table" >
+        <!-- <label style="color: rgba(10, 102, 163, 0.897);margin-top: 3%; padding-left: 40%;font-size: large;"><b>Add Diagnosis Details</b></label> -->
+        <mat-card class="em-header">
+            <!-- <p style="text-align: center;">Emergency Contact Details</p> -->
+            <label style="color: rgba(10, 102, 163, 0.897);padding-left: 33%;"><b>Add Diagnosis Details</b></label>
+          </mat-card >
+          <div style="margin-top: 5%;margin-left: 5%;">
+                <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
+                    <mat-label class="label">Diagnosis Code</mat-label>
+                    <select matNativeControl formControlName="diag_code" [(ngModel)]="dcode">
+                        <!-- <mat-option ></mat-option> -->
+                        <option value="100.1">100.1</option>
+                        <option value="10.6">10.6</option>
+                    </select>
+                </mat-form-field>
+                <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
+                    <mat-label class="label">Diagnosis Name</mat-label>
+                    <select matNativeControl formControlName="diag_name" [(ngModel)]="dname">
+                        <!-- <mat-option ></mat-option> -->
+                        <option value="Diabetes">Diabetes</option>
+                        <option value="Allergy">Allergy</option>
+                    </select>
+                </mat-form-field>
+                <div style="padding-top: 2%;">
+                    <button [disabled]="patientDiagnosisTable.invalid" (click)="btn_Add()" style="background-color:green ;width:10%;color:white;margin-bottom: 5%;margin-left: 35%;" mat-raised-button>Add</button>
+                    <button (click)="btn_Cancel()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 5%;margin-left: 7%;" mat-raised-button>Reset</button>
+                   
+                </div>
+            </div>
+           
     </div>
-    <br/><br/>
-    <div class="diag-table" >
-        <table class="table-class">
-            <tr>
-                <th colspan="4" style="padding-right:83%;">
-                    Add Diagnosis
-                </th>
+
+    <br>
+    <br>
+    <div style="margin-left: 20%;margin-top: 5px;">
+        <!-- <label style="color: rgba(10, 102, 163, 0.897);padding-left: 33.5%;margin-bottom: 2%;font-size: large;"><b>Diagnosis Details</b></label> -->
+        <table class="table-first" style="width: 80%;">
+            <tr><td colspan="4" style="color: rgba(10, 102, 163, 0.897);margin-bottom: 2%;font-size: large;padding-bottom: 1.5%;padding-top: 2%;"><mat-card class="em-header2"><b style="margin-left: 38.5%;">Diagnosis Details</b></mat-card></td></tr>
+            <tr class="table-head">
+                <th style="padding-left: 5%;">Diagnosis Code</th>
+                <th style="padding-left: 5%;">Diagnosis Name</th>
+                <th style="padding-left: 5%;">Date</th>
             </tr>
-            <tr>
-                <td class="td-second" style="padding-left: 12%;">
-                    Diagnosis Code
-                </td>
-                <td class="td-second">
-                    <select>
-                        <option></option>
-                        <option>250.0</option>
-                        <option>530.81</option>
-                    </select>
-                </td>
-                <td class="td-second" style="padding-left: 12%;">
-                    Diagnosis Name
-                </td>
-                <td class="td-second">
-                    <select>
-                        <option></option>
-                        <option>diabetes</option>
-                        <option>GERD</option>
-                    </select>
-                </td>
+            <tr class="table-row" *ngFor="let selectedData of data;let i=index">
+                <td class="td-first">{{selectedData.dcode}}</td>
+                <td class="td-first">{{selectedData.dname}}</td>
+                <td class="td-first-date">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
+                <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
             </tr>
-            <tr>
-                <td class="td-second" colspan="2" style="padding-left: 39%;padding-top: 5%;">
-                    <button style="background-color:green ;color:white;margin-bottom: 40%;" mat-raised-button>Add</button>
-                </td>
-                <td class="td-second" colspan="2"  style="padding-left: 5%;padding-top: 5%;">
-                    <button style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;" mat-raised-button>Cancel</button>
-                </td>
+            <tr style="background-color:   #f3f3f3;" *ngIf="data.length<=0">
+                <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
             </tr>
         </table>
-    </div>
+        <!-- <mat-paginator  #paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator> -->
+</div>
+
 </div>
 
 

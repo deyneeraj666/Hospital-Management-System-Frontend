@@ -1,7 +1,10 @@
+import { UsermanagementService } from "./../../../Shared/usermanagement.service";
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
+import { async } from "rxjs";
+
 
 @Component({
   selector: 'app-login-screen',
@@ -14,27 +17,49 @@ export class LoginScreenComponent implements OnInit
   submitted:boolean=false;
   loginform:any = FormGroup ;
 
-  constructor(private router: Router, private toastr:ToastrService)
+  constructor(private router: Router, private toastr:ToastrService,private user:UsermanagementService)
   {
 
   }
-  onSubmit() 
+    onSubmit() 
   {
     this.submitted = true;
-    if (this.loginform.invalid) {
-        return;
-    }
-    console.log(this.loginform.controls.email);
-    if(this.loginform.controls.email.value=="admin@gmail.com" && this.loginform.controls.password.value == "admin123")
+
+
+    this.user.login_service(this.loginform.controls.email.value, this.loginform.controls.password.value)
+    .subscribe( async (res:any)=>
     {
-      this.router.navigateByUrl('login/patient-header');
-      this.toastr.success('Welcome Admin!')
-    }
-    else
-    {
-      this.toastr.error('Invalid UserId or Password !')
+      localStorage.setItem('token', res.items.token)
+      localStorage.setItem('role',res.items.role  )
+      setTimeout(()=>
+      {
+              if(res.items.role == "patient")
+              {
+                 this.router.navigateByUrl('login/'+res.items.role+"/demographic");
+              }
+              else if(res.items.role == "nurse" ||res.items.role == "physician")
+              {
+                this.router.navigateByUrl(res.items.role+"/appointment");
+              }
+              else
+              {
+                this.router.navigateByUrl(res.items.role+"/employeelist");
+              }
+             this.toastr.success("Welcome " +res.items.role);
+           
+      },1000);
+     
+     
+   
+    },(err:any)=>
+      {
+      this.toastr.error(err.error);
       this.loginform.reset();
-    }
+    });
+    
+    
+
+    
   }
 
 
@@ -43,7 +68,9 @@ export class LoginScreenComponent implements OnInit
      return this.loginform.get('password');
   }
 
-  
+  register_click(){
+    this.router.navigateByUrl('patient-register');
+  }
 
   ngOnInit(): void
   {
@@ -51,6 +78,7 @@ export class LoginScreenComponent implements OnInit
       email: new FormControl('',[Validators.email,Validators.required]),
       password:new FormControl('',[Validators.required,Validators.minLength(8)])
     });
+    
   }
 
 }
