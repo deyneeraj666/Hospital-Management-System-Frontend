@@ -35,14 +35,14 @@ export class AppointmentComponent implements OnInit {
   CurrentUser: string = this.auth.Email;
   option: number = 1;
   physicians: any[] = [];
-  public statusData: string[] = ['ACCEPTED', 'PENDING'];
+  public statusData: string[] = ['CONFIRMED', 'PENDING'];
   public appointmentData: any[] = [];
   constructor(private auth:AuthService,private objAppointmentDataService: AppointmentDataService,private toastr: ToastrService, private httpClient: HttpClient, public datepipe: DatePipe) {
-    this.getPhysician();
   }
   ngOnInit(): void {
     this.physicianId.disable();
     this.physicianName.disable();
+    this.getPhysician();
   }
   getPhysician(){
     this.objAppointmentDataService.GetPhysician().subscribe((response: any) => {
@@ -123,7 +123,7 @@ export class AppointmentComponent implements OnInit {
     this.physicianId.setValue(selectedPhysician[0].physicianId);
   }
   
-  public getSchedule_click() {
+  public getAppointment_click() {
     this.physicianDetailForm.markAllAsTouched();
     if (this.physicianDetailForm.valid) {
       this.enableCalendar = false;
@@ -136,7 +136,7 @@ export class AppointmentComponent implements OnInit {
             "PatientName": data.patientName,
             "Physician": data.physician,
             "Subject": data.meetingTitle,
-            "Status": data.status,
+            "Status": data.status.toUpperCase(),
             "StartTime": new Date(data.startDateTime),
             "EndTime": new Date(data.endDateTime),
             "Description": data.description,
@@ -161,12 +161,12 @@ export class AppointmentComponent implements OnInit {
 
 
   public onEventRendered(args: EventRenderedArgs): void {
-    switch (args.data['Status']) {
-      case 'ACCEPTED':
-        (args.element as HTMLElement).style.backgroundColor = '#F57F17';
+    switch (args.data['Status'].toUpperCase()) {
+      case 'CONFIRMED':
+        (args.element as HTMLElement).style.backgroundColor = '#7fa900';
         break;
       case 'PENDING':
-        (args.element as HTMLElement).style.backgroundColor = '#7fa900';
+        (args.element as HTMLElement).style.backgroundColor = '#F57F17';
         break;
     }
   }
@@ -226,7 +226,7 @@ export class AppointmentComponent implements OnInit {
               "patientName": result.PatientName,
               "physician": this.physicianId.value,
               "meetingTitle": element[0].Subject,
-              "status": element[0].Status,
+              "status": element[0].Status.toUpperCase(),
               "startDateTime": element[0].StartTime,// this.datepipe.transform(element[0].StartTime, 'yyyy-MM-dd h:mm a'),
               "endDateTime": element[0].EndTime,// this.datepipe.transform(element[0].EndTime, 'yyyy-MM-dd h:mm a'),
               "description": element[0].Description,
@@ -245,19 +245,21 @@ export class AppointmentComponent implements OnInit {
         }
         if (args.requestType === 'eventChange') {
           let element = ((args.data) as any);
+          let result=this.objAppointmentDataService.patientExistorNot(Number(element.PatientId));
           let appointment1 = {
             "id": element.Id,
             "p_id": element.PatientId,
-            "patientName": element.PatientName,
-            "physician": element.Physician,
+            "patientName": result.PatientName,
+            "physician": this.physicianId.value,
             "meetingTitle": element.Subject,
-            "status": element.Status,
+            "status": element.Status.toUpperCase(),
             "startDateTime":element.StartTime,// this.datepipe.transform(element.StartTime, 'yyyy-MM-dd h:mm a'),
             "endDateTime":element.EndTime,// this.datepipe.transform(element.EndTime, 'yyyy-MM-dd h:mm a'),
             "description": element.Description,
             "username": this.CurrentUser
           }
           console.log(appointment1);
+          debugger;
           this.objAppointmentDataService.UpdateAppointment(appointment1).subscribe((response) => {
             this.toastr.success("Appointment Edited Successfully");
           })

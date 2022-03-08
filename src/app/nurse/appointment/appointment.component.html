@@ -1,7 +1,11 @@
 <app-nurse-header [option]="option"></app-nurse-header>
 
 <h3 class="text-center">Upcoming Appointment Schedule</h3>
-<form class="row" [formGroup]="physicianDetailForm">
+<form class="row" [formGroup]="physicianDetailForm" style="
+border: 1px solid black;
+width: 100%;
+margin-left: 0px;
+">
 <div class="col-sm-4 row">
 <span class="col-sm-4 pt-3">Specialization</span>
 <mat-form-field class="col-8">
@@ -37,7 +41,7 @@
 </mat-form-field>
 </div>
 <div class="col-2 mx-auto mb-1">
-  <button class="bg-primary" (click)="getSchedule_click()">Get Schedule</button>
+  <button  mat-raised-button style="width:140px !important;" color="primary" (click)="getAppointment_click()">Get Appointment</button>
 </div>
 </form>
 <ejs-schedule

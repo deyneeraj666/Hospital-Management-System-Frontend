@@ -39,41 +39,28 @@ export class AppointmentComponent implements OnInit {
   option: number = 1;
   physicians: any[] = [];
   tempPhysicians: any[] = [];
-  public statusData: string[] = ['ACCEPTED', 'PENDING'];
+  public statusData: string[] = ['CONFIRMED', 'PENDING'];
   public appointmentData: any[] = [];
   constructor(private auth:AuthService,private objAppointmentDataService: AppointmentDataService,private toastr: ToastrService, private httpClient: HttpClient, public datepipe: DatePipe) {
-    
-    this.physicians.push({"physicianName":"Dr Singh","physicianId":"PranjalPandey@citiustech.com","Specialization":"Neurology"});
-    this.physicians.push({"physicianName":"Dr Rao","physicianId":"Pranjal@citiustech.com","Specialization":"Psychiatry"});
-    this.physicians.push({"physicianName":"Dr Singh","physicianId":"PranjalPandey1@citiustech.com","Specialization":"Dermatologists"});
-    this.physicians.push({"physicianName":"Dr Pankaj","physicianId":"Pranjal2@citiustech.com","Specialization":"Dermatologists"});
-    this.physicians.push({"physicianName":"Dr Bhushan","physicianId":"Pranjal4@citiustech.com","Specialization":"Cardiologist"});
-    this.physicians.push({"physicianName":"Dr Pandey","physicianId":"PranjalPandey5@citiustech.com","Specialization":"Psychiatry"});
-
-    // this.getPhysician();
-    // debugger;
-    // console.log(this.physicians)
-    // this.specialization_click();
-    // this.getSchedule_click();
   
   }
   ngOnInit(): void {
     this.physicianId.disable();
     this.physicianName.disable();
-    // this.getPhysician();
-   // this.physicians=this.objAppointmentDataService.GetPhysicianTemp();
-    this.specialization_click();
-    this.getSchedule_click();
+    this.getPhysician();
   }
   getPhysician(){
     this.objAppointmentDataService.GetPhysician().subscribe((response: any) => {
       response.forEach((data: any) => {
+        debugger;
         this.physicians.push({
           "physicianName": data.physicianName,
           "physicianId": data.physicianId,
           "Specialization": data.Specialization
         })
-      }); 
+      });
+      this.specialization_click();
+      this.getAppointment_click(); 
     });
   }
   public getStatus(status: String) {
@@ -147,7 +134,7 @@ export class AppointmentComponent implements OnInit {
     this.physicianId.setValue(selectedPhysician[0].physicianId);
   }
   
-  public getSchedule_click() {
+  public getAppointment_click() {
     this.physicianDetailForm.markAllAsTouched();
     // if (this.physicianDetailForm.valid) {
       this.enableCalendar = false;
@@ -161,7 +148,7 @@ export class AppointmentComponent implements OnInit {
               "PatientName": data.patientName,
               "Physician": data.physician,
               "Subject": data.meetingTitle,
-              "Status": data.status,
+              "Status": data.status.toUpperCase(),
               "StartTime": new Date(data.startDateTime),
               "EndTime": new Date(data.endDateTime),
               "Description": data.description,
@@ -187,12 +174,12 @@ export class AppointmentComponent implements OnInit {
 
 
   public onEventRendered(args: EventRenderedArgs): void {
-    switch (args.data['Status']) {
-      case 'ACCEPTED':
-        (args.element as HTMLElement).style.backgroundColor = '#F57F17';
+    switch (args.data['Status'].toUpperCase()) {
+      case 'CONFIRMED':
+        (args.element as HTMLElement).style.backgroundColor = '#7fa900';
         break;
       case 'PENDING':
-        (args.element as HTMLElement).style.backgroundColor = '#7fa900';
+        (args.element as HTMLElement).style.backgroundColor = '#F57F17';
         break;
     }
   }
@@ -238,6 +225,7 @@ export class AppointmentComponent implements OnInit {
           this.toastr.error("Selected time slot is not available");
           return;
         }
+        debugger;
         if (args.requestType === 'eventCreate') {
           console.log(args.data);
           let tempId = 100 + 1;
@@ -252,7 +240,7 @@ export class AppointmentComponent implements OnInit {
               "patientName": result.PatientName,
               "physician": this.CurrentUser,
               "meetingTitle": element[0].Subject,
-              "status": element[0].Status,
+              "status": element[0].Status.toUpperCase(),
               "startDateTime": element[0].StartTime,// this.datepipe.transform(element[0].StartTime, 'yyyy-MM-dd h:mm a'),
               "endDateTime": element[0].EndTime,// this.datepipe.transform(element[0].EndTime, 'yyyy-MM-dd h:mm a'),
               "description": element[0].Description,
@@ -271,13 +259,14 @@ export class AppointmentComponent implements OnInit {
         }
         if (args.requestType === 'eventChange') {
           let element = ((args.data) as any);
+          let result=this.objAppointmentDataService.patientExistorNot(Number(element.PatientId));
           let appointment1 = {
             "id": element.Id,
             "p_id": element.PatientId,
-            "patientName": element.PatientName,
-            "physician": element.Physician,
+            "patientName": result.PatientName,
+            "physician": this.physicianId.value,
             "meetingTitle": element.Subject,
-            "status": element.Status,
+            "status": element.Status.toUpperCase(),
             "startDateTime":element.StartTime,// this.datepipe.transform(element.StartTime, 'yyyy-MM-dd h:mm a'),
             "endDateTime":element.EndTime,// this.datepipe.transform(element.EndTime, 'yyyy-MM-dd h:mm a'),
             "description": element.Description,
