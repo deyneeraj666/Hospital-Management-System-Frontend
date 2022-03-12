@@ -1,5 +1,7 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { delay, map, Observable } from 'rxjs';
 
 @Injectable({
@@ -12,6 +14,8 @@ export class AppointmentDataService {
   url:string ='http://localhost:56264/api/Appointment/';
   urlPhysician:string='http://localhost:3001/physician';
   _urlPhysician:string='http://localhost:3002/physician';
+  userAccountURL:string ="http://localhost:5517/api/Account/GetAllUsers"
+
   public GetAllPhysician():Observable<any>{
     return  this.httpobj.get(this.urlPhysician);
   }
@@ -20,7 +24,7 @@ export class AppointmentDataService {
     return  this.httpobj.get(this.url+'GetAll');
   }
   public GetPhysician(){
-    return  this.httpobj.get(this._urlPhysician);
+    return  this.httpobj.get(this.userAccountURL);
     
   }
   public GetPhysicianTemp(){
@@ -51,23 +55,16 @@ export class AppointmentDataService {
         })
        );
   }
-  public patientExistorNot(Id :number)
+  public TestPatientservice()
   {
     
-      return  {"PatientExist":true,"PatientName":'Demo Patient from Service' }
-    // return this.httpobj.get<any[]>(this.url).pipe(
-    //   map(res=>
-    //     {
-    //      let patientDetails= res.filter(x => x.Id==Id.toString())
-    //      if(patientDetails.length>0)
-    //      {
-    //        return  {"PatientExist":true,"PatientName":patientDetails[0].patientName }
-    //      }else {
-    //       return  {"PatientExist":false,"PatientName":''}
-    //      }
-    //     })
-    //   );
+      return this.httpobj.get(this.userAccountURL);
   }
+
+  public  patientExistorNot(Id: string):Observable<any> {
+      return this.httpobj.get<any[]>(this.userAccountURL);
+  }
+
   public UpdateAppointment(objAppointment:any)
   {
     return  this.httpobj.put(this.url+'AppointmentUpdateById?id='+Number(objAppointment.id),objAppointment);

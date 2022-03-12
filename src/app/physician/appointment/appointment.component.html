@@ -5,7 +5,7 @@ border: 1px solid black;
 width: 100%;
 margin-left: 0px;
 ">
-<div class="col-sm-4 row">
+<!-- <div class="col-sm-4 row">
 <span class="col-sm-4 pt-3">Specialization</span>
 <mat-form-field class="col-8">
     <mat-select (selectionChange)="specialization_click()" matNativeControl [formControl]="specialization">
@@ -19,7 +19,7 @@ margin-left: 0px;
 <span class="error col-8 pb-1" *ngIf="specialization.invalid && specialization.touched">
   This field cannot be empty
 </span>
-</div>
+</div> -->
 <div class="col-sm-4 row" >
   <span class="col-sm-4">Physician Name </span>
 <mat-form-field class="col-8 pb-0">
@@ -33,14 +33,14 @@ margin-left: 0px;
   This field cannot be empty
 </span>
 </div>
-<div class="col-sm-4 row">
+<div class="col-2 mx-auto mb-1" style="display: none;">
+  <button class="bg-primary" (click)="getAppointment_click()">Get Appointment</button>
+</div>
+<div class="col-sm-4 row" style="display: none;">
   <span class="col-sm-4">Physician ID </span>
 <mat-form-field class="col-8">
     <input type="text" matInput  [formControl]='physicianId'>
 </mat-form-field>
-</div>
-<div class="col-2 mx-auto mb-1" style="display: none;">
-  <button class="bg-primary" (click)="getAppointment_click()">Get Appointment</button>
 </div>
 </form>
 <ejs-schedule

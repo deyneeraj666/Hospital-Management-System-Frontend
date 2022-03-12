@@ -32,7 +32,7 @@ L10n.load({
   providers:[DatePipe]
 })
 export class AppointmentComponent implements OnInit {
-  CurrentUser: string = this.auth.Email;
+  CurrentUser: string = this.auth.Id;
   option: number = 1;
   physicians: any[] = [];
   public statusData: string[] = ['CONFIRMED', 'PENDING'];
@@ -41,18 +41,20 @@ export class AppointmentComponent implements OnInit {
   }
   ngOnInit(): void {
     this.physicianId.disable();
-    this.physicianName.disable();
+    //this.physicianName.disable();
+    
     this.getPhysician();
   }
   getPhysician(){
     this.objAppointmentDataService.GetPhysician().subscribe((response: any) => {
       response.forEach((data: any) => {
+        if(data.role.toUpperCase()=='PHYSICIAN')
         this.physicians.push({
-          "physicianName": data.physicianName,
-          "physicianId": data.physicianId,
-          "Specialization": data.Specialization
+          "physicianName": data.firstName +' '+ data.lastName,
+          "physicianId": data.id
         })
       }); 
+      this.specialization_click();
     });
   }
   public getStatus(status: String) {
@@ -77,7 +79,7 @@ export class AppointmentComponent implements OnInit {
       location: {
         name: 'PatientId', validation: {
           required: true,
-          regex: ['^[0-9]*$', 'Number only allowed in this field']
+          // regex: ['^[0-9]*$', 'Number only allowed in this field']
         }
       },
       description: {
@@ -90,22 +92,21 @@ export class AppointmentComponent implements OnInit {
     }
   };
   public physicianNameList: String[] = [];
-  public specialization: FormControl = new FormControl("", Validators.required);
   public physicianName: FormControl = new FormControl("", Validators.required);
   public physicianId: FormControl = new FormControl();
   public physicianDetailForm: FormGroup = new FormGroup({
-    specialzation: this.specialization,
     physicianName: this.physicianName
   });
 
   
   public specialization_click() {
     this.physicianName.enable();
-    let filteredPhysicians = this.physicians.filter(data => data.Specialization == this.specialization.value);
+    debugger;
+    let filteredPhysicians = this.physicians;
     if (filteredPhysicians.length == 1) {
       this.physicianId.setValue(filteredPhysicians[0].physicianId);
       this.physicianName.setValue(filteredPhysicians[0].physicianName);
-      this.physicianName.disable();
+      // this.physicianName.disable();
     } else {
       this.physicianNameList = [];
       filteredPhysicians.forEach(physician => {
@@ -118,12 +119,12 @@ export class AppointmentComponent implements OnInit {
 
   public physicianName_click() {
     let selectedPhysician = this.physicians.filter(data =>
-      data.Specialization == this.specialization.value
-      && data.physicianName == this.physicianName.value);
+      data.physicianName == this.physicianName.value);
     this.physicianId.setValue(selectedPhysician[0].physicianId);
   }
   
   public getAppointment_click() {
+    debugger
     this.physicianDetailForm.markAllAsTouched();
     if (this.physicianDetailForm.valid) {
       this.enableCalendar = false;
@@ -216,53 +217,69 @@ export class AppointmentComponent implements OnInit {
           console.log(args.data);
           let tempId = 100 + 1;
           let element = ((args.data) as { [key: string]: any });
-          let result=this.objAppointmentDataService.patientExistorNot(Number(element[0].PatientId));
-          
-          console.log("Patient Name : " + element[0].PatientName);
-          if (result.PatientExist) {
-            let appointment = {
-              "id": "0",
-              "p_id": element[0].PatientId,
-              "patientName": result.PatientName,
-              "physician": this.physicianId.value,
-              "meetingTitle": element[0].Subject,
-              "status": element[0].Status.toUpperCase(),
-              "startDateTime": element[0].StartTime,// this.datepipe.transform(element[0].StartTime, 'yyyy-MM-dd h:mm a'),
-              "endDateTime": element[0].EndTime,// this.datepipe.transform(element[0].EndTime, 'yyyy-MM-dd h:mm a'),
-              "description": element[0].Description,
-              "username": this.CurrentUser
-
+          let result:any;
+         const data= this.objAppointmentDataService.patientExistorNot(element[0].PatientId);
+         data.subscribe((res:any[])=>{
+          let data:any=res.filter(x => x.id == element[0].PatientId.toString() && x.role.toUpperCase() == "PATIENT")
+               if (data.length > 0) {
+                result= { "PatientExist": true, "PatientName": data[0].firstName +' '+ data[0].lastName }
+               } else {
+                result= { "PatientExist": false, "PatientName": '' }
+               }
+            if (result!=undefined && result.PatientExist) {
+              let appointment = {
+                "id": "0",
+                "p_id": element[0].PatientId,
+                "patientName": result.PatientName,
+                "physician": this.physicianId.value,
+                "meetingTitle": element[0].Subject,
+                "status": element[0].Status.toUpperCase(),
+                "startDateTime": element[0].StartTime,
+                "endDateTime": element[0].EndTime,
+                "description": element[0].Description,
+                "username": this.CurrentUser
+              }
+  
+              this.objAppointmentDataService.AddAppointment(appointment).subscribe(response => {
+                this.toastr.success("Appointment Created Successfully");
+              })
             }
-
-            this.objAppointmentDataService.AddAppointment(appointment).subscribe(response => {
-              this.toastr.success("Appointment Created Successfully");
-            })
-          }
-          else{
-            this.toastr.error("Patient id is incorret");
-          }
+            else{
+              this.getAppointment_click();
+              this.toastr.error("Patient id is incorret");
+            }
+         });
 
         }
         if (args.requestType === 'eventChange') {
           let element = ((args.data) as any);
-          let result=this.objAppointmentDataService.patientExistorNot(Number(element.PatientId));
-          let appointment1 = {
-            "id": element.Id,
-            "p_id": element.PatientId,
-            "patientName": result.PatientName,
-            "physician": this.physicianId.value,
-            "meetingTitle": element.Subject,
-            "status": element.Status.toUpperCase(),
-            "startDateTime":element.StartTime,// this.datepipe.transform(element.StartTime, 'yyyy-MM-dd h:mm a'),
-            "endDateTime":element.EndTime,// this.datepipe.transform(element.EndTime, 'yyyy-MM-dd h:mm a'),
-            "description": element.Description,
-            "username": this.CurrentUser
-          }
-          console.log(appointment1);
-          debugger;
-          this.objAppointmentDataService.UpdateAppointment(appointment1).subscribe((response) => {
-            this.toastr.success("Appointment Edited Successfully");
-          })
+
+          let result: any;
+          const data = this.objAppointmentDataService.patientExistorNot(element.PatientId);
+          data.subscribe((res: any[]) => {
+            let data: any = res.filter(x => x.id == element.PatientId.toString() && x.role.toUpperCase() == "PATIENT")
+            if (data.length > 0) {
+              result = { "PatientExist": true, "PatientName": data[0].firstName +' '+  data[0].lastName }
+            } else {
+              result = { "PatientExist": false, "PatientName": '' }
+            }
+            let appointment1 = {
+              "id": element.Id,
+              "p_id": element.PatientId,
+              "patientName": result.PatientName,
+              "physician": this.physicianId.value,
+              "meetingTitle": element.Subject,
+              "status": element.Status.toUpperCase(),
+              "startDateTime": element.StartTime,
+              "endDateTime": element.EndTime,
+              "description": element.Description,
+              "username": this.CurrentUser
+            }
+            console.log(appointment1);
+            this.objAppointmentDataService.UpdateAppointment(appointment1).subscribe((response) => {
+              this.toastr.success("Appointment Edited Successfully");
+            })
+          });
         }
       }
     }
