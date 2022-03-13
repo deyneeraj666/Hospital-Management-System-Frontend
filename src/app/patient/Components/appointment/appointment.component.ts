@@ -18,6 +18,8 @@ export class AppointmentComponent implements OnInit
   option:number=4;
   currentUser:string=this.auth.Email;
   currentUserName:string=this.auth.UserName;
+  pid:string=this.auth.Id; 
+
   constructor(private auth:AuthService,private objAppointmentDataService: AppointmentDataService,private httpClient: HttpClient,private toastr:ToastrService,private datePipe: DatePipe) { }
   hide = true;
   Description = new FormControl("", [Validators.required])
@@ -29,9 +31,10 @@ export class AppointmentComponent implements OnInit
   minDate=new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
   isdisablenewappointment=true;
   ddlPhysicianData = {
-    'Dr. Lee': 'Pranjal@citiustech.com',
-    'Dr. Lou': 'PranjalPandey@citiustech.com',
-    'Dr. Robert': 'pranjal011@citiustech.com'
+    'Dr. Lee': 'tomjerry@gmail.com',
+    'Dr. Lou': 'tomjerry@gmail.com',
+    'Dr. Robert': 'tomjerry@gmail.com',
+    'Chota': 'chota@gmail.com',
   }
 
  
@@ -83,7 +86,8 @@ export class AppointmentComponent implements OnInit
       }
       let appObj = {
         "id": "0",
-        "p_id": this.currentUser,
+        // "p_id": this.currentUser,
+        "p_id": this.pid,
         "patientName": this.currentUserName,
         "physician": this.appointmentForm.value.Physician,
         "meetingTitle": this.appointmentForm.value.appointmentType,
