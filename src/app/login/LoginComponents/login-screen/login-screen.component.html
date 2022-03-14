@@ -32,7 +32,7 @@
             </span>
             <div class="button">
               <br>
-              <button mat-raised-button color="primary" [ngStyle]="loginform.valid?{'background-color':'blue'}:{'background-color':'white','color':'blue'}" [disabled]="loginform.invalid" (click)="onSubmit()">  Login</button>
+              <button mat-raised-button color="primary" [class.spinner]="loading" [ngStyle]="loginform.valid?{'background-color':'blue'}:{'background-color':'white','color':'blue'}" [disabled]="loading"  [disabled]="loginform.invalid" (click)="onSubmit()">  Login</button>
               <br>
               <a mat-button href=""  style="margin-left:33px" href='forgot-password'><small>Forgot password?</small></a>
             </div>
@@ -41,7 +41,7 @@
         <hr>
         <br>
         <b style="color: blue;; padding-left: 90px;">New to CT General Hospital?</b>
-        <button mat-raised-button  style=" margin-left: 10px; background-color: green; color: white; " (click)="register_click()" >Register</button>
+        <button mat-raised-button [class.spinner]="loading_reg" [disabled]="loading_reg" style=" margin-left: 10px; background-color: green; color: white; " (click)="register_click()" >Register</button>
       </mat-card>
       </div>
   </div>

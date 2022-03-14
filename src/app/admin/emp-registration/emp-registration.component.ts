@@ -15,7 +15,7 @@ export class EmpRegistrationComponent
 {
    selectedLevel:string='';
    empRegistrationForm:any = FormGroup;
-   
+   loading= false;
   constructor(private toastr:ToastrService,public user:UsermanagementService,
               public dialogRef: MatDialogRef<EmpRegistrationComponent>) 
   { 
@@ -33,8 +33,10 @@ export class EmpRegistrationComponent
 
    click_submit()
    {
+     
       if(this.empRegistrationForm.valid)
       {
+        this.loading= true;
         if(this.user.set==1)
         {
          
@@ -49,15 +51,17 @@ export class EmpRegistrationComponent
                   "Password": "Password@123",
                   "Role": this.empRegistrationForm.controls.role.value
               }
-             
-            this.user.employee_register_service(obj).subscribe((res:any)=>
-            {
-              this.toastr.success("Employee Added!");
-              this.empRegistrationForm.reset();
-              this.onClose();
-            },(err:any)=>{
-              this.toastr.error("Email-Id Already Exists!");
-            })
+             setTimeout(() => {
+              this.user.employee_register_service(obj).subscribe((res:any)=>
+              {
+                this.toastr.success("Employee Added!");
+                this.empRegistrationForm.reset();
+                this.onClose();
+              },(err:any)=>{
+                this.toastr.error("Email-Id Already Exists!");
+              })
+             }, 3000);
+            
         }
         else if(this.user.set == 2)
         {
@@ -72,13 +76,16 @@ export class EmpRegistrationComponent
                   "Password": "Password@123",
                   "Role": this.empRegistrationForm.controls.role.value
               }
-          this.user.update_userDetails_service(obj).subscribe(()=>{
-            this.toastr.success("Updated Successfully !");
-            this.dialogRef.close();
-          },()=>{
-            this.toastr.success("Updated Successfully !");
-            this.onClose();
-          })
+          setTimeout(()=>{
+            this.user.update_userDetails_service(obj).subscribe(()=>{
+              this.toastr.success("Updated Successfully !");
+              this.dialogRef.close();
+            },()=>{
+              this.toastr.success("Updated Successfully !");
+              this.onClose();
+            })
+          },3000)
+          
         }
       }
       else

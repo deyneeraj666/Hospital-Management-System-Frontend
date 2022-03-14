@@ -39,8 +39,10 @@ export class RegisterComponent implements OnInit
   }
   btn_submit()
   {
-    if(this.patientRegisterForm.valid)
-    {
+    
+    
+      if(this.patientRegisterForm.valid)
+     {
       var obj:any = {
         "Title":this.patientRegisterForm.controls.title.value,
         "FirstName": this.patientRegisterForm.controls.fname.value,
@@ -62,6 +64,8 @@ export class RegisterComponent implements OnInit
       })
       this.patientRegisterForm.reset();
     }
+   
+    
   }
 
   btn_reset(){
