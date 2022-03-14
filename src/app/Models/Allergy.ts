@@ -1,12 +1,12 @@
-export class Allergy{
-    pid:string='';
+export interface Allergy{
+    pid:string;
+    allergyId:number;
     knownAllergy?:boolean;
-    allergyId?: string="";
-    allergyType?:string="";
-    allergyName?:string="";
-    allergyDesc?:string="";
-    allergyClinicalInfo?:string="";
-    isAllergyFatal?:string="";
+    allergyType?:string;
+    allergyName?:string;
+    allergyDesc?:string;
+    allergyClinicalInfo?:string;
+    isAllergyFatal?:string;
 
 }
 

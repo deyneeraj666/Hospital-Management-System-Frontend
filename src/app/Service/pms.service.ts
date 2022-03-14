@@ -13,8 +13,9 @@ export class PmsService {
 
   readonly Url = 'http://localhost:64193/api/Demographics';
   readonly EmergencyUrl ='http://localhost:64193/api/EmergencyDetails';
-  readonly AllergyUrl ='https://localhost:44340/api/Allergies';
-  readonly PatientAllergy='https://localhost:44340/api/PatientAllergies';
+  readonly AllergyUrl ='https://localhost:44338/api/Allergies';
+  readonly PatientAllergy='https://localhost:44338/api/PatientAllergies';
+  readonly PatientVital='http://localhost:49526/api/Vitals';
 
  
   constructor(private http:HttpClient) {}
@@ -28,31 +29,6 @@ export class PmsService {
 
     const url = `${this.AllergyUrl}/${allergyType}`;
     return this.http.get(url);
-
-    // switch (allergyType.toLocaleLowerCase()) {
-    //   case 'food':
-    //     return [
-    //       { allergyName: 'Kiwi' },
-    //       { allergyName: 'Kiwi1' },
-    //       { allergyName: 'Kiwi2' },
-    //     ];
-    //     break;
-    //   case 'mite':
-    //     return [
-    //       { allergyName: 'Mite' },
-    //       { allergyName: 'Mite1' },
-    //       { allergyName: 'Mite2' },
-    //       { allergyName: 'Mite3' },
-    //     ];
-    //     break;
-    //   default:
-    //     return [
-    //       { allergyName: 'Dog' },
-    //       { allergyName: 'Dog1' },
-    //       { allergyName: 'MiDog2te2' },
-    //     ];
-    //     break;
-    // }
 
   }
 
@@ -71,6 +47,13 @@ export class PmsService {
  getPatientAllergyByPatientId(pid:string):Observable<any>{
    const url=`${this.PatientAllergy}/${pid}`;
    return this.http.get(url);
+ }
+
+ deletePatientAllergy(id:number):Observable<any>{
+
+   
+   const url=`${this.PatientAllergy}/${id}`;
+   return this.http.delete(url);
  }
 
   savePatientDemographicInfo(demoInfo: savePatientDemographicInfo,pid:string) {
@@ -119,4 +102,9 @@ export class PmsService {
     return this.http.get(url);
   }
   
+
+  getVitalDetailsByAppointmentId(appointmentId:number):Observable<any>{
+    const url =`${this.PatientVital}/${appointmentId}`;
+    return this.http.get(url);
+  }
 }

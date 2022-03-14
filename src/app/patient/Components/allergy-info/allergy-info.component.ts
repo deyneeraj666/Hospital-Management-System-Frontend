@@ -26,11 +26,9 @@ export class AllergyInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.pid = this.auth.Id;
-    // this.allergyTypes = this.pmsService.getAllergy();
 
     this.pmsService.getAllergy().subscribe(
       (res) => {
-        console.log(res);
         this.allergyTypes = res;
         console.log('Data received');
       },
@@ -39,30 +37,33 @@ export class AllergyInfoComponent implements OnInit {
         console.log('Error occurred');
       }
     );
+    this.refreshGrid();
+  }
 
+  refreshGrid() {
     this.pmsService.getPatientAllergyByPatientId(this.pid).subscribe(
       (res: any) => {
-       console.log(res);
-       let newData=res.map((i:any)=>
-        {
-          return {"allergyId":i.id,"allergyType":i.allergy_Type,"allergyName":i.allergy_Name,
-          "allergyDesc":i.allergy_Description,"allergyClinicalInfo":i.allergy_Clinical_Info,
-          "isAllergyFatal":i.isAllergyFatal}
+        let newData = res.map((i: any) => {
+          return {
+            allergyId: i.allergyId,
+            allergyType: i.allergy_Type,
+            allergyName: i.allergy_Name,
+            allergyDesc: i.allergy_Description,
+            allergyClinicalInfo: i.allergy_Clinical_Info,
+            isAllergyFatal: i.isAllergyFatal,
+          };
         });
 
-          this.allergiesArray = newData;
-        
+        this.allergiesArray = newData;
       },
       (err) => {}
     );
   }
 
   allergyNameChangeHandler(value: string) {
-    // this.allergyNames = this.pmsService.getAllergyNamesByType(value);
 
     this.pmsService.getAllergyNamesByType(value).subscribe(
       (res: any) => {
-        console.log(res);
         this.allergyNames = res;
       },
       (err: any) => {
@@ -92,6 +93,7 @@ export class AllergyInfoComponent implements OnInit {
         (res) => {
           this.toastr.success('Successfully Submitted');
           this.patientAllergyForm.reset();
+          this.refreshGrid();
         },
         (err) => {
           console.log('Error occurred ', err);
@@ -103,23 +105,5 @@ export class AllergyInfoComponent implements OnInit {
     this.patientAllergyForm.reset();
   }
 
-  // disableFormProperties() {
-  //   this.patientAllergyForm.controls['knownAllergy'].disable();
-  //   this.patientAllergyForm.controls['allergyId'].disable();
-  //   this.patientAllergyForm.controls['allergyType'].disable();
-  //   this.patientAllergyForm.controls['allergyName'].disable();
-  //   this.patientAllergyForm.controls['allergyDesc'].disable();
-  //   this.patientAllergyForm.controls['allergyClinicalInfo'].disable();
-  //   this.patientAllergyForm.controls['isAllergyFatal'].disable();
-  // }
 
-  // enableFormProperties() {
-  //   this.patientAllergyForm.controls['knownAllergy'].enable();
-  //   this.patientAllergyForm.controls['allergyId'].enable();
-  //   this.patientAllergyForm.controls['allergyType'].enable();
-  //   this.patientAllergyForm.controls['allergyName'].enable();
-  //   this.patientAllergyForm.controls['allergyDesc'].enable();
-  //   this.patientAllergyForm.controls['allergyClinicalInfo'].enable();
-  //   this.patientAllergyForm.controls['isAllergyFatal'].enable();
-  // }
 }
