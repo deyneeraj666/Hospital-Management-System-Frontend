@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppointmentDataService } from 'src/app/Service/appointment-data.service';
 import { AuthService } from 'src/app/Shared/auth.service';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -16,9 +17,10 @@ export class AppointmentComponent implements OnInit
 {
 
   option:number=4;
-  currentUser:string=this.auth.Email;
-  currentUserName:string=this.auth.UserName;
-  constructor(private auth:AuthService,private objAppointmentDataService: AppointmentDataService,private httpClient: HttpClient,private toastr:ToastrService,private datePipe: DatePipe) { }
+  currentUser:string=this.auth.EmpId;
+  currentUserName:string=this.auth.FullName;
+  constructor(private auth:AuthService,private objAppointmentDataService: AppointmentDataService,private httpClient: HttpClient,private toastr:ToastrService,private datePipe: DatePipe) 
+  { }
   hide = true;
   Description = new FormControl("", [Validators.required])
   Physician = new FormControl("", [Validators.required])
@@ -28,11 +30,7 @@ export class AppointmentComponent implements OnInit
   btnSubmitDisabled: boolean = false;
   minDate=new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
   isdisablenewappointment=true;
-  ddlPhysicianData = {
-    'Dr. Lee': 'Pranjal@citiustech.com',
-    'Dr. Lou': 'PranjalPandey@citiustech.com',
-    'Dr. Robert': 'pranjal011@citiustech.com'
-  }
+  public ddlPhysicianData:any[]=[];
 
  
   appointmentForm = new FormGroup({
@@ -64,7 +62,6 @@ export class AppointmentComponent implements OnInit
   //    'slot':this.appointmentForm.value.slot
   //   }
     let slot:string=this.appointmentForm.value.slot;
-    debugger;
     if (slot != undefined) {
       let slotdata = this.slot.value.split('-');
       let start = slotdata[0];
@@ -87,7 +84,7 @@ export class AppointmentComponent implements OnInit
         "patientName": this.currentUserName,
         "physician": this.appointmentForm.value.Physician,
         "meetingTitle": this.appointmentForm.value.appointmentType,
-        "status": 'Pending',
+        "status": 'PENDING',
         "startDateTime": startdate,//this.datePipe.transform(startdate, 'yyyy-MM-dd'),
         "endDateTime":enddate, // this.datePipe.transform(enddate, 'yyyy-MM-dd'),
         "description": this.appointmentForm.value.Description,
@@ -101,16 +98,29 @@ export class AppointmentComponent implements OnInit
      this.appointmentData=[];
      
     this.appointmentForm.reset();
-    // this.toastr.success('Submit Successfully !');
     this.click_ViewAppointment();
   }
   ngOnInit(): void {
+    this.getPhysician();
     this.getSchedule_click();
+  }
+  getPhysician(){
+     this.objAppointmentDataService.GetPhysician().subscribe((response: any) => {
+      response.forEach((data: any) => {
+        if (data.role.toUpperCase() == 'PHYSICIAN') {
+          this.ddlPhysicianData.push({
+            "physicianName": data.firstName + ' ' + data.lastName,
+            "physicianId": data.id
+          })
+        }
+      });
+    });
   }
   public getSchedule_click() {
     this.appointmentData=[]
       this.objAppointmentDataService.GetAppointment().subscribe((response: any) => {
         console.log(response);
+        debugger;
         response.forEach((data: any) => {
           if (data.p_id.toUpperCase()==this.currentUser.toUpperCase()) {
            this.appointmentData.push({

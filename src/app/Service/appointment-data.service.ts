@@ -27,19 +27,8 @@ export class AppointmentDataService {
     return  this.httpobj.get(this.userAccountURL);
     
   }
-  public GetPhysicianTemp(){
-    let physician:any[]=[];
-      this.GetPhysician().subscribe((response: any) => {
-      response.forEach((data: any) => {
-         physician.push({
-          "physicianName": data.physicianName,
-          "physicianId": data.physicianId,
-          "Specialization": data.Specialization
-        })
-      }); 
-    });
-    delay(15000);
-    return physician;
+  public async GetPhysicianTemp():Promise<any>{
+    return  this.httpobj.get(this.userAccountURL).toPromise();;
   }
   public AddAppointment(objAppointment:any):Observable<any>{
        console.log('Service Object'+ objAppointment)

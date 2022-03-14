@@ -32,7 +32,7 @@ L10n.load({
   providers:[DatePipe]
 })
 export class AppointmentComponent implements OnInit {
-  CurrentUser: string = this.auth.Id;
+  CurrentUser: string = this.auth.EmpId;
   option: number = 1;
   physicians: any[] = [];
   public statusData: string[] = ['CONFIRMED', 'PENDING'];
@@ -101,12 +101,10 @@ export class AppointmentComponent implements OnInit {
   
   public specialization_click() {
     this.physicianName.enable();
-    debugger;
     let filteredPhysicians = this.physicians;
     if (filteredPhysicians.length == 1) {
       this.physicianId.setValue(filteredPhysicians[0].physicianId);
       this.physicianName.setValue(filteredPhysicians[0].physicianName);
-      // this.physicianName.disable();
     } else {
       this.physicianNameList = [];
       filteredPhysicians.forEach(physician => {
@@ -124,12 +122,10 @@ export class AppointmentComponent implements OnInit {
   }
   
   public getAppointment_click() {
-    debugger
     this.physicianDetailForm.markAllAsTouched();
     if (this.physicianDetailForm.valid) {
       this.enableCalendar = false;
       this.objAppointmentDataService.GetAppointment().subscribe((response: any) => {
-        console.log(response);
         response.forEach((data: any) => {
           this.appointmentData.push({
             "Id": data.id,
@@ -194,8 +190,6 @@ export class AppointmentComponent implements OnInit {
         let endDate: Date = (((<Object[]>args.data).length > 0)
           ? eventData[0][eventField.endTime] : eventData[eventField.endTime]) as Date;
         let diff = endDate.valueOf() - startDate.valueOf();
-        console.log(diff);
-        console.log(diff / 1200);
         let duration = diff / (1000 * 3600);
         if (duration < 0) {
           this.toastr.error("End time cannot be less than Start Time");
@@ -214,13 +208,13 @@ export class AppointmentComponent implements OnInit {
           return;
         }
         if (args.requestType === 'eventCreate') {
-          console.log(args.data);
           let tempId = 100 + 1;
           let element = ((args.data) as { [key: string]: any });
           let result:any;
          const data= this.objAppointmentDataService.patientExistorNot(element[0].PatientId);
          data.subscribe((res:any[])=>{
-          let data:any=res.filter(x => x.id == element[0].PatientId.toString() && x.role.toUpperCase() == "PATIENT")
+           debugger;
+          let data:any=res.filter(x => x.empId == element[0].PatientId.toString() && x.role.toUpperCase() == "PATIENT")
                if (data.length > 0) {
                 result= { "PatientExist": true, "PatientName": data[0].firstName +' '+ data[0].lastName }
                } else {
@@ -231,7 +225,7 @@ export class AppointmentComponent implements OnInit {
                 "id": "0",
                 "p_id": element[0].PatientId,
                 "patientName": result.PatientName,
-                "physician": this.physicianId.value,
+                "physician": this.physicianName.value,
                 "meetingTitle": element[0].Subject,
                 "status": element[0].Status.toUpperCase(),
                 "startDateTime": element[0].StartTime,
@@ -267,7 +261,7 @@ export class AppointmentComponent implements OnInit {
               "id": element.Id,
               "p_id": element.PatientId,
               "patientName": result.PatientName,
-              "physician": this.physicianId.value,
+              "physician": this.physicianName.value,
               "meetingTitle": element.Subject,
               "status": element.Status.toUpperCase(),
               "startDateTime": element.StartTime,
@@ -275,7 +269,6 @@ export class AppointmentComponent implements OnInit {
               "description": element.Description,
               "username": this.CurrentUser
             }
-            console.log(appointment1);
             this.objAppointmentDataService.UpdateAppointment(appointment1).subscribe((response) => {
               this.toastr.success("Appointment Edited Successfully");
             })
