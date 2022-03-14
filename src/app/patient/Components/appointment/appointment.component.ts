@@ -19,6 +19,7 @@ export class AppointmentComponent implements OnInit
   option:number=4;
   currentUser:string=this.auth.EmpId;
   currentUserName:string=this.auth.FullName;
+  pid:string=this.auth.Id;
   constructor(private auth:AuthService,private objAppointmentDataService: AppointmentDataService,private httpClient: HttpClient,private toastr:ToastrService,private datePipe: DatePipe) 
   { }
   hide = true;
@@ -80,7 +81,8 @@ export class AppointmentComponent implements OnInit
       }
       let appObj = {
         "id": "0",
-        "p_id": this.currentUser,
+        // "p_id": this.currentUser,
+        "p_id": this.pid,
         "patientName": this.currentUserName,
         "physician": this.appointmentForm.value.Physician,
         "meetingTitle": this.appointmentForm.value.appointmentType,

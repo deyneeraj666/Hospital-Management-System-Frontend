@@ -72,6 +72,7 @@
           <button mat-icon-button   *ngIf='row.status === "Active"' (click)="onBlock(row)" style="margin-left: -5px;"  matTooltip="Block"><mat-icon >lock</mat-icon></button>
           <button mat-icon-button *ngIf='row.status === "Blocked"' (click)="onUnBlock(row)"style="margin-left: -5px;"  matTooltip="Unblock" [matTooltipPosition]='toolTipPosition'><mat-icon >lock_open</mat-icon></button> 
           <button mat-icon-button    (click)="click_delete(row)" color="warn" style="margin-left: -5px;"  matTooltip="Delete" ><mat-icon>delete_outline</mat-icon></button>
+          
         </mat-cell>
       </ng-container>
 
@@ -97,8 +98,8 @@
 
 
 <br>
-
-  <app-footer></app-footer>
+<!-- 
+  <app-footer></app-footer> -->
 
 
 

@@ -72,4 +72,9 @@ export class AppointmentDataService {
        
     return  this.httpobj.get<any[]>(this.url+'AppointmentDeleteById?id='+id)
   }
+
+  getPatientAppointmentByPatientId(pid:string):Observable<any>{
+    const url=`${this.url}GetAppointmentById?id=${pid}`;
+    return this.httpobj.get(url);
+  }
 }

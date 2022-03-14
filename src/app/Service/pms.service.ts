@@ -15,7 +15,7 @@ export class PmsService {
   readonly EmergencyUrl ='http://localhost:64193/api/EmergencyDetails';
   readonly AllergyUrl ='https://localhost:44338/api/Allergies';
   readonly PatientAllergy='https://localhost:44338/api/PatientAllergies';
- 
+  readonly PatientVital='http://localhost:49526/api/Vitals';
 
  
   constructor(private http:HttpClient) {}
@@ -102,4 +102,9 @@ export class PmsService {
     return this.http.get(url);
   }
   
+
+  getVitalDetailsByAppointmentId(appointmentId:number):Observable<any>{
+    const url =`${this.PatientVital}/${appointmentId}`;
+    return this.http.get(url);
+  }
 }

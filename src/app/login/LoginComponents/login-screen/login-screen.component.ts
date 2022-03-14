@@ -16,7 +16,8 @@ export class LoginScreenComponent implements OnInit
   hide = true;
   submitted:boolean=false;
   loginform:any = FormGroup ;
-
+  loading = false;
+  loading_reg=false;
   constructor(private router: Router, private toastr:ToastrService,private user:UsermanagementService)
   {
 
@@ -24,7 +25,7 @@ export class LoginScreenComponent implements OnInit
     onSubmit() 
   {
     this.submitted = true;
-
+    this.loading = true;
 
     this.user.login_service(this.loginform.controls.email.value, this.loginform.controls.password.value)
     .subscribe( async (res:any)=>
@@ -47,7 +48,7 @@ export class LoginScreenComponent implements OnInit
               }
              this.toastr.success("Welcome " +res.items.role);
            
-      },1000);
+      },2000);
      
      
    
@@ -69,8 +70,11 @@ export class LoginScreenComponent implements OnInit
   }
 
   register_click(){
+    this.loading_reg = true;
+    setTimeout(()=>{
     this.router.navigateByUrl('patient-register');
-  }
+    }
+    ,2000)}
 
   ngOnInit(): void
   {

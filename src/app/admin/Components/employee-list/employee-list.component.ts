@@ -1,20 +1,13 @@
-
-import { EmployeeRegistrationComponent } from "./../employee-registration/employee-registration.component";
 import { AfterViewInit, Component, DoCheck, OnChanges, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EmpRegistrationComponent } from "../../emp-registration/emp-registration.component";
-import { forEach } from "lodash";
 import { elementAt, interval, of } from "rxjs";
 import { UsermanagementService } from "src/app/Shared/usermanagement.service";
-
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
 import { EmpRoleUserPipe } from "src/app/shared/emp-role-user.pipe";
-
-
-
 
 @Component({
   selector: 'app-employee-list',
@@ -75,6 +68,8 @@ export class EmployeeListComponent implements OnInit
 
   onCreate()
   {
+    
+   
      
     this.user.set=1;
     this.user.empRegistrationForm.reset();
@@ -102,7 +97,9 @@ export class EmployeeListComponent implements OnInit
  
   click_delete(row:any)
   {
-    this.user.opt=1;
+    
+   
+      this.user.opt=1;
     this.user.selected_emp=row;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -110,10 +107,13 @@ export class EmployeeListComponent implements OnInit
     dialogConfig.height="30%";
     dialogConfig.width = "27%";
     this.dialog.open(ConfirmDialogComponent,dialogConfig)
+   
+    
   }
  
   onBlock(row: any)
   {
+    setTimeout(()=>{},3000)
     this.user.opt=2;
     this.user.selected_emp=row;
     const dialogConfig = new MatDialogConfig();
@@ -122,6 +122,7 @@ export class EmployeeListComponent implements OnInit
     dialogConfig.height="30%";
     dialogConfig.width = "27%";
     this.dialog.open(ConfirmDialogComponent,dialogConfig)
+   
   }
 
   onUnBlock(row:any)
