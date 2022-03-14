@@ -150,7 +150,7 @@ export class AppointmentComponent implements OnInit {
           }
         }); 
 
-        let tempAppointmentdata = this.appointmentData.filter(x => x.Physician.toUpperCase() == this.CurrentUser.toUpperCase());
+        let tempAppointmentdata = this.appointmentData.filter(x => x.username.toUpperCase() == this.CurrentUser.toUpperCase());
         this.eventSettings.dataSource =tempAppointmentdata;
         this.scheduleObj.refresh();
         if (this.scheduleObj != undefined) {
@@ -239,7 +239,7 @@ export class AppointmentComponent implements OnInit {
                 "startDateTime": element[0].StartTime,
                 "endDateTime": element[0].EndTime,
                 "description": element[0].Description,
-                "username": this.CurrentUser
+                "username": this.physicianId.value
               }
   
               this.objAppointmentDataService.AddAppointment(appointment).subscribe(response => {
@@ -259,7 +259,7 @@ export class AppointmentComponent implements OnInit {
           let result: any;
           const data = this.objAppointmentDataService.patientExistorNot(element.PatientId);
           data.subscribe((res: any[]) => {
-            let data: any = res.filter(x => x.id == element.PatientId.toString() && x.role.toUpperCase() == "PATIENT")
+            let data: any = res.filter(x => x.empId == element.PatientId.toString() && x.role.toUpperCase() == "PATIENT")
             if (data.length > 0) {
               result = { "PatientExist": true, "PatientName": data[0].firstName +' '+  data[0].lastName }
             } else {
@@ -275,9 +275,10 @@ export class AppointmentComponent implements OnInit {
               "startDateTime": element.StartTime,
               "endDateTime": element.EndTime,
               "description": element.Description,
-              "username": this.CurrentUser
+              "username": this.physicianId.value
             }
             this.objAppointmentDataService.UpdateAppointment(appointment1).subscribe((response) => {
+              this.getAppointment_click();
               this.toastr.success("Appointment Edited Successfully");
             })
           });

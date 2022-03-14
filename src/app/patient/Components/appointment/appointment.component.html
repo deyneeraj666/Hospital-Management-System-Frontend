@@ -65,7 +65,7 @@
                     <mat-form-field appearance="fill" style="width:90%;padding-left: 9%;">
                         <mat-label class="label">Physician</mat-label>
                         <select matNativeControl formControlName="Physician" name="Physician">
-                            <option *ngFor="let item of ddlPhysicianData" [value]="item.physicianName">{{item.physicianName}}</option>
+                            <option *ngFor="let item of ddlPhysicianData" [value]="item.physicianId">{{item.physicianName}}</option>
                         </select>
                     </mat-form-field>
                     <div>

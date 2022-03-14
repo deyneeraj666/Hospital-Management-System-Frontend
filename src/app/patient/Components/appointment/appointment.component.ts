@@ -79,23 +79,30 @@ export class AppointmentComponent implements OnInit
         startdate.setHours(Number(start) + 12);
         enddate.setHours(Number(end[0]) + 12);
       }
-      let appObj = {
-        "id": "0",
-        // "p_id": this.currentUser,
-        "p_id": this.pid,
-        "patientName": this.currentUserName,
-        "physician": this.appointmentForm.value.Physician,
-        "meetingTitle": this.appointmentForm.value.appointmentType,
-        "status": 'PENDING',
-        "startDateTime": startdate,//this.datePipe.transform(startdate, 'yyyy-MM-dd'),
-        "endDateTime":enddate, // this.datePipe.transform(enddate, 'yyyy-MM-dd'),
-        "description": this.appointmentForm.value.Description,
-        "username": this.currentUser
+      if (this.ddlPhysicianData != undefined) {
 
+        let ddlSelectedData:any = this.ddlPhysicianData.filter(x => x.physicianId.toUpperCase() == this.appointmentForm.value.Physician.toUpperCase())
+        debugger;
+        let appObj = {
+          "id": "0",
+          "p_id": this.currentUser,
+          //"p_id": this.pid,
+          "patientName": this.currentUserName,
+          "physician": ddlSelectedData[0].physicianName,
+          "meetingTitle": this.appointmentForm.value.appointmentType,
+          "status": 'PENDING',
+          "startDateTime": startdate,//this.datePipe.transform(startdate, 'yyyy-MM-dd'),
+          "endDateTime": enddate, // this.datePipe.transform(enddate, 'yyyy-MM-dd'),
+          "description": this.appointmentForm.value.Description,
+          "username": ddlSelectedData[0].physicianId
+        }
+        this.objAppointmentDataService.AddAppointment(appObj).subscribe(response => {
+          this.toastr.success("Submit Successfully !");
+        })
       }
-      this.objAppointmentDataService.AddAppointment(appObj).subscribe(response => {
-        this.toastr.success("Submit Successfully !");
-      })
+      else{
+        this.toastr.success("Something went wrong !");
+      }
     }
      this.appointmentData=[];
      
@@ -112,7 +119,7 @@ export class AppointmentComponent implements OnInit
         if (data.role.toUpperCase() == 'PHYSICIAN') {
           this.ddlPhysicianData.push({
             "physicianName": data.firstName + ' ' + data.lastName,
-            "physicianId": data.id
+            "physicianId": data.empId
           })
         }
       });
