@@ -167,8 +167,8 @@ margin-left: 0px;
             </tr>
             <tr *ngIf="data.Status=='CONFIRMED'">
               <td>Visit Link</td>
-              <td class="pl-5">
-                <button class="bg-primary">PATIENT VISIT FORM</button>
+              <td >
+                <button mat-raised-button style="background-color: rgba(10, 102, 163, 0.897) ;color: white;" (click)="viewChart(data.PatientId, data.Id)">View Patient Chart</button>               
               </td>
             </tr>
           </tbody>

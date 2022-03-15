@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PmsService } from 'src/app/Service/pms.service';
 import { AuthService } from 'src/app/Shared/auth.service';
+import { ConsultingService } from 'src/app/Shared/consulting.service';
 
 @Component({
   selector: 'app-emergency-contact',
@@ -11,28 +12,34 @@ import { AuthService } from 'src/app/Shared/auth.service';
 })
 export class EmergencyContactComponent implements OnInit {
   option: number = 2;
-  pid:string='';
+  pid: string = '';
 
   isSubmitClicked: boolean = true;
   isEditClicked: boolean = false;
   isCancelClicked: boolean = true;
 
-  constructor(private pmsService: PmsService, private toastr: ToastrService,private auth:AuthService) {}
+  constructor(
+    private pmsService: PmsService,
+    private toastr: ToastrService,
+    private auth: AuthService,
+    private consultingService:ConsultingService
+  ) {}
 
   ngOnInit(): void {
-    this.pid=this.auth.Id;
+    // this.pid = this.auth.Id;
+    this.pid=this.auth.role==='Patient'?this.auth.EmpId : this.consultingService.consultingPId;
+
 
     this.pmsService.getEmergencyContactDetailByPatientId(this.pid).subscribe(
-      (res)=>{
+      (res) => {
         this.fillEmergencyForm(res);
       },
-      (err:any)=>{
+      (err: any) => {
         console.log(err);
         console.log('Error occurred');
       }
     );
   }
-
 
   public patientEmergencyForm = new FormGroup({
     efname: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -43,7 +50,10 @@ export class EmergencyContactComponent implements OnInit {
     //   Validators.required,
     //   Validators.pattern('^\\+1\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$'),
     // ]),
-    econtact : new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
+    econtact: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^([0-9]{1,5})?([7-9][0-9]{9})$'),
+    ]),
 
     eaddress: new FormControl(''),
     access: new FormControl(''),
@@ -52,16 +62,22 @@ export class EmergencyContactComponent implements OnInit {
   fillEmergencyForm(data: any) {
     this.patientEmergencyForm.controls['efname'].setValue(data?.firstName);
     this.patientEmergencyForm.controls['elname'].setValue(data?.lastName);
-    this.patientEmergencyForm.controls['relationship'].setValue(data?.relationship);
+    this.patientEmergencyForm.controls['relationship'].setValue(
+      data?.relationship
+    );
     this.patientEmergencyForm.controls['eemail'].setValue(data?.emailId);
-    this.patientEmergencyForm.controls['econtact'].setValue(data?.contactNumber);
+    this.patientEmergencyForm.controls['econtact'].setValue(
+      data?.contactNumber
+    );
     this.patientEmergencyForm.controls['eaddress'].setValue(data?.address);
-    this.patientEmergencyForm.controls['access'].setValue(data?.patientPortalAccess);
-  
+    this.patientEmergencyForm.controls['access'].setValue(
+      data?.patientPortalAccess
+    );
+
     this.disableFormProperties();
-    this.isSubmitClicked=false;
-    this.isEditClicked=true;
-    this.isCancelClicked=false;
+    this.isSubmitClicked = false;
+    this.isEditClicked = true;
+    this.isCancelClicked = false;
   }
 
   disableFormProperties() {
@@ -92,23 +108,25 @@ export class EmergencyContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.pmsService.savePatientEmergencyInfo(this.patientEmergencyForm.value,this.pid)
-    .subscribe((res)=>{
-      this.toastr.success('Successfully Submitted');
-      this.disableFormProperties();
-      this.isSubmitClicked = !this.isSubmitClicked;
-      this.isEditClicked = !this.isEditClicked;
-      this.isCancelClicked = !this.isCancelClicked;
-    },
-    (err:any)=>{
-      console.log('Error occurred ', err);
-    });
+    this.pmsService
+      .savePatientEmergencyInfo(this.patientEmergencyForm.value, this.pid)
+      .subscribe(
+        (res) => {
+          this.toastr.success('Successfully Submitted');
+          this.disableFormProperties();
+          this.isSubmitClicked = !this.isSubmitClicked;
+          this.isEditClicked = !this.isEditClicked;
+          this.isCancelClicked = !this.isCancelClicked;
+        },
+        (err: any) => {
+          console.log('Error occurred ', err);
+        }
+      );
   }
-  
 
-  onCancel(){
+  onCancel() {
     this.patientEmergencyForm.reset();
-   // this.initializeFormGroup();
+    // this.initializeFormGroup();
   }
 
   // initializeFormGroup(){
@@ -122,6 +140,6 @@ export class EmergencyContactComponent implements OnInit {
   //     access:''
   //   });
   //   console.log(this.patientEmergencyForm.value);
-    
+
   // }
 }

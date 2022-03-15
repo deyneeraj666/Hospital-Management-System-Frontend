@@ -115,12 +115,14 @@ span {
 }
 
 .input-field{
-    color:rgba(10, 102, 163, 0.897) ;
+    /* color:rgba(10, 102, 163, 0.897) ; */
+    color: black;
     font-size: 16px;
 }
 
 .label{
     color:black;
+    font-size: 16px;
 }
 
 ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {

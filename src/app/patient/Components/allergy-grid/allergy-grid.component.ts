@@ -17,7 +17,7 @@ export class AllergyGridComponent implements OnInit {
   constructor(private service: PmsService, private auth:AuthService) {}
 
   ngOnInit(): void {
-    this.pid=this.auth.Id;
+    this.pid=this.auth.EmpId;
   }
 
   //to delete particular allergy added

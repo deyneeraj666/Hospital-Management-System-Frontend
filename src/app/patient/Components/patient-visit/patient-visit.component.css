@@ -8,3 +8,8 @@ table {
     margin-right: auto;
     margin-top: 30px;
   }
+
+  ::ng-deep.mat-paginator .mat-paginator-container{
+    justify-content: center;
+    margin-left: 525px;
+  }
