@@ -134,7 +134,7 @@ export class AppointmentComponent implements OnInit {
       this.enableCalendar = false;
       this.objAppointmentDataService.GetAppointment().subscribe((response: any) => {
         response.forEach((data: any) => {
-          if (data.physician.toUpperCase()==this.CurrentUser.toUpperCase()) {
+          if (data.username.toUpperCase()==this.CurrentUser.toUpperCase()) {
             this.appointmentData.push({
               "Id": data.id,
               "PatientId": data.p_id,
@@ -228,6 +228,7 @@ export class AppointmentComponent implements OnInit {
                } else {
                 result= { "PatientExist": false, "PatientName": '' }
                }
+               debugger;
             if (result!=undefined && result.PatientExist) {
               let appointment = {
                 "id": "0",
@@ -265,11 +266,12 @@ export class AppointmentComponent implements OnInit {
             } else {
               result = { "PatientExist": false, "PatientName": '' }
             }
+            debugger;
             let appointment1 = {
               "id": element.Id,
               "p_id": element.PatientId,
               "patientName": result.PatientName,
-              "physician": this.physicianId.value,
+              "physician": this.physicianName.value,
               "meetingTitle": element.Subject,
               "status": element.Status.toUpperCase(),
               "startDateTime": element.StartTime,
