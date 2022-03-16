@@ -94,7 +94,7 @@ export class AppointmentComponent implements OnInit
           "startDateTime": startdate,//this.datePipe.transform(startdate, 'yyyy-MM-dd'),
           "endDateTime": enddate, // this.datePipe.transform(enddate, 'yyyy-MM-dd'),
           "description": this.appointmentForm.value.Description,
-          "username": ddlSelectedData[0].physicianId
+          "physicianId": ddlSelectedData[0].physicianId
         }
         this.objAppointmentDataService.AddAppointment(appObj).subscribe(response => {
           this.toastr.success("Submit Successfully !");
@@ -142,7 +142,7 @@ export class AppointmentComponent implements OnInit
               "startDateTime": new Date(data.startDateTime),
               "endDateTime": new Date(data.endDateTime),
               "description": data.description,
-              "username": data.username
+              "physicianId": data.physicianId
             })
           }
         }); 

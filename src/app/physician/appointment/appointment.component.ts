@@ -134,7 +134,7 @@ export class AppointmentComponent implements OnInit {
       this.enableCalendar = false;
       this.objAppointmentDataService.GetAppointment().subscribe((response: any) => {
         response.forEach((data: any) => {
-          if (data.username.toUpperCase()==this.CurrentUser.toUpperCase()) {
+          if (data.physicianId.toUpperCase()==this.CurrentUser.toUpperCase()) {
             this.appointmentData.push({
               "Id": data.id,
               "PatientId": data.p_id,
@@ -145,12 +145,12 @@ export class AppointmentComponent implements OnInit {
               "StartTime": new Date(data.startDateTime),
               "EndTime": new Date(data.endDateTime),
               "Description": data.description,
-              "username": data.username
+              "physicianId": data.physicianId
             })
           }
         }); 
 
-        let tempAppointmentdata = this.appointmentData.filter(x => x.username.toUpperCase() == this.CurrentUser.toUpperCase());
+        let tempAppointmentdata = this.appointmentData.filter(x => x.physicianId.toUpperCase() == this.CurrentUser.toUpperCase());
         this.eventSettings.dataSource =tempAppointmentdata;
         this.scheduleObj.refresh();
         if (this.scheduleObj != undefined) {
@@ -240,7 +240,7 @@ export class AppointmentComponent implements OnInit {
                 "startDateTime": element[0].StartTime,
                 "endDateTime": element[0].EndTime,
                 "description": element[0].Description,
-                "username": this.physicianId.value
+                "physicianId": this.physicianId.value
               }
   
               this.objAppointmentDataService.AddAppointment(appointment).subscribe(response => {
@@ -277,7 +277,7 @@ export class AppointmentComponent implements OnInit {
               "startDateTime": element.StartTime,
               "endDateTime": element.EndTime,
               "description": element.Description,
-              "username": this.physicianId.value
+              "physicianId": this.physicianId.value
             }
             this.objAppointmentDataService.UpdateAppointment(appointment1).subscribe((response) => {
               this.getAppointment_click();
