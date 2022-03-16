@@ -1,64 +1,85 @@
 <app-patient-header [option]="option"></app-patient-header>
 
-<div class="mat">
-  <mat-card class="mat_style">
-      <span style="color: rgba(10, 102, 163, 0.897); padding-left: 162px;"><b>Vitals Details</b></span>
-    </mat-card>    
-      <br>
-      <!-- <br>  -->
-      <table class="table">
-            <thead>
-              <tr>
-                <th >Vital Signs</th>
-                <th >Captured</th>
-                <th >Measurement Unit</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Height</td>
-                <td>
-                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="height" >
-                </td>
-                <td>Centimetre (cm)</td>
-              </tr>
-              <tr>
-                <td>Weight </td>
-                <td>
-                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="weight">
-                </td>
-                <td>Kilogram (kg)</td>
-              </tr>
-              <tr>
-                <td>Blood Pressure </td>
-                <td>
-                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="blood_pressure">
-                </td>
-                <td>Millimeters of mercury (mmHg)</td>
-              </tr>
-              <tr>
-                <td>Body Temperature </td>
-                <td>
-                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="temperature">
-                </td>
-                <td>Fahrenheit (°F) </td>
-              </tr>
-              <tr>
-                <td>Respiration Rate </td>
-                <td>
-                    <input matInput type="text"  [disabled]="actionenable" [(ngModel)]="respiration_rate">
-                </td>
-                <td>Breaths per minute (BPM)</td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="btn">
-            <button mat-raised-button  style="background-color:rgba(10, 102, 163, 0.897) ;color:white"  (click)="edit_click()" [disabled]="btndisable">Edit</button>
-            <button mat-raised-button color="primary"  (click)="save_click()"  style="background-color: green; color: white; margin-left: 40px;" [disabled]="btndisable">Save</button>
-          </div>
-          
-</div> 
+<mat-card class="emergency-container">
+  <mat-card class="em-header">
+    <p style="text-align: center;">Add Vital Details</p>
+  </mat-card>
+  <form [formGroup]="patientVitalForm" class="form-container">
+    <div class="em-details">
+     
+      <div class="em-info">
+        <div class="field">
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label  class="label">Height</mat-label>
+            <span class="suffix" matSuffix>cm</span>
+            <input matInput type="text" formControlName="height"  class="input-field" />
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-label  class="label">Weight</mat-label>
+              <span class="suffix" matSuffix>kgs</span>
+              <input matInput type="text" formControlName="weight"  class="input-field" />
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label  class="label">Body Temperature</mat-label>
+            <span class="suffix" matSuffix>Fahrenheit</span>
+            <input matInput type="text" formControlName="temperature"  class="input-field" />
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label  class="label">Systolic</mat-label>
+            <span class="suffix" matSuffix>mmHg</span>
+            <input matInput type="text" formControlName="systolic"  class="input-field" />
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label  class="label">Diastolic</mat-label>
+            <span class="suffix" matSuffix>mmHg</span>
+            <input matInput type="text" formControlName="diastolic"  class="input-field" />
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+            <mat-label  class="label">Respiratory Rate</mat-label>
+            <span class="suffix" matSuffix>BPM</span>
+            <input matInput type="text" formControlName="respiratoryRate"  class="input-field" />
+          </mat-form-field>
+        </div>
+
+        
+      </div>
+    </div>
+    <div class="actions">
+     
+      <button
+        mat-raised-button
+        class="edit"
+        [hidden]="!isEditClicked"
+        (click)="edit_click()"
+      >
+        Edit
+      </button>
+      <button
+        mat-raised-button
+        class="submit"
+        [hidden]="!isSaveClicked"
+        (click)="save_click()"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</mat-card>
 <br>
 
 <app-footer></app-footer>

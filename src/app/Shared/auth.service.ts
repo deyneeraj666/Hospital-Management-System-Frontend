@@ -12,8 +12,11 @@ export class AuthService {
   Email:string="";
   Id:string="";
   role:string="";
-  constructor()  {
-
+  EmpId:string="";
+  FullName:string="";
+  constructor()
+  {
+    
   }
   // isLoggedIn()
   // {
@@ -37,10 +40,10 @@ export class AuthService {
     this.Email = this.decodedToken.Email;
     this.Id=this.decodedToken.Id;
     this.role=this.decodedToken.Role;
-    console.log(this.Id)
-    console.log(this.role)
-
-    if(isExpired){
+    this.EmpId=this.decodedToken.EmpId;
+    this.FullName=this.decodedToken.FirstName +' '+ this.decodedToken.LastName;;
+    if(isExpired)
+    {
       return false;
     }
     return !!localStorage.getItem('token');

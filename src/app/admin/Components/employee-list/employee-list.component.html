@@ -1,74 +1,106 @@
+
 <app-admin-header [option]="option"></app-admin-header>
-<div style="padding-top: 4%;padding-left: 20%;">
-    <label style="color: rgba(10, 102, 163, 0.897);margin-top: 2%; padding-left: 35%;"><b><u>Employee List</u></b></label>
-</div>
-<div class="emp_div1">
-    <select [(ngModel)]="selectDD" style="width: 13%;">
-        <!-- <option selected>Search by</option> -->
-        <option>Name</option>
-        <option>Id</option>
-    </select>
+<div class="main-container">
+<div class="search-div">
+    <button mat-raised-button style="background-color: green; color: aliceblue;"  (click)="onCreate()">
+      <mat-icon>add</mat-icon>Add Employee
+    </button>
+    <mat-form-field class="search-form-field" >
+      <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()" >
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()"  >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
     
-    <!-- <span *ngIf="selectDD=='Name'"> -->
-      <input type="text" [(ngModel)]="searchedKeyword" style="margin-left: 2%; width: 30%;" placeholder="Enter Name or Id">
-    <!-- </span> -->
-    <input type="button" mat-button style="background-color:green;margin-left: 1%;color: white;" value="Search" (click)="get_Value()">
+  </div>
+  <div class="mat-elevation-z8">
+
+    <mat-table   [dataSource]="listData"  matSort>
+      
+     
+      <ng-container matColumnDef="empId">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header>EmployeeID</mat-header-cell>
+        <mat-cell *matCellDef="let element"  [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}"  >{{element.empId}}</mat-cell>
+      </ng-container>
     
-</div>
-<div class="emp_div2">
-    <table class="emp_table1">
-        <tr class="table-head">
-            <th style="padding-left: 10px;">Employee ID</th>
-            <th>Employee Name</th>
-            <th style="padding-left: 1%;">DOJ</th>
-            <th>Status</th>
-            <th style="padding-left: 10px;">Edit Status</th>
-        </tr>
-        <tr *ngFor="let data of tempdata;let i=index" class="table-row">
-            <td style="padding-left: 5%;padding-bottom: 1%;">{{data.Id}}</td>
-            <td style="padding-left: 20px;padding-bottom: 1%;">{{data.Name}}</td>
-            <td style="padding-bottom: 1%;">{{data.doj}}</td>
-            <td style="padding-bottom: 1%;">{{data.status}}</td>
-            <td>
-                <span *ngIf="data.status=='Active'">
-                    <a href="javascript:void(0)" (click)="changeDeActivate(i)">
-                        DeActivate
-                    </a>/
-                    <a href="javascript:void(0)" (click)="changeBlock(i)">
-                        Block
-                    </a>
-                </span>
-                <span *ngIf="data.status=='InActive'">
-                    <a href="javascript:void(0)" (click)="changeActive(i)">
-                        Activate
-                    </a>/
-                    <a href="javascript:void(0)" (click)="changeBlock(i)">
-                        Block
-                    </a>
-                    <!-- <a href="">
-                        Activate/Block
-                    </a> -->
-                </span>
-                <span *ngIf="data.status=='Blocked'">
-                    <a href="javascript:void(0)" (click)="changeActive(i)">
-                        Activate
-                    </a>/
-                    <a href="javascript:void(0)" (click)="changeDeActivate(i)">
-                        DeActivate
-                    </a>
-                    <!-- <a href="">
-                        Activate/DeActivate
-                    </a> -->
-                </span>
-            </td>
-        </tr>
-        
-    </table>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header>Title</mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.title}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName" style="margin-left: -100px;">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header style="margin-left: -50px;">First Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: -50px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.firstName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header style="margin-left: -50px;">Last Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: -50px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.lastName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header style="margin-left: -35px;">Email</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: -35px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.email}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-left: 40px;">Contact</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: 40px;" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.phoneNumber}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Dob</mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.dob | date: 'MM/dd/yyyy'}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+          <mat-cell *matCellDef="let element"  [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.role}}</mat-cell>
+       
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngStyle]="element.status === 'Blocked'?{'color':'red'}:{}">{{element.status}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Action" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header ></mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+          <button mat-icon-button   (click)="onEdit(row)"style="margin-left: -5px;" matTooltip="Edit" [matTooltipPosition]='toolTipPosition' ><mat-icon >launch</mat-icon></button>
+          <button mat-icon-button   *ngIf='row.status === "Active"' (click)="onBlock(row)" style="margin-left: -5px;"  matTooltip="Block"><mat-icon >lock</mat-icon></button>
+          <button mat-icon-button *ngIf='row.status === "Blocked"' (click)="onUnBlock(row)"style="margin-left: -5px;"  matTooltip="Unblock" [matTooltipPosition]='toolTipPosition'><mat-icon >lock_open</mat-icon></button> 
+          <button mat-icon-button    (click)="click_delete(row)" color="warn" style="margin-left: -5px;"  matTooltip="Delete" ><mat-icon>delete_outline</mat-icon></button>
+          
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
     
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+  </div>
 </div>
 
 
+<br>
+<!-- 
+  <app-footer></app-footer> -->
 
-<app-footer></app-footer>
+
 
 

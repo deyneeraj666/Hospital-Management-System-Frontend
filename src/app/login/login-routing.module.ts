@@ -14,7 +14,7 @@ import { RegisterComponent } from './LoginComponents/register/register.component
 const routes: Routes = [
   { path: '', component: LoginScreenComponent},
   { path: 'patient-register', component: RegisterComponent},
-  { path: 'admin/employeeregister', loadChildren:()=>import('./../admin/admin.module').then(m=>m.AdminModule),canActivate:[AdminGuard]},
+  { path: 'admin/employeelist', loadChildren:()=>import('./../admin/admin.module').then(m=>m.AdminModule),canActivate:[AdminGuard]},
   { path: 'nurse/appointment', loadChildren:()=>import('./../nurse/nurse.module').then(m=>m.NurseModule),canActivate:[NurseGuard]},
   { path: 'login/physician/appointment', loadChildren:()=>import('./../physician/physician.module').then(m=>m.PhysicianModule),canActivate:[PhysicianGuard]},
   { path: 'login/patient/demographic', loadChildren:()=>import('./../patient/patient.module').then(m=>m.PatientModule),canActivate:[PatientGuard]},

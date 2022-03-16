@@ -1,0 +1,55 @@
+.no-bottom{
+    margin-bottom: -1.25rem !important;
+}
+
+.vital-details {
+    display: flex;
+    padding: 1rem;
+}
+
+.vital-info {
+    flex: 0.5;
+    display: flex;
+}
+
+.field {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    font-size: 12px;
+
+}
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.label{
+    font-size: 16px;
+    /* color: rgba(10, 102, 163, 0.897); */
+    color: black
+}
+
+.input-field{
+    font-size: 16px;
+    color: black
+}
+
+::ng-deep.mat-dialog-container {
+    padding: 20px !important;
+    margin-top: 70px;
+    height: auto;
+}
+
+.actions{
+    justify-content: center;
+}
+
+.cancel{
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+}

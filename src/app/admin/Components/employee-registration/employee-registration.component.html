@@ -1,13 +1,11 @@
-<app-admin-header [option]="option"></app-admin-header>
+<app-admin-header></app-admin-header>
 <mat-card class="employee-container">
   <mat-card class="em-header">
     <p style="text-align: center;">New Employee Registration Form</p>
   </mat-card>
     <form [formGroup]="empRegistrationForm" class="form-container" >
       <div class="em-details">
-
         <div class="em-info">
-
           <div class="field" style="flex-direction:row;">
             <mat-label class="label" style="font-size: 16px; margin-right: 10px;">Title</mat-label>
             <mat-radio-group formControlName="title" required>
@@ -16,7 +14,6 @@
               <mat-radio-button class="padding-right"  value="Ms">Ms</mat-radio-button>
               <mat-radio-button class="padding-right"  value="Dr">Dr</mat-radio-button>
             </mat-radio-group>
-    
               <span
                 class="error"
                 *ngIf="
@@ -75,7 +72,7 @@
             </div>
 
             <div class="field">
-              <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-form-field class="no-bottom"  style="width: 250px; ">
                 <mat-label class="label">Date of Birth</mat-label>
                 <input  matInput [matDatepicker]="picker" formControlName="dob" class="input-field" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -139,7 +136,4 @@
       
     </form>
   </mat-card>
-<br>
-<br>
-<br>
-<app-footer></app-footer>
+

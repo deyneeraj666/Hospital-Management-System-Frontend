@@ -1,7 +1,8 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-
+import { waitForAsync } from '@angular/core/testing';
+import { delay, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,29 @@ export class AppointmentDataService {
 
   constructor(private httpobj:HttpClient) { }
 
-  url:string ='http://localhost:3000/AppointmentData';
+  url:string ='http://localhost:56264/api/Appointment/';
   urlPhysician:string='http://localhost:3001/physician';
+  _urlPhysician:string='http://localhost:3002/physician';
+  userAccountURL:string ="http://localhost:5517/api/Account/GetAllUsers"
+
   public GetAllPhysician():Observable<any>{
     return  this.httpobj.get(this.urlPhysician);
   }
   public GetAppointment():Observable<any>{
        
-    return  this.httpobj.get(this.url);
+    return  this.httpobj.get(this.url+'GetAll');
+  }
+  public GetPhysician(){
+    return  this.httpobj.get(this.userAccountURL);
+    
+  }
+  public async GetPhysicianTemp():Promise<any>{
+    return  this.httpobj.get(this.userAccountURL).toPromise();;
   }
   public AddAppointment(objAppointment:any):Observable<any>{
-       
-    return  this.httpobj.post(this.url,objAppointment);
+       console.log('Service Object'+ objAppointment)
+       console.log( objAppointment)
+    return  this.httpobj.post('http://localhost:56264/api/Appointment/Create',objAppointment);
   }
   public GetAppointmentById(Id :number)
   {
@@ -32,9 +44,19 @@ export class AppointmentDataService {
         })
        );
   }
+  public TestPatientservice()
+  {
+    
+      return this.httpobj.get(this.userAccountURL);
+  }
+
+  public  patientExistorNot(Id: string):Observable<any> {
+      return this.httpobj.get<any[]>(this.userAccountURL);
+  }
+
   public UpdateAppointment(objAppointment:any)
   {
-    return  this.httpobj.put(this.url+"/"+Number(objAppointment.Id),objAppointment);
+    return  this.httpobj.put(this.url+'AppointmentUpdateById?id='+Number(objAppointment.id),objAppointment);
   }
   public GetAppointmentByName(name :string)
   {
@@ -48,6 +70,11 @@ export class AppointmentDataService {
  
   public DeleteAppointment(id:number):Observable<any>{
        
-    return  this.httpobj.delete(this.url+"/"+id);
+    return  this.httpobj.get<any[]>(this.url+'AppointmentDeleteById?id='+id)
+  }
+
+  getPatientAppointmentByPatientId(pid:string):Observable<any>{
+    const url=`${this.url}GetAppointmentById?id=${pid}`;
+    return this.httpobj.get(url);
   }
 }

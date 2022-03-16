@@ -5,6 +5,7 @@ import { Allergy } from '../Models/Allergy';
 import { savePatientEmergencyInfo } from '../Models/Emergency';
 
 import { savePatientDemographicInfo } from '../Models/PatientModuleModels';
+import { savePatientVitalInfo } from '../Models/Vital';
 
 @Injectable({
   providedIn: 'root',
@@ -12,52 +13,49 @@ import { savePatientDemographicInfo } from '../Models/PatientModuleModels';
 export class PmsService {
 
   readonly Url = 'http://localhost:64193/api/Demographics';
-  readonly EmergencyUrl ='http://localhost:64193/api/EmergencyDetails'
+  readonly EmergencyUrl ='http://localhost:64193/api/EmergencyDetails';
+  readonly AllergyUrl ='https://localhost:44338/api/Allergies';
+  readonly PatientAllergy='https://localhost:44338/api/PatientAllergies';
+  readonly PatientVital='http://localhost:49526/api/Vitals';
 
  
   constructor(private http:HttpClient) {}
 
-  getAllergy() {
-    return [
-      {
-        allergyId: 'Aca s 13',
-        allergyType: 'Mite',
-        allergyName: 'Mite',
-      },
-      {
-        allergyId: 'Act c 10',
-        allergyType: 'Food',
-        allergyName: 'Kiwi',
-      },
-    ];
+  getAllergy():Observable<any> {
+    const url=this.AllergyUrl;
+    return this.http.get(url);
   }
 
   getAllergyNamesByType(allergyType: string) {
-    switch (allergyType.toLocaleLowerCase()) {
-      case 'food':
-        return [
-          { allergyName: 'Kiwi' },
-          { allergyName: 'Kiwi1' },
-          { allergyName: 'Kiwi2' },
-        ];
-        break;
-      case 'mite':
-        return [
-          { allergyName: 'Mite' },
-          { allergyName: 'Mite1' },
-          { allergyName: 'Mite2' },
-          { allergyName: 'Mite3' },
-        ];
-        break;
-      default:
-        return [
-          { allergyName: 'Dog' },
-          { allergyName: 'Dog1' },
-          { allergyName: 'MiDog2te2' },
-        ];
-        break;
-    }
+
+    const url = `${this.AllergyUrl}/${allergyType}`;
+    return this.http.get(url);
+
   }
+
+  savePatientAllergyInfo(allergyInfo: Allergy,pid:string) {
+    let allergyData={
+      "patientId":pid,
+      "allergy_Type":allergyInfo.allergyType,
+      "allergy_Name":allergyInfo.allergyName,
+      "allergy_Description":allergyInfo.allergyDesc,
+      "allergy_Clinical_Info":allergyInfo.allergyClinicalInfo,
+      "isAllergyFatal":allergyInfo.isAllergyFatal
+    }
+    return this.http.post(this.PatientAllergy,allergyData);
+  }
+
+ getPatientAllergyByPatientId(pid:string):Observable<any>{
+   const url=`${this.PatientAllergy}/${pid}`;
+   return this.http.get(url);
+ }
+
+ deletePatientAllergy(id:number):Observable<any>{
+
+   
+   const url=`${this.PatientAllergy}/${id}`;
+   return this.http.delete(url);
+ }
 
   savePatientDemographicInfo(demoInfo: savePatientDemographicInfo,pid:string) {
     let demographicData=
@@ -67,7 +65,6 @@ export class PmsService {
         "firstName": demoInfo.fname,
         "lastName": demoInfo.lname,
         "dob": demoInfo.dob,
-        "age": 21,
         "gender": demoInfo.gender,
         "race": demoInfo.race,
         "ethnicity": demoInfo.ethnicity,
@@ -93,11 +90,7 @@ export class PmsService {
     return this.http.post(this.EmergencyUrl,emergencyData);
   }
 
-  saveAllergyInfo(demoInfo: Allergy) {
-    // console.log("From service");
-    // console.log(demoInfo);
-    return true;
-  }
+  
 
   getDemographicInfoByPatientId(pid: string) :Observable<any>{
     const url =`${this.Url}/${pid}`;
@@ -110,4 +103,25 @@ export class PmsService {
     return this.http.get(url);
   }
   
+
+  getVitalDetailsByAppointmentId(appointmentId:number):Observable<any>{
+    const url =`${this.PatientVital}/${appointmentId}`;
+    return this.http.get(url);
+  }
+
+  savePatientVitalInfo(vitalInfo: savePatientVitalInfo,pid:string,apptId:number) {
+    let vitalData=
+      {
+        "patientId": pid,
+        "appointmentId": apptId,
+        "weight": vitalInfo.weight,
+        "height": vitalInfo.height,
+        "temperature": vitalInfo.temperature,
+        "systolic": vitalInfo.systolic,
+        "diastolic": vitalInfo.diastolic,
+        "respiratoryRate": vitalInfo.respiratoryRate,
+      
+    }
+    return  this.http.post(this.PatientVital,vitalData);
+  }
 }

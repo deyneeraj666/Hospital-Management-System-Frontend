@@ -1,37 +1,138 @@
-.mat{
+.emergency-container {
+    background-color: white;
+    width: 30%;
+    display: grid;
+    place-items: center;
     margin: auto;
-    width: 40%;
+    height: 550px;
     border: 1px solid rgba(10, 102, 163, 0.897);
-    padding: 20px;
-    padding-top: 20px;
-    height: 500px;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
-  
-    
-   
 }
-th{
-    /* color: rgba(10, 102, 163, 0.897); */
-    color: rgba(10, 102, 163);
-    opacity: 0.7;
-    padding-left: 25px;
+
+.no-bottom{
+    margin-bottom: -1.25rem !important;
 }
-td{
-    padding-left: 25px;
-}
-#btn{
-    margin: 50px;
-    padding-left: 97px;
-}
-input
-{
-    height: 20px;
-    width: 60px;
-}
-.mat_style{
-    /* width: 160%; */
+.em-header {
+    width: 90%;
     color: rgba(10, 102, 163, 0.897);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
-    /* margin-left: 4%; */
-   }
+    margin-left: 10px;
+    
+ 
+}
+
+.em-details {
+    display: flex;
+    padding: 1rem;
+    margin: auto;
+    
+}
+
+.em-info {
+    flex: 0.5;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-size: 11px;
+
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    /* width: 90%; */
+    justify-content: space-between;
+}
+
+.actions {
+    margin: auto;
+}
+
+/* span {
+    color: red;
+    font-size: 10px;
+} */
+
+.suffix{
+    color: black;
+    font-size: 10px;
+}
+
+
+
+
+.actions{
+    margin-bottom: 10px;
+}
+
+.submit{
+    margin-right: 10px;
+    width: 70px;
+     background-color: green;
+     color: white;
+}
+.edit{
+    margin-right: 10px;
+    width: 70px;
+    background-color:rgba(10, 102, 163, 0.897);
+    color: white;
+}
+
+
+
+.input-field{
+    /* color:rgba(10, 102, 163, 0.897) ; */
+    color: black;
+    font-size: 16px;
+}
+.label{
+    color:black;
+    font-size: 16px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .emergency-container{
+        width: 100%;
+        height: auto;
+    }
+    .em-details{
+        flex-direction: column;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .emergency-container{
+        width: 90%;
+    }
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .emergency-container{
+         width: 80%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .emergency-container{
+         width: 60%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px){
+    .emergency-container{
+         width: 30%;
+    }
+}
+

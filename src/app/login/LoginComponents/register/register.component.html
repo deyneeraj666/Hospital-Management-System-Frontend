@@ -71,13 +71,11 @@
                 <br>
                 <div>
                     <mat-form-field>
-                    <mat-label class="label" for="">Date of Birth</mat-label>
-                    <!-- <input matInput [matDatepicker]="picker" type="date" style="width: 48%;margin-left:75px" formControlName="dateOfBirth">  -->
-                    <input  matInput [matDatepicker]="picker"
-                    formControlName="dateOfBirth" name="date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker  style="height: 30px;"></mat-datepicker>
-                </mat-form-field>
+                        <mat-label class="label" for="">Date of Birth</mat-label>
+                        <input  matInput [matDatepicker]="picker" formControlName="dateOfBirth" name="date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker  style="height: 30px;"></mat-datepicker>
+                   </mat-form-field>
                     <br>
                     <span *ngIf="patientRegisterForm.controls['dateOfBirth'].invalid && patientRegisterForm.controls['dateOfBirth'].touched"style="color: red;font-size: small;">*Please provide your date of birth </span>
                 </div>
@@ -115,8 +113,8 @@
                   <br>  
                 <div>
                 
-                <button [disabled]="patientRegisterForm.invalid" (click)="btn_submit()" mat-button style="margin-left: 12%;background-color: green;color: white;" routerLink='/login' >Register</button>
-                <button mat-button style="margin-left: 7%;margin-bottom: 5%;width: 30%; background-color:rgba(10, 102, 163, 0.897);color: white;" (click)="btn_reset()">Reset</button>
+                <button  type="button"  [disabled]="patientRegisterForm.invalid" (click)="btn_submit()" mat-button style="margin-left: 12%;background-color: green;color: white;" routerLink='/login' >Register</button>
+                <button type="button" mat-button style="margin-left: 7%;margin-bottom: 5%;width: 30%; background-color:rgba(10, 102, 163, 0.897);color: white;" (click)="btn_reset()">Reset</button>
                 </div>
                 <div style="margin-bottom: 7%;">
                     <a routerLink='/login' style="margin-left:29%" href="">Back to Login</a>
@@ -131,10 +129,4 @@
 
     <br>
     <app-footer></app-footer>
-    <!-- placeholder="ReEnter Password"
-    placeholder="Enter Password" 
-    placeholder="Enter Mobilenumber" 
-    placeholder="Enter Email" 
-    placeholder="Enter Email" 
-    placeholder="Enter Lastname" 
-    placeholder="Enter Firstname"  -->
+  
