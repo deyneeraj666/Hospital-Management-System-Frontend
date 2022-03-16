@@ -1,28 +1,78 @@
 .marginclass{
-    margin-left: 295px !important;
+  margin-left: 295px !important;
 }
 
 .filterDropdown{
-    width: 200px !important;
-    margin-left: 100px;
-    font-size: medium;
-    font-weight: bold;
+  width: 200px !important;
+  margin-left: 100px;
+  font-size: medium;
+  font-weight: bold;
 }
 .dropdownlabel {
-    display: inline-block;
-    width: 218px;
-    margin-right: 20px;
-    margin-left: 20px ;
-    text-align: right;
-  }
- 
- div#Physician_Error{
-      top: 215px !important;
-      left: 232.5px !important;
-  }
- /*
-  .e-error {
-    border-color: unset !important;
-  } */
+  display: inline-block;
+  width: 218px;
+  margin-right: 20px;
+  margin-left: 20px ;
+  text-align: right;
+}
 
-  
+div#Physician_Error{
+    top: 215px !important;
+    left: 232.5px !important;
+}
+/*
+.e-error {
+  border-color: unset !important;
+} */
+
+
+/* .appointment-container {
+  background-color: white;
+  width: 50%;
+  display: grid;
+  place-items: center;
+  margin: auto;
+  height: 60px;
+  border: 1px solid rgba(10, 102, 163, 0.897);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+
+} */
+
+.no-bottom{
+  margin-bottom: -1.25rem !important;
+}
+
+
+.ap-details {
+  display: flex;
+  /* padding: 1rem; */
+  margin: auto;
+}
+
+.ap-info {
+ display: flex;
+ flex-direction: row;
+} 
+
+.field {
+  display: flex;
+  flex-direction: column;
+  /* padding: 8px; */
+  font-size: 12px;
+}
+
+.form-container {
+display: flex;
+flex-direction: row;
+width: 98%;
+justify-content: space-between;
+}
+
+
+.actions {
+margin-left: 10px;
+margin-top: 5px;
+}
+
+
+

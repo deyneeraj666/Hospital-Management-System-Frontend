@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { VisitDialogComponent } from '../visit-dialog/visit-dialog.component';
 import { PmsService } from 'src/app/Service/pms.service';
 import { ConsultingService } from 'src/app/Shared/consulting.service';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-patient-visit',
@@ -31,6 +32,7 @@ export class PatientVisitComponent implements OnInit {
     private consultingService:ConsultingService
   ) {}
 
+  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class PatientVisitComponent implements OnInit {
         : this.consultingService.consultingPId;
 
     this.appointmentService
-      .getPatientAppointmentByPatientId(this.pid)
+      .getAppointmentsByIdAndStatusConfirmed(this.pid)
       .subscribe(
         (res: any) => {
           let newData = res.map((i: any) => {
@@ -64,6 +66,7 @@ export class PatientVisitComponent implements OnInit {
           this.dataSource = new MatTableDataSource<PatientVisit>(
             this.visitsArray
           );
+          this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
         },
         (err) => {
