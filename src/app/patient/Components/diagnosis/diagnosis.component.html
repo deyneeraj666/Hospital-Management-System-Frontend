@@ -46,8 +46,8 @@
                 <th style="padding-left: 5%;">Date</th>
             </tr>
             <tr class="table-row" *ngFor="let selectedData of data;let i=index">
-                <td class="td-first">{{selectedData.dcode}}</td>
-                <td class="td-first">{{selectedData.dname}}</td>
+                <td class="td-first">{{selectedData.diag_code}}</td>
+                <td class="td-first">{{selectedData.diag_name}}</td>
                 <td class="td-first-date">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
                 <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
             </tr>

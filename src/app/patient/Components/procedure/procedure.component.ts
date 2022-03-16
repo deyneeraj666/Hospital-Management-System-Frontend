@@ -1,8 +1,11 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn,  Validators } from "@angular/forms";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from "ngx-toastr";
+import { Procedure_Service } from 'src/app/Service/procedure.service';
+import { AuthService } from 'src/app/Shared/auth.service';
 @Component({
   selector: 'app-procedure',
   templateUrl: './procedure.component.html',
@@ -10,84 +13,70 @@ import { ToastrService } from "ngx-toastr";
 })
 export class ProcedureComponent  implements OnInit {
   option:number=7;
-  constructor(private toastr:ToastrService) { }
-  selectedproc:string='';
-  selectedcode:string=''
-
+  constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService) { }
+  public ProcedureName:string='';
+  public ProcedureCode:string='';
+  public pid: string = '';
   id:number=4;
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
-  procedure = new FormControl("", [
-    Validators.required
-  ]);
  
-   code = new FormControl("", [
-     Validators.required
-  ]);
-
-  ProcedureGroup=new FormGroup({
-    //procedure :this.procedure,
-    procedure : new FormControl("", [
+  
+  public ProcedureGroup=new FormGroup({
+    ProcedureName : new FormControl("", [
       Validators.required
     ]),
-    code : new FormControl("", [
+    ProcedureCode : new FormControl("", [
       Validators.required
    ]),
   })
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
-  }
-
-//   ProcedureGroup:FormGroup=new FormGroup({
-//     diag_code: new FormControl('', [
-//       Validators.required
-//     ]),
-//     diag_name: new FormControl('', [
-//       Validators.required
-//     ]),    
-//   })
-//   deleteproduct_click(index:number){
-//     this.data.splice(index,1);
-//   }
-// }
+    this.getProc();
+    this.pid = this.auth.Id;
+  } 
+getProc() {
+  this.procService.getprocedure();
+}
   btnadd_click()
   {
-    // alert(this.selectedproc + this.selectedcode + (this.procedure.errors!=null && this.procedure.errors['required']? this.procedure.errors['required']:''))
-    let obj:any={code: this.id ++ , name: this.selectedproc, date:new Date()}
-    this.dataSource.data.push(obj);
-    console.log(this.dataSource.data);
-    this.dataSource.paginator = this.paginator;
+    this.procService
+      .Procedure(this.ProcedureGroup.value,this.pid)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.ProcedureGroup.reset();
+        },
+        (err) => {
+          console.log('Error occurred ', err);
+          
+        }
+      );
     this.toastr.success('Procedure Added Successfully !')
   }
   btncancel_click()
   {
-    this.procedure.reset();
-    this.code.reset();
+    // this.procedure.reset();
+    // this.code.reset();
+    this.ProcedureGroup.reset();
   }
   deleteproduct_click(index:number){
   // this.ProcedureGroup.
   this.dataSource.data.splice(index,1);
   }
  
-  // get procedureValue() {
-  //   return this.procedure.value;
-  // }
-  // get codeValue() {
-  //   return this.code.value;
-  // }
-  
   displayedColumns: string[] = ['code', 'name', 'date'];
 }
 // const ELEMENT_DATA: PeriodicElement[] =[];
 const ELEMENT_DATA: PeriodicElement[]= [
-  {code: 1, name: 'Hydrogen', date:new Date()},
-  {code: 2, name: 'Helium', date: new Date() },
-  {code: 3, name: 'Lithium', date:new Date()}
+  {ProcedureCode: 1, ProcedureName: 'Hydrogen', Date:new Date()},
+  {ProcedureCode: 2, ProcedureName: 'Helium', Date: new Date() },
+  {ProcedureCode: 3, ProcedureName: 'Lithium', Date:new Date()}
  
  ];
 export interface PeriodicElement {
-  name: string;
-  code: number;
-  date: Date;
+  ProcedureName: string;
+  ProcedureCode: number;
+  Date: Date;
 }
 
