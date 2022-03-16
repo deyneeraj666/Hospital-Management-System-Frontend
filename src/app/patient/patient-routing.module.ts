@@ -13,6 +13,8 @@ import { EmergencyContactComponent } from "./Components/emergency-contact/emerge
 import { ChangePasswordComponent } from "../login/LoginComponents/change-password/change-password.component";
 import { PatientGuard } from "../Shared/patient.guard";
 import { PatientVisitComponent } from "./Components/patient-visit/patient-visit.component";
+import { NurseGuard } from "../Shared/nurse.guard";
+import { PhysicianGuard } from "../Shared/physician.guard";
 
 const routes: Routes = [
     {path:"login/patient", component:PatientHeaderComponent,canActivate:[PatientGuard]},
@@ -27,6 +29,9 @@ const routes: Routes = [
     {path:"login/patient/ChangePassword", component:ChangePasswordComponent,canActivate:[PatientGuard]},
     {path:"login/patient/PatientVisit",component:PatientVisitComponent,canActivate:[PatientGuard]},
     {path:"login", component:LoginScreenComponent},
+    // {path:"login/patient/demographic", component:DemographicComponent,canActivate:[NurseGuard]},
+    // {path:"login/patient/demographic", component:DemographicComponent,canActivate:[PhysicianGuard]},
+
     {path:'**',redirectTo:'LoginScreenComponent'}
 ];
 

@@ -56,6 +56,13 @@ export class PatientHeaderComponent implements OnInit
 
   }
 
+  click_home(){
+    this.router.navigateByUrl('nurse/appointment');
+  }
+
+  click_home_physician(){
+    this.router.navigateByUrl('physician/appointment');
+  }
   ngOnInit(): void {
     
   }

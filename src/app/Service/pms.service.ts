@@ -5,6 +5,7 @@ import { Allergy } from '../Models/Allergy';
 import { savePatientEmergencyInfo } from '../Models/Emergency';
 
 import { savePatientDemographicInfo } from '../Models/PatientModuleModels';
+import { savePatientVitalInfo } from '../Models/Vital';
 
 @Injectable({
   providedIn: 'root',
@@ -106,5 +107,21 @@ export class PmsService {
   getVitalDetailsByAppointmentId(appointmentId:number):Observable<any>{
     const url =`${this.PatientVital}/${appointmentId}`;
     return this.http.get(url);
+  }
+
+  savePatientVitalInfo(vitalInfo: savePatientVitalInfo,pid:string,apptId:number) {
+    let vitalData=
+      {
+        "patientId": pid,
+        "appointmentId": apptId,
+        "weight": vitalInfo.weight,
+        "height": vitalInfo.height,
+        "temperature": vitalInfo.temperature,
+        "systolic": vitalInfo.systolic,
+        "diastolic": vitalInfo.diastolic,
+        "respiratoryRate": vitalInfo.respiratoryRate,
+      
+    }
+    return  this.http.post(this.PatientVital,vitalData);
   }
 }
