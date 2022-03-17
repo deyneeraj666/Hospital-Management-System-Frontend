@@ -54,12 +54,30 @@ export class VitalSignsComponent implements OnInit {
   }
 
   public patientVitalForm = new FormGroup({
-    height: new FormControl(''),
-    weight: new FormControl(''),
-    temperature: new FormControl(''),
-    systolic: new FormControl(''),
-    diastolic: new FormControl(''),
-    respiratoryRate: new FormControl(''),
+    height: new FormControl('',[
+      Validators.required,
+      Validators.pattern('\\d+(\\.\\d{1,3})?'),
+    ]),
+    weight: new FormControl('',[
+      Validators.required,
+      Validators.pattern('\\d+(\\.\\d{1,3})?'),
+    ]),
+    temperature: new FormControl('',[
+      Validators.required,
+      Validators.pattern('\\d+(\\.\\d{1,3})?'),
+    ]),
+    systolic: new FormControl('',[
+      Validators.required,
+      Validators.pattern('\\d+(\\.\\d{1,3})?'),
+    ]),
+    diastolic: new FormControl('',[
+      Validators.required,
+      Validators.pattern('\\d+(\\.\\d{1,3})?'),
+    ]),
+    respiratoryRate: new FormControl('',[
+      Validators.required,
+      Validators.pattern('\\d+(\\.\\d{1,3})?'),
+    ]),
   });
 
   disableFormProperties() {

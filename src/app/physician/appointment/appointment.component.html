@@ -1,25 +1,11 @@
 <app-physician-header [option]="option"></app-physician-header>
-<h3 class="text-center">Upcoming Appointment Schedule</h3>
-<form class="row" [formGroup]="physicianDetailForm" style="
+
+<!-- <form class="row" [formGroup]="physicianDetailForm" style="
 border: 1px solid black;
 width: 100%;
 margin-left: 0px;
 ">
-<!-- <div class="col-sm-4 row">
-<span class="col-sm-4 pt-3">Specialization</span>
-<mat-form-field class="col-8">
-    <mat-select (selectionChange)="specialization_click()" matNativeControl [formControl]="specialization">
-        <mat-option value="Neurology">Neurology</mat-option>
-        <mat-option value="Psychiatry">Psychiatry</mat-option>
-        <mat-option value="Dermatologists">Dermatologists</mat-option>
-        <mat-option value="Cardiologist">Cardiologist</mat-option>
-    </mat-select>
-</mat-form-field>
-<span class="col-4"></span>
-<span class="error col-8 pb-1" *ngIf="specialization.invalid && specialization.touched">
-  This field cannot be empty
-</span>
-</div> -->
+
 <div class="col-sm-4 row" >
   <span class="col-sm-4">Physician Name </span>
 <mat-form-field class="col-8 pb-0">
@@ -42,7 +28,29 @@ margin-left: 0px;
     <input type="text" matInput  [formControl]='physicianId'>
 </mat-form-field>
 </div>
-</form>
+</form> -->
+
+<!-- <mat-card class="appointment-container">
+
+  <form [formGroup]="physicianDetailForm" class="form-container" >
+    <div class="ap-details">
+      <div class="ap-info">
+          <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-label class="label">Physician Name</mat-label>
+              <input type="text" matInput [formControl]='physicianName' style="font-size: 16px; color: black;" [matAutocomplete]="keys">
+              <mat-autocomplete  (optionSelected)="physicianName_click()" #keys="matAutocomplete">
+                  <mat-option *ngFor="let pf of physicianNameList" [value]='pf' >{{pf}}</mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+  </div>
+      
+      </div>
+    </div>
+    
+  </form>
+  </mat-card> -->
+
 <ejs-schedule
       #scheduleObj
       width="100%"
