@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Diagnosis } from 'src/app/Models/Diagnosis';
+
 import { MatTableDataSource } from '@angular/material/table';
 
 import { ToastrService } from "ngx-toastr";
@@ -22,27 +22,29 @@ export class DiagnosisComponent implements OnInit {
   option:number=6;
   constructor(private diagnosisServide: Diag_Service,
     private auth: AuthService) { }
-  public data:Diagnosis[]=[];
+  public data:DiagnosisDetailsModel[]=[];
   
   public dcode:string="";
   public dname:string="";
   public ddate:Date=new Date();
   public isDataNotfound:boolean=false;
   public pid: string = '';
-  dataSource = new MatTableDataSource<Diagnosis>(ELEMENT_DATA);
+  public diagnosisName: any[] = [];
+  public diagnosisCode: any[] = [];
+  // dataSource = new MatTableDataSource<Diagnosis>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   ngOnInit(): void {
     this.pid = this.auth.Id;
     //this.dataSource.paginator = this.paginator;
     this.pid = this.auth.Id;
-
-    this.diagnosisServide.getDiagnosisDetailsByPatientId(this.pid).subscribe(
+    //this.diagnosisCodeChangeHandler();
+    
+    this.diagnosisServide.getdiagnosis().subscribe(
       (res) => {
-        console.log('Data is there');
-        this.fillDiagnosisForm(res);
+       this.diagnosisName = res;
         console.log(res);
       },
-      (err: any) => {
+      (err) => {
         console.log(err);
         console.log('Error occurred');
       }
@@ -51,6 +53,17 @@ export class DiagnosisComponent implements OnInit {
        
       
   }
+  // this.diagnosisServide.getDiagnosisDetailsByPatientId(this.pid).subscribe(
+    //   (res) => {
+    //     console.log('Data is there');
+    //     this.fillDiagnosisForm(res);
+    //     console.log(res);
+    //   },
+    //   (err: any) => {
+    //     console.log(err);
+    //     console.log('Error occurred');
+    //   }
+    // );
   fillDiagnosisForm(data: any) {
     this.patientDiagnosisTable.controls['dcode'].setValue(data?.title);
     this.patientDiagnosisTable.controls['dname'].setValue(data?.firstName);
@@ -59,8 +72,9 @@ export class DiagnosisComponent implements OnInit {
   }
   
   public btn_Add(){ 
+    this.data.push(this.patientDiagnosisTable.value);
     this.diagnosisServide
-      .DiagnosisDetailsModel(this.patientDiagnosisTable.value,this.pid)
+      .DiagnosisDetailsModel(this.patientDiagnosisTable.value,this.pid,this.auth.Id)
       .subscribe(
         (res) => {
           console.log(res);
@@ -71,9 +85,9 @@ export class DiagnosisComponent implements OnInit {
         }
       );
   }
-  getDiag() {
-    this.diagnosisServide.getdiagnosis();
-  }
+  // getDiag() {
+  //   this.diagnosisServide.getdiagnosis();
+  // }
   public btn_Cancel(){
     // this.dcode="";
     // this.dname="";
@@ -91,8 +105,22 @@ export class DiagnosisComponent implements OnInit {
   })
   deleteproduct_click(index:number){
     this.data.splice(index,1);
+    this.diagnosisServide.deleteDiagDetails(this.auth.Id);
+  }
+  diagnosisCodeChangeHandler(value: string) {
+    this.diagnosisServide.getDiagnosisCodeByType(value).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.diagnosisCode = res;
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
 }
+
 const ELEMENT_DATA: DiagnosisDetailsModel[]= [
   {pid:"11",diag_code: "22.1", diag_name: 'Fever', ddate:new Date(),AppointmentId:"11"},
   {pid:"12",diag_code:"111.2", diag_name: 'Cough', ddate: new Date(),AppointmentId:"12" },

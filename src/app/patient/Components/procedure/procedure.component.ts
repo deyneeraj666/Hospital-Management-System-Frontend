@@ -4,6 +4,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn,  Validators } fro
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from "ngx-toastr";
+import { Procedure } from 'src/app/Models/Procedure';
 import { Procedure_Service } from 'src/app/Service/procedure.service';
 import { AuthService } from 'src/app/Shared/auth.service';
 @Component({
@@ -14,9 +15,11 @@ import { AuthService } from 'src/app/Shared/auth.service';
 export class ProcedureComponent  implements OnInit {
   option:number=7;
   constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService) { }
+  //ELEMENT_DATA: PeriodicElement[]= [];
   public ProcedureName:string='';
   public ProcedureCode:string='';
   public pid: string = '';
+  
   id:number=4;
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -32,7 +35,7 @@ export class ProcedureComponent  implements OnInit {
   })
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
-    this.getProc();
+    // /this.getProc();
     this.pid = this.auth.Id;
   } 
 getProc() {
@@ -40,19 +43,20 @@ getProc() {
 }
   btnadd_click()
   {
+    ELEMENT_DATA.push(this.ProcedureGroup.value);
     this.procService
       .Procedure(this.ProcedureGroup.value,this.pid)
       .subscribe(
         (res) => {
           console.log(res);
-          this.ProcedureGroup.reset();
+          
         },
         (err) => {
           console.log('Error occurred ', err);
-          
+          this.ProcedureGroup.reset();
         }
       );
-    this.toastr.success('Procedure Added Successfully !')
+    //this.toastr.success('Procedure Added Successfully !')
   }
   btncancel_click()
   {
@@ -67,13 +71,15 @@ getProc() {
  
   displayedColumns: string[] = ['code', 'name', 'date'];
 }
+const ELEMENT_DATA: Procedure[] =[];
 // const ELEMENT_DATA: PeriodicElement[] =[];
-const ELEMENT_DATA: PeriodicElement[]= [
-  {ProcedureCode: 1, ProcedureName: 'Hydrogen', Date:new Date()},
-  {ProcedureCode: 2, ProcedureName: 'Helium', Date: new Date() },
-  {ProcedureCode: 3, ProcedureName: 'Lithium', Date:new Date()}
+//allergiesArray: Allergy[] = [];
+//const ELEMENT_DATA: PeriodicElement[]= [];
+  // {ProcedureCode: 1, ProcedureName: 'Hydrogen', Date:new Date()},
+  // {ProcedureCode: 2, ProcedureName: 'Helium', Date: new Date() },
+  // {ProcedureCode: 3, ProcedureName: 'Lithium', Date:new Date()}
  
- ];
+
 export interface PeriodicElement {
   ProcedureName: string;
   ProcedureCode: number;

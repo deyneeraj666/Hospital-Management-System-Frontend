@@ -13,16 +13,16 @@
                     <mat-label class="label">Diagnosis Code</mat-label>
                     <select matNativeControl formControlName="diag_code" [(ngModel)]="dcode">
                         <!-- <mat-option ></mat-option> -->
-                        <option value="100.1">100.1</option>
-                        <option value="10.6">10.6</option>
+                        <option *ngFor="let type of diagnosisCode" value="{{type.diag_code}}">{{type.diag_code}}</option>
+                        <!-- <option value="10.6">10.6</option> -->
                     </select>
                 </mat-form-field>
                 <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
                     <mat-label class="label">Diagnosis Name</mat-label>
-                    <select matNativeControl formControlName="diag_name" [(ngModel)]="dname">
+                    <select matNativeControl (change)="diagnosisCodeChangeHandler(select.value)" #select formControlName="diag_name" [(ngModel)]="dname">
                         <!-- <mat-option ></mat-option> -->
-                        <option value="Diabetes">Diabetes</option>
-                        <option value="Allergy">Allergy</option>
+                        <option *ngFor="let item of diagnosisName" value="{{item.diag_name}}">{{item.diag_name}}</option>
+                        <!-- <option value="Allergy">Allergy</option> -->
                     </select>
                 </mat-form-field>
                 <div style="padding-top: 2%;">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+// import { timingSafeEqual } from 'crypto';
 import { MedicationsModel } from 'src/app/Models/MedicationModel';
 
 import { Medication_Service } from 'src/app/Service/medications.service';
@@ -19,6 +20,17 @@ export class MedicationsComponent implements OnInit {
   public pid: string = '';
   ngOnInit(): void {
     this.pid = this.auth.Id;
+    this.medicationService.getMedicationsDetailsByPatientId(this.pid).subscribe(
+      (res) => {
+        console.log('Data is there');
+        this.fillDiagnosisForm(res);
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+        console.log('Error occurred');
+      }
+    );
   }
   public DrugName:string="";
   public Strength:string="";
@@ -30,19 +42,25 @@ export class MedicationsComponent implements OnInit {
   
   public isDataNotfound:boolean=false;
   add_medications(){
+    this.data.push(this.patientMedicationTable.value)
     
     this.medicationService
       .MedicationsModel(this.patientMedicationTable.value,this.pid)
       .subscribe(
         (res) => {
           console.log(res);
-          this.patientMedicationTable.reset();
+          // this.patientMedicationTable.reset();
         },
         (err) => {
           console.log('Error occurred ', err);
+          this.patientMedicationTable.reset();
           
         }
       );
+  }
+  fillDiagnosisForm(data: any) {
+    
+  
   }
   remove_medications(){
     
