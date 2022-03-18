@@ -11,7 +11,7 @@
 .table-head{
     padding:  4px;
     /* border-top: 2px solid rgba(10, 102, 163, 0.897);; */
-    border-bottom:  2px solid rgba(10, 102, 163, 0.897);
+    border-bottom:  1px solid black;
     font-weight: bold;
 }
 .all-header {
@@ -32,7 +32,7 @@
 .table-head, .table-row{
     background-color: white;
     width: 100%;
-    color: rgba(10, 102, 163, 0.897);
+    color: black;
     display: flex;
     /* justify-content: space-around; */
     align-items: center;

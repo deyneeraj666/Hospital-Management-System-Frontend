@@ -123,6 +123,6 @@ export class DiagnosisComponent implements OnInit {
 }
 
 const ELEMENT_DATA: DiagnosisDetailsModel[]= [
-  {pid:"11",diag_code: "22.1", diag_name: 'Fever', ddate:new Date(),AppointmentId:"11"},
-  {pid:"12",diag_code:"111.2", diag_name: 'Cough', ddate: new Date(),AppointmentId:"12" },
+  {pid:"11",diag_code: "22.1", diag_name: 'Fever', ddate:new Date(),AppointmentId:11},
+  {pid:"12",diag_code:"111.2", diag_name: 'Cough', ddate: new Date(),AppointmentId:12 },
  ];
