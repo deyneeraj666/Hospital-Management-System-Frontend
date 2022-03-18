@@ -1,141 +1,96 @@
 <div>
-    <div style="width: 100%">
-        <h2 mat-dialog-title >Vitals</h2>
-        <mat-dialog-content  class="mat-typography">
-          <form [formGroup]="patientVitalsForm" class="form-container">
-            <div class="vital-details">
-              <div class="vital-info">
-               
-      
-                <div class="field">
-                  <mat-form-field
-                    class="no-bottom"
-                    style="width: 150px"
-                  >
-                    <mat-label class="label">Height</mat-label>
-                    <input matInput formControlName="height" class="input-field" />
-                    <span matSuffix>cm</span>
-                  </mat-form-field>
-      
-                </div>
-      
-                <div class="field">
-                  <mat-form-field
-                    class="no-bottom"
-                    style="width: 150px"
-                  >
-                    <mat-label class="label">Weight</mat-label>
-                    <input matInput formControlName="weight" class="input-field" />
-                    <span matSuffix>kgs</span>
-                  </mat-form-field>
-                </div>
-      
-                <div class="field">
-                  <mat-form-field
-                    class="no-bottom"
-                    style="width: 150px"
-                  >
-                    <mat-label class="label">Blood Pressure</mat-label>
-                    <input matInput formControlName="bloodPressure" class="input-field" />
-                    <span matSuffix>mmHg</span>
-                  </mat-form-field>
-                </div>
-      
-                <div class="field">
-                  <mat-form-field
-                    class="no-bottom"
-                    style="width: 150px"
-                  >
-                    <mat-label class="label">Body Temperature</mat-label>
-                    <input matInput formControlName="bodyTemp" class="input-field" />
-                    <span matSuffix>Fahrenheit</span>
-                  </mat-form-field>
-                </div>
-      
-                <div class="field">
-                  <mat-form-field
-                    class="no-bottom"
-                    style="width: 150px"
-                  >
-                    <mat-label class="label">Respiratory Rate</mat-label>
-                    <input matInput formControlName="respiratoryRate" class="input-field" />
-                    <span matSuffix>BPM</span>
-                  </mat-form-field>
-                </div>
-      
-              </div>
+  <div style="width: 100%">
+    <h2 mat-dialog-title><u>Vitals</u></h2>
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="patientVitalsForm" class="form-container">
+        <div class="vital-details">
+          <div class="vital-info">
+            <div class="field">
+              <mat-form-field class="no-bottom" style="width: 150px">
+                <mat-label class="label">Height</mat-label>
+                <input matInput formControlName="height" class="input-field" />
+                <span matSuffix>cm</span>
+              </mat-form-field>
             </div>
-          </form>
-        </mat-dialog-content>
-      </div>
-      
-      <div style="width: 100%;" >
-          <h2 mat-dialog-title >Procedures</h2>
-          <mat-dialog-content  class="mat-typography">
-            <form [formGroup]="patientProcedureForm" class="form-container">
-              <div class="vital-details">
-                <div class="vital-info">
-            
-                  <div class="field">
-                    <mat-form-field
-                      class="no-bottom"
-                      style="width: 150px"
-                    >
-                      <mat-label class="label">Code</mat-label>
-                      <input matInput formControlName="code" class="input-field" />
-                    </mat-form-field>
-                  </div>
-        
-                  <div class="field">
-                    <mat-form-field
-                      class="no-bottom"
-                      style="width: 150px"
-                    >
-                      <mat-label class="label">Description</mat-label>
-                      <input matInput formControlName="desc" class="input-field" />
-                    </mat-form-field>
-                  </div>
-        
-                </div>
-              </div>
-            </form>
-          </mat-dialog-content>
+
+            <div class="field">
+              <mat-form-field class="no-bottom" style="width: 150px">
+                <mat-label class="label">Weight</mat-label>
+                <input matInput formControlName="weight" class="input-field" />
+                <span matSuffix>kgs</span>
+              </mat-form-field>
+            </div>
+
+            <div class="field">
+              <mat-form-field class="no-bottom" style="width: 150px">
+                <mat-label class="label">Blood Pressure</mat-label>
+                <input
+                  matInput
+                  formControlName="bloodPressure"
+                  class="input-field"
+                />
+                <span matSuffix>mmHg</span>
+              </mat-form-field>
+            </div>
+
+            <div class="field">
+              <mat-form-field class="no-bottom" style="width: 150px">
+                <mat-label class="label">Body Temperature</mat-label>
+                <input
+                  matInput
+                  formControlName="bodyTemp"
+                  class="input-field"
+                />
+                <span matSuffix>Fahrenheit</span>
+              </mat-form-field>
+            </div>
+
+            <div class="field">
+              <mat-form-field class="no-bottom" style="width: 150px">
+                <mat-label class="label">Respiratory Rate</mat-label>
+                <input
+                  matInput
+                  formControlName="respiratoryRate"
+                  class="input-field"
+                />
+                <span matSuffix>BPM</span>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
-      
-        <div style="width: 100%">
-         <h2 mat-dialog-title >Diagnosis</h2>
-          <mat-dialog-content  class="mat-typography">
-            <form [formGroup]="patientProcedureForm" class="form-container">
-              <div class="vital-details">
-                <div class="vital-info">
-            
-                  <div class="field">
-                    <mat-form-field
-                      class="no-bottom"
-                      style="width: 150px"
-                    >
-                      <mat-label class="label">Code</mat-label>
-                      <input matInput formControlName="code" class="input-field" />
-                    </mat-form-field>
-                  </div>
-        
-                  <div class="field">
-                    <mat-form-field
-                      class="no-bottom"
-                      style="width: 150px"
-                    >
-                      <mat-label class="label">Description</mat-label>
-                      <input matInput formControlName="desc" class="input-field" />
-                    </mat-form-field>
-                  </div>
-        
-                </div>
-              </div>
-            </form>
-          </mat-dialog-content>
-        </div>
-      
-        <div style="width: 100%">
+      </form>
+    </mat-dialog-content>
+  </div>
+
+  <div style="width: 100%; padding-top: 10px;">
+    <h2 mat-dialog-title><u>Diagnosis</u></h2>
+    <table>
+      <tr>
+        <th style="width: 25%;">Diagnosis Code</th>
+        <th>Diagnosis Description</th>
+      </tr>
+      <tr *ngFor="let item of diagnosisArray">
+        <td>{{item.diag_code}}</td>
+        <td>{{item.diag_name}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="width: 100%; padding-top: 10px;">
+    <h2 mat-dialog-title><u>Procedures</u></h2>
+    <table>
+      <tr>
+        <th style="width: 25%;">Procedure Code</th>
+        <th>Procedure Description</th>
+      </tr>
+      <tr *ngFor="let item of procedureArray">
+        <td>{{item.ProcedureCode}}</td>
+        <td>{{item.ProcedureName}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- <div style="width: 100%">
             <h2 mat-dialog-title >Medications</h2>
           <mat-dialog-content  class="mat-typography">
             <form [formGroup]="patientProcedureForm" class="form-container">
@@ -166,9 +121,30 @@
               </div>
             </form>
           </mat-dialog-content>
-        </div>
-        <mat-dialog-actions class="actions">
-            <button mat-button mat-dialog-close class="cancel">Cancel</button>
-        </mat-dialog-actions>
-</div>
+        </div> -->
+  <div style="width: 100%; padding-top: 10px;">
+    <h2 mat-dialog-title><u>Medications</u></h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Strength</th>
+        <th>Form</th>
+        <th>Frequency</th>
+        <th>Quantity</th>
+        <th>Notes</th>
+      </tr>
+      <tr *ngFor="let item of medicationArray">
+        <td>{{item.DrugName}}</td>
+        <td>{{item.Strength}}</td>
+        <td>{{item.Form}}</td>
+        <td>{{item.Frequency}}</td>
+        <td>{{item.Quantity}}</td>
+        <td>{{item.Notes}}</td>
+      </tr>
+    </table>
+  </div>
 
+  <mat-dialog-actions class="actions">
+    <button mat-button mat-dialog-close class="cancel">Cancel</button>
+  </mat-dialog-actions>
+</div>

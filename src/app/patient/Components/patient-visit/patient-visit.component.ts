@@ -10,6 +10,9 @@ import { VisitDialogComponent } from '../visit-dialog/visit-dialog.component';
 import { PmsService } from 'src/app/Service/pms.service';
 import { ConsultingService } from 'src/app/Shared/consulting.service';
 import { MatSort } from '@angular/material/sort';
+import { DiagnosisDetailsModel } from 'src/app/Models/DiagnosisModel';
+import { Procedure } from 'src/app/Models/Procedure';
+import { MedicationsModel } from 'src/app/Models/MedicationModel';
 
 @Component({
   selector: 'app-patient-visit',
@@ -21,6 +24,9 @@ export class PatientVisitComponent implements OnInit {
   option: number = 9;
   pid: string = '';
   visitsArray: PatientVisit[] = [];
+  diagnosisArray: DiagnosisDetailsModel[] = [];
+  procedureArray:Procedure[]=[];
+  medicationArray:MedicationsModel[]=[];
   dataSource?: any;
 
   constructor(
@@ -29,7 +35,7 @@ export class PatientVisitComponent implements OnInit {
     private auth: AuthService,
     private date: DatePipe,
     private pmsService: PmsService,
-    private consultingService:ConsultingService
+    private consultingService: ConsultingService
   ) {}
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -85,11 +91,78 @@ export class PatientVisitComponent implements OnInit {
     'actions',
   ];
 
-  openDialog(apptId: number) {
+  openDialog(apptId: any) {
+    this.fillMedications(apptId);
+  }
+
+  fillMedications(apptId: any) {
+    this.pmsService.getMedicationDetailsByAppointmentId(apptId).subscribe(
+      (medicationData) => {
+
+        let newData = medicationData.map((i: any) => {
+          return {
+            DrugName: i.drugName,
+            Strength: i.strength,
+            Frequency:i.frequency,
+            Form:i.form,
+            Quantity:i.quantity,
+            Notes:i.notes
+          };
+        });
+        this.medicationArray = newData;
+        this.fillProcedure(apptId);
+      },
+      (err) => {}
+    );
+  }
+
+
+  fillProcedure(apptId: any) {
+    this.pmsService.getProcedureDetailsByAppointmentId(apptId).subscribe(
+      (procedureData) => {
+
+        let newData = procedureData.map((i: any) => {
+          return {
+            ProcedureCode: i.procedureCode,
+            ProcedureName: i.procedureName,
+          };
+        });
+        this.procedureArray = newData;
+        this.filldiagnosis(apptId);
+      },
+      (err) => {}
+    );
+  }
+
+  filldiagnosis(apptId: any) {
+    this.pmsService.getDiagnosisDetailsByAppointmentId(apptId).subscribe(
+      (diagnosisData) => {
+        console.log('Diagnosis Data');
+
+        console.log(diagnosisData);
+        let newData = diagnosisData.map((i: any) => {
+          return {
+            diag_code: i.diag_code,
+            diag_name: i.diag_name,
+          };
+        });
+        this.diagnosisArray = newData;
+        this.fillvital(apptId);
+      },
+      (err) => {}
+    );
+  }
+
+  fillvital(apptId: any) {
     this.pmsService.getVitalDetailsByAppointmentId(apptId).subscribe(
-      (data) => {
+      (vitaldata) => {
         const dialogConfig = new MatDialogConfig();
-        dialogConfig.data = data;
+        dialogConfig.data = {
+          vitaldata,
+          diagnosisData: this.diagnosisArray,
+          procedureData:this.procedureArray,
+          medicationData:this.medicationArray
+        };
         this.dialog.open(VisitDialogComponent, dialogConfig);
       },
       (err) => {

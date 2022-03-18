@@ -3,5 +3,5 @@ export class DiagnosisDetailsModel{
     diag_code:string="";
     diag_name:string="";
     ddate:Date=new Date();
-    AppointmentId:string=""
+    AppointmentId:number=0;
   }
