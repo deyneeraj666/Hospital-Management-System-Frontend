@@ -24,42 +24,35 @@ DiagnosisDetailsModel(diagDetails: DiagnosisDetailsModel,pid:string,p_id:string)
     return  this.http.post(this.Url,diagDetailsData);
   }
   getDiagnosisDetailsByPatientId(pid: string) :Observable<any>{
-    //const getUrl = 'http://localhost:12207/api/Diagnosis/GetDiagosisNameByDiagnosisCode';
-    const url =`${this.diagUrl}/${pid}`;
+   
+    const url =`${this.Url}/${pid}`;
     return this.http.get(url);
   }
   getDiagnosisDetailsByApptId(apptID: string) :Observable<any>{
-    //const getByIdUrl = 'http://localhost:12207/api/Diagnosis/GetDiagDetailsByApptID';
-    const url =`${this.diagUrl}/${apptID}`;
+    
+    const url =`${this.Url}/${apptID}`;
     return this.http.get(url);
   }
   getdiagnosis():Observable<any>
   {
-    //  this.http.get("http://localhost:12207/api/Diagnosis/GetallDiagnosis")
-    //        .subscribe(response =>{
-    //         const datas=(<any> response);
-    //         console.log(datas);
-    //       });
-    const url=this.Url;
+    
+    const url=this.diagUrl;
     return this.http.get(url);
     //this.getDiagnosisDetailsByPatientId(t)
 
   }
   deleteDiagDetails(p_id:string){
-    const deleteUrl = 'http://localhost:12207/api/Diagnosis/GetDiagDetailsByApptID';
-     const url =`${deleteUrl}/${p_id}`;
+    
+     const url =`${this.Url}/${p_id}`;
     return this.http.delete(url);
   }
   getDiagnosisCodeByType(diagCode: string){
-      const url = `${this.Url}/${diagCode}`;
-    //   const getUrl = 'http://localhost:12207/api/Diagnosis/GetDiagosisNameByDiagnosisCode';
-    // const url =`${getUrl}/${diagCode}`;
+      const url = `${this.diagUrl}/${diagCode}`;
+   
       return this.http.get(url);
   
     
   }
 
-// function diagDetails(diagDetails: any, DiagnosisModel: any, pid: any, string: any) {
-//     throw new Error('Function not implemented.');
-// }
+
 }

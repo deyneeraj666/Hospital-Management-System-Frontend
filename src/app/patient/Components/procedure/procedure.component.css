@@ -90,3 +90,31 @@
     .label{
         color: black;
     }
+    .table-first{
+        box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+        border: 1px solid rgba(10, 102, 163, 0.897);
+        
+    }
+    .em-header2{
+        width: 92.5%;
+        color: rgba(10, 102, 163, 0.897);
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 3%;
+        
+    }
+    .table-head>*, .table-row>*{
+        flex-basis: 100%;
+    }
+    th{
+        color: rgba(10, 102, 163, 0.897);
+        
+    }
+    /* .td-first-date{
+        align-items: center;
+         padding-left: 3%; 
+    } 
+    .td-first{
+        align-items: center;
+        padding-left: 7%;
+    }     */

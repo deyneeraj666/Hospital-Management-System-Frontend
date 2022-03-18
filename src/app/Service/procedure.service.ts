@@ -8,7 +8,8 @@ import { Procedure } from '../Models/Procedure';
   providedIn: 'root'
 })
 export class Procedure_Service{
-    readonly Url = 'http://localhost:30670/api/Procedures';
+    readonly Url = 'http://localhost:44364/api/Procedures';
+    readonly procUrl = 'http://localhost:44364/api/ProcedureDetails';
     constructor(private http:HttpClient) {}
 
     Procedure(procDetails: Procedure,pid:string) {
@@ -26,14 +27,18 @@ export class Procedure_Service{
     const url =`${this.Url}/${pid}`;
     return this.http.get(url);
   }
-  getprocedure()
+  getprocedure():Observable<any>
   {
-     this.http.get("http://localhost:30670/api/Procedures/GetallProcedures")
-           .subscribe(response =>{
-            const datas=(<any> response);
-            console.log(datas);
-          });
+    const url=this.procUrl;
+    return this.http.get(url);
 
 
   }
+  getProcedureNameByType(procCode: string){
+    const url = `${this.procUrl}/${procCode}`;
+ 
+    return this.http.get(url);
+
+  
+}
 }

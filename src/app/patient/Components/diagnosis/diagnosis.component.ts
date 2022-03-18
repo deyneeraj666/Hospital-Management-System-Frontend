@@ -9,8 +9,9 @@ import { MatPaginator } from '@angular/material/paginator';
 // import { Diag_Service } from 'src/app/Shared/diag.service';
 
 import { AuthService } from 'src/app/Shared/auth.service';
-import { Diag_Service } from 'src/app/Service/diagnosis.service';
+
 import { DiagnosisDetailsModel } from 'src/app/Models/DiagnosisModel';
+import { Diag_Service } from 'src/app/Service/diagnosis.service';
 
 @Component({
   selector: 'app-diagnosis',

@@ -13,7 +13,7 @@
                     <mat-label class="label">Diagnosis Code</mat-label>
                     <select matNativeControl formControlName="diag_code" [(ngModel)]="dcode">
                         <!-- <mat-option ></mat-option> -->
-                        <option *ngFor="let type of diagnosisCode" value="{{type.diag_code}}">{{type.diag_code}}</option>
+                        <option *ngFor="let type of diagnosisCode" value="{{diagnosisCode}}">{{diagnosisCode}}</option>
                         <!-- <option value="10.6">10.6</option> -->
                     </select>
                 </mat-form-field>

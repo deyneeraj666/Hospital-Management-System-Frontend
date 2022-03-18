@@ -31,6 +31,8 @@ export class MedicationsComponent implements OnInit {
         console.log('Error occurred');
       }
     );
+
+    this.medicationService.getmedications();
   }
   public DrugName:string="";
   public Strength:string="";
@@ -49,11 +51,11 @@ export class MedicationsComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log(res);
-          // this.patientMedicationTable.reset();
+          this.patientMedicationTable.reset();
         },
         (err) => {
           console.log('Error occurred ', err);
-          this.patientMedicationTable.reset();
+          
           
         }
       );
@@ -86,9 +88,9 @@ export class MedicationsComponent implements OnInit {
     this.Quantity=editData.Quantity;
     this.Notes=editData.Notes;
   }
-  getMedi() {
-    this.medicationService.getmedications();
-  }
+  // getMedi() {
+  //   this.medicationService.getmedications();
+  // }
   public patientMedicationTable:FormGroup=new FormGroup({
     DrugName: new FormControl('', [
       Validators.required

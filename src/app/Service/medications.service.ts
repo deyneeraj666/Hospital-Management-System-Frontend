@@ -8,6 +8,7 @@ import { MedicationsModel } from '../Models/MedicationModel';
 })
 export class Medication_Service{
     readonly Url = 'http://localhost:52993/api/Medications';
+    readonly mediUrl = 'http://localhost:52993/api/MedicationsDetails';
     constructor(private http:HttpClient) {}
 
     MedicationsModel(mediDetails: MedicationsModel,pid:string) {
@@ -31,11 +32,8 @@ export class Medication_Service{
   }
   getmedications()
   {
-     this.http.get("http://localhost:52993/api/Medications/GetallMedications")
-           .subscribe(response =>{
-            const datas=(<any> response);
-            console.log(datas);
-          });
+    const url=this.mediUrl;
+    return this.http.get(url);
 
 
   }
