@@ -9,10 +9,11 @@
              <div >
                 <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
                     <mat-label class="label">Drug Name</mat-label>
-                    <select matNativeControl formControlName="DrugName" [(ngModel)]="DrugName" id="name">
+                    <select matNativeControl (change)="drugNameChangeHandler(select.value)" #select formControlName="DrugName" [(ngModel)]="DrugName" id="name">
                         <!-- <mat-option ></mat-option> -->
-                        <option value="100.1">100.1</option>
-                        <option value="10.6">10.6</option>
+                        <!-- <option value="100.1">100.1</option>
+                        <option value="10.6">10.6</option> -->
+                        <option *ngFor="let item of drugName" value="{{item.drugName}}">{{item.drugName}}</option>
                     </select>
                     
                 </mat-form-field>
@@ -26,16 +27,18 @@
                         <mat-label class="label">Strength</mat-label>
                         <select matNativeControl formControlName="Strength" [(ngModel)]="Strength">
                             <!-- <mat-option ></mat-option> -->
-                            <option value="100.1">100.1</option>
-                            <option value="10.6">10.6</option>
+                            <!-- <option value="100.1">100.1</option>
+                            <option value="10.6">10.6</option> -->
+                            <option *ngFor="let type of drugDetails" value="{{type.drugStrength}}">{{type.drugStrength}}</option>
                         </select>
                     </mat-form-field>
                     <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
                         <mat-label class="label">Form</mat-label>
                         <select matNativeControl formControlName="Form" [(ngModel)]="Form">
                             <!-- <mat-option ></mat-option> -->
-                            <option value="Diabetes">Diabetes</option>
-                            <option value="Allergy">Allergy</option>
+                            <!-- <option value="Diabetes">Diabetes</option>
+                            <option value="Allergy">Allergy</option> -->
+                            <option *ngFor="let type of drugDetails" value="{{type.drugForm}}">{{type.drugForm}}</option>
                         </select>
                     </mat-form-field>
                 </div>

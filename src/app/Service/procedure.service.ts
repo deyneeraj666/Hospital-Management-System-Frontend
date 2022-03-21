@@ -8,18 +8,18 @@ import { Procedure } from '../Models/Procedure';
   providedIn: 'root'
 })
 export class Procedure_Service{
-    readonly Url = 'http://localhost:44364/api/Procedures';
-    readonly procUrl = 'http://localhost:44364/api/ProcedureDetails';
+    readonly Url = 'http://localhost:43045/api/Procedures';
+    readonly procUrl = 'http://localhost:43045/api/ProcedureDetails';
     constructor(private http:HttpClient) {}
 
-    Procedure(procDetails: Procedure,pid:string) {
+    Procedure(procDetails: Procedure,pid:string,apptid:number) {
     let procDetailsData=
       {
         "PatientId": pid,
         "ProcedureCode":procDetails.ProcedureCode,
         "ProcedureName":procDetails.ProcedureName,
         "Date":new Date(),
-        "AppointmentId":"2010"
+        "AppointmentId":apptid
     }
     return  this.http.post(this.Url,procDetailsData);
   }

@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { Procedure } from 'src/app/Models/Procedure';
 import { Procedure_Service } from 'src/app/Service/procedure.service';
 import { AuthService } from 'src/app/Shared/auth.service';
+import { ConsultingService } from 'src/app/Shared/consulting.service';
 @Component({
   selector: 'app-procedure',
   templateUrl: './procedure.component.html',
@@ -14,12 +15,14 @@ import { AuthService } from 'src/app/Shared/auth.service';
 })
 export class ProcedureComponent  implements OnInit {
   option:number=7;
-  constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService) { }
+  constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService,private consultingService :ConsultingService) { }
   //ELEMENT_DATA: PeriodicElement[]= [];
-  public ProcedureName:string='';
-  public ProcedureCode:string='';
+
+  public PName:string='';
+  public PCode:string='';
   public Date:Date=new Date();
   public pid: string = '';
+  public apptid:number=0;
   public data:Procedure[]=[];
   public procedureName: any[] = [];
   public procedureCode: any[] = [];
@@ -39,8 +42,8 @@ export class ProcedureComponent  implements OnInit {
   })
   ngOnInit(): void {
 
-    this.pid = this.auth.Id;
-
+    this.pid = this.auth.role==='Physician'?this.auth.EmpId : this.consultingService.consultingPId;
+    this.apptid=this.consultingService.consultingApptId;
     this.procService.getprocedure().subscribe(
       (res) => {
        this.procedureName = res;
@@ -63,7 +66,7 @@ deleteproduct_click(index:number){
   {
     this.data.push(this.ProcedureGroup.value);
     this.procService
-      .Procedure(this.ProcedureGroup.value,this.pid)
+      .Procedure(this.ProcedureGroup.value,this.pid,this.apptid)
       .subscribe(
         (res) => {
           console.log(res);

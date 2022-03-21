@@ -7,5 +7,5 @@ export class MedicationsModel{
     Form:string="";
     Quantity:string="";
     Notes:string="";
-    AppointmentId:string=""
+    AppointmentId:number=0;
   }

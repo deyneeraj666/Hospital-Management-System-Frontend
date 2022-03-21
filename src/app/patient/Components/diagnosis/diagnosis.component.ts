@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/Shared/auth.service';
 
 import { DiagnosisDetailsModel } from 'src/app/Models/DiagnosisModel';
 import { Diag_Service } from 'src/app/Service/diagnosis.service';
+import { ConsultingService } from 'src/app/Shared/consulting.service';
 
 @Component({
   selector: 'app-diagnosis',
@@ -22,7 +23,7 @@ export class DiagnosisComponent implements OnInit {
   //readonly Url = 'http://localhost:12207/api/Diagnosis';
   option:number=6;
   constructor(private diagnosisServide: Diag_Service,
-    private auth: AuthService) { }
+    private auth: AuthService,private consultingService :ConsultingService) { }
   public data:DiagnosisDetailsModel[]=[];
   
   public dcode:string="";
@@ -30,14 +31,16 @@ export class DiagnosisComponent implements OnInit {
   public ddate:Date=new Date();
   public isDataNotfound:boolean=false;
   public pid: string = '';
+  public appid:number=0;
   public diagnosisName: any[] = [];
   public diagnosisCode: any[] = [];
   // dataSource = new MatTableDataSource<Diagnosis>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   ngOnInit(): void {
-    this.pid = this.auth.Id;
-    //this.dataSource.paginator = this.paginator;
-    this.pid = this.auth.Id;
+    this.pid = this.auth.role==='Physician'?this.auth.EmpId : this.consultingService.consultingPId;
+    this.appid=this.consultingService.consultingApptId;
+        //this.dataSource.paginator = this.paginator;
+    //this.pid = this.auth.Id;
     //this.diagnosisCodeChangeHandler();
     
     this.diagnosisServide.getdiagnosis().subscribe(
@@ -73,9 +76,10 @@ export class DiagnosisComponent implements OnInit {
   }
   
   public btn_Add(){ 
+
     this.data.push(this.patientDiagnosisTable.value);
     this.diagnosisServide
-      .DiagnosisDetailsModel(this.patientDiagnosisTable.value,this.pid,this.auth.Id)
+      .DiagnosisDetailsModel(this.patientDiagnosisTable.value,this.pid,this.appid)
       .subscribe(
         (res) => {
           console.log(res);
@@ -122,7 +126,7 @@ export class DiagnosisComponent implements OnInit {
   }
 }
 
-const ELEMENT_DATA: DiagnosisDetailsModel[]= [
-  {pid:"11",diag_code: "22.1", diag_name: 'Fever', ddate:new Date(),AppointmentId:11},
-  {pid:"12",diag_code:"111.2", diag_name: 'Cough', ddate: new Date(),AppointmentId:12 },
- ];
+// const ELEMENT_DATA: DiagnosisDetailsModel[]= [
+//   {pid:"11",diag_code: "22.1", diag_name: 'Fever', ddate:new Date(),AppointmentId:"11"},
+//   {pid:"12",diag_code:"111.2", diag_name: 'Cough', ddate: new Date(),AppointmentId:"12" },
+//  ];

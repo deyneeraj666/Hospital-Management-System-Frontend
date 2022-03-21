@@ -12,14 +12,14 @@ export class Diag_Service{
      readonly diagUrl='http://localhost:12207/api/DiagnosisDetails'
     constructor(private http:HttpClient) {}
 
-DiagnosisDetailsModel(diagDetails: DiagnosisDetailsModel,pid:string,p_id:string) {
+DiagnosisDetailsModel(diagDetails: DiagnosisDetailsModel,pid:string,appid:number) {
     let diagDetailsData=
       {
         "pid": pid,
         "diag_code":diagDetails.diag_code,
         "diag_name":diagDetails.diag_name,
         "ddate":new Date(),
-        "AppointmentId":"2020"
+        "AppointmentId":appid
     }
     return  this.http.post(this.Url,diagDetailsData);
   }
