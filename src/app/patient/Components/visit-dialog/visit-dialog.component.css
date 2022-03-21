@@ -1,6 +1,9 @@
 .no-bottom{
     margin-bottom: -1.25rem !important;
 }
+.label{
+    color: black;
+}
 
 .vital-details {
     display: flex;
