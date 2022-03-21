@@ -1,6 +1,6 @@
 export class Diagnosis{
   
-    dcode:string="";
-    dname:string="";
+    diag_code:string="";
+    diag_name:string="";
     ddate:Date=new Date();;
   }

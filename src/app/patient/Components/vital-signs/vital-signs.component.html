@@ -14,6 +14,13 @@
             <span class="suffix" matSuffix>cm</span>
             <input matInput type="text" formControlName="height"  class="input-field" />
           </mat-form-field>
+          <span class="error"
+              *ngIf="
+              patientVitalForm.controls['height'].invalid &&
+              patientVitalForm.controls['height'].dirty
+              "
+              >Height is a required field with numbers</span
+            >
         </div>
 
         <div class="field">
@@ -22,6 +29,13 @@
               <span class="suffix" matSuffix>kgs</span>
               <input matInput type="text" formControlName="weight"  class="input-field" />
             </mat-form-field>
+            <span class="error"
+            *ngIf="
+            patientVitalForm.controls['weight'].invalid &&
+            patientVitalForm.controls['weight'].dirty
+            "
+            >Weight is a required field with numbers</span
+          >
         </div>
 
         <div class="field">
@@ -30,6 +44,13 @@
             <span class="suffix" matSuffix>Fahrenheit</span>
             <input matInput type="text" formControlName="temperature"  class="input-field" />
           </mat-form-field>
+          <span class="error"
+            *ngIf="
+            patientVitalForm.controls['temperature'].invalid &&
+            patientVitalForm.controls['temperature'].dirty
+            "
+            >Temperature is a required field with numbers</span
+          >
         </div>
 
         <div class="field">
@@ -38,6 +59,13 @@
             <span class="suffix" matSuffix>mmHg</span>
             <input matInput type="text" formControlName="systolic"  class="input-field" />
           </mat-form-field>
+          <span class="error"
+            *ngIf="
+            patientVitalForm.controls['systolic'].invalid &&
+            patientVitalForm.controls['systolic'].dirty
+            "
+            >Systolic is a required field with numbers</span
+          >
         </div>
 
         <div class="field">
@@ -46,6 +74,13 @@
             <span class="suffix" matSuffix>mmHg</span>
             <input matInput type="text" formControlName="diastolic"  class="input-field" />
           </mat-form-field>
+          <span class="error"
+            *ngIf="
+            patientVitalForm.controls['diastolic'].invalid &&
+            patientVitalForm.controls['diastolic'].dirty
+            "
+            >Diastolic is a required field with numbers</span
+          >
         </div>
 
         <div class="field">
@@ -54,6 +89,13 @@
             <span class="suffix" matSuffix>BPM</span>
             <input matInput type="text" formControlName="respiratoryRate"  class="input-field" />
           </mat-form-field>
+          <span class="error"
+          *ngIf="
+          patientVitalForm.controls['respiratoryRate'].invalid &&
+          patientVitalForm.controls['respiratoryRate'].dirty
+          "
+          >Respiratory rate is a required field with numbers</span
+        >
         </div>
 
         
@@ -80,9 +122,9 @@
     </div>
   </form>
 </mat-card>
-<br>
+<!-- <br>
 
-<app-footer></app-footer>
+<app-footer></app-footer> -->
 
 
 
