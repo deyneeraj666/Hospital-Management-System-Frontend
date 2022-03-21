@@ -1,0 +1,61 @@
+<app-admin-header [option]="option"></app-admin-header>
+
+<div style="margin-top: 7px; margin-left:200px;margin-right: 200px; border: 1px solid rgba(10, 102, 163, 0.897);; height: 520px;">
+    <div class="gauges-container">
+    
+    
+        <mwl-gauge
+          class="three"
+          [max]="100"
+          [value]="pat_value"
+          [animated]="true"
+          [animationDuration]="1.5"
+        >
+        </mwl-gauge>
+        <div><h3 style="color: green; padding-left: 35px;">Number Of Patient</h3></div>
+        <hr>
+        <mwl-gauge
+          class="three"
+          [max]="100"
+          [value]="phy_value"
+          [animated]="true"
+          [animationDuration]="1.5"
+        >
+        </mwl-gauge>
+        <div><h3 style="color: green; padding-left: 35px;">Number Of Physician</h3></div>
+        <hr>
+
+        
+      </div>
+      
+    
+    <div class="gauges-container">
+        
+        
+        <mwl-gauge
+          class="three"
+          [max]="100"
+          [value]="nur_value"
+          [animated]="true"
+          [animationDuration]="1.5"
+        >
+        </mwl-gauge>
+        <div><h3 style="color: green; padding-left: 35px;">Number Of Nurse</h3></div>
+        <hr>
+        <mwl-gauge
+          class="three"
+          [max]="100"
+          [value]="adm_value"
+          [animated]="true"
+          [animationDuration]="1.5"
+        >
+        </mwl-gauge>
+        <div><h3 style="color: green; padding-left: 35px;">Number Of Admin</h3></div>
+        <hr>
+      </div>
+    
+    
+    
+    
+</div>
+

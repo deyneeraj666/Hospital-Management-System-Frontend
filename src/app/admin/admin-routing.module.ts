@@ -6,6 +6,7 @@ import { AdminHeaderComponent } from "./Components/admin-header/admin-header.com
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from "../login/LoginComponents/change-password/change-password.component";
+import { StatsComponent } from "./Components/stats/stats.component";
 
 
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'login/admin',component:AdminHeaderComponent,canActivate:[AdminGuard]},
   {path:'admin/employeelist',component:EmployeeListComponent,canActivate:[AdminGuard]},
   {path:'admin/employeeregister',component:EmployeeRegistrationComponent,canActivate:[AdminGuard]},
+  {path:'admin/stats',component:StatsComponent,canActivate:[AdminGuard]},
   {path:'admin/patientlist',component:PatientListComponent,canActivate:[AdminGuard]},
   {path:'admin/ChangePassword',component:ChangePasswordComponent,canActivate:[AdminGuard]},
   {path:'**',redirectTo:'LoginScreenComponent'}

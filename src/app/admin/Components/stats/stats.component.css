@@ -1,0 +1,54 @@
+
+  body {
+    color: #999;
+    font-family: Hevletica, sans-serif;
+  }
+  .gauges-container {
+   margin-left: 17%;
+  
+   float:left;
+  }
+ 
+  
+  mwl-gauge > .gauge > .dial {
+    stroke: #334455;
+    stroke-width: 2;
+    fill: rgba(0, 0, 0, 0);
+  }
+  mwl-gauge > .gauge > .value {
+    stroke: rgba(10, 102, 163, 0.897);
+    stroke-width: 2;
+    fill: rgba(0, 0, 0, 0);
+  }
+  mwl-gauge > .gauge > .value-text {
+    fill: rgba(10, 102, 163, 0.897);
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+  
+ 
+
+  mwl-gauge {
+    width: 200px;
+    height: 200px;
+    display: block;
+    padding: 10px;
+  }
+  mwl-gauge > .gauge > .dial {
+    stroke: #eee;
+    stroke-width: 2;
+    fill: rgba(0, 0, 0, 0);
+  }
+  mwl-gauge > .gauge > .value {
+    stroke: rgba(10, 102, 163, 0.897);
+    stroke-width: 2;
+    fill: rgba(0, 0, 0, 0);
+  }
+  mwl-gauge > .gauge > .value-text {
+    fill: rgba(10, 102, 163, 0.897);
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  
