@@ -28,7 +28,7 @@ export class MedicationsComponent implements OnInit {
   // public procedureName: any[] = [];
   // public procedureCode: any[] = [];
   ngOnInit(): void {
-    this.pid = this.auth.role==='Physician'?this.auth.EmpId : this.consultingService.consultingPId;;
+    this.pid = this.consultingService.consultingPId;
     this.apptid=this.consultingService.consultingApptId;
     // this.medicationService.getMedicationsDetailsByPatientId(this.pid).subscribe(
     //   (res) => {

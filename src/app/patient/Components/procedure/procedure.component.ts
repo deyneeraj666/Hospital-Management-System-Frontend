@@ -42,7 +42,7 @@ export class ProcedureComponent  implements OnInit {
   })
   ngOnInit(): void {
 
-    this.pid = this.auth.role==='Physician'?this.auth.EmpId : this.consultingService.consultingPId;
+    this.pid = this.consultingService.consultingPId;
     this.apptid=this.consultingService.consultingApptId;
     this.procService.getprocedure().subscribe(
       (res) => {

@@ -4,19 +4,11 @@
     <form [formGroup]="ProcedureGroup">
         <div class="first-div">
             <mat-card class="mat_style">
-            <p><strong style="margin-left: 35%;">Add Procedure Details</strong></p>
+            <p><strong style="margin-left: 18%;">Add Procedure Details</strong></p>
             </mat-card>
-            <div style="padding-top: 3%;padding-left: 10%;">
-                <mat-form-field appearance="fill" class="dropdown mw-50">
-                    <mat-label class="label">Procedure Code</mat-label>
-                    <select matNativeControl required [(ngModel)]="PCode" formControlName="ProcedureCode"  name="select">
-                        <!-- <option value="Code1">Code 1</option>
-                        <option value="Code2">Code 2</option>
-                        <option value="Code3">Cpde 3</option> -->
-                        <option *ngFor="let type of procedureCode" value="{{procedureCode}}">{{procedureCode}}</option>
-                    </select>
-                </mat-form-field>
-                <mat-form-field appearance="fill"  class="dropdown mw-50">
+            <div style="margin-top: 3%;margin-left: 25%;">
+                <div>
+                <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50">
                     <mat-label>Procedure Name</mat-label>
                     <select matNativeControl required (change)="procedureNameChangeHandler(select.value)" #select [(ngModel)]="PName" formControlName="ProcedureName">
                         <!-- <option value="Procedure1">Procedure 1</option>
@@ -25,6 +17,20 @@
                         <option *ngFor="let item of procedureName" value="{{item.procedureName}}">{{item.procedureName}}</option>
                     </select>
                 </mat-form-field>
+                </div>
+                <br>
+                <div>
+                <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50">
+                    <mat-label class="label">Procedure Code</mat-label>
+                    <select matNativeControl required [(ngModel)]="PCode" formControlName="ProcedureCode"  name="select">
+                        <!-- <option value="Code1">Code 1</option>
+                        <option value="Code2">Code 2</option>
+                        <option value="Code3">Cpde 3</option> -->
+                        <option *ngFor="let type of procedureCode" value="{{procedureCode}}">{{procedureCode}}</option>
+                    </select>
+                </mat-form-field>
+            </div>
+                
             </div>
                 <br>
                 <div class="example-button-row">
@@ -35,27 +41,27 @@
     </div>
     <br>
     <br>
-    <div style="margin-left: 15%;margin-top: 5px;">
-        <!-- <label style="color: rgba(10, 102, 163, 0.897);padding-left: 33.5%;margin-bottom: 2%;font-size: large;"><b>Diagnosis Details</b></label> -->
+     <!-- <div style="margin-left: 15%;margin-top: 5px;">
+        
         <table class="table-first" style="width: 83%;">
             <tr><td colspan="4" style="color: rgba(10, 102, 163, 0.897);margin-bottom: 2%;font-size: large;padding-bottom: 1.5%;padding-top: 2%;"><mat-card class="em-header2"><b style="margin-left: 38.5%;">Procedure Details</b></mat-card></td></tr>
             <tr class="table-head">
                 <th>Procedure Code</th>
                 <th>Procedure Name</th>
-                <th>Date</th>
+               
             </tr>
             <tr class="table-row" *ngFor="let selectedData of data;let i=index">
                 <td class="td-first">{{selectedData.ProcedureCode}}</td>
                 <td class="td-first">{{selectedData.ProcedureName}}</td>
-                <td class="td-first-date">{{selectedData.date}}</td>
+                
                 <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
             </tr>
             <tr style="background-color:   #f3f3f3;" *ngIf="data.length<=0">
                 <td class="td-first" colspan="3" style="padding-left: 40%;">**No Procedures**</td>
             </tr>
         </table>
-        <!-- <mat-paginator  #paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator> -->
-</div>
+        
+</div> -->
     </form>
 </div>
 </body>

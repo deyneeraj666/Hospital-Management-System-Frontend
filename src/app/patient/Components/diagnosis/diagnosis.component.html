@@ -1,34 +1,33 @@
 <app-patient-header [option]="option"></app-patient-header>
 <div class="border-vitals">
-    <!-- <label style="color: rgba(10, 102, 163, 0.897);margin-top: 5%; padding-left: 46%;"><b><u>Diagnosis Details</u></b></label> -->
+    
     
     <div [formGroup]="patientDiagnosisTable" class="diag-table" >
-        <!-- <label style="color: rgba(10, 102, 163, 0.897);margin-top: 3%; padding-left: 40%;font-size: large;"><b>Add Diagnosis Details</b></label> -->
+        
         <mat-card class="em-header">
-            <!-- <p style="text-align: center;">Emergency Contact Details</p> -->
-            <label style="color: rgba(10, 102, 163, 0.897);padding-left: 33%;"><b>Add Diagnosis Details</b></label>
-          </mat-card >
-          <div style="margin-top: 5%;margin-left: 5%;">
-                <mat-form-field appearance="fill"  class="dropdown mw-50 dropdown1-style">
-                    <mat-label class="label">Diagnosis Code</mat-label>
-                    <select matNativeControl formControlName="diag_code" [(ngModel)]="dcode">
-                        <!-- <mat-option ></mat-option> -->
-                        <option *ngFor="let type of diagnosisCode" value="{{diagnosisCode}}">{{diagnosisCode}}</option>
-                        <!-- <option value="10.6">10.6</option> -->
-                    </select>
-                </mat-form-field>
-                <mat-form-field  appearance="fill"  class="dropdown mw-50 dropdown-style">
-                    <mat-label class="label">Diagnosis Name</mat-label>
-                    <select matNativeControl (change)="diagnosisCodeChangeHandler(select.value)" #select formControlName="diag_name" [(ngModel)]="dname">
-                        <!-- <mat-option ></mat-option> -->
-                        <option *ngFor="let item of diagnosisName" value="{{item.diag_name}}">{{item.diag_name}}</option>
-                        <!-- <option value="Allergy">Allergy</option> -->
-                    </select>
-                </mat-form-field>
-                <div style="padding-top: 2%;">
-                    <button [disabled]="patientDiagnosisTable.invalid" (click)="btn_Add()" style="background-color:green ;width:10%;color:white;margin-bottom: 5%;margin-left: 35%;" mat-raised-button>Add</button>
+            <label style="color: rgba(10, 102, 163, 0.897);padding-left: 10%;"><b>Add Diagnosis Details</b></label>
+        </mat-card >
+        <div style="margin-top: 5%;">
+            <div style="margin-left: 20%;">
+            <mat-form-field  appearance="fill"  class="no-bottom dropdown mw-50 dropdown1-style" style="width: 250px;" >
+                <mat-label class="label">Diagnosis Name</mat-label>
+                <select matNativeControl (change)="diagnosisCodeChangeHandler(select.value)" #select formControlName="diag_name" [(ngModel)]="dname">
+                    <option *ngFor="let item of diagnosisName" value="{{item.diag_name}}">{{item.diag_name}}</option>
+                </select>
+            </mat-form-field> 
+            </div>
+            <br><br>
+            <div style="margin-left: 23.9%;">        
+            <mat-form-field appearance="fill"  class="no-bottom mw-50 dropdown-style" style="width: 250px;">
+                <mat-label class="label">Diagnosis Code</mat-label>
+                <select matNativeControl formControlName="diag_code" [(ngModel)]="dcode">
+                    <option *ngFor="let type of diagnosisCode" value="{{type}}">{{type}}</option>    
+                </select>
+            </mat-form-field>
+            </div>
+                <div style="padding-top: 5%;">
+                    <button [disabled]="patientDiagnosisTable.invalid" (click)="btn_Add()" style="background-color:green ;width:14%;color:white;margin-bottom: 5%;margin-left: 33%;" mat-raised-button>Add</button>
                     <button (click)="btn_Cancel()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 5%;margin-left: 7%;" mat-raised-button>Reset</button>
-                   
                 </div>
             </div>
            
@@ -36,27 +35,28 @@
 
     <br>
     <br>
-    <div style="margin-left: 20%;margin-top: 5px;">
-        <!-- <label style="color: rgba(10, 102, 163, 0.897);padding-left: 33.5%;margin-bottom: 2%;font-size: large;"><b>Diagnosis Details</b></label> -->
+    <!-- <div style="margin-left: 20%;margin-top: 5px;">
+        
         <table class="table-first" style="width: 80%;">
             <tr><td colspan="4" style="color: rgba(10, 102, 163, 0.897);margin-bottom: 2%;font-size: large;padding-bottom: 1.5%;padding-top: 2%;"><mat-card class="em-header2"><b style="margin-left: 38.5%;">Diagnosis Details</b></mat-card></td></tr>
             <tr class="table-head">
                 <th style="padding-left: 5%;">Diagnosis Code</th>
                 <th style="padding-left: 5%;">Diagnosis Name</th>
-                <th style="padding-left: 5%;">Date</th>
+                
             </tr>
             <tr class="table-row" *ngFor="let selectedData of data;let i=index">
                 <td class="td-first">{{selectedData.diag_code}}</td>
                 <td class="td-first">{{selectedData.diag_name}}</td>
                 <td class="td-first-date">{{selectedData.ddate|date:'yyyy-MM-dd'}}</td>
-                <td><a href="javascript:void(0)" (click)=deleteproduct_click(i)>Delete</a></td>
+                <td><a href="javascript:void(0)" (click)="deleteproduct_click(selectedData.id)">Delete</a></td>
             </tr>
+            
             <tr style="background-color:   #f3f3f3;" *ngIf="data.length<=0">
                 <td class="td-first" colspan="3" style="padding-left: 40%;">**No Diagnosis*</td>
             </tr>
         </table>
-        <!-- <mat-paginator  #paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator> -->
-</div>
+        
+</div> -->
 
 </div>
 

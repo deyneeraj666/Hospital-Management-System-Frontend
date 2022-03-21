@@ -41,9 +41,9 @@ DiagnosisDetailsModel(diagDetails: DiagnosisDetailsModel,pid:string,appid:number
     //this.getDiagnosisDetailsByPatientId(t)
 
   }
-  deleteDiagDetails(p_id:string){
+  deleteDiagDetails(id:number){
     
-     const url =`${this.Url}/${p_id}`;
+     const url =`${this.Url}/${id}`;
     return this.http.delete(url);
   }
   getDiagnosisCodeByType(diagCode: string){

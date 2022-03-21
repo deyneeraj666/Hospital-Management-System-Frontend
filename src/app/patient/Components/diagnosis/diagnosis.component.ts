@@ -34,10 +34,11 @@ export class DiagnosisComponent implements OnInit {
   public appid:number=0;
   public diagnosisName: any[] = [];
   public diagnosisCode: any[] = [];
+  public id:number=0;
   // dataSource = new MatTableDataSource<Diagnosis>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   ngOnInit(): void {
-    this.pid = this.auth.role==='Physician'?this.auth.EmpId : this.consultingService.consultingPId;
+    this.pid = this.consultingService.consultingPId;
     this.appid=this.consultingService.consultingApptId;
         //this.dataSource.paginator = this.paginator;
     //this.pid = this.auth.Id;
@@ -54,8 +55,24 @@ export class DiagnosisComponent implements OnInit {
       }
     );
 
-       
+      this.refreshGrid(); 
       
+  }
+  refreshGrid() {
+    this.diagnosisServide.getDiagnosisDetailsByPatientId(this.pid).subscribe(
+      (res: any) => {
+        let newData = res.map((i: any) => {
+          return {
+            diag_code: i.diag_code,
+            diag_name: i.diag_name,
+            
+          };
+        });
+
+        this.data = newData;
+      },
+      (err) => {}
+    );
   }
   // this.diagnosisServide.getDiagnosisDetailsByPatientId(this.pid).subscribe(
     //   (res) => {
@@ -98,6 +115,7 @@ export class DiagnosisComponent implements OnInit {
     // this.dname="";
     //this.ddate=new Date();
     this.patientDiagnosisTable.reset();
+    
   }
   
   public patientDiagnosisTable:FormGroup=new FormGroup({
@@ -108,9 +126,22 @@ export class DiagnosisComponent implements OnInit {
       Validators.required
     ]),    
   })
-  deleteproduct_click(index:number){
-    this.data.splice(index,1);
-    this.diagnosisServide.deleteDiagDetails(this.auth.Id);
+  deleteproduct_click(id:number){
+    this.data.splice((id+1),1);
+    // this.diagnosisServide.deleteDiagDetails(id);
+    // if( confirm("Are you sure you want to delete?"))
+    // {
+    //   this.diagnosisServide.deleteDiagDetails(id).subscribe(
+    //     (res) => {
+    //       let index: number = this.data.findIndex((x) => x.id == id);
+    //       this.data.splice(index, 1);
+    //     },
+    //     (err) => {
+    //       console.log(err);
+          
+    //     }
+    //   );
+    // }
   }
   diagnosisCodeChangeHandler(value: string) {
     this.diagnosisServide.getDiagnosisCodeByType(value).subscribe(
