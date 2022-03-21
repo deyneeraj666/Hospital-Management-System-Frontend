@@ -7,6 +7,7 @@ import { UsermanagementService } from 'src/app/Shared/usermanagement.service';
 
 
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit
 {
   
   
- 
+  loading_reg=false;
  patientRegisterForm:any = FormGroup;
  minDate=new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
 
@@ -54,15 +55,26 @@ export class RegisterComponent implements OnInit
         "Role":"Patient"
          }
       this.user.register_service(obj).subscribe((res:any)=>{
-        console.log(res)
-        console.log("Success")
+       this.loading_reg=true;
+       setTimeout(()=>{
         this.toastr.success("Registration Successfully!!");
+        this.loading_reg=false;
+        this.patientRegisterForm.reset();
+       },3000)
+       setTimeout(()=>{
+        this.router.navigateByUrl('/login');
+       },5000)
+       
       },(err:any)=>{
+        this.loading_reg=true;
+        setTimeout(()=>{
         this.router.navigateByUrl('patient-register');
         this.toastr.error("Email-Id already Exists!");
-
+        this.patientRegisterForm.reset();
+        this.loading_reg=false;
+        },2000)
       })
-      this.patientRegisterForm.reset();
+      
     }
    
     

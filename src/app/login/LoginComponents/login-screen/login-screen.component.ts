@@ -54,8 +54,12 @@ export class LoginScreenComponent implements OnInit
    
     },(err:any)=>
       {
-      this.toastr.error(err.error);
-      this.loginform.reset();
+        setTimeout(()=>{
+          this.loading = false;
+        this.toastr.error(err.error);
+        this.loginform.reset();
+        },3000)
+        
     });
     
     
@@ -74,7 +78,7 @@ export class LoginScreenComponent implements OnInit
     setTimeout(()=>{
     this.router.navigateByUrl('patient-register');
     }
-    ,2000)}
+    ,1000)}
 
   ngOnInit(): void
   {

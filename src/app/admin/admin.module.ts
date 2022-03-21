@@ -29,7 +29,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EmpRoleUserPipe } from "../shared/emp-role-user.pipe";
-
+import { StatsComponent } from './Components/stats/stats.component';
+import { GaugeModule } from 'angular-gauge';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { EmpRoleUserPipe } from "../shared/emp-role-user.pipe";
     PatientListComponent,
     EmpRegistrationComponent,
     ConfirmDialogComponent,
+    StatsComponent,
   ],
   imports: [
     CommonModule,
@@ -62,8 +64,8 @@ import { EmpRoleUserPipe } from "../shared/emp-role-user.pipe";
     MatSortModule,
     MatGridListModule,
     MatDialogModule,
-    MatTooltipModule
-    
+    MatTooltipModule,
+    [GaugeModule.forRoot()],
     
   ],
  

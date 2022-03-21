@@ -30,6 +30,9 @@ export class AdminHeaderComponent implements OnInit {
   click_patient_list(){
     this.router.navigateByUrl('admin/patientlist');
   }
+  click_stats(){
+    this.router.navigateByUrl('admin/stats');
+  }
   click_change_password(){
     this.router.navigateByUrl('admin/ChangePassword');
   }
