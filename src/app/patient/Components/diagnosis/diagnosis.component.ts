@@ -26,8 +26,8 @@ export class DiagnosisComponent implements OnInit {
     private auth: AuthService,private consultingService :ConsultingService) { }
   public data:DiagnosisDetailsModel[]=[];
   
-  public dcode:string="";
-  public dname:string="";
+  public diag_code:string="";
+  public diag_name:string="";
   public ddate:Date=new Date();
   public isDataNotfound:boolean=false;
   public pid: string = '';
@@ -86,8 +86,8 @@ export class DiagnosisComponent implements OnInit {
     //   }
     // );
   fillDiagnosisForm(data: any) {
-    this.patientDiagnosisTable.controls['dcode'].setValue(data?.title);
-    this.patientDiagnosisTable.controls['dname'].setValue(data?.firstName);
+    this.patientDiagnosisTable.controls['diag_code'].setValue(data?.title);
+    this.patientDiagnosisTable.controls['diag_name'].setValue(data?.firstName);
     this.patientDiagnosisTable.controls['ddate'].setValue(data?.lastName);
   
   }
@@ -100,6 +100,7 @@ export class DiagnosisComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log(res);
+          this.patientDiagnosisTable.reset();
         },
         (err) => {
           console.log('Error occurred ', err);

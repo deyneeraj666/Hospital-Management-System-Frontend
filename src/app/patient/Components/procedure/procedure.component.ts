@@ -18,8 +18,8 @@ export class ProcedureComponent  implements OnInit {
   constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService,private consultingService :ConsultingService) { }
   //ELEMENT_DATA: PeriodicElement[]= [];
 
-  public PName:string='';
-  public PCode:string='';
+  public ProcedureName:string='';
+  public ProcedureCode:string='';
   public Date:Date=new Date();
   public pid: string = '';
   public apptid:number=0;
@@ -70,7 +70,7 @@ deleteproduct_click(index:number){
       .subscribe(
         (res) => {
           console.log(res);
-          
+          this.ProcedureGroup.reset();
         },
         (err) => {
           console.log('Error occurred ', err);

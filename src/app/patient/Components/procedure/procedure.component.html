@@ -8,25 +8,23 @@
             </mat-card>
             <div style="margin-top: 3%;margin-left: 25%;">
                 <div>
-                <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50">
+                <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50" required>
                     <mat-label>Procedure Name</mat-label>
-                    <select matNativeControl required (change)="procedureNameChangeHandler(select.value)" #select [(ngModel)]="PName" formControlName="ProcedureName">
-                        <!-- <option value="Procedure1">Procedure 1</option>
-                        <option value="Procedure2">Procedure 2</option>
-                        <option value="Procedure3">Procedure3</option> -->
-                        <option *ngFor="let item of procedureName" value="{{item.procedureName}}">{{item.procedureName}}</option>
+                    <select matNativeControl id="" (change)="procedureNameChangeHandler(select.value)" #select formControlName="ProcedureName">
+                        
+                        <option *ngFor="let item of procedureName" [value]="item.procedureName">{{item.procedureName}}</option>
                     </select>
                 </mat-form-field>
                 </div>
                 <br>
                 <div>
-                <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50">
+                <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50" required>
                     <mat-label class="label">Procedure Code</mat-label>
-                    <select matNativeControl required [(ngModel)]="PCode" formControlName="ProcedureCode"  name="select">
-                        <!-- <option value="Code1">Code 1</option>
-                        <option value="Code2">Code 2</option>
-                        <option value="Code3">Cpde 3</option> -->
-                        <option *ngFor="let type of procedureCode" value="{{procedureCode}}">{{procedureCode}}</option>
+                    <select matNativeControl #select  id="" formControlName="ProcedureCode">
+                        
+                        <!-- <option *ngFor="let type of procedureCode" [value]="type.procedureCode">{{type.procedureCode}}</option> -->
+                        <option selected>--Select Code--</option>
+                        <option *ngFor="let type of procedureCode" [value]="type">{{type}}</option>
                     </select>
                 </mat-form-field>
             </div>
@@ -35,7 +33,7 @@
                 <br>
                 <div class="example-button-row">
                     <!-- [disabled]="((procedure.errors!=null && procedure.errors['required'] )|| ( code.errors!=null && (code.dirty || code.errors['required'])) ? true:false)" -->
-                    <button style="width: 80px;background-color: green;color: white;" mat-raised-button color="primary" id="btnadd" (click)="btnadd_click()" [disabled]="( ( this.PName==null) || ( this.PCode==null) ?true:false )">Add</button>
+                    <button style="width: 80px;background-color: green;color: white;" mat-raised-button color="primary" id="btnadd" (click)="btnadd_click()">Add</button>
                     <button style="width: 80px;background-color: rgba(10, 102, 163, 0.897);"  mat-raised-button color="primary" id="btncancel" (click)="btncancel_click()">Reset</button>
                 </div>
     </div>

@@ -15,24 +15,24 @@
                     </select>
                     
                 </mat-form-field>
-                <mat-form-field appearance="fill" style="width: 250px;" class="no-bottom input1-class">
+                <mat-form-field appearance="fill" style="width: 250px;" class="no-bottom input1-class" required>
                     <mat-label class="label">Frequency</mat-label>
                     <input matInput type="text" formControlName="Frequency" [(ngModel)]="Frequency">
                 </mat-form-field>   
                 </div>
                 <br>
                 <div>
-                    <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50 dropdown1-style">
+                    <mat-form-field appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50 dropdown1-style" required>
                         <mat-label class="label">Strength</mat-label>
                         <select matNativeControl formControlName="Strength" [(ngModel)]="Strength">
-                           
+                            <option selected>--Select Strength--</option>
                             <option *ngFor="let type of drugDetails" value="{{type.drugStrength}}">{{type.drugStrength}}</option>
                         </select>
                     </mat-form-field>
-                    <mat-form-field  appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50 dropdown-style">
+                    <mat-form-field  appearance="fill" style="width: 250px;"  class="no-bottom dropdown mw-50 dropdown-style" required>
                         <mat-label class="label">Form</mat-label>
                         <select matNativeControl formControlName="Form" [(ngModel)]="Form">
-                            
+                            <option selected>--Select Form--</option>
                             <option *ngFor="let type of drugDetails" value="{{type.drugForm}}">{{type.drugForm}}</option>
                         </select>
                     </mat-form-field>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div style="padding-top: 5%;">
-                    <button [disabled]="patientMedicationTable.invalid" (click)="add_medications()" style="background-color:green ;width:10%;color:white;margin-bottom: 5%;margin-left: 26.5%;" mat-raised-button>Add</button>
+                    <button (click)="add_medications()" style="background-color:green ;width:10%;color:white;margin-bottom: 5%;margin-left: 26.5%;" mat-raised-button>Add</button>
                     <button (click)="remove_medications()" style="background-color:rgba(10, 102, 163, 0.897) ;color:white;margin-bottom: 7%;margin-left: 7%;" mat-raised-button>Reset</button>
                    
                 </div>
