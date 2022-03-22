@@ -14,7 +14,7 @@
       <button mat-icon-button class="navbtn" (click)="click_patientVisit()" [ngStyle]="option ==9?{'opacity':1}:{'opacity':0.6}">Visits</button>
      
     </div>
-    <span style="color: aliceblue; opacity: 0.4; padding-left: 5px; margin-left:390px;font-size: 12px;" *ngIf="authService.role!='Physician'">Welcome,{{authService.UserName}} !</span>
+    <span style="color: aliceblue; opacity: 0.4; padding-left: 5px; margin-left:370px;font-size: 12px;" *ngIf="authService.role!='Physician'">Welcome,{{authService.UserName}} !</span>
     <span style="color: aliceblue; opacity: 0.4; padding-left: 5px;margin-left:142px;font-size: 12px;" *ngIf="authService.role!='Patient'  && authService.role!='Nurse'">Welcome,{{authService.UserName}} !</span>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" style="background-color:rgba(10, 102, 163, 0.897); margin-left: 10px;" data-bs-toggle="dropdown" >

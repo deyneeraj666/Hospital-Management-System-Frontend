@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 // import { timingSafeEqual } from 'crypto';
 import { MedicationsModel } from 'src/app/Models/MedicationModel';
 
@@ -16,7 +17,7 @@ export class MedicationsComponent implements OnInit {
 
   option:number=8;
   constructor(private medicationService: Medication_Service,
-    private auth: AuthService,private consultingService :ConsultingService) { }
+    private auth: AuthService,private consultingService :ConsultingService,private toaster:ToastrService) { }
   public data:MedicationsModel[]=[];
   public pid: string = '';
   public apptid:number=0;
@@ -72,6 +73,7 @@ export class MedicationsComponent implements OnInit {
         (res) => {
           console.log(res);
           this.patientMedicationTable.reset();
+          this.toaster.success("Medication is Added");
         },
         (err) => {
           console.log('Error occurred ', err);

@@ -23,7 +23,7 @@ export class DiagnosisComponent implements OnInit {
   //readonly Url = 'http://localhost:12207/api/Diagnosis';
   option:number=6;
   constructor(private diagnosisServide: Diag_Service,
-    private auth: AuthService,private consultingService :ConsultingService) { }
+    private auth: AuthService,private consultingService :ConsultingService, private toaster:ToastrService) { }
   public data:DiagnosisDetailsModel[]=[];
   
   public diag_code:string="";
@@ -101,6 +101,7 @@ export class DiagnosisComponent implements OnInit {
         (res) => {
           console.log(res);
           this.patientDiagnosisTable.reset();
+          this.toaster.success("Diagnosis is Added");
         },
         (err) => {
           console.log('Error occurred ', err);
@@ -157,8 +158,3 @@ export class DiagnosisComponent implements OnInit {
     );
   }
 }
-
-// const ELEMENT_DATA: DiagnosisDetailsModel[]= [
-//   {pid:"11",diag_code: "22.1", diag_name: 'Fever', ddate:new Date(),AppointmentId:"11"},
-//   {pid:"12",diag_code:"111.2", diag_name: 'Cough', ddate: new Date(),AppointmentId:"12" },
-//  ];

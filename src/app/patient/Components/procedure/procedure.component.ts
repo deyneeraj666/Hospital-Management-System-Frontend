@@ -15,7 +15,7 @@ import { ConsultingService } from 'src/app/Shared/consulting.service';
 })
 export class ProcedureComponent  implements OnInit {
   option:number=7;
-  constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService,private consultingService :ConsultingService) { }
+  constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService,private consultingService :ConsultingService,private toaster:ToastrService) { }
   //ELEMENT_DATA: PeriodicElement[]= [];
 
   public ProcedureName:string='';
@@ -71,6 +71,7 @@ deleteproduct_click(index:number){
         (res) => {
           console.log(res);
           this.ProcedureGroup.reset();
+          this.toaster.success("Procedure is Added");
         },
         (err) => {
           console.log('Error occurred ', err);
