@@ -22,7 +22,7 @@ export class ForgotPasswordComponent implements OnInit
   disableOption1=true;
   disableOption2=false;
   time:number=60;
-  
+  loading_reg=false;
   constructor(private user: UsermanagementService, private router:Router,private toastr:ToastrService)
   {
 
@@ -46,14 +46,17 @@ export class ForgotPasswordComponent implements OnInit
         var obj={
           "email":this.forgotPasswordForm.controls.email.value
         }
+        this.loading_reg=true;
         this.user.getOtp_service(obj).subscribe((res:any)=>{
         },(err:any)=>{
           if(err.status == 200)
           {
+           
             this.toastr.success(err.error.text);
             setTimeout(()=>{
               this.disableOption1=false;
               this.disableOption2=true;
+              this.loading_reg=false;
             },1000)
             
           }
@@ -69,6 +72,7 @@ export class ForgotPasswordComponent implements OnInit
       }
       validiateOtp()
       {
+        this.loading_reg=true;
         var obj={
           "email":this.forgotPasswordForm.controls.email.value,
           "OTP":this.otpPasswordForm.controls.otp.value,
@@ -79,8 +83,9 @@ export class ForgotPasswordComponent implements OnInit
         },(err:any)=>{
           if(err.status == 200)
           {
-            this.toastr.success(err.error.text);
+            
             setTimeout(()=>{
+              this.toastr.success(err.error.text);
               this.router.navigateByUrl('')
             },3000)
             
@@ -89,10 +94,16 @@ export class ForgotPasswordComponent implements OnInit
             this.toastr.error(err.error);
             this.disableOption1=true;
             this.disableOption2=false;
+            this.loading_reg=false;
           }
           else
           {
-            this.toastr.warning(err.error);
+            setTimeout(()=>{
+              this.toastr.warning(err.error);
+             this.loading_reg=false;
+             this.otpPasswordForm.reset();
+            },3000)
+            
             
           }
         })

@@ -40,6 +40,7 @@ export class LoginScreenComponent implements OnInit
               }
               else if(res.items.role == "nurse" ||res.items.role == "physician")
               {
+                
                 this.router.navigateByUrl(res.items.role+"/appointment");
               }
               else
