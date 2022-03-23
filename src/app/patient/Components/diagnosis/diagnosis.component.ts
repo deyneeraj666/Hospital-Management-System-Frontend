@@ -9,8 +9,10 @@ import { MatPaginator } from '@angular/material/paginator';
 // import { Diag_Service } from 'src/app/Shared/diag.service';
 
 import { AuthService } from 'src/app/Shared/auth.service';
-import { Diag_Service } from 'src/app/Service/diagnosis.service';
+
 import { DiagnosisDetailsModel } from 'src/app/Models/DiagnosisModel';
+import { Diag_Service } from 'src/app/Service/diagnosis.service';
+import { ConsultingService } from 'src/app/Shared/consulting.service';
 
 @Component({
   selector: 'app-diagnosis',
@@ -21,22 +23,25 @@ export class DiagnosisComponent implements OnInit {
   //readonly Url = 'http://localhost:12207/api/Diagnosis';
   option:number=6;
   constructor(private diagnosisServide: Diag_Service,
-    private auth: AuthService) { }
+    private auth: AuthService,private consultingService :ConsultingService, private toaster:ToastrService) { }
   public data:DiagnosisDetailsModel[]=[];
   
-  public dcode:string="";
-  public dname:string="";
+  public diag_code:string="";
+  public diag_name:string="";
   public ddate:Date=new Date();
   public isDataNotfound:boolean=false;
   public pid: string = '';
+  public appid:number=0;
   public diagnosisName: any[] = [];
   public diagnosisCode: any[] = [];
+  public id:number=0;
   // dataSource = new MatTableDataSource<Diagnosis>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   ngOnInit(): void {
-    this.pid = this.auth.Id;
-    //this.dataSource.paginator = this.paginator;
-    this.pid = this.auth.Id;
+    this.pid = this.consultingService.consultingPId;
+    this.appid=this.consultingService.consultingApptId;
+        //this.dataSource.paginator = this.paginator;
+    //this.pid = this.auth.Id;
     //this.diagnosisCodeChangeHandler();
     
     this.diagnosisServide.getdiagnosis().subscribe(
@@ -50,8 +55,24 @@ export class DiagnosisComponent implements OnInit {
       }
     );
 
-       
+      this.refreshGrid(); 
       
+  }
+  refreshGrid() {
+    this.diagnosisServide.getDiagnosisDetailsByPatientId(this.pid).subscribe(
+      (res: any) => {
+        let newData = res.map((i: any) => {
+          return {
+            diag_code: i.diag_code,
+            diag_name: i.diag_name,
+            
+          };
+        });
+
+        this.data = newData;
+      },
+      (err) => {}
+    );
   }
   // this.diagnosisServide.getDiagnosisDetailsByPatientId(this.pid).subscribe(
     //   (res) => {
@@ -65,19 +86,22 @@ export class DiagnosisComponent implements OnInit {
     //   }
     // );
   fillDiagnosisForm(data: any) {
-    this.patientDiagnosisTable.controls['dcode'].setValue(data?.title);
-    this.patientDiagnosisTable.controls['dname'].setValue(data?.firstName);
+    this.patientDiagnosisTable.controls['diag_code'].setValue(data?.title);
+    this.patientDiagnosisTable.controls['diag_name'].setValue(data?.firstName);
     this.patientDiagnosisTable.controls['ddate'].setValue(data?.lastName);
   
   }
   
   public btn_Add(){ 
+
     this.data.push(this.patientDiagnosisTable.value);
     this.diagnosisServide
-      .DiagnosisDetailsModel(this.patientDiagnosisTable.value,this.pid,this.auth.Id)
+      .DiagnosisDetailsModel(this.patientDiagnosisTable.value,this.pid,this.appid)
       .subscribe(
         (res) => {
           console.log(res);
+          this.patientDiagnosisTable.reset();
+          this.toaster.success("Diagnosis is Added");
         },
         (err) => {
           console.log('Error occurred ', err);
@@ -93,6 +117,7 @@ export class DiagnosisComponent implements OnInit {
     // this.dname="";
     //this.ddate=new Date();
     this.patientDiagnosisTable.reset();
+    
   }
   
   public patientDiagnosisTable:FormGroup=new FormGroup({
@@ -103,9 +128,22 @@ export class DiagnosisComponent implements OnInit {
       Validators.required
     ]),    
   })
-  deleteproduct_click(index:number){
-    this.data.splice(index,1);
-    this.diagnosisServide.deleteDiagDetails(this.auth.Id);
+  deleteproduct_click(id:number){
+    this.data.splice((id+1),1);
+    // this.diagnosisServide.deleteDiagDetails(id);
+    // if( confirm("Are you sure you want to delete?"))
+    // {
+    //   this.diagnosisServide.deleteDiagDetails(id).subscribe(
+    //     (res) => {
+    //       let index: number = this.data.findIndex((x) => x.id == id);
+    //       this.data.splice(index, 1);
+    //     },
+    //     (err) => {
+    //       console.log(err);
+          
+    //     }
+    //   );
+    // }
   }
   diagnosisCodeChangeHandler(value: string) {
     this.diagnosisServide.getDiagnosisCodeByType(value).subscribe(
@@ -120,8 +158,3 @@ export class DiagnosisComponent implements OnInit {
     );
   }
 }
-
-const ELEMENT_DATA: DiagnosisDetailsModel[]= [
-  {pid:"11",diag_code: "22.1", diag_name: 'Fever', ddate:new Date(),AppointmentId:11},
-  {pid:"12",diag_code:"111.2", diag_name: 'Cough', ddate: new Date(),AppointmentId:12 },
- ];

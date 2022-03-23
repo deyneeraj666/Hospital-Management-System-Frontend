@@ -8,9 +8,10 @@ import { MedicationsModel } from '../Models/MedicationModel';
 })
 export class Medication_Service{
     readonly Url = 'http://localhost:52993/api/Medications';
+    readonly mediUrl = 'http://localhost:52993/api/MedicationsDetails';
     constructor(private http:HttpClient) {}
 
-    MedicationsModel(mediDetails: MedicationsModel,pid:string) {
+    MedicationsModel(mediDetails: MedicationsModel,pid:string,appid:number) {
     let mediDetailsData=
       {
         "PatientId": pid,
@@ -21,7 +22,7 @@ export class Medication_Service{
         "Form":mediDetails.Form,
         "Quantity":mediDetails.Quantity,
         "Notes":mediDetails.Notes,
-        "AppointmentId":"2006"
+        "AppointmentId":appid
     }
     return  this.http.post(this.Url,mediDetailsData);
   }
@@ -29,14 +30,15 @@ export class Medication_Service{
     const url =`${this.Url}/${pid}`;
     return this.http.get(url);
   }
-  getmedications()
+  getmedications():Observable<any>
   {
-     this.http.get("http://localhost:52993/api/Medications/GetallMedications")
-           .subscribe(response =>{
-            const datas=(<any> response);
-            console.log(datas);
-          });
+    const url=this.mediUrl;
+    return this.http.get(url);
 
 
+  }
+  getDrugDetailsByName(name:string):Observable<any>{
+    const url =`${this.mediUrl}/${name}`;
+    return this.http.get(url);
   }
 }

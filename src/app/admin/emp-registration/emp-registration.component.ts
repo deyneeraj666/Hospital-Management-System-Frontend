@@ -54,7 +54,7 @@ export class EmpRegistrationComponent
              setTimeout(() => {
               this.user.employee_register_service(obj).subscribe((res:any)=>
               {
-                this.toastr.success("Employee Added!");
+                this.toastr.success("User Added!");
                 this.empRegistrationForm.reset();
                 this.onClose();
               },(err:any)=>{

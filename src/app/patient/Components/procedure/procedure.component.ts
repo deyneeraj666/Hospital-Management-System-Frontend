@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { Procedure } from 'src/app/Models/Procedure';
 import { Procedure_Service } from 'src/app/Service/procedure.service';
 import { AuthService } from 'src/app/Shared/auth.service';
+import { ConsultingService } from 'src/app/Shared/consulting.service';
 @Component({
   selector: 'app-procedure',
   templateUrl: './procedure.component.html',
@@ -14,14 +15,19 @@ import { AuthService } from 'src/app/Shared/auth.service';
 })
 export class ProcedureComponent  implements OnInit {
   option:number=7;
-  constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService) { }
+  constructor(private toastr:ToastrService, private procService: Procedure_Service,private auth: AuthService,private consultingService :ConsultingService,private toaster:ToastrService) { }
   //ELEMENT_DATA: PeriodicElement[]= [];
+
   public ProcedureName:string='';
   public ProcedureCode:string='';
+  public Date:Date=new Date();
   public pid: string = '';
-  
+  public apptid:number=0;
+  public data:Procedure[]=[];
+  public procedureName: any[] = [];
+  public procedureCode: any[] = [];
   id:number=4;
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator !: MatPaginator;
  
   
@@ -32,53 +38,68 @@ export class ProcedureComponent  implements OnInit {
     ProcedureCode : new FormControl("", [
       Validators.required
    ]),
+   
   })
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
-    // /this.getProc();
-    this.pid = this.auth.Id;
+
+    this.pid = this.consultingService.consultingPId;
+    this.apptid=this.consultingService.consultingApptId;
+    this.procService.getprocedure().subscribe(
+      (res) => {
+       this.procedureName = res;
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+        console.log('Error occurred');
+      }
+    );
   } 
-getProc() {
-  this.procService.getprocedure();
+// getProc() {
+//   this.procService.getprocedure();
+// }
+deleteproduct_click(index:number){
+  this.data.splice(index,1);
+  //this.ProcedureGroup.deleteDiagDetails(this.auth.Id);
 }
   btnadd_click()
   {
-    ELEMENT_DATA.push(this.ProcedureGroup.value);
+    this.data.push(this.ProcedureGroup.value);
     this.procService
-      .Procedure(this.ProcedureGroup.value,this.pid)
+      .Procedure(this.ProcedureGroup.value,this.pid,this.apptid)
       .subscribe(
         (res) => {
           console.log(res);
-          
+          this.ProcedureGroup.reset();
+          this.toaster.success("Procedure is Added");
         },
         (err) => {
           console.log('Error occurred ', err);
           this.ProcedureGroup.reset();
         }
       );
-    //this.toastr.success('Procedure Added Successfully !')
+    
   }
   btncancel_click()
   {
-    // this.procedure.reset();
-    // this.code.reset();
-    this.ProcedureGroup.reset();
+     this.ProcedureGroup.reset();
   }
-  deleteproduct_click(index:number){
-  // this.ProcedureGroup.
-  this.dataSource.data.splice(index,1);
-  }
+  
+  procedureNameChangeHandler(value: string) {
+    this.procService.getProcedureNameByType(value).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.procedureCode = res;
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+  
  
-  displayedColumns: string[] = ['code', 'name', 'date'];
+ }
 }
-const ELEMENT_DATA: Procedure[] =[];
-// const ELEMENT_DATA: PeriodicElement[] =[];
-//allergiesArray: Allergy[] = [];
-//const ELEMENT_DATA: PeriodicElement[]= [];
-  // {ProcedureCode: 1, ProcedureName: 'Hydrogen', Date:new Date()},
-  // {ProcedureCode: 2, ProcedureName: 'Helium', Date: new Date() },
-  // {ProcedureCode: 3, ProcedureName: 'Lithium', Date:new Date()}
- 
 
 export interface PeriodicElement {
   ProcedureName: string;

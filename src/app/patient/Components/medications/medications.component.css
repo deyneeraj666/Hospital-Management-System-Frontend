@@ -84,13 +84,13 @@ th{
 background-color:   #f3f3f3;;
 }
 .input1-class{
-    padding-left: 10%;
+    margin-left: 10%;
     
 }
-.dropdown1-style{
+/* .dropdown1-style{
     padding-left: 10%;
     
-}
+} */
 .border-style{
     width:80%;
     border: 1px solid rgba(10, 102, 163, 0.897);
@@ -98,7 +98,7 @@ background-color:   #f3f3f3;;
 }
 .dropdown-style{
     
-    padding-left: 10%;
+    margin-left: 10%;
     
 }
 .em-header {
@@ -141,5 +141,8 @@ background-color:   #f3f3f3;;
 }
 .label{
     color: black;
+}
+.no-bottom{
+    margin-bottom: -1.25rem !important;
 }
 

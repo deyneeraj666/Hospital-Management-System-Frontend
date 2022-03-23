@@ -1,6 +1,6 @@
-export interface Procedure {
-    ProcedureName: string;
-    ProcedureCode: number;
-    Date: Date;
-    AppointmentId:string;
+export class Procedure {
+    ProcedureName: string="";
+    ProcedureCode: string="";
+    date:Date=new Date();
+    AppointmentId:number=0;
   }

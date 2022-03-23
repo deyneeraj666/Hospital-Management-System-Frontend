@@ -53,7 +53,7 @@ export class EmployeeRegistrationComponent implements OnInit {
 
         this.user.employee_register_service(obj).subscribe((res:any)=>{
 
-          this.toastr.success("Employee Added!");
+          this.toastr.success("User Added!");
           this.empRegistrationForm.reset();
         },(err:any)=>{
           this.toastr.error("Email-Id Already Exists!");

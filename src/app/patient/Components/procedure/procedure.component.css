@@ -1,10 +1,10 @@
-.mw-50{
+/* .mw-50{
     width: 30% !important; 
     margin-left: 73px  !important;
     margin-right: 2.5%  !important;
- }
+ } */
  #btnadd{
-     margin-left: 38% !important;
+     margin-left: 32.5% !important;
  }
  #btncancel{
       margin-left: 3% !important; 
@@ -45,8 +45,8 @@
    .first-div{
     border: 1.5px solid rgba(10, 102, 163, 0.897);
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
-    width: 70%;
-    margin-left: 15%
+    width: 40%;
+    margin-left: 30%
    }
    .mat_style{
     width: 160%;
@@ -79,7 +79,7 @@
     }
     .example-button-row{
         padding-bottom: 2%;
-        padding-left: 30px;
+        /* padding-left: 10px; */
     }
     .dropdown-style{
         width: 1%;
@@ -89,4 +89,36 @@
     }
     .label{
         color: black;
+    }
+    .table-first{
+        box-shadow: 4px 4px 4px 4px rgba(0, 0, 255, .2);
+        border: 1px solid rgba(10, 102, 163, 0.897);
+        
+    }
+    .em-header2{
+        width: 92.5%;
+        color: rgba(10, 102, 163, 0.897);
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 3%;
+        
+    }
+    .table-head>*, .table-row>*{
+        flex-basis: 100%;
+    }
+    th{
+        color: rgba(10, 102, 163, 0.897);
+        
+    }
+    /* .td-first-date{
+        align-items: center;
+         padding-left: 3%; 
+    } 
+    .td-first{
+        align-items: center;
+        padding-left: 7%;
+    }     */
+
+    .no-bottom{
+        margin-bottom: -1.25rem !important;
     }
