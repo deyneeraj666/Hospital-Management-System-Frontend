@@ -6,6 +6,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { NotesComponent } from './notes/notes.component';
 import { PhysicianHeaderComponent } from './physician-header/physician-header.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DemographicComponent } from "../patient/Components/demographic/demographic.component";
 
 const routes: Routes = [
   {path:'login/physician',component:PhysicianHeaderComponent,canActivate:[PhysicianGuard]},
@@ -13,6 +14,8 @@ const routes: Routes = [
   {path:'physician/notes',component:NotesComponent,canActivate:[PhysicianGuard]},
   {path:'physician/profile',component:ProfileComponent,canActivate:[PhysicianGuard]},
   {path:'physician/ChangePassword',component:ChangePasswordComponent,canActivate:[PhysicianGuard]},
+  {path:'physician/PatientDetails',component:DemographicComponent},
+
   {path:'**',redirectTo:'LoginScreenComponent'}
 ];
 

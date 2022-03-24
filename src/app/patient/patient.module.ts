@@ -28,6 +28,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatRadioModule } from "@angular/material/radio";
 import { PatientVisitComponent } from './Components/patient-visit/patient-visit.component';
+import { VisitDialogComponent } from './Components/visit-dialog/visit-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
 
 
 
@@ -43,7 +45,8 @@ import { PatientVisitComponent } from './Components/patient-visit/patient-visit.
     DiagnosisComponent,
     MedicationsComponent,
     AllergyGridComponent,
-    PatientVisitComponent
+    PatientVisitComponent,
+    VisitDialogComponent
     
   ],
   imports: [
@@ -64,7 +67,8 @@ import { PatientVisitComponent } from './Components/patient-visit/patient-visit.
     MatPaginatorModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatOptionModule
+    MatOptionModule,
+    MatDialogModule
   ],
   exports:[
     PatientHeaderComponent,
@@ -75,7 +79,8 @@ import { PatientVisitComponent } from './Components/patient-visit/patient-visit.
     AppointmentComponent,
     ProcedureComponent,
     AllergyGridComponent,
-    PatientVisitComponent
+    PatientVisitComponent,
+    VisitDialogComponent
   ],
 })
 export class PatientModule{ }

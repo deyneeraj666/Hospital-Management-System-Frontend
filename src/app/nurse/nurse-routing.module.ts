@@ -6,6 +6,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { NotesComponent } from './notes/notes.component';
 import { NurseHeaderComponent } from './nurse-header/nurse-header.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DemographicComponent } from "../patient/Components/demographic/demographic.component";
 
 const routes: Routes = [
   {path:'login/nurse',component:NurseHeaderComponent,canActivate:[NurseGuard]},
@@ -13,6 +14,8 @@ const routes: Routes = [
   {path:'nurse/notes',component:NotesComponent,canActivate:[NurseGuard]},
   {path:'nurse/profile',component:ProfileComponent,canActivate:[NurseGuard]},
   {path:'nurse/ChangePassword',component:ChangePasswordComponent,canActivate:[NurseGuard]},
+  {path:'nurse/PatientDetails',component:DemographicComponent},
+
   {path:'**',redirectTo:'LoginScreenComponent'}
 ];
 

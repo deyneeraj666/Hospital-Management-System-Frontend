@@ -8,9 +8,9 @@
     </div>
     <br>
     <br>
-    <button mat-flat-button *ngIf="user.opt==1" style="background-color:green; color:white" [mat-dialog-close]="true" (click)="delete_emp()">YES</button>
-    <button mat-flat-button *ngIf="user.opt==2" style="background-color:green; color:white" [mat-dialog-close]="true" (click)="block_emp()">YES</button>
-    <button mat-flat-button *ngIf="user.opt==3" style="background-color:green; color:white" [mat-dialog-close]="true" (click)="unlock_emp()">YES</button>
+    <button mat-flat-button *ngIf="user.opt==1" style="background-color:green; color:white"  [class.spinner]="loading1" [disabled]="loading1" (click)="delete_emp()">YES</button>
+    <button mat-flat-button *ngIf="user.opt==2" style="background-color:green; color:white" [class.spinner]="loading2" [disabled]="loading2"  (click)="block_emp()">YES</button>
+    <button mat-flat-button *ngIf="user.opt==3" style="background-color:green; color:white" [class.spinner]="loading3" [disabled]="loading3" (click)="unlock_emp()">YES</button>
     <button mat-flat-button  style="background-color:red; color:white; margin-left: 20px;" [mat-dialog-close]="false" >NO</button>
    
   </div>

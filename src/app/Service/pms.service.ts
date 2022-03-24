@@ -5,6 +5,7 @@ import { Allergy } from '../Models/Allergy';
 import { savePatientEmergencyInfo } from '../Models/Emergency';
 
 import { savePatientDemographicInfo } from '../Models/PatientModuleModels';
+import { savePatientVitalInfo } from '../Models/Vital';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,13 @@ export class PmsService {
 
   readonly Url = 'http://localhost:64193/api/Demographics';
   readonly EmergencyUrl ='http://localhost:64193/api/EmergencyDetails';
-  readonly AllergyUrl ='https://localhost:44340/api/Allergies';
-  readonly PatientAllergy='https://localhost:44340/api/PatientAllergies';
- 
+  readonly AllergyUrl ='https://localhost:44338/api/Allergies';
+  readonly PatientAllergy='https://localhost:44338/api/PatientAllergies';
+  readonly PatientVital='http://localhost:49526/api/Vitals';
+  readonly PatientDiagnosis='http://localhost:12207/api/Diagnosis';
+  readonly PatientProcedure='https://localhost:44364/api/Procedures';
+  readonly PatientMEdication='http://localhost:52993/api/Medications';
+
 
  
   constructor(private http:HttpClient) {}
@@ -102,4 +107,41 @@ export class PmsService {
     return this.http.get(url);
   }
   
+
+  getVitalDetailsByAppointmentId(appointmentId:number):Observable<any>{
+    const url =`${this.PatientVital}/${appointmentId}`;
+    return this.http.get(url);
+  }
+
+  savePatientVitalInfo(vitalInfo: savePatientVitalInfo,pid:string,apptId:number) {
+    let vitalData=
+      {
+        "patientId": pid,
+        "appointmentId": apptId,
+        "weight": vitalInfo.weight,
+        "height": vitalInfo.height,
+        "temperature": vitalInfo.temperature,
+        "systolic": vitalInfo.systolic,
+        "diastolic": vitalInfo.diastolic,
+        "respiratoryRate": vitalInfo.respiratoryRate,
+      
+    }
+    return  this.http.post(this.PatientVital,vitalData);
+  }
+
+  getDiagnosisDetailsByAppointmentId(appointmentId:number):Observable<any>{
+    const url =`${this.PatientDiagnosis}/${appointmentId}`;
+    return this.http.get(url);
+  }
+
+  getProcedureDetailsByAppointmentId(appointmentId:any):Observable<any>{
+    const url =`${this.PatientProcedure}/${appointmentId}`;
+    return this.http.get(url);
+  }
+
+  getMedicationDetailsByAppointmentId(appointmentId:any):Observable<any>{
+    const url =`${this.PatientMEdication}/${appointmentId}`;
+    return this.http.get(url);
+  }
+
 }

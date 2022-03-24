@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Allergy } from 'src/app/Models/Allergy';
 import { PmsService } from 'src/app/Service/pms.service';
 import { AuthService } from 'src/app/Shared/auth.service';
+import { ConsultingService } from 'src/app/Shared/consulting.service';
 
 @Component({
   selector: 'app-allergy-info',
@@ -21,11 +22,16 @@ export class AllergyInfoComponent implements OnInit {
   constructor(
     private pmsService: PmsService,
     private toastr: ToastrService,
-    private auth: AuthService
+    private auth: AuthService,
+    private consultingService: ConsultingService
   ) {}
 
   ngOnInit(): void {
-    this.pid = this.auth.Id;
+    //  this.pid = this.auth.Id;
+    this.pid =
+      this.auth.role === 'Patient'
+        ? this.auth.EmpId
+        : this.consultingService.consultingPId;
 
     this.pmsService.getAllergy().subscribe(
       (res) => {
@@ -61,7 +67,6 @@ export class AllergyInfoComponent implements OnInit {
   }
 
   allergyNameChangeHandler(value: string) {
-
     this.pmsService.getAllergyNamesByType(value).subscribe(
       (res: any) => {
         this.allergyNames = res;
@@ -104,6 +109,4 @@ export class AllergyInfoComponent implements OnInit {
   onCancel() {
     this.patientAllergyForm.reset();
   }
-
-
 }

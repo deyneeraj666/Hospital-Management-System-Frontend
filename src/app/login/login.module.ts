@@ -10,7 +10,7 @@ import { RegisterComponent } from './LoginComponents/register/register.component
 import { ForgotPasswordComponent } from './LoginComponents/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './LoginComponents/change-password/change-password.component';
 import { LoginScreenComponent } from './LoginComponents/login-screen/login-screen.component';
-import { ReactiveFormsModule, FormGroup } from "@angular/forms";
+import { ReactiveFormsModule, FormGroup, FormsModule } from "@angular/forms";
 import { LoginRoutingModule } from './login-routing.module';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
@@ -53,7 +53,7 @@ import { CountdownModule } from "ngx-countdown";
     ),
     MatDatepickerModule,
     MatRadioModule,
-    CountdownModule 
+    CountdownModule
     
   ],
   

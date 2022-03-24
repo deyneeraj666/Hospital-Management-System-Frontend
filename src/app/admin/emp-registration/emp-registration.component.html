@@ -64,19 +64,20 @@
                 <br>
                 <span *ngIf="empRegistrationForm.controls['phoneNumber'].invalid &&empRegistrationForm.controls['phoneNumber'].dirty">**Required</span>
                 <br>
-                <mat-form-field class="no-bottom" appearance="fill" style="width: 250px">
+                <mat-form-field class="no-bottom"  appearance="fill" style="width: 250px">
                     <mat-label class="label">Role</mat-label>
-                    <select matNativeControl  [ngStyle]="user.set==2?{'display':'none','opacity':0.3}:{'opacity':0.6}"  formControlName="role" class="input-field">
+                    <select matNativeControl [ngStyle]="user.set==2?{'display':'none','opacity':0.3}:{'opacity':0.6}"  formControlName="role" class="input-field">
                       <option *ngIf="user.emp_pat_list==1" value=""></option>
-                      <option *ngIf="user.emp_pat_list==1" value="Physician">Physician</option>
+                      <option *ngIf="user.emp_pat_list==1"  value="Physician">Physician</option>
                       <option *ngIf="user.emp_pat_list==1" value="Nurse">Nurse</option>
                       <option *ngIf="user.emp_pat_list==1" value="Admin">Admin</option>
                       <option *ngIf="user.emp_pat_list==2" value="Patient">Patient</option>
-
                     </select>
                 </mat-form-field>
+
+               
                 <div style="margin-top: 40px;">
-                    <button mat-stroked-button style="background-color:green;color:white; width: 80px; margin-left: 15px;" (click)="click_submit()"  [ngStyle]="empRegistrationForm.invalid?{'background-color':'white','color':'green'}:{'background-color':'green','color':'white'}">Submit</button>
+                    <button mat-stroked-button style="background-color:green;color:white; width: 80px; margin-left: 15px;" (click)="click_submit()" [class.spinner]="loading" [disabled]="loading" [ngStyle]="empRegistrationForm.invalid?{'background-color':'white','color':'green'}:{'background-color':'green','color':'white'}">Submit</button>
                     <button  mat-stroked-button  style="width: 80px;color: white; background-color:red; margin-left: 40px;" (click)="click_reset()">Reset</button>
                 </div>
             </div>

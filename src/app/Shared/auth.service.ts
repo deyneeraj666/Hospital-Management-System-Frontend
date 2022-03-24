@@ -12,6 +12,8 @@ export class AuthService {
   Email:string="";
   Id:string="";
   role:string="";
+  EmpId:string="";
+  FullName:string="";
   constructor()
   {
     
@@ -38,6 +40,8 @@ export class AuthService {
     this.Email = this.decodedToken.Email;
     this.Id=this.decodedToken.Id;
     this.role=this.decodedToken.Role;
+    this.EmpId=this.decodedToken.EmpId;
+    this.FullName=this.decodedToken.FirstName +' '+ this.decodedToken.LastName;;
     if(isExpired)
     {
       return false;

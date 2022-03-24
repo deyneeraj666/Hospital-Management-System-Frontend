@@ -35,6 +35,7 @@ export class UsermanagementService
       dob : new FormControl("",Validators.required),
       phoneNumber: new FormControl("",[Validators.required,Validators.pattern("^([0-9]{1,5})?([7-9][0-9]{9})$")]),
       role : new FormControl("",Validators.required),
+      // specility: new FormControl("null",Validators.required)
       })
   }
 

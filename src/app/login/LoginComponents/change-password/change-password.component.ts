@@ -79,21 +79,23 @@ export class ChangePasswordComponent
      
         this.user.change_password_service(obj).subscribe({
           next: (v) => {
-                        alert(1)
+                        // alert(1)
                         console.log(v); 
                         this.toastr.success("Updated");
                         localStorage.removeItem('token');
                         localStorage.removeItem('role');
                         this.router.navigateByUrl('login') 
-                        alert(4) 
+                        // alert(4) 
                       },
           error: (e) =>
           {
-            alert(2)
+            // alert(2)
             console.log(e)
             this.toastr.error(e)
           } ,
-          complete: () => {console.info('complete');alert(3)} 
+          complete: () => {console.info('complete');
+          // alert(3)
+        } 
         });  
       // try {
       //   let data: any = this.user.change_password_service(obj);

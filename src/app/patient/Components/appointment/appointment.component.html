@@ -65,9 +65,7 @@
                     <mat-form-field appearance="fill" style="width:90%;padding-left: 9%;">
                         <mat-label class="label">Physician</mat-label>
                         <select matNativeControl formControlName="Physician" name="Physician">
-                            <option value="Dr. Joe">Dr. Joe</option>
-                            <option value="Dr. Lee">Dr. Lee</option>
-                            <option value="Dr. Clark">Dr. Clark</option>
+                            <option *ngFor="let item of ddlPhysicianData" [value]="item.physicianId">{{item.physicianName}}</option>
                         </select>
                     </mat-form-field>
                     <div>
@@ -98,9 +96,15 @@
                     <mat-form-field appearance="fill" style="width:90%;padding-left: 9%;">
                         <mat-label class="label">Slot</mat-label>
                         <select matNativeControl formControlName="slot" name="slot">
-                            <option value="9-10AM">9-10AM</option>
-                            <option value="10-11AM">10-11AM</option>
-                            <option value="2-3PM">2-3PM</option>
+                            <option value="8-9 AM">8-9 AM</option>
+                            <option value="9-10 AM">9-10 AM</option>
+                            <option value="10-11 AM">10-11 AM</option>
+                            <option value="11-12 AM">11-12 AM</option>
+                            <option value="12-1 PM">12-1 PM</option>
+                            <option value="1-2 PM">1-2 PM</option>
+                            <option value="2-3 PM">2-3 PM</option>
+                            <option value="3-4 PM">3-4 PM</option>
+                            <option value="4-5 PM">4-5 PM</option>
                         </select>
                     </mat-form-field>
                     <div>
@@ -128,10 +132,10 @@
                     <th class="tbl2">Slot</th>
                 </thead>
                 <tr *ngFor="let p of appointmentData; let i = index;">
-                    <td class="tbl2td">{{p.appointmentType}}</td>
-                    <td class="tbl2td">{{p.Description}}</td>
-                    <td class="tbl2td"> {{p.Physician}}</td>
-                    <td class="tbl2td">{{p.slot}}</td>
+                    <td class="tbl2td">{{p.meetingTitle}}</td>
+                    <td class="tbl2td">{{p.description}}</td>
+                    <td class="tbl2td"> {{p.physician}}</td>
+                    <td class="tbl2td">{{p.startDateTime|date}}</td>
                 </tr>
                 
                 <tr style="text-align: center; color: red;" *ngIf="appointmentData.length<=0">
@@ -141,7 +145,7 @@
         </div>
     </ng-template>
 </div>
-<br>
+<!-- <br>
 
 
-<app-footer style="clear: both;"></app-footer>
+<app-footer style="clear: both;"></app-footer> -->

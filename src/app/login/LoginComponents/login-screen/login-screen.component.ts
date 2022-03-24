@@ -16,7 +16,8 @@ export class LoginScreenComponent implements OnInit
   hide = true;
   submitted:boolean=false;
   loginform:any = FormGroup ;
-
+  loading = false;
+  loading_reg=false;
   constructor(private router: Router, private toastr:ToastrService,private user:UsermanagementService)
   {
 
@@ -24,7 +25,7 @@ export class LoginScreenComponent implements OnInit
     onSubmit() 
   {
     this.submitted = true;
-
+    this.loading = true;
 
     this.user.login_service(this.loginform.controls.email.value, this.loginform.controls.password.value)
     .subscribe( async (res:any)=>
@@ -39,6 +40,7 @@ export class LoginScreenComponent implements OnInit
               }
               else if(res.items.role == "nurse" ||res.items.role == "physician")
               {
+                
                 this.router.navigateByUrl(res.items.role+"/appointment");
               }
               else
@@ -47,14 +49,18 @@ export class LoginScreenComponent implements OnInit
               }
              this.toastr.success("Welcome " +res.items.role);
            
-      },1000);
+      },2000);
      
      
    
     },(err:any)=>
       {
-      this.toastr.error(err.error);
-      this.loginform.reset();
+        setTimeout(()=>{
+          this.loading = false;
+        this.toastr.error(err.error);
+        this.loginform.reset();
+        },3000)
+        
     });
     
     
@@ -69,8 +75,11 @@ export class LoginScreenComponent implements OnInit
   }
 
   register_click(){
+    this.loading_reg = true;
+    setTimeout(()=>{
     this.router.navigateByUrl('patient-register');
-  }
+    }
+    ,1000)}
 
   ngOnInit(): void
   {

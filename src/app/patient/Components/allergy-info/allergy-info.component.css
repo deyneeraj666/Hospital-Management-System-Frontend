@@ -60,15 +60,6 @@ span {
     font-size: 10px;
 }
 
-/* .radio-item {
-    display: flex;
-    width: 100%;
-}
-
-.radio-item>* {
-    flex-basis: 100%;
-} */
-
 .actions {
     margin-bottom: 10px;
 }
@@ -102,12 +93,14 @@ span {
 
 
 .input-field{
-    color:rgba(10, 102, 163, 0.897) ;
-    font-size: 16px;
+    /* color:rgba(10, 102, 163, 0.897) ; */
+    color: black;
+    font-size: 14px;
     
 }
 .label{
     color:black;
+    font-size: 16px;
 }
 
 .allergy-field{

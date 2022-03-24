@@ -16,6 +16,10 @@ import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { DayService, DragAndDropService, MonthService, RecurrenceEditorModule, ResizeService, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {  MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,12 @@ import { HttpClientModule } from '@angular/common/http';
     RecurrenceEditorModule, 
     ScheduleModule,
     ScheduleAllModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatCardModule
     
   ],
   exports:[

@@ -1,163 +1,192 @@
 <app-physician-header [option]="option"></app-physician-header>
 
-<div class="control-section">
-  <ejs-schedule
-    #scheduleObj
-    width="100%"
-    height="550px"
-    [selectedDate]="selectedDate"
-    [eventSettings]="eventSettings"
-    (actionBegin)="onActionBegin($event)"
-    (eventRendered)="onEventRendered($event)"
-    (popupClose)="onPopupClose($event)"
-    (popupOpen)="onPopupOpen($event)"
-    [showQuickInfo]="showQuickInfo"
-  >
-    <e-views>
-      <e-view option="Day"></e-view>
-      <e-view option="Week" startHour="07:00" endHour="15:00"></e-view>
-      <e-view option="WorkWeek"></e-view>
-      <e-view option="Month"></e-view>
-    </e-views>
-    <ng-template #editorTemplate let-data>
-      <table
-        *ngIf="data != undefined"
-        class="custom-event-editor"
-        width="100%"
-        cellpadding="5"
-      >
-        <tbody>
-          <tr style="display:none">
-            <td class="e-textlabel">Id</td>
-            <td colspan="1">
-              <input
-              id="Id"
-              class="e-field e-input"
-              type="text"
-              value="{{ data.Id }}"
-              name="Id"
-              style="width: 100%"
-            /></td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">Patient Id</td>
-            <td colspan="1">
-              <input
-              id="P_Id"
-              class="e-field e-input"
-              type="text"
-              value="{{ data.P_Id }}"
-              name="P_Id"
-              style="width: 100%"
-            /></td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">Meeting Title</td>
-            <td colspan="4">
-              <input
-                id="MeetingTitle"
+<!-- <form class="row" [formGroup]="physicianDetailForm" style="
+border: 1px solid black;
+width: 100%;
+margin-left: 0px;
+">
+
+<div class="col-sm-4 row" >
+  <span class="col-sm-4">Physician Name </span>
+<mat-form-field class="col-8 pb-0">
+    <input type="text" matInput [formControl]='physicianName' [matAutocomplete]="keys">
+    <mat-autocomplete  (optionSelected)="physicianName_click()" #keys="matAutocomplete">
+        <mat-option *ngFor="let pf of physicianNameList" [value]='pf' >{{pf}}</mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+<span class="col-4"></span>
+<span class="error col-8 pb-1" *ngIf="physicianName.invalid && physicianName.touched">
+  This field cannot be empty
+</span>
+</div>
+<div class="col-2 mx-auto mb-1" style="display: none;">
+  <button class="bg-primary" (click)="getAppointment_click()">Get Appointment</button>
+</div>
+<div class="col-sm-4 row" style="display: none;">
+  <span class="col-sm-4">Physician ID </span>
+<mat-form-field class="col-8">
+    <input type="text" matInput  [formControl]='physicianId'>
+</mat-form-field>
+</div>
+</form> -->
+
+<mat-card style="display: none;" class="appointment-container">
+
+  <form [formGroup]="physicianDetailForm" class="form-container" >
+    <div class="ap-details">
+      <div class="ap-info">
+          <div class="field">
+            <mat-form-field class="no-bottom" appearance="fill" style="width: 250px; ">
+              <mat-label class="label">Physician Name</mat-label>
+              <input type="text" matInput [formControl]='physicianName' style="font-size: 16px; color: black;" [matAutocomplete]="keys">
+              <mat-autocomplete  (optionSelected)="physicianName_click()" #keys="matAutocomplete">
+                  <mat-option *ngFor="let pf of physicianNameList" [value]='pf' >{{pf}}</mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+  </div>
+      
+      </div>
+    </div>
+    
+  </form>
+  </mat-card>
+
+<ejs-schedule
+      #scheduleObj
+      width="100%"
+      height="600px"
+      [selectedDate]="selectedDate"
+      [eventSettings]="eventSettings"
+      (actionBegin)="onActionBegin($event)"
+      (eventRendered)="onEventRendered($event)"
+      [showQuickInfo]="showQuickInfo"
+      [readonly]="enableCalendar"
+    >
+      <e-views>
+        <e-view option="Day"></e-view>
+        <e-view option="Week" startHour="08:00" endHour="20:00" ></e-view>
+        <e-view option="WorkWeek" ></e-view>
+        <e-view option="Month"></e-view>
+      </e-views>
+      <ng-template #editorTemplate let-data>
+        <table
+          *ngIf="data != undefined"
+          class="custom-event-editor"
+          width="100%"
+          cellpadding="5"
+        >
+          <tbody>
+            <tr style="display:none">
+              <td class="e-textlabel">Id</td>
+              <td colspan="1">
+                <input
+                id="Id"
                 class="e-field e-input"
                 type="text"
-                value="{{ data.MeetingTitle }}"
-                name="MeetingTitle"
+                value="{{ data.Id }}"
+                name="Id"
                 style="width: 100%"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">Patient Name</td>
-            <td colspan="4">
-              <input
-                id="Subject"
-                class="e-field e-input"
-                type="Subject"
-                value="{{ data.Subject }}"
-                name="Subject"
-                style="width: 100%"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">Physician</td>
-            <td colspan="4">
-              <ejs-dropdownlist
-                id="Physician"
-                class="e-field"
-                data-name="Physician"
-                placeholder="select Physician"
-                [dataSource]="physicianData"
-                value="{{ data.Physician }}"
-              >
-              </ejs-dropdownlist>
-            </td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">Status</td>
-            <td colspan="4">
-              <ejs-dropdownlist
-                id="Status"
-                class="e-field"
-                data-name="Status"
-                placeholder="Choose Status"
-                [dataSource]="statusData"
-                value="{{ data.Status }}"
-              >
-              </ejs-dropdownlist>
-            </td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">From</td>
-            <td colspan="4">
-              <ejs-datetimepicker
-                id="StartTime"
-                class="e-field"
-                data-name="StartTime"
-                format="M/dd/yy h:mm a"
-                (change)="onDateChange($event)"
-                [value]="startDateParser(data.startTime || data.StartTime)"
-              >
-              </ejs-datetimepicker>
-            </td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">To</td>
-            <td colspan="4">
-              <ejs-datetimepicker
-                id="EndTime"
-                class="e-field"
-                data-name="EndTime"
-                format="M/dd/yy h:mm a"
-                (change)="onDateChange($event)"
-                [value]="endDateParser(data.endTime || data.EndTime)"
-              >
-              </ejs-datetimepicker>
-            </td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">Description</td>
-            <td colspan="4">
-              <textarea
-                id="Description"
-                class="e-field e-input"
-                name="Description"
-                rows="3"
-                cols="50"
-                value="{{ data.Description }}"
-                style="width: 100%; height: 60px !important; resize: vertical"
-              ></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="e-textlabel">Action</td>
-            <td>
-              <button routerLink="/patient-header">Visit Patient Chart</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </ng-template>
-  </ejs-schedule>
-</div>
-
+              /></td>
+            </tr>
+            <tr>
+              <td class="e-textlabel">Title</td>
+              <td colspan="4">
+                <input
+                  id="Subject"
+                  class="e-field e-input"
+                  type="text"
+                  value="{{ data.Subject }}"
+                  name="Subject"
+                  style="width: 100%"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="e-textlabel">Patient ID</td>
+              <td colspan="4">
+                <input
+                  id="PatientId"
+                  class="e-field e-input"
+                  type="text"
+                  value="{{ data.PatientId }}"
+                  name="PatientId"
+                  style="width: 100%"
+                />
+              </td>
+            </tr>
+            <tr *ngIf="data.Status!='PENDING'">
+              <td class="e-textlabel">Status</td>
+              <td colspan="4">
+                <input
+                  id="Status"
+                  class="e-field e-input"
+                  readonly=true
+                  type="text"
+                  [value]="getStatus(data.Status)"
+                  name="Status"
+                  style="width: 100%"
+                />
+              </td>
+            </tr>
+            <tr *ngIf="data.Status=='PENDING'">
+              <td class="e-textlabel">Status</td>
+              <td colspan="4">
+                <ejs-dropdownlist
+                  id="Status"
+                  class="e-field"
+                  data-name="Status"
+                  placeholder="Choose Status"
+                  [dataSource]="statusData"
+                  value="{{ data.Status }}"
+                >
+                </ejs-dropdownlist>
+              </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">From</td>
+                <td colspan="4">
+                  <ejs-datetimepicker id="StartTime" class="e-field" data-name="StartTime" format="M/dd/yy h:mm a"
+                    (change)="($event)" [value]="(data.startTime || data.StartTime)">
+                  </ejs-datetimepicker>
+                </td>
+              </tr>
+              <tr>
+                <td class="e-textlabel">To</td>
+                <td colspan="4">
+                  <ejs-datetimepicker id="EndTime" class="e-field" data-name="EndTime" format="M/dd/yy h:mm a"
+                    (change)="($event)"  [value]="(data.endTime || data.EndTime)">
+                  </ejs-datetimepicker>
+                </td>
+              </tr>
+            <tr>
+              <td class="e-textlabel">Description</td>
+              <td colspan="4">
+                <textarea
+                  id="Description"
+                  class="e-field e-input"
+                  name="Description"
+                  rows="3"
+                  cols="50"
+                  value="{{ data.Description }}"
+                  style="width: 100%; height: 60px !important; resize: vertical"
+                ></textarea>
+              </td>
+            </tr>
+            <tr *ngIf="data.Status=='CONFIRMED'">
+              <td>Visit Link</td>
+              <!-- <td class="pl-5">
+                <button class="bg-primary" (click)="viewChart(data.PatientId, data.Id)">VIEW PATIENT CHART</button>
+                
+              </td> -->
+              <td >
+                <button mat-raised-button style="background-color: rgba(10, 102, 163, 0.897) ;color: white;" (click)="viewChart(data.PatientId, data.Id)">View Patient Chart</button>               
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ejs-schedule>
 <br><br><br>
 <app-footer></app-footer>
+
+

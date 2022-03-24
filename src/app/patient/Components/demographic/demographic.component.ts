@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PmsService } from 'src/app/Service/pms.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Shared/auth.service';
+import { ConsultingService } from 'src/app/Shared/consulting.service';
 
 @Component({
   selector: 'app-demographic',
@@ -22,12 +23,15 @@ export class DemographicComponent implements OnInit {
   constructor(
     private pmsService: PmsService,
     private toastr: ToastrService,
-    private auth: AuthService
+    private auth: AuthService,
+    private consultingService :ConsultingService
   ) {}
 
   ngOnInit(): void {
-    this.pid = this.auth.Id;
-
+    // this.pid = this.auth.Id;
+    // this.pid=this.consultingService.consultingPId;
+    this.pid=this.auth.role==='Patient'?this.auth.EmpId : this.consultingService.consultingPId;
+   
     this.pmsService.getDemographicInfoByPatientId(this.pid).subscribe(
       (res) => {
         console.log('Receiving data in demo');
